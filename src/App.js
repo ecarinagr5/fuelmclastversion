@@ -35,7 +35,7 @@ class App extends React.Component {
     return (
       <Router>
           <Switch>
-         <MainLayout breakpoint={this.props.breakpoint}>
+        <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
                 <Route exact path="/" component={Estacion} />
                 <Route exact path="/login-modal" component={AuthModalPage} />

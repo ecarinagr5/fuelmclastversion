@@ -38,11 +38,12 @@ import {
   CardDeck,
   CardGroup,
   CardHeader,
-  CardTitle,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  UncontrolledButtonDropdown,
+  Form,
+  FormFeedback,
+  FormGroup,
+  FormText,
+  Input,
+  Label,
   Col,
   Table,
   ListGroup,
@@ -127,6 +128,7 @@ class Estacion extends React.Component {
 
     this.state = { 
       simular:false,
+      tools:false,
       productsData:[
         {
           nombre: '<92',
@@ -199,8 +201,12 @@ class Estacion extends React.Component {
     this.handSimulate = this.handSimulate.bind(this);
     this.addValue =  this.addValue.bind(this);
     this.resetSimulador = this.resetSimulador.bind(this);
+    this.handTools = this.handTools.bind(this);
  }
 
+ handTools() {
+  this.setState({ tools: !this.state.tools })
+ }
  toggle = modalType => () => {
   if (!modalType) {
     return this.setState({
@@ -238,6 +244,8 @@ resetSimulador(){
   handleClick(){
     this.setState({ simular: true})
   }
+
+
 
   render() {
     const primaryColor = getColor('primary');
@@ -460,7 +468,41 @@ resetSimulador(){
     let { productsData } = this.state;
     return (
       <Page>
-                        <Modal
+        {/* Tools */}
+          <Button color="primary" className="btn-fixed-setup" onClick={this.handTools}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+              <path d="M1 0L0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z"/>
+            </svg>
+          </Button>
+          <div className={ this.state.tools ? "container-tools show" : "hide"}>       
+            <Col xl={8} lg={12} md={12}>
+              <Card>
+                <CardBody  className="container-tools-inside">
+                  <Form inline>
+                    <FormGroup>
+                      <Label for="exampleEmail" className="text-tools">
+                        Margen por Litro
+                      </Label>
+                      <Input type="number" name="margen" className="input-tools" />
+                    </FormGroup>{' '}
+                    <FormGroup>
+                      <Label for="examplePassword"  className="text-tools" >
+                        Volumen Total
+                      </Label>
+                      <Input
+                        type="number"
+                        name="Volumen"
+                        className="input-tools"
+                      />
+                    </FormGroup>{' '}
+                    <Button color="primary" >APLICAR</Button>
+                  </Form>
+                </CardBody>
+              </Card>
+            </Col>
+          </div>
+        {/* Modal */}
+              <Modal
                   isOpen={this.state.modal_nested_parent}
                   toggle={this.toggle('nested_parent')}
                   className={this.props.className}>
@@ -667,31 +709,31 @@ resetSimulador(){
                 <tbody>
                   <tr>
                     <th className="text-center" scope="row">{'< 92'}</th>
-                    <td className="text-center"> 13.41 <span className="update-date">21/01/2021</span></td>
+                    <td className="text-center"> 13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
                   <tr>
                     <th  className="text-center" scope="row">{'> 92'}</th>
-                    <td className="text-center">13.41</td>
+                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
                   <tr>
                     <th  className="text-center" scope="row">Gasoleo B</th>
-                    <td className="text-center">13.41</td>
+                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
                   <tr>
                     <th className="text-center" scope="row">Diesel A+ </th>
-                    <td className="text-center">13.41</td>
+                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
                   <tr>
                     <th className="text-center" scope="row">PEMEX DIESEL (DIESEL) </th>
-                    <td className="text-center">13.41</td>
+                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
