@@ -187,7 +187,7 @@ change(event) {
                 <UserCard
                   title="Carina González"
                   subtitle="Carina@everis.com"
-                  text="Última conexión 19 Enero 2021 10:21am"
+                  text="Última conexión 25 Enero 2021 10:21am"
                   className="border-light"
                 >
                   <ListGroup flush>

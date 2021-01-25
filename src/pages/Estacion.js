@@ -64,7 +64,7 @@ const lastWeek = new Date(
   today.getMonth(),
   today.getDate() - 7,
 );
-const MONTHS = ['12/01/2021', '13/01/2021', '14/01/2021', '15/01/2021', '16/01/2021', '17/01/2021', '18/01/2021'];
+const MONTHS = ['21/01/2021', '22/01/2021', '23/01/2021', '24/01/2021', '25/01/2021', '26/01/2021', '27/01/2021'];
 
 const genPriceBuy = (moreData = {}, moreData2 = {}) => {
   return {
@@ -134,6 +134,7 @@ class Estacion extends React.Component {
           nombre: '<92',
           precioventa: 13.41,
           simular:null,
+          preciorealdehoy:12.21,
           preciorecomendadoponderado:0,
           preciorecomenda:11.3,
           competenciaestrategica:11.4,
@@ -147,6 +148,7 @@ class Estacion extends React.Component {
           nombre: '>92',
           precioventa: 14.41,
           simular:null,
+          preciorealdehoy:13.11,
           preciorecomendadoponderado:0,
           preciorecomenda:10.3,
           competenciaestrategica:12.4,
@@ -160,6 +162,7 @@ class Estacion extends React.Component {
           nombre: 'Gasoleo B',
           precioventa: 15.41,
           simular:null,
+          preciorealdehoy:14.10,
           preciorecomendadoponderado:0,
           preciorecomenda:11.2,
           competenciaestrategica:12.4,
@@ -172,6 +175,7 @@ class Estacion extends React.Component {
         {
           nombre: 'Diesel A+',
           precioventa: 16.41,
+          preciorealdehoy:12.11,
           simular:null,
           preciorecomendadoponderado:0,
           preciorecomenda:10.7,
@@ -185,6 +189,7 @@ class Estacion extends React.Component {
         {
           nombre: 'PEMEX DIESEL (DIESEL)',
           precioventa: 17.41,
+          preciorealdehoy:13.41,
           simular:null,
           preciorecomendadoponderado:0,
           preciomodificado:0,
@@ -347,7 +352,7 @@ resetSimulador(){
 
     const genLineData = (moreData = {}, moreData2 = {}) => {
       return {
-        labels: PRODUCTOS,
+        labels: MONTHS,
         datasets: [
           {
             label: this.state.simular ? 'PRECIO MODIFICADO ' : 'PRECIO VENTA',
@@ -358,6 +363,8 @@ resetSimulador(){
               this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
               this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[1].precioventa,
               this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[2].precioventa,
+              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[3].precioventa,
+              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[4].precioventa,
               this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[3].precioventa,
               this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[4].precioventa,
             ],
@@ -374,6 +381,8 @@ resetSimulador(){
               this.state.productsData[2].preciorecomenda,
               this.state.productsData[3].preciorecomenda,
               this.state.productsData[4].preciorecomenda,
+              this.state.productsData[1].preciorecomenda,
+              this.state.productsData[2].preciorecomenda,
             ],
             ...moreData,
           },
@@ -388,6 +397,8 @@ resetSimulador(){
               this.state.productsData[2].competenciaestrategica,
               this.state.productsData[3].competenciaestrategica,
               this.state.productsData[4].competenciaestrategica,
+              this.state.productsData[1].competenciaestrategica,
+              this.state.productsData[2].competenciaestrategica,
             ],
             ...moreData2,
           },
@@ -416,6 +427,8 @@ resetSimulador(){
               this.state.productsData[2].competenciaA,
               this.state.productsData[3].competenciaA,
               this.state.productsData[4].competenciaA,
+              this.state.productsData[3].competenciaA,
+              this.state.productsData[4].competenciaA,
             ],
             ...moreData2,
           },
@@ -430,6 +443,8 @@ resetSimulador(){
               this.state.productsData[2].competenciaB,
               this.state.productsData[3].competenciaB,
               this.state.productsData[4].competenciaB,
+              this.state.productsData[1].competenciaB,
+              this.state.productsData[2].competenciaB,
             ],
             ...moreData2,
           },
@@ -444,6 +459,8 @@ resetSimulador(){
               this.state.productsData[2].competenciaC,
               this.state.productsData[3].competenciaC,
               this.state.productsData[4].competenciaC,
+              this.state.productsData[2].competenciaC,
+              this.state.productsData[3].competenciaC,
             ],
             ...moreData2,
           },
@@ -458,6 +475,8 @@ resetSimulador(){
               this.state.productsData[2].competenciaD,
               this.state.productsData[3].competenciaD,
               this.state.productsData[4].competenciaD,
+              this.state.productsData[1].competenciaD,
+              this.state.productsData[2].competenciaD,
             ],
             ...moreData2,
           }
@@ -466,6 +485,7 @@ resetSimulador(){
     };
 
     let { productsData } = this.state;
+    let promedio = 63 //Promedio de competencia estrategica;
     return (
       <Page>
         {/* Tools */}
@@ -480,14 +500,14 @@ resetSimulador(){
                 <CardBody  className="container-tools-inside">
                   <Form inline>
                     <FormGroup>
-                      <Label for="exampleEmail" className="text-tools">
-                        Margen por Litro
+                      <Label for="exampleEmail" className="text-tools label-simular">
+                        MARGEN POR LITRO OBJETIVO
                       </Label>
-                      <Input type="number" name="margen" className="input-tools" />
+                      <Input type="number" name="margen" className="input-tools label-simular" />
                     </FormGroup>{' '}
                     <FormGroup>
-                      <Label for="examplePassword"  className="text-tools" >
-                        Volumen Total
+                      <Label for="examplePassword"  className="text-tools label-simular" >
+                      VOLUMEN OBJETIVO
                       </Label>
                       <Input
                         type="number"
@@ -507,21 +527,17 @@ resetSimulador(){
                   toggle={this.toggle('nested_parent')}
                   className={this.props.className}>
                   <ModalHeader toggle={this.toggle('nested_parent')}>
-                    Modal title
+                    ACEPTAR PRECIOS
                   </ModalHeader>
                   <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    Estas seguro de Aplicar los siguientes cambios:
+                    {
+                      this.state.productsData.map( product =>
+                      <p className="product-row"> { product.nombre } <span className="text-validate">$ { product.preciomodificado } </span> </p>
+                      )
+                    }
                     <br />
-                    <Button color="success" onClick={this.toggle('nested')}>
-                      Show Nested Model
-                    </Button>
+
                     <Modal
                       isOpen={this.state.modal_nested}
                       toggle={this.toggle('nested')}>
@@ -529,12 +545,12 @@ resetSimulador(){
                       <ModalBody>Stuff and things</ModalBody>
                       <ModalFooter>
                         <Button color="primary" onClick={this.toggle('nested')}>
-                          Done
+                          APLICAR
                         </Button>{' '}
                         <Button
                           color="secondary"
                           onClick={this.toggle('nested_parent')}>
-                          All Done
+                          CANCELAR
                         </Button>
                       </ModalFooter>
                     </Modal>
@@ -543,12 +559,12 @@ resetSimulador(){
                     <Button
                       color="primary"
                       onClick={this.toggle('nested_parent')}>
-                      Do Something
+                        ACEPTAR
                     </Button>{' '}
                     <Button
-                      color="secondary"
+                      color="danger"
                       onClick={this.toggle('nested_parent')}>
-                      Cancel
+                        CANCELAR
                     </Button>
                   </ModalFooter>
                 </Modal>
@@ -562,11 +578,12 @@ resetSimulador(){
                 <Button color="primary" onClick={this.toggle('nested_parent')} className="btn-main-fuel-right">
                   ACEPTAR &nbsp;
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
-                  <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-                  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-                </svg>
+                    <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                  </svg>
                 </Button>
+
                 <Button color="danger" onClick={this.resetSimulador} className="btn-main-fuel-right">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-all-fill" viewBox="0 0 16 16">
                   <path d="M8.021 11.9L3.453 8.62a.719.719 0 0 1 0-1.238L8.021 4.1a.716.716 0 0 1 1.079.619V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
@@ -581,6 +598,7 @@ resetSimulador(){
                 <thead>
                   <tr>
                     <th className="header-table">PRODUCTO</th>
+                    <th className="header-table">PRECIO REAL DE HOY</th>
                     {this.state.simular ? <th className="header-table text-left">SIMULACIÓN</th> : '' }
                     <th className="header-table">PRECIO VENTA</th>
                     <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
@@ -595,22 +613,24 @@ resetSimulador(){
                 <tbody>
                 {   
                     productsData.map((prop, key) => {
+                      let precioponderado =  (prop.precioventa * 100 ) / promedio; 
                     /*return <th key={key}>{prop}</th>;*/
                     return (
                       <tr>
                         <th  className="text-center" scope="row">{ prop.nombre }</th>
+                          <td className="text-center">{ prop.preciorealdehoy }</td>
                           { this.state.simular ? 
                           <td className="text-left">
                               <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } />  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           <td className="text-center"> { prop.precioventa } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.precioventa }  onClick={this.handSimulate} /> : '' }</td>
-                          <td className="text-center">32432</td>
-                          <td className="text-center">{ prop.preciorecomenda }</td>
-                          <td className="text-center txt-ok">{ prop.competenciaestrategica }</td>
-                          <td className="text-center">{ prop.competenciaA }</td>
-                          <td className="text-center txt-high">{ prop.competenciaB }</td>
-                          <td className="text-center">{ prop.competenciaC }</td>
-                          <td className="text-center">{ prop.competenciaD }</td>
+                          <td className="text-center">{ precioponderado.toFixed(1)  / 2}</td>
+                          <td className= { prop.preciorecomenda  > 12 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.preciorecomenda }</td>
+                          <td className= { prop.competenciaestrategica > 13 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}>{ prop.competenciaestrategica }</td>
+                          <td className= { prop.preciorecomenda > 12 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.competenciaA }</td>
+                          <td className={ prop.preciorecomenda > 12 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.competenciaB }</td>
+                          <td className={ prop.preciorecomenda > 12 ? "text-center txt-high" :  "text-center"}>{ prop.competenciaC }</td>
+                          <td className= { prop.competenciaD > 13 ? "text-center txt-high" : "text-center"}>{ prop.competenciaD }</td>
                     </tr>
                     )
                   })}
@@ -633,13 +653,13 @@ resetSimulador(){
             <Card>
             <CardHeader>PRECIO DE VENTA COMPETENCIA</CardHeader>
               <Tabs headerStyle={{fontWeight: 'bold'}} activeHeaderStyle={{color:'black'}} >
-              <Tab label="Productos" className="tab-container"> 
+              <Tab label="POR PRECIO" className="tab-container"> 
                 <CardBody>
                   {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
                   <Bar data={ genLineData() } />
                 </CardBody>
               </Tab>
-              <Tab label="Histórico" onClick={this.handleClick}> 
+              <Tab label="POR PRODUCTO" onClick={this.handleClick}> 
                 <CardBody>
 
                 {/*<Bar data={ genLineDataHistorico({ type: 'line', fill: false })} />*/}
@@ -665,10 +685,11 @@ resetSimulador(){
                         ],
                       },
                     }} />
-                   {/*<Bar data={ genLineDataHistorico() } />*/}
+                    {/*<Bar data={ genLineDataHistorico() } />*/}
                 </CardBody>
               </Tab>
               </Tabs>
+              <p className="update-text">Last Update 25/01/2021 09:35 am</p>
             </Card>
           </Col>
 
@@ -676,18 +697,18 @@ resetSimulador(){
             <Card>
               <CardHeader>RECOMENDACIÓN</CardHeader>
               <CardBody>
+                { this.state.simular ?
                 <UserProgressTable
-                  headers={[
-                    '',
-                    'PRODUCTO',
-                    'PRECIO DE VENTA POR LITRO',
-                    'UTILIDAD TOTAL',
-                    'MARGEN POR LITRO',
-                    'VOLUMEN TOTAL',
-                  ]}
+                  headers= {['','PRODUCTO','PRECIO DE VENTA POR LITRO SELECCIONADO','MARGEN POR LITRO OBJETIVO','VOLUMEN OBJETIVO','UTILIDAD TOTAL']}
+                  usersData={userProgressTableData}
+                /> :
+                <UserProgressTable
+                  headers= {['','PRODUCTO','PRECIO DE VENTA POR LITRO','MARGEN POR LITRO OBJETIVO','VOLUMEN OBJETIVO','UTILIDAD TOTAL']}
                   usersData={userProgressTableData}
                 />
+                }
               </CardBody>
+              <p className="update-text">Last Update 25/01/2021 09:35 am</p>
             </Card>
           </Col>
         </Row>
@@ -709,37 +730,38 @@ resetSimulador(){
                 <tbody>
                   <tr>
                     <th className="text-center" scope="row">{'< 92'}</th>
-                    <td className="text-center"> 13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
+                    <td className="text-center"> 13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">22/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
                   <tr>
                     <th  className="text-center" scope="row">{'> 92'}</th>
-                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
+                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">21/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
                   <tr>
                     <th  className="text-center" scope="row">Gasoleo B</th>
-                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
+                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">19/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
                   <tr>
                     <th className="text-center" scope="row">Diesel A+ </th>
-                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
+                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">20/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
                   <tr>
                     <th className="text-center" scope="row">PEMEX DIESEL (DIESEL) </th>
-                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">25/01/2021</span></Badge></td>
+                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">24/01/2021</span></Badge></td>
                     <td className="text-center">13.41</td>
                     <td className="text-center">12.3</td>
                   </tr>
                 </tbody>
               </Table>
             </CardBody>
+            <p className="update-text">Last Update 25/01/2021 09:35 am</p>
           </Card>
         </Col>
         <Col md="6" sm="12" xs="12">
@@ -749,35 +771,14 @@ resetSimulador(){
             <option value="2">{"> 92"}</option>
             <option value="3">Gasoleo B</option>
             <option value="4">Diesel A+ </option>
+            <option value="5">All</option>
         </select>
         <Card>
-            <CardHeader>PRECIO DE COMPRA</CardHeader>
+            <CardHeader>PRECIO DE COMPRA | TAR AZCAPOTZALCO </CardHeader>
             <CardBody>
-              <Line
-                data={genPriceBuy()}
-                options={{
-                  scales: {
-                    xAxes: [
-                      {
-                        scaleLabel: {
-                          display: true,
-                          labelString: 'Month',
-                        },
-                      },
-                    ],
-                    yAxes: [
-                      {
-                        stacked: true,
-                        scaleLabel: {
-                          display: true,
-                          labelString: 'Value',
-                        },
-                      },
-                    ],
-                  },
-                }}
-              />
+            <Line data={genPriceBuy({ fill: false }, { fill: false })} />
             </CardBody>
+            <p className="update-text">Last Update 25/01/2021 09:35 am</p>
           </Card>
         </Col>
       </Row>

@@ -160,10 +160,28 @@ th{
   width: 80%;
   float: left;
 }
+.container-card-simular{
+  width: 100%;
+  margin: 0 15px;
+  border: 1px solid #9aaa04;
+  background-color: #f1f1f1;
+}
+.label-simular{
+  font-weight: 600;
+}
+.btn-barra-simular{
+  margin-top: 9%;
+  margin-left: 2px;
+}
+.content-filter{
+  margin-top: 5%;
+}
 .icon-filter{
   width: 10%;
   float: left;
-  margin-top: 5%;
+  margin-top: 2%;
+  color: #9aaa04;
+  font-weight: 900;
 }
 .multiselect-container{
   width: 90% !important;
@@ -175,6 +193,17 @@ th{
 .text-tools{
   font-size: 15px;
   margin-left: 20px;
+}
+.product-row{
+  font-weight: 600;
+}
+.text-validate{
+  color:#9aaa04;
+}
+.update-text{
+  font-size: 10px;
+  color:#9aaa04;
+  margin-left: 2%;
 }
 .container-tools-inside{
   background-color: #f1f1f1;
