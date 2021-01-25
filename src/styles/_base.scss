@@ -200,6 +200,51 @@ th{
 .text-validate{
   color:#9aaa04;
 }
+.meaning{
+  cursor: pointer;
+  position: relative;
+}
+.detail{
+ display: none;
+}
+.meaning:hover + .detail {
+  display: block;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+  border:1px solid #9aaa04;
+  margin-top: -4%;
+  color:#9aaa04;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  z-index: 9;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.color-cancel{
+  color:#f05454;
+  font-weight: 900;
+  cursor: pointer;
+}
+.color-cancel:hover{
+  color:#45b649;
+  font-weight: 900;
+  cursor: pointer;
+}
+.color-check{
+  color:#45b649;
+  font-weight: 900;
+  cursor: pointer;
+}
+.color-check:hover{
+  color:#f05454;
+  font-weight: 900;
+  cursor: pointer;
+}
+.user-name{
+  color:#55b3b1;
+}
 .update-text{
   font-size: 10px;
   color:#9aaa04;

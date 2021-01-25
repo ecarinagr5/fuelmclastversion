@@ -83,6 +83,7 @@ const pageContents = [
 const navItems = [
   { to: '/', name: 'Estacion', exact: true, Icon: MdDashboard },
   { to: '/masivo', name: 'Masivo', exact: false, Icon: MdWeb },
+  { to: '/masivoadmin', name: 'Masivo Admin', exact: false, Icon: MdViewDay },
   /*{ to: '/charts', name: 'charts', exact: false, Icon: MdInsertChart },
   { to: '/widgets', name: 'widgets', exact: false, Icon: MdWidgets },*/
 ];

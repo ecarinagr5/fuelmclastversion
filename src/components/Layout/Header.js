@@ -119,7 +119,7 @@ change(event) {
         </Nav>
         <img src={ logopemex }  alt="fuel" className="logo-station"/>
         <Nav navbar>
-        { pathname === '/masivo' ? '' :
+        { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
             <li>
                 <select class="select-estacion-title" onChange={this.change} value={ this.state.station } >
                   <option value={ 0 } selected>{ this.state.estacion[0].nombre }</option>
@@ -129,7 +129,7 @@ change(event) {
                 </select>
             </li>
         }
-        { pathname === '/masivo' ? '' :
+        { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
             <li>
               <div className="direccion-estacion">
                 { this.state.estacion[this.state.direccion].direccion }

@@ -730,33 +730,33 @@ resetSimulador(){
                 <tbody>
                   <tr>
                     <th className="text-center" scope="row">{'< 92'}</th>
-                    <td className="text-center"> 13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">22/01/2021</span></Badge></td>
-                    <td className="text-center">13.41</td>
-                    <td className="text-center">12.3</td>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">22/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
                   </tr>
                   <tr>
                     <th  className="text-center" scope="row">{'> 92'}</th>
-                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">21/01/2021</span></Badge></td>
-                    <td className="text-center">13.41</td>
-                    <td className="text-center">12.3</td>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">21/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
                   </tr>
                   <tr>
                     <th  className="text-center" scope="row">Gasoleo B</th>
-                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">19/01/2021</span></Badge></td>
-                    <td className="text-center">13.41</td>
-                    <td className="text-center">12.3</td>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">19/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
                   </tr>
                   <tr>
                     <th className="text-center" scope="row">Diesel A+ </th>
-                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">20/01/2021</span></Badge></td>
-                    <td className="text-center">13.41</td>
-                    <td className="text-center">12.3</td>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">20/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
                   </tr>
                   <tr>
                     <th className="text-center" scope="row">PEMEX DIESEL (DIESEL) </th>
-                    <td className="text-center">13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">24/01/2021</span></Badge></td>
-                    <td className="text-center">13.41</td>
-                    <td className="text-center">12.3</td>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">24/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
                   </tr>
                 </tbody>
               </Table>

@@ -238,7 +238,7 @@ const genPriceBuy = (moreData = {}, moreData2 = {}) => {
   };
 };
 
-class Masivo extends React.Component {
+class MasivoAdmin extends React.Component {
 
   constructor(props) {
     super(props);
@@ -336,7 +336,8 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table">PRECIO RECOMENDADO</th>
                                   <th className="text-center header-table">MARGEN POR LITRO OBJETIVO</th>
                                   <th className="text-center header-table">VOLUMEN OBJETIVO</th>
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>                             
+                                  <th className="text-center header-table">UTILIDAD TOTAL</th>  
+                                  <th className="text-center header-table">USUARIO</th>                             
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
@@ -362,9 +363,19 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light"> { this.state.simular ? <input type="number" className="input-simulacion" placeholder="16.8"/>  : 16.8 }</td>
                                   <td className="text-center bg-gray-light">{ this.state.simular ? <input type="number" className="input-simulacion" placeholder="1.4"/>  : 1.4 }</td>
                                   <td className="text-center bg-gray-light">1.4</td>
+                                  <td className="text-center bg-gray-light user-name"> Karla_Perez</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
-                                    </td>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle color-check" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                  </svg>
+                                </td>
+                                <td className="text-center">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill color-cancel" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                  </svg>
+                                </td>
                               </tr>
                               <tr>
                               <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" checked={this.state.selectAll ? true : false } /></td>
@@ -384,8 +395,19 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light"> 1</td>
                                   <td className="text-center bg-gray-light"> 1.2</td>
                                   <td className="text-center bg-gray-light bg-margen-minimo">1.2</td>
+                                  <td className="text-center bg-gray-light user-name"> Roman_Perez</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
-                                  <td className="text-center"></td>
+                                  <td className="text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle color-check" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                  </svg>
+                                </td>
+                                <td className="text-center">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill color-cancel" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                  </svg>
+                                </td>
                               </tr>                 
                           </tbody>
                         </Table>
@@ -411,7 +433,8 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table">PRECIO RECOMENDADO</th>
                                   <th className="text-center header-table">MARGEN POR LITRO OBJETIVO</th>
                                   <th className="text-center header-table">VOLUMEN OBJETIVO</th>
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>         
+                                  <th className="text-center header-table">UTILIDAD TOTAL</th>  
+                                  <th className="text-center header-table">USUARIO</th>         
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
@@ -437,8 +460,13 @@ class Masivo extends React.Component {
                                 <td className="text-center bg-gray-light"> 12</td>
                                 <td className="text-center bg-gray-light"> 12.2</td>
                                 <td className="text-center bg-gray-light bg-redb">1.4</td>
+                                <td className="text-center bg-gray-light user-name"> Isabel_Perez</td>
                                 <td className="text-center color-red"> <a href="estacion#Azcapotzalco" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
-                                <td className="text-center"></td>
+                                <td className="text-center">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill color-cancel" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                  </svg>
+                                </td>
                             </tr>                
                         </tbody>
                       </Table>
@@ -464,7 +492,8 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table">PRECIO RECOMENDADO</th>
                                   <th className="text-center header-table">MARGEN POR LITRO OBJETIVO</th>
                                   <th className="text-center header-table">VOLUMEN OBJETIVO</th>
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>         
+                                  <th className="text-center header-table">UTILIDAD TOTAL</th>  
+                                  <th className="text-center header-table">USUARIO</th>            
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
@@ -491,8 +520,19 @@ class Masivo extends React.Component {
                                 <td className="text-center bg-gray-light"> 12</td>
                                 <td className="text-center bg-gray-light"> 1.3</td>
                                 <td className="text-center bg-gray-light">1.5</td>
+                                <td className="text-center bg-gray-light user-name"> Fernando_Robles</td>
                                 <td className="text-center color-red"> <a href="estacion#Naucalpan" target="_self"> <img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
-                                <td className="text-center"></td>
+                                <td className="text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle color-check" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                  </svg>
+                                </td>
+                                <td className="text-center">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill color-cancel" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                  </svg>
+                                </td>
                             </tr>                
                         </tbody>
                       </Table>
@@ -509,4 +549,4 @@ class Masivo extends React.Component {
     );
   }
 }
-export default Masivo;
+export default MasivoAdmin;

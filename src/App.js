@@ -26,6 +26,7 @@ const TablePage = React.lazy(() => import('pages/TablePage'));
 const TypographyPage = React.lazy(() => import('pages/TypographyPage'));
 const WidgetPage = React.lazy(() => import('pages/WidgetPage'));
 const Masivo = React.lazy(() => import('pages/Masivo'));
+const MasivoAdmin = React.lazy(() => import('pages/MasivoAdmin'));
 
 
 
@@ -47,6 +48,7 @@ class App extends React.Component {
                 <Route exact path="/tables" component={TablePage} />
                 <Route exact path="/badges" component={BadgePage} />
                 <Route exact path="/masivo" component={Masivo} />
+                <Route exact path="/masivoadmin" component={MasivoAdmin} />
                 <Route
                   exact
                   path="/button-groups"
