@@ -197,6 +197,7 @@ class Estacion extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handSimulate = this.handSimulate.bind(this);
     this.addValue =  this.addValue.bind(this);
+    this.resetSimulador = this.resetSimulador.bind(this);
  }
 
  toggle = modalType => () => {
@@ -211,8 +212,8 @@ class Estacion extends React.Component {
   });
 };
 
-resetSimulador() {
-  this.setState({simular: false})
+resetSimulador(){
+  this.setState({simular:false})
   this.state.productsData.map(data => {
     data.modificado= null
   })
