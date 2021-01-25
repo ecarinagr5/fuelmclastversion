@@ -3,6 +3,7 @@ import HorizontalAvatarList from 'components/HorizontalAvatarList';
 import MapWithBubbles from 'components/MapWithBubbles';
 import Page from 'components/Page';
 import ProductMedia from 'components/ProductMedia';
+import {Tabs, Tab} from 'react-bootstrap-tabs';
 import SupportTicket from 'components/SupportTicket';
 import UserProgressTable from 'components/UserProgressTable';
 import { IconWidget, NumberWidget } from 'components/Widget';
@@ -132,64 +133,64 @@ class Estacion extends React.Component {
           precioventa: 13.41,
           simular:null,
           preciorecomendadoponderado:0,
-          preciorecomenda:12.3,
-          competenciaestrategica:12.4,
+          preciorecomenda:11.3,
+          competenciaestrategica:11.4,
           preciomodificado:0,
-          competenciaA:23.4,
-          competenciaB:20.4,
-          competenciaC:18.4,
+          competenciaA:12.4,
+          competenciaB:11.4,
+          competenciaC:12.4,
           competenciaD:12.3,
         },
         {
           nombre: '>92',
-          precioventa: 13.41,
+          precioventa: 14.41,
           simular:null,
           preciorecomendadoponderado:0,
-          preciorecomenda:12.3,
+          preciorecomenda:10.3,
           competenciaestrategica:12.4,
           preciomodificado:0,
-          competenciaA:23.4,
-          competenciaB:20.4,
-          competenciaC:18.4,
+          competenciaA:11.4,
+          competenciaB:13.4,
+          competenciaC:16.4,
           competenciaD:12.3,
         },
         {
           nombre: 'Gasoleo B',
-          precioventa: 13.41,
+          precioventa: 15.41,
           simular:null,
           preciorecomendadoponderado:0,
-          preciorecomenda:12.3,
+          preciorecomenda:11.2,
           competenciaestrategica:12.4,
           preciomodificado:0,
-          competenciaA:23.4,
-          competenciaB:20.4,
-          competenciaC:18.4,
+          competenciaA:10.4,
+          competenciaB:12.4,
+          competenciaC:14.4,
           competenciaD:12.3,
         },
         {
           nombre: 'Diesel A+',
-          precioventa: 13.41,
+          precioventa: 16.41,
           simular:null,
           preciorecomendadoponderado:0,
-          preciorecomenda:12.3,
+          preciorecomenda:10.7,
           competenciaestrategica:12.4,
           preciomodificado:0,
-          competenciaA:23.4,
-          competenciaB:20.4,
-          competenciaC:18.4,
+          competenciaA:13.4,
+          competenciaB:11.4,
+          competenciaC:13.4,
           competenciaD:12.3,
         },
         {
           nombre: 'PEMEX DIESEL (DIESEL)',
-          precioventa: 13.41,
+          precioventa: 17.41,
           simular:null,
           preciorecomendadoponderado:0,
           preciomodificado:0,
-          preciorecomenda:12.3,
-          competenciaestrategica:12.4,
-          competenciaA:23.4,
-          competenciaB:20.4,
-          competenciaC:18.4,
+          preciorecomenda:13.3,
+          competenciaestrategica:14.4,
+          competenciaA:12.4,
+          competenciaB:12.8,
+          competenciaC:12.4,
           competenciaD:12.3,
         }
       ]
@@ -241,10 +242,99 @@ resetSimulador(){
   render() {
     const primaryColor = getColor('primary');
     const secondaryColor = getColor('secondary');
+
     const PRODUCTOS =[];
     this.state.productsData.map(prop => {
         PRODUCTOS.push(prop.nombre)
     })
+
+    const genLineDataHistorico = (moreData = {}, moreData2 = {}) => {
+      return {
+        labels: MONTHS,
+        datasets: [
+          {
+            label: this.state.productsData[0].nombre,
+            backgroundColor: getColor('secondary'),
+            borderColor: getColor('secondary'),
+            borderWidth: 1,
+            data: [
+              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
+              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
+              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
+              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa           
+            ],
+            ...moreData,
+          },
+          {
+            label: this.state.productsData[1].nombre,
+            backgroundColor: getColor('primary'),
+            borderColor: getColor('primary'),
+            borderWidth: 1,
+            data: [
+              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
+              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
+              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
+              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa 
+            ],
+            ...moreData,
+          },
+          {
+            label: this.state.productsData[2].nombre,
+            backgroundColor: getColor('third'),
+            borderColor: getColor('third'),
+            borderWidth: 1,
+            data: [
+              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
+              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
+              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
+              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa 
+            ],
+            ...moreData2,
+          },
+          {
+            label:this.state.productsData[3].nombre,
+            backgroundColor: getColor('secondary'),
+            borderColor: getColor('secondary'),
+            borderWidth: 1,
+            data: [
+              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
+              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
+              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
+              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa 
+            ],
+            ...moreData2,
+          },
+          {
+            label: this.state.productsData[4].nombre,
+            backgroundColor: getColor('secondary'),
+            borderColor: getColor('secondary'),
+            borderWidth: 1,
+            data: [
+              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
+              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
+              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
+              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa 
+            ],
+            ...moreData2,
+          }
+        ],
+      };
+    };
 
 
     const genLineData = (moreData = {}, moreData2 = {}) => {
@@ -488,10 +578,43 @@ resetSimulador(){
             </select>*/}
             <Card>
             <CardHeader>PRECIO DE VENTA COMPETENCIA</CardHeader>
-              <CardBody>
-                {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
-                <Bar data={ genLineData() } />
-              </CardBody>
+              <Tabs headerStyle={{fontWeight: 'bold'}} activeHeaderStyle={{color:'black'}} >
+              <Tab label="Productos" className="tab-container"> 
+                <CardBody>
+                  {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
+                  <Bar data={ genLineData() } />
+                </CardBody>
+              </Tab>
+              <Tab label="Histórico" onClick={this.handleClick}> 
+                <CardBody>
+
+                {/*<Bar data={ genLineDataHistorico({ type: 'line', fill: false })} />*/}
+                <Line data={genLineDataHistorico({ fill: false }, { fill: false })}    
+                  options={{
+                      scales: {
+                        xAxes: [
+                          {
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Month',
+                            },
+                          },
+                        ],
+                        yAxes: [
+                          {
+                            stacked: true,
+                            scaleLabel: {
+                              display: true,
+                              labelString: 'Value',
+                            },
+                          },
+                        ],
+                      },
+                    }} />
+                   {/*<Bar data={ genLineDataHistorico() } />*/}
+                </CardBody>
+              </Tab>
+              </Tabs>
             </Card>
           </Col>
 

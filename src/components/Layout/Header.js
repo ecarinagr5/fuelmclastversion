@@ -108,9 +108,8 @@ change(event) {
   };
 
   render() {
-    console.log("js", this.props)
     const { isNotificationConfirmed } = this.state;
-
+    let { pathname } = this.props.location;
     return (
       <Navbar light expand className={bem.b('bg-white')}>
         <Nav navbar className="mr-2">
@@ -120,26 +119,33 @@ change(event) {
         </Nav>
         <img src={ logopemex }  alt="fuel" className="logo-station"/>
         <Nav navbar>
-        <li>
-        <select class="select-estacion-title" onChange={this.change} value={ this.state.station } >
-          <option value={ 0 } selected>{ this.state.estacion[0].nombre }</option>
-          <option value={ 1 }>{ this.state.estacion[1].nombre } </option>
-          <option value={ 2 }>{ this.state.estacion[2].nombre }</option>
-          <option value={ 3 }>{ this.state.estacion[3].nombre }</option>
-        </select>
-        </li>
-        <li>
-          <div className="direccion-estacion">
-            { this.state.estacion[this.state.direccion].direccion }
-          </div>
-        </li>
+        { pathname === '/masivo' ? '' :
+            <li>
+                <select class="select-estacion-title" onChange={this.change} value={ this.state.station } >
+                  <option value={ 0 } selected>{ this.state.estacion[0].nombre }</option>
+                  <option value={ 1 }>{ this.state.estacion[1].nombre } </option>
+                  <option value={ 2 }>{ this.state.estacion[2].nombre }</option>
+                  <option value={ 3 }>{ this.state.estacion[3].nombre }</option>
+                </select>
+            </li>
+        }
+        { pathname === '/masivo' ? '' :
+            <li>
+              <div className="direccion-estacion">
+                { this.state.estacion[this.state.direccion].direccion }
+              </div>
+            </li>
+         }
         </Nav>
 
         <Nav navbar className={bem.e('nav-right')}>
           <NavItem className="d-inline-flex">
             <NavLink id="Popover1" className="position-relative">
-            <p className="station-type">Estación <span className="station-name"> Líder</span></p>
-            <p className="mini-text">¿Qué significa?</p>
+              <p className="station-type">
+                Estación <span className="station-name"> Líder</span>
+                <p className="mini-text text-describe-station">¿Qué significa?</p>
+              </p>
+              
             </NavLink>
               <Popover
               placement="bottom"
@@ -148,8 +154,8 @@ change(event) {
               target="Popover1"
             >
             <PopoverBody>
-                <p>Lider</p>
-             </PopoverBody>
+                <p>Podremos colocar el precio por encima del precio promedio de la competencia.</p>
+            </PopoverBody>
             </Popover>
           </NavItem>
           

@@ -68,6 +68,14 @@ th{
   border: 1px solid #f1f1f1;
   font-weight: 600;
 }
+.select-estacion-hoy{
+  color: #9aaa04;
+  font-size: 17px;
+  border: 1px solid #f1f1f1;
+  font-weight: 600;
+  margin-top: 10%;
+  text-align: center;
+}
 .txt-high{
   color: red;
   font-weight: 900;
@@ -79,9 +87,9 @@ th{
 .direccion-estacion{
   font-size: 12px;
   font-weight: 600;
-  margin-left: -75%;
-  line-height: 1;
-  margin-top: 12%;
+  margin-left: 15%;
+  line-height: 1.5;
+  margin-top: 10px;
   color:#505050;
 }
 .logo-station{
@@ -91,8 +99,8 @@ th{
 }
 .station-type{
   color: #505050;
-  margin-top: 10%;
-  line-height: 0.5;
+  line-height: 1;
+  margin:0 5%;
 }
 .station-name{
   color:#9aaa04;
@@ -125,6 +133,14 @@ th{
 }
 .clear-filter{
   margin-top: 15%;
+}
+.tab-container{
+  color:#9aaa04;
+  cursor: pointer;
+}
+.text-describe-station:hover{
+  cursor: pointer;
+  color:  #f05454;
 }
 .btn-red{
   background-color: #f05454;
