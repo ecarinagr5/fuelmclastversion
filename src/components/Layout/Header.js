@@ -48,11 +48,41 @@ const MdNotificationsActiveWithBadge = withBadge({
 })(MdNotificationsActive);
 
 class Header extends React.Component {
-  state = {
-    isOpenNotificationPopover: false,
-    isNotificationConfirmed: false,
-    isOpenUserCardPopover: false,
-  };
+  constructor(props) {
+    super(props)
+
+      this.state = {
+        isOpenNotificationPopover: false,
+        isNotificationConfirmed: false,
+        isOpenUserCardPopover: false,
+        station:'Gasolinera PEMEX | 3529',
+        direccion:0,
+        estacion:[
+          {
+            nombre:'Gasolinera PEMEX | 3529',
+            direccion: 'Av. Adolfo López Mateos 518-520 Agua Azul, Mx.19 EDOMEX'
+          },
+          {
+            nombre:'FUEL A | 3421',
+            direccion: 'Av. México, No.26C,Atizapán de Zaragoza EDOMEX'
+          },
+          {
+            nombre:'FUEL B | 1121',
+            direccion: 'Calle Ignacio Zaragoza 24, CDMX'
+          },
+          {
+            nombre:'FUEL C | 1013',
+            direccion: 'Calz. Vallejo No. 510, Pro Hogar, Azcapotzalco, CDMX'
+          }
+        ]
+      }
+      this.change = this.change.bind(this);
+}
+
+change(event) {
+ console.log("change", event.target.value)
+ this.setState({direccion: event.target.value, state: this.state.estacion[event.target.value].nombre })
+}
 
   toggleNotificationPopover = () => {
     this.setState({
@@ -91,50 +121,46 @@ class Header extends React.Component {
         <img src={ logopemex }  alt="fuel" className="logo-station"/>
         <Nav navbar>
         <li>
-          <select class="select-estacion-title">
-          <option selected>Gasolinera PEMEX | 3529</option>
-          <option value="1">Fuel A | 5529 </option>
-          <option value="2">Fuel B | 3129</option>
-          <option value="3">Fuel C | 1529</option>
+        <select class="select-estacion-title" onChange={this.change} value={ this.state.station } >
+          <option value={ 0 } selected>{ this.state.estacion[0].nombre }</option>
+          <option value={ 1 }>{ this.state.estacion[1].nombre } </option>
+          <option value={ 2 }>{ this.state.estacion[2].nombre }</option>
+          <option value={ 3 }>{ this.state.estacion[3].nombre }</option>
         </select>
         </li>
-        <li><div className="direccion-estacion">Av. Adolfo López Mateos 518-520 Agua Azul, Mx.19 EDOMEX</div></li>
+        <li>
+          <div className="direccion-estacion">
+            { this.state.estacion[this.state.direccion].direccion }
+          </div>
+        </li>
         </Nav>
 
         <Nav navbar className={bem.e('nav-right')}>
-          {/*<NavItem className="d-inline-flex">
+          <NavItem className="d-inline-flex">
             <NavLink id="Popover1" className="position-relative">
-              {isNotificationConfirmed ? (
-                <MdNotificationsNone
-                  size={25}
-                  className="text-secondary can-click"
-                  onClick={this.toggleNotificationPopover}
-                />
-              ) : (
-                <MdNotificationsActiveWithBadge
-                  size={25}
-                  className="text-secondary can-click animated swing infinite"
-                  onClick={this.toggleNotificationPopover}
-                />
-              )}
+            <p className="station-type">Estación <span className="station-name"> Líder</span></p>
+            <p className="mini-text">¿Qué significa?</p>
             </NavLink>
-             <Popover
+              <Popover
               placement="bottom"
               isOpen={this.state.isOpenNotificationPopover}
               toggle={this.toggleNotificationPopover}
               target="Popover1"
             >
             <PopoverBody>
-                <Notifications notificationsData={notificationsData} />
+                <p>Lider</p>
              </PopoverBody>
             </Popover>
-          </NavItem>*/}
+          </NavItem>
+          
           <NavItem>
-             <p className="station-type">Estación <span className="station-name"> Líder</span></p>
-             <p className="station-type">¿Qué significa?</p>
+  
           </NavItem>
           <NavItem>
-             
+            <select class="select-estacion-hoy" onChange={this.change} value={ this.state.station } >
+              <option value={ 0 } selected>Hoy para Hoy</option>
+              <option value={ 0 } selected>Hoy para Mañana</option>
+            </select>
           </NavItem>
           <NavItem>
             <NavLink id="Popover2">
