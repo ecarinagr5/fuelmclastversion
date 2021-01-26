@@ -272,45 +272,6 @@ class MasivoAdmin extends React.Component {
       <Page>
     <Row>
         <Col>
-        {/* BARRA SIMULADOR */}
-        <Row>
-              <Card className="container-card-simular">
-                <CardBody>
-                  <div class="form-row">
-                      <Col md={2} className="">
-                          <label className="label-simular">PRECIO RECOMENDADO</label>
-                          <input type="text" class="form-control" placeholder="$12.2" />
-                      </Col>
-                      <Col md={2}>
-                          <label className="label-simular">MARGEN</label>
-                          <input type="text" class="form-control" placeholder="12" />
-                      </Col>
-                      <Col md={2}>
-                          <label className="label-simular">VOLUMEN</label>
-                          <input type="text" class="form-control" placeholder="24" />
-                      </Col>
-                      <Col md={3}>
-                          <Button color="primary btn-barra-simular" onClick={this.handleClick}>SIMULAR</Button>
-                          <Button color="primary btn-barra-simular">
-                            ACEPTAR &nbsp;
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
-                              <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-                              <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-                            </svg>
-                          </Button>
-                          <Button color="danger btn-barra-simular">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-all-fill" viewBox="0 0 16 16">
-                              <path d="M8.021 11.9L3.453 8.62a.719.719 0 0 1 0-1.238L8.021 4.1a.716.716 0 0 1 1.079.619V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
-                              <path d="M5.232 4.293a.5.5 0 0 1-.106.7L1.114 7.945a.5.5 0 0 1-.042.028.147.147 0 0 0 0 .252.503.503 0 0 1 .042.028l4.012 2.954a.5.5 0 1 1-.593.805L.539 9.073a1.147 1.147 0 0 1 0-1.946l3.994-2.94a.5.5 0 0 1 .699.106z"/>
-                            </svg>
-                          </Button>
-
-                      </Col>
-                  </div>
-                </CardBody>
-              </Card>
-          </Row>
         {/* FILTRO */}
           <Filter />
           <Card className="mb-3">
@@ -360,9 +321,9 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center">15.2</td>
                                   <td className="text-center bg-gray-light">13.2</td>
                                   <td className="text-center bg-gray-light"> { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
-                                  <td className="text-center bg-gray-light"> { this.state.simular ? <input type="number" className="input-simulacion" placeholder="16.8"/>  : 16.8 }</td>
-                                  <td className="text-center bg-gray-light">{ this.state.simular ? <input type="number" className="input-simulacion" placeholder="1.4"/>  : 1.4 }</td>
-                                  <td className="text-center bg-gray-light">1.4</td>
+                                  <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center bg-gray-light"> 150 lts</td>
+                                  <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center bg-gray-light user-name"> Karla_Perez</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
@@ -392,9 +353,9 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center">15.23</td>
                                   <td className="text-center bg-gray-light">11.2</td>
                                   <td className="text-center bg-gray-light"> 1</td>
-                                  <td className="text-center bg-gray-light"> 1</td>
-                                  <td className="text-center bg-gray-light"> 1.2</td>
-                                  <td className="text-center bg-gray-light bg-margen-minimo">1.2</td>
+                                  <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center bg-gray-light"> 150 lts</td>
+                                  <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center bg-gray-light user-name"> Roman_Perez</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
@@ -517,9 +478,9 @@ class MasivoAdmin extends React.Component {
                                 <td className="text-center">15.23</td>
                                 <td className="text-center bg-gray-light">13.2</td>
                                 <td className="text-center bg-gray-light"> 12</td>
-                                <td className="text-center bg-gray-light"> 12</td>
-                                <td className="text-center bg-gray-light"> 1.3</td>
-                                <td className="text-center bg-gray-light">1.5</td>
+                                <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center bg-gray-light"> 150 lts</td>
+                                  <td className="text-center bg-gray-light">$20,4423</td>
                                 <td className="text-center bg-gray-light user-name"> Fernando_Robles</td>
                                 <td className="text-center color-red"> <a href="estacion#Naucalpan" target="_self"> <img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                 <td className="text-center">

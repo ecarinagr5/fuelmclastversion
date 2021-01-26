@@ -23,24 +23,25 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
         </tr>
       </thead>
       <tbody>
-        {usersData.map(({ avatar, name, precioventa, utilidad, margen, progress,volumen }, index) => (
+        { usersData.map(({ avatar, name, precioventa, utilidad, margen, progress,volumen }, index) => (
           <tr key={index}>
             <td className="align-middle text-center">
               <AvatarWithBadge src={avatar} />
             </td>
             <td className="align-middle text-left ">{name}</td>
             <td className="align-middle text-center">$ {precioventa}</td>
-            <td className="align-middle text-center">{margen} % </td>
             <td className="align-middle text-center">
                   <Progress
                     color="success"
-                    value={progress}
+                    value={margen}
                     className="mb-3"
                   >
-                    {progress}%
+                    {margen}%
                   </Progress>
             </td>
-            <td className="align-middle text-center">${ (precioventa * margen ) / 100 } </td>
+            <td className="align-middle text-center">{volumen} lts </td>
+
+            <td className="align-middle text-center">${ (precioventa * margen * 10000 ) / 100 } </td>
           </tr>
         ))}
       </tbody>

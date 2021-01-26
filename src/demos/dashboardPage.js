@@ -145,12 +145,12 @@ export const userProgressTableData = [
     precioventa: 13.41,
     margen: 80,
     progress: 75,
-    volumen:180
+    volumen:120
   },
   {
     avatar: user2Image,
     name: '> 92',
-    precioventa: 13.41,
+    precioventa: 12.41,
     margen: 50,
     progress: 75,
     volumen:180
@@ -158,26 +158,26 @@ export const userProgressTableData = [
   {
     avatar: user3Image,
     name: 'Gasoleo B',
-    precioventa: 13.41,
+    precioventa: 11.41,
     margen: 60,
     progress: 75,
-    volumen:180
+    volumen:110
   },
   {
     avatar: user4Image,
     name: 'Diesel A+',
-    precioventa: 13.41,
+    precioventa: 10.41,
     margen: 60,
     progress: 75,
-    volumen:180
+    volumen:280
   },
   {
     avatar: user5Image,
     name: 'Pemex Diesel (Diesel)',
-    precioventa: 13.41,
+    precioventa: 12.41,
     margen: 30,
     progress: 75,
-    volumen:180
+    volumen:150
   },
 ];
 

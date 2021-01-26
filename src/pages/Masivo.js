@@ -272,49 +272,23 @@ class Masivo extends React.Component {
       <Page>
     <Row>
         <Col>
-        {/* BARRA SIMULADOR */}
-        <Row>
-              <Card className="container-card-simular">
-                <CardBody>
-                  <div class="form-row">
-                      <Col md={2} className="">
-                          <label className="label-simular">PRECIO RECOMENDADO</label>
-                          <input type="text" class="form-control" placeholder="$12.2" />
-                      </Col>
-                      <Col md={2}>
-                          <label className="label-simular">MARGEN</label>
-                          <input type="text" class="form-control" placeholder="12" />
-                      </Col>
-                      <Col md={2}>
-                          <label className="label-simular">VOLUMEN</label>
-                          <input type="text" class="form-control" placeholder="24" />
-                      </Col>
-                      <Col md={3}>
-                          <Button color="primary btn-barra-simular" onClick={this.handleClick}>SIMULAR</Button>
-                          <Button color="primary btn-barra-simular">
-                            ACEPTAR &nbsp;
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
-                              <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-                              <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-                            </svg>
-                          </Button>
-                          <Button color="danger btn-barra-simular">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-all-fill" viewBox="0 0 16 16">
-                              <path d="M8.021 11.9L3.453 8.62a.719.719 0 0 1 0-1.238L8.021 4.1a.716.716 0 0 1 1.079.619V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
-                              <path d="M5.232 4.293a.5.5 0 0 1-.106.7L1.114 7.945a.5.5 0 0 1-.042.028.147.147 0 0 0 0 .252.503.503 0 0 1 .042.028l4.012 2.954a.5.5 0 1 1-.593.805L.539 9.073a1.147 1.147 0 0 1 0-1.946l3.994-2.94a.5.5 0 0 1 .699.106z"/>
-                            </svg>
-                          </Button>
-
-                      </Col>
-                  </div>
-                </CardBody>
-              </Card>
-          </Row>
+  
         {/* FILTRO */}
           <Filter />
           <Card className="mb-3">
             <CardBody>
+            <Col md={3} className="container-btn-masiva">
+                <Button color="primary btn-barra-simular">SIMULACIÓN MASIVA</Button>
+                <Button color="primary btn-barra-simular">
+                  ACEPTAR &nbsp;
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
+                    <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                  </svg>
+                </Button>
+
+            </Col>
             <Tabs headerStyle={{fontWeight: 'bold'}} activeHeaderStyle={{color:'black'}} >
                         <Tab label="Diesel" >
                           <Table responsive>
@@ -323,20 +297,21 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table">All <input type="radio" onChange={this.selectAll}></input></th>
                                   <th className="text-center header-table">OPERADORA</th>
                                   <th className="text-center header-table">CLIENTE</th>
-                                  <th className="text-center header-table"><span className="meaning">TAR</span><span className="detail">Precio de venta TAR de Suministro</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP EESS</span><span className="detail">Precio de venta de estación de Servicio</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP COM </span><span className="detail">Precio medio de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MAX</span><span className="detail">Precio máximo de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MIN</span><span className="detail">Precio mínimo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PRECIO TAR</span><span className="detail">Precio de venta TAR de Suministro</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PRECIO VENTA EESS</span><span className="detail">Precio de venta de real hoy</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PRECIO VENTA COM </span><span className="detail">Precio promedio ponderado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PRECIO VENTA MAX</span><span className="detail">Precio máximo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PRECIO VENTA MIN</span><span className="detail">Precio mínimo de la competencia</span></th>
                                   <th className="text-center header-table">ESTRATÉGICO</th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN REP ES</span><span className="detail">Margen teórico de la estación de servicio</span></th>
-                                  <th className="text-center header-table"><span className="meaning">MARGEN SUM ES</span><span className="detail">Margen sobre suministro (sobre la compra)</span></th>
-                                  <th className="text-center header-table"><span className="meaning">MARGEN PROM POND</span><span className="detail">Margen promedio ponderado del mes</span></th>
+                                  <th className="text-center header-table"><span className="meaning">MARGEN SUM ES</span><span className="detail">Margen última suministro (sobre la compra)</span></th>
+                                  <th className="text-center header-table"><span className="meaning">MARGEN PROM POND</span><span className="detail">Margen promedio del mes</span></th>
                                   <th className="text-center header-table"><span className="meaning">EV VTA ES</span><span className="detail"> Desviación del volumen (Volumen objetivo vs. Volumen real)</span></th>
                                   <th className="text-center header-table">PRECIO RECOMENDADO</th>
                                   <th className="text-center header-table">MARGEN POR LITRO OBJETIVO</th>
                                   <th className="text-center header-table">VOLUMEN OBJETIVO</th>
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>                             
+                                  <th className="text-center header-table">UTILIDAD TOTAL</th> 
+                                  <th className="text-center header-table">USUARIO</th>                             
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
@@ -345,7 +320,7 @@ class Masivo extends React.Component {
                             </thead>
                           <tbody>
                               <tr>
-                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" checked={this.state.selectAll ? true : false }/></td>
+                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
                                   <td className="text-center">Servicio Aztecas</td>
                                   <td className="text-center"> B</td>
                                   <td className="text-center"> 13.5</td>
@@ -353,21 +328,24 @@ class Masivo extends React.Component {
                                   <td className="text-center"> 13.6 </td>
                                   <td className="text-center">15.6</td>
                                   <td className="text-center"> 12.2</td>
-                                  <td className="text-center">15.3 <span className="txt-ok">*</span></td>
+                                  <td className="text-center">15.3</td>
                                   <td className="text-center"> 12.2</td>
                                   <td className="text-center"> 13.3</td>
                                   <td className="text-center">15.2</td>
                                   <td className="text-center bg-gray-light">13.2</td>
-                                  <td className="text-center bg-gray-light"> { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
-                                  <td className="text-center bg-gray-light"> { this.state.simular ? <input type="number" className="input-simulacion" placeholder="16.8"/>  : 16.8 }</td>
-                                  <td className="text-center bg-gray-light">{ this.state.simular ? <input type="number" className="input-simulacion" placeholder="1.4"/>  : 1.4 }</td>
-                                  <td className="text-center bg-gray-light">1.4</td>
+                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
+                                  <td className="text-center bg-gray-light">  16.8% </td>
+                                  <td className="text-center bg-gray-light"> 250 lts</td>
+                                  <td className="text-center bg-gray-light">$10,4423</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16" onClick={this.handleClick}>
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
                                     </td>
                               </tr>
                               <tr>
-                              <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" checked={this.state.selectAll ? true : false } /></td>
+                              <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
                               <td className="text-center">Servico Neza</td>
                                   <td className="text-center"> A</td>
                                   <td className="text-center"> 13.5</td>
@@ -380,12 +358,16 @@ class Masivo extends React.Component {
                                   <td className="text-center"> 13.3</td>
                                   <td className="text-center">15.23</td>
                                   <td className="text-center bg-gray-light">11.2</td>
-                                  <td className="text-center bg-gray-light"> 1</td>
-                                  <td className="text-center bg-gray-light"> 1</td>
-                                  <td className="text-center bg-gray-light"> 1.2</td>
-                                  <td className="text-center bg-gray-light bg-margen-minimo">1.2</td>
+                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
+                                  <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center bg-gray-light"> 150 lts</td>
+                                  <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
-                                  <td className="text-center"></td>
+                                  <td className="text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                    </td>
                               </tr>                 
                           </tbody>
                         </Table>
@@ -437,8 +419,13 @@ class Masivo extends React.Component {
                                 <td className="text-center bg-gray-light"> 12</td>
                                 <td className="text-center bg-gray-light"> 12.2</td>
                                 <td className="text-center bg-gray-light bg-redb">1.4</td>
+                                <td className="text-center bg-gray-light user-name"> Fernando_Robles</td>
                                 <td className="text-center color-red"> <a href="estacion#Azcapotzalco" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
-                                <td className="text-center"></td>
+                                <td className="text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                </td>
                             </tr>                
                         </tbody>
                       </Table>
@@ -491,8 +478,13 @@ class Masivo extends React.Component {
                                 <td className="text-center bg-gray-light"> 12</td>
                                 <td className="text-center bg-gray-light"> 1.3</td>
                                 <td className="text-center bg-gray-light">1.5</td>
+                                <td className="text-center bg-gray-light user-name"> Fernando_Robles</td>
                                 <td className="text-center color-red"> <a href="estacion#Naucalpan" target="_self"> <img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
-                                <td className="text-center"></td>
+                                <td className="text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                    </td>
                             </tr>                
                         </tbody>
                       </Table>
