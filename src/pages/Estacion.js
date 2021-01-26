@@ -65,13 +65,14 @@ const lastWeek = new Date(
   today.getDate() - 7,
 );
 const MONTHS = ['21/01/2021', '22/01/2021', '23/01/2021', '24/01/2021', '25/01/2021', '26/01/2021', '27/01/2021'];
+const PRODUCTS = ['<92', '>92', 'Gasoleo B', 'Diesel A+', 'PEMEX DIESEL'];
 
 const genPriceBuy = (moreData = {}, moreData2 = {}) => {
   return {
     labels: MONTHS,
     datasets: [
       {
-        label: 'PRECIO ÚLTIMA COMPRA',
+        label: '< 92',
         backgroundColor: getColor('primary'),
         borderColor: getColor('primary'),
         borderWidth: 1,
@@ -87,7 +88,7 @@ const genPriceBuy = (moreData = {}, moreData2 = {}) => {
         ...moreData,
       },
       {
-        label: 'PRECIO COMPRA HOY',
+        label: '>92',
         backgroundColor: getColor('secondary'),
         borderColor: getColor('secondary'),
         borderWidth: 1,
@@ -103,7 +104,39 @@ const genPriceBuy = (moreData = {}, moreData2 = {}) => {
         ...moreData2,
       },
       {
-        label: 'PRECIO COMPRA MAÑANA',
+        label: 'Gasoleo B',
+        backgroundColor: getColor('third'),
+        borderColor: getColor('third'),
+        borderWidth: 1,
+        data: [
+          randomNum(),
+          randomNum(),
+          randomNum(),
+          randomNum(),
+          randomNum(),
+          randomNum(),
+          randomNum(),
+        ],
+        ...moreData2,
+      },
+      {
+        label: 'Diesel A+',
+        backgroundColor: getColor('third'),
+        borderColor: getColor('third'),
+        borderWidth: 1,
+        data: [
+          randomNum(),
+          randomNum(),
+          randomNum(),
+          randomNum(),
+          randomNum(),
+          randomNum(),
+          randomNum(),
+        ],
+        ...moreData2,
+      },
+      {
+        label: 'PEMEX DIESEL (DIESEL)',
         backgroundColor: getColor('third'),
         borderColor: getColor('third'),
         borderWidth: 1,
@@ -352,10 +385,10 @@ resetSimulador(){
 
     const genLineData = (moreData = {}, moreData2 = {}) => {
       return {
-        labels: MONTHS,
+        labels: PRODUCTS,
         datasets: [
           {
-            label: this.state.simular ? 'PRECIO MODIFICADO ' : 'PRECIO VENTA',
+            label:this.state.simular ? 'PRECIO MODIFICADO ' : '',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -600,9 +633,8 @@ resetSimulador(){
                     <th className="header-table">PRODUCTO</th>
                     <th className="header-table">PRECIO REAL DE HOY</th>
                     {this.state.simular ? <th className="header-table text-left">SIMULACIÓN</th> : '' }
-                    <th className="header-table">PRECIO VENTA</th>
-                    <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
                     <th className="header-table">PRECIO RECOMENDADO</th>
+                    <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
                     <th className="header-table">COMPETENCIA ESTRATÉGICA</th>
                     <th className="header-table">COMPETENCIA A</th>
                     <th className="header-table">COMPETENCIA B</th>
@@ -623,13 +655,12 @@ resetSimulador(){
                           <td className="text-left">
                               <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } />  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
                           </td>:'' }
-                          <td className="text-center"> { prop.precioventa } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.precioventa }  onClick={this.handSimulate} /> : '' }</td>
+                          <td className="text-center"> { prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
                           <td className="text-center">{ precioponderado.toFixed(1)  / 2}</td>
-                          <td className= { prop.preciorecomenda  > 12 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.preciorecomenda }</td>
-                          <td className= { prop.competenciaestrategica > 13 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}>{ prop.competenciaestrategica }</td>
-                          <td className= { prop.preciorecomenda > 12 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.competenciaA }</td>
-                          <td className={ prop.preciorecomenda > 12 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.competenciaB }</td>
-                          <td className={ prop.preciorecomenda > 12 ? "text-center txt-high" :  "text-center"}>{ prop.competenciaC }</td>
+                          <td className= { prop.competenciaestrategica > 14 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}>{ prop.competenciaestrategica }</td>
+                          <td className= { prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.competenciaA }</td>
+                          <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.competenciaB }</td>
+                          <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" :  "text-center"}>{ prop.competenciaC }</td>
                           <td className= { prop.competenciaD > 13 ? "text-center txt-high" : "text-center"}>{ prop.competenciaD }</td>
                     </tr>
                     )
@@ -643,52 +674,20 @@ resetSimulador(){
 
         <Row>
           <Col md="6" sm="12" xs="12">
-          {/*<select class="select-estacion-grafica">
-            <option selected>PEMEX DIESEL (DIESEL)</option>
-            <option value="1">{"< 92"}</option>
-            <option value="2">{"> 92"}</option>
-            <option value="3">Gasoleo B</option>
-            <option value="4">Diesel A+ </option>
-            </select>*/}
+            <select class="select-estacion-grafica">
+              <option selected>ALL</option>
+              <option value="5">PEMEX DIESEL (DIESEL)</option>
+              <option value="1">{"< 92"}</option>
+              <option value="2">{"> 92"}</option>
+              <option value="3">Gasoleo B</option>
+              <option value="4">Diesel A+ </option>
+            </select>
             <Card>
             <CardHeader>PRECIO DE VENTA COMPETENCIA</CardHeader>
-              <Tabs headerStyle={{fontWeight: 'bold'}} activeHeaderStyle={{color:'black'}} >
-              <Tab label="POR PRECIO" className="tab-container"> 
                 <CardBody>
                   {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
                   <Bar data={ genLineData() } />
                 </CardBody>
-              </Tab>
-              <Tab label="POR PRODUCTO" onClick={this.handleClick}> 
-                <CardBody>
-
-                {/*<Bar data={ genLineDataHistorico({ type: 'line', fill: false })} />*/}
-                <Line data={genLineDataHistorico({ fill: false }, { fill: false })}    
-                  options={{
-                      scales: {
-                        xAxes: [
-                          {
-                            scaleLabel: {
-                              display: true,
-                              labelString: 'Month',
-                            },
-                          },
-                        ],
-                        yAxes: [
-                          {
-                            stacked: true,
-                            scaleLabel: {
-                              display: true,
-                              labelString: 'Value',
-                            },
-                          },
-                        ],
-                      },
-                    }} />
-                    {/*<Bar data={ genLineDataHistorico() } />*/}
-                </CardBody>
-              </Tab>
-              </Tabs>
               <p className="update-text">Last Update 25/01/2021 09:35 am</p>
             </Card>
           </Col>
@@ -766,12 +765,7 @@ resetSimulador(){
         </Col>
         <Col md="6" sm="12" xs="12">
         <select class="select-estacion-grafica">
-            <option selected>PEMEX DIESEL (DIESEL)</option>
-            <option value="1">{"< 92"}</option>
-            <option value="2">{"> 92"}</option>
-            <option value="3">Gasoleo B</option>
-            <option value="4">Diesel A+ </option>
-            <option value="5">All</option>
+            <option selected>ALL</option>
         </select>
         <Card>
             <CardHeader>PRECIO DE COMPRA | TAR AZCAPOTZALCO </CardHeader>

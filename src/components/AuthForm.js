@@ -13,6 +13,7 @@ class AuthForm extends React.Component {
   }
 
   changeAuthState = authState => event => {
+    console.log("authState",authState)
     event.preventDefault();
 
     this.props.onChangeAuthState(authState);
@@ -79,7 +80,7 @@ class AuthForm extends React.Component {
         <FormGroup check>
           <Label check>
             <Input type="checkbox" />{' '}
-            {this.isSignup ? 'Agree the terms and policy' : 'Remember me'}
+            {this.isSignup ? 'Acepto Politicas de Privacidad' : 'Remember me'}
           </Label>
         </FormGroup>
         <hr />

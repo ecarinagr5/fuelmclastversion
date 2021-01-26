@@ -237,6 +237,25 @@ th{
   font-weight: 900;
   cursor: pointer;
 }
+.bg-login{
+  background-image: url(../assets/img/bg/bg_gasolinera.jpeg);
+  background-image: url(../assets/img/bg/bg_gasolinera.jpeg), linear-gradient(#eb01a5, #d13531); /* W3C */
+  width: 100%;
+ 
+  /* Set a specific height */
+  height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-intermedio{
+  background: #9aaa04;
+  background: linear-gradient(to bottom, #9aaa04, #505050);
+  opacity: 1;
+}
 .color-check:hover{
   color:#f05454;
   font-weight: 900;
