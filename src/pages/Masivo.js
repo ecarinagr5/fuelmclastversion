@@ -318,16 +318,16 @@ class Masivo extends React.Component {
                                   <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
                                   <td className="text-left">Servicio Aztecas</td>
                                   <td className="text-center"> B</td>
-                                  <td className="text-center"> 13.5</td>
-                                  <td className="text-center">15.6</td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center">15.3</td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.3</td>
-                                  <td className="text-center">15.2</td>
-                                  <td className="text-center bg-gray-light">13.2</td>
+                                  <td className="text-center">$13.5</td>
+                                  <td className="text-center">$15.6</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$15.3</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.3</td>
+                                  <td className="text-center">$15.2</td>
+                                  <td className="text-center bg-gray-light">$13.2</td>
                                   <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
-                                  <td className="text-center bg-gray-light">  16.8% </td>
+                                  <td className="text-center bg-gray-light"> 16.8% </td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light">$10,4423</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>

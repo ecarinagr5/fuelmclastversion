@@ -7,6 +7,9 @@ import { getThemeColors } from 'utils/colors';
 import Avatar from 'components/Avatar';
 
 import withBadge from 'hocs/withBadge';
+import {
+  Badge,
+} from 'reactstrap';
 
 const colors = getThemeColors();
 const AvatarWithBadge = withBadge({
@@ -31,7 +34,7 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
             </td>
             <td className="align-middle text-left ">{name}</td>
             <td className="align-middle text-center">$ {precioultimacompra}</td>
-            <td className="align-middle text-center">$ {preciocompra}</td>
+            <td className="align-middle text-center">$ {preciocompra} <Badge color="primary" className="mr-1"><span className="update-date">24/01/2021</span></Badge></td>
             <td className="align-middle text-center">$ {preciocompramañana}</td>
             <td className="align-middle text-center">$ {(preciocompra - preciocompramañana).toFixed(2)}</td>
             <td className="align-middle text-center">$ {precioventa}</td>
