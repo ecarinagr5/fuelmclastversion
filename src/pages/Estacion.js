@@ -831,7 +831,7 @@ resetSimulador(){
                 <option value="4">Diesel A+ </option>
               </select>
               <Card>
-              <CardHeader>PRECIO DE VENTA COMPETENCIA</CardHeader>
+              <CardHeader>PRECIO DE VENTA</CardHeader>
                   <CardBody>
                     {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
                     {/*<Bar data={ genLineData() } height={80} />*/}
