@@ -64,6 +64,16 @@ th{
 .color-primary{
   color:#9aaa04;
 }
+.chart-container-esp{
+  height: 300px !important;
+}
+.table-responsive{
+  font-size: 14px;
+}
+.graph-line{
+  /*height: 400px;*/
+  overflow: hidden;
+}
 .color-gray{
   background-color: #f1f1f1;
 }
@@ -134,7 +144,7 @@ th{
   border: 1px solid  #9aaa04;
   font-weight: 600;
   width: 100%;
-  padding: 1% 5%;
+  padding: 0.5% 2%;
   background: #e2e1e1;
 }
 .clear-filter{

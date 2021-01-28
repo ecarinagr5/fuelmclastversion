@@ -337,6 +337,7 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light">  16.8% </td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light">$10,4423</td>
+                                  <td className="text-center bg-gray-light user-name"> Jorge_Perez</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16" onClick={this.handleClick}>
@@ -362,6 +363,7 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light">  12.8% </td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
+                                  <td className="text-center bg-gray-light user-name"> Karla_Perez</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

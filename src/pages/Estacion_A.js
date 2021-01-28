@@ -521,6 +521,41 @@ resetSimulador(){
     let promedio = 63 //Promedio de competencia estrategica;
     return (
       <Page>
+        {/* Tools 
+          <Button color="primary" className="btn-fixed-setup" onClick={this.handTools}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+              <path d="M1 0L0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z"/>
+            </svg>
+          </Button>
+   
+          <div className={ this.state.tools ? "container-tools show" : "hide"}>       
+            <Col xl={8} lg={12} md={12}>
+              <Card>
+                <CardBody  className="container-tools-inside">
+                  <Form inline>
+                    <FormGroup>
+                      <Label for="exampleEmail" className="text-tools label-simular">
+                        MARGEN POR LITRO OBJETIVO
+                      </Label>
+                      <Input type="number" name="margen" className="input-tools label-simular" />
+                    </FormGroup>{' '}
+                    <FormGroup>
+                      <Label for="examplePassword"  className="text-tools label-simular" >
+                      VOLUMEN OBJETIVO
+                      </Label>
+                      <Input
+                        type="number"
+                        name="Volumen"
+                        className="input-tools"
+                      />
+                    </FormGroup>{' '}
+                    <Button color="primary" >APLICAR</Button>
+                  </Form>
+                </CardBody>
+              </Card>
+            </Col>
+          </div>       */}
+        {/* Modal */}
               <Modal
                   isOpen={this.state.modal_nested_parent}
                   toggle={this.toggle('nested_parent')}
@@ -616,18 +651,18 @@ resetSimulador(){
                     return (
                       <tr>
                         <th  className="text-center" scope="row">{ prop.nombre }</th>
-                          <td className="text-center">${ prop.preciorealdehoy }</td>
+                          <td className="text-center">{ prop.preciorealdehoy }</td>
                           { this.state.simular ? 
                           <td className="text-left">
                               <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } />  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
                           </td>:'' }
-                          <td className="text-center">${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
-                          <td className="text-center">${ precioponderado.toFixed(1)  / 2}</td>
-                          <td className= { prop.competenciaestrategica > 14 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaestrategica }</td>
-                          <td className= { prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>$ { prop.competenciaA }</td>
-                          <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaB }</td>
-                          <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" :  "text-center"}>${ prop.competenciaC }</td>
-                          <td className= { prop.competenciaD > 13 ? "text-center txt-high" : "text-center"}>${ prop.competenciaD }</td>
+                          <td className="text-center"> { prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
+                          <td className="text-center">{ precioponderado.toFixed(1)  / 2}</td>
+                          <td className= { prop.competenciaestrategica > 14 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}>{ prop.competenciaestrategica }</td>
+                          <td className= { prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.competenciaA }</td>
+                          <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>{ prop.competenciaB }</td>
+                          <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" :  "text-center"}>{ prop.competenciaC }</td>
+                          <td className= { prop.competenciaD > 13 ? "text-center txt-high" : "text-center"}>{ prop.competenciaD }</td>
                     </tr>
                     )
                   })}
@@ -639,17 +674,36 @@ resetSimulador(){
       </Row>
 
         <Row>
-          <Col md="12" sm="12" xs="12">
+          <Col md="6" sm="12" xs="12">
+            <select class="select-estacion-grafica">
+              <option selected>ALL</option>
+              <option value="5">PEMEX DIESEL (DIESEL)</option>
+              <option value="1">{"< 92"}</option>
+              <option value="2">{"> 92"}</option>
+              <option value="3">Gasoleo B</option>
+              <option value="4">Diesel A+ </option>
+            </select>
+            <Card>
+            <CardHeader>PRECIO DE VENTA COMPETENCIA</CardHeader>
+                <CardBody>
+                  {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
+                  <Bar data={ genLineData() } />
+                </CardBody>
+              <p className="update-text">Last Update 25/01/2021 09:35 am</p>
+            </Card>
+          </Col>
+
+          <Col md="6" sm="12" xs="12">
             <Card>
               <CardHeader>RECOMENDACIÓN</CardHeader>
               <CardBody>
                 { this.state.simular ?
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN PROMEDIO DEL MES','DIFERENCIA CON EL VOLUMEN OBJETIVO','UTILIDAD TOTAL']}
+                  headers= {['','PRODUCTO','PRECIO DE VENTA POR LITRO SELECCIONADO','MARGEN POR LITRO OBJETIVO','VOLUMEN OBJETIVO','UTILIDAD TOTAL']}
                   usersData={userProgressTableData}
                 /> :
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN PROMEDIO DEL MES','DIFERENCIA CON EL VOLUMEN OBJETIVO','UTILIDAD TOTAL']}
+                  headers= {['','PRODUCTO','PRECIO DE VENTA POR LITRO','MARGEN POR LITRO OBJETIVO','VOLUMEN OBJETIVO','UTILIDAD TOTAL']}
                   usersData={userProgressTableData}
                 />
                 }
@@ -659,26 +713,70 @@ resetSimulador(){
           </Col>
         </Row>
 
-        <Row className="graph-line">
-          <Col md="12" >
-              <select class="select-estacion-grafica">
-                <option selected>ALL</option>
-                <option value="5">PEMEX DIESEL (DIESEL)</option>
-                <option value="1">{"< 92"}</option>
-                <option value="2">{"> 92"}</option>
-                <option value="3">Gasoleo B</option>
-                <option value="4">Diesel A+ </option>
-              </select>
-              <Card>
-              <CardHeader>PRECIO DE VENTA COMPETENCIA</CardHeader>
-                  <CardBody>
-                    {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
-                    <Bar data={ genLineData() } height={80} />
-                  </CardBody>
-                <p className="update-text">Last Update 25/01/2021 09:35 am</p>
-              </Card>
-          </Col>
-        </Row>
+        <Row>
+        <Col md="6" sm="12" xs="12">
+          <Card className="mb-3">
+            <CardHeader>PRECIO DE COMPRA</CardHeader>
+            <CardBody>
+              <Table responsive>
+                <thead>
+                  <tr>
+                  <th className="header-table">PRODUCTO</th>
+                    <th className="header-table">PRECIO ÚLTIMA COMPRA</th>
+                    <th className="header-table">PRECIO COMPRA HOY</th>
+                    <th className="header-table">PRECIO COMPRA MAÑANA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th className="text-center" scope="row">{'< 92'}</th>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">22/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
+                  </tr>
+                  <tr>
+                    <th  className="text-center" scope="row">{'> 92'}</th>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">21/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
+                  </tr>
+                  <tr>
+                    <th  className="text-center" scope="row">Gasoleo B</th>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">19/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
+                  </tr>
+                  <tr>
+                    <th className="text-center" scope="row">Diesel A+ </th>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">20/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
+                  </tr>
+                  <tr>
+                    <th className="text-center" scope="row">PEMEX DIESEL (DIESEL) </th>
+                    <td className="text-center">$13.41 <Badge href="#" color="primary" className="mr-1"><span className="update-date">24/01/2021</span></Badge></td>
+                    <td className="text-center">$13.41</td>
+                    <td className="text-center">$12.3</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </CardBody>
+            <p className="update-text">Last Update 25/01/2021 09:35 am</p>
+          </Card>
+        </Col>
+        <Col md="6" sm="12" xs="12">
+        <select class="select-estacion-grafica">
+            <option selected>ALL</option>
+        </select>
+        <Card>
+            <CardHeader>PRECIO DE COMPRA | TAR AZCAPOTZALCO </CardHeader>
+            <CardBody>
+            <Line data={genPriceBuy({ fill: false }, { fill: false })} />
+            </CardBody>
+            <p className="update-text">Last Update 25/01/2021 09:35 am</p>
+          </Card>
+        </Col>
+      </Row>
         <Row>
         </Row>
       </Page>

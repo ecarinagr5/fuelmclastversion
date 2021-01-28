@@ -142,15 +142,26 @@ export const userProgressTableData = [
   {
     avatar: user1Image,
     name: '< 92',
+    precioultimacompra: 14.21,
+    preciocompra: 15.21,
+    preciocompramañana: 14.08,
     precioventa: 13.41,
     margen: 80,
+    margenreal:72,
+    volumenpromediodelmes: 123,
     progress: 75,
     volumen:120
   },
   {
     avatar: user2Image,
     name: '> 92',
-    precioventa: 12.41,
+    precioultimacompra: 14.21,
+    preciocompra: 15.21,
+    preciocompramañana: 14.08,
+    precioventa: 13.41,
+    margen: 80,
+    margenreal:43,
+    volumenpromediodelmes: 323,
     margen: 50,
     progress: 75,
     volumen:180
@@ -158,7 +169,13 @@ export const userProgressTableData = [
   {
     avatar: user3Image,
     name: 'Gasoleo B',
-    precioventa: 11.41,
+    precioultimacompra: 14.21,
+    preciocompra: 15.21,
+    preciocompramañana: 14.08,
+    precioventa: 13.41,
+    margen: 80,
+    margenreal:93,
+    volumenpromediodelmes: 191,
     margen: 60,
     progress: 75,
     volumen:110
@@ -166,7 +183,13 @@ export const userProgressTableData = [
   {
     avatar: user4Image,
     name: 'Diesel A+',
-    precioventa: 10.41,
+    precioultimacompra: 14.21,
+    preciocompra: 15.21,
+    preciocompramañana: 14.08,
+    precioventa: 13.41,
+    margen: 80,
+    margenreal:63,
+    volumenpromediodelmes: 483,
     margen: 60,
     progress: 75,
     volumen:280
@@ -174,7 +197,13 @@ export const userProgressTableData = [
   {
     avatar: user5Image,
     name: 'Pemex Diesel (Diesel)',
-    precioventa: 12.41,
+    precioultimacompra: 14.21,
+    preciocompra: 15.21,
+    preciocompramañana: 14.08,
+    precioventa: 13.41,
+    margen: 80,
+    margenreal:53,
+    volumenpromediodelmes: 223,
     margen: 30,
     progress: 75,
     volumen:150
