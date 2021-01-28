@@ -172,6 +172,8 @@ class Estacion extends React.Component {
           preciorecomenda:11.3,
           competenciaestrategica:11.4,
           preciomodificado:0,
+          preciodecompra:13.4,
+          preciopromediodeventa:11.3,
           competenciaA:12.4,
           competenciaB:11.4,
           competenciaC:12.4,
@@ -186,6 +188,8 @@ class Estacion extends React.Component {
           preciorecomenda:10.3,
           competenciaestrategica:12.4,
           preciomodificado:0,
+          preciodecompra:15.4,
+          preciopromediodeventa:10.3,
           competenciaA:11.4,
           competenciaB:13.4,
           competenciaC:16.4,
@@ -200,6 +204,8 @@ class Estacion extends React.Component {
           preciorecomenda:11.2,
           competenciaestrategica:12.4,
           preciomodificado:0,
+          preciodecompra:12.4,
+          preciopromediodeventa:12.3,
           competenciaA:10.4,
           competenciaB:12.4,
           competenciaC:14.4,
@@ -214,6 +220,8 @@ class Estacion extends React.Component {
           preciorecomenda:10.7,
           competenciaestrategica:12.4,
           preciomodificado:0,
+          preciodecompra:17.4,
+          preciopromediodeventa:16.3,
           competenciaA:13.4,
           competenciaB:11.4,
           competenciaC:13.4,
@@ -228,6 +236,8 @@ class Estacion extends React.Component {
           preciomodificado:0,
           preciorecomenda:13.3,
           competenciaestrategica:14.4,
+          preciodecompra:18.4,
+          preciopromediodeventa:13.3,
           competenciaA:12.4,
           competenciaB:12.8,
           competenciaC:12.4,
@@ -388,7 +398,7 @@ resetSimulador(){
         labels: PRODUCTS,
         datasets: [
           {
-            label:this.state.simular ? 'PRECIO MODIFICADO ' : '',
+            label:this.state.simular ? 'PRECIO REAL DE HOY ' : 'PRECIO REAL DE HOY',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -517,6 +527,158 @@ resetSimulador(){
       };
     };
 
+
+    const genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
+      return {
+        labels: MONTHS,
+        datasets: [
+          {
+            label: 'PRECIO DE COMPRA',
+            backgroundColor: getColor('danger'),
+            borderColor: getColor('danger'),
+            borderWidth: 2,
+            data: [
+              this.state.productsData[0].preciodecompra,
+              this.state.productsData[1].preciodecompra,
+              this.state.productsData[2].preciodecompra,
+              this.state.productsData[3].preciodecompra,
+              this.state.productsData[4].preciodecompra,
+              this.state.productsData[1].preciodecompra,
+              this.state.productsData[2].preciodecompra,
+            ],
+            ...moreData,
+          },
+          {
+            label: 'PRECIO DE PROMEDIO DE VENTA',
+            backgroundColor: getColor('info'),
+            borderColor: getColor('info'),
+            borderWidth: 3,
+            data: [
+              this.state.productsData[0].preciopromediodeventa,
+              this.state.productsData[1].preciopromediodeventa,
+              this.state.productsData[2].preciopromediodeventa,
+              this.state.productsData[3].preciopromediodeventa,
+              this.state.productsData[4].preciopromediodeventa,
+              this.state.productsData[1].preciopromediodeventa,
+              this.state.productsData[2].preciopromediodeventa,
+            ],
+            ...moreData,
+          },
+          {
+            label: 'COMPETENCIA ESTRATÉGICA',
+            backgroundColor: getColor('third'),
+            borderColor: getColor('third'),
+            borderWidth: 0,
+            data: [
+              this.state.productsData[0].competenciaestrategica,
+              this.state.productsData[1].competenciaestrategica,
+              this.state.productsData[2].competenciaestrategica,
+              this.state.productsData[3].competenciaestrategica,
+              this.state.productsData[4].competenciaestrategica,
+              this.state.productsData[1].competenciaestrategica,
+              this.state.productsData[2].competenciaestrategica,
+            ],
+            ...moreData2,
+          }, 
+          {
+            label: 'COMPETENCIA A',
+            backgroundColor: getColor('secondary'),
+            borderColor: getColor('secondary'),
+            borderWidth: 1,
+            data: [
+              this.state.productsData[0].competenciaA,
+              this.state.productsData[1].competenciaA,
+              this.state.productsData[2].competenciaA,
+              this.state.productsData[3].competenciaA,
+              this.state.productsData[4].competenciaA,
+              this.state.productsData[3].competenciaA,
+              this.state.productsData[4].competenciaA,
+            ],
+            ...moreData2,
+          },
+          {
+            label: 'COMPETENCIA B',
+            backgroundColor: getColor('secondary'),
+            borderColor: getColor('secondary'),
+            borderWidth: 1,
+            data: [
+              this.state.productsData[0].competenciaB,
+              this.state.productsData[1].competenciaB,
+              this.state.productsData[2].competenciaB,
+              this.state.productsData[3].competenciaB,
+              this.state.productsData[4].competenciaB,
+              this.state.productsData[1].competenciaB,
+              this.state.productsData[2].competenciaB,
+            ],
+            ...moreData2,
+          },
+          {
+            label: 'COMPETENCIA C',
+            backgroundColor: getColor('secondary'),
+            borderColor: getColor('secondary'),
+            borderWidth: 1,
+            data: [
+              this.state.productsData[0].competenciaC,
+              this.state.productsData[1].competenciaC,
+              this.state.productsData[2].competenciaC,
+              this.state.productsData[3].competenciaC,
+              this.state.productsData[4].competenciaC,
+              this.state.productsData[2].competenciaC,
+              this.state.productsData[3].competenciaC,
+            ],
+            ...moreData2,
+          },
+          {
+            label: 'COMPETENCIA D',
+            backgroundColor: getColor('secondary'),
+            borderColor: getColor('secondary'),
+            borderWidth: 1,
+            data: [
+              this.state.productsData[0].competenciaD,
+              this.state.productsData[1].competenciaD,
+              this.state.productsData[2].competenciaD,
+              this.state.productsData[3].competenciaD,
+              this.state.productsData[4].competenciaD,
+              this.state.productsData[1].competenciaD,
+              this.state.productsData[2].competenciaD,
+            ],
+            ...moreData2,
+          },
+          {
+            label: 'PRECIO RECOMENDADO',
+            backgroundColor: getColor('primary'),
+            borderColor: getColor('primary'),
+            borderWidth: 1,
+            data: [
+              this.state.productsData[0].competenciaD,
+              this.state.productsData[1].competenciaD,
+              this.state.productsData[2].competenciaD,
+              this.state.productsData[3].competenciaD,
+              this.state.productsData[4].competenciaD,
+              this.state.productsData[1].competenciaD,
+              this.state.productsData[2].competenciaD,
+            ],
+            ...moreData2,
+          },
+          {
+            label:this.state.simular ? 'PRECIO REAL DE HOY ' : 'PRECIO REAL DE HOY',
+            backgroundColor: getColor('secondary'),
+            borderColor: getColor('secondary'),
+            borderWidth: 1,
+            data: [
+              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
+              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
+              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
+              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
+              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,
+              this.state.simular ? this.state.productsData[5].modificado : this.state.productsData[3].precioventa,
+              this.state.simular ? this.state.productsData[6].modificado : this.state.productsData[4].precioventa,
+            ],
+            ...moreData2,
+          },
+        ],
+      };
+    };
     let { productsData } = this.state;
     let promedio = 63 //Promedio de competencia estrategica;
     return (
@@ -662,7 +824,6 @@ resetSimulador(){
         <Row className="graph-line">
           <Col md="12" >
               <select class="select-estacion-grafica">
-                <option selected>ALL</option>
                 <option value="5">PEMEX DIESEL (DIESEL)</option>
                 <option value="1">{"< 92"}</option>
                 <option value="2">{"> 92"}</option>
@@ -673,7 +834,8 @@ resetSimulador(){
               <CardHeader>PRECIO DE VENTA COMPETENCIA</CardHeader>
                   <CardBody>
                     {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
-                    <Bar data={ genLineData() } height={80} />
+                    {/*<Bar data={ genLineData() } height={80} />*/}
+                    <Bar data={genLineDataMONTHS({ type: 'line', fill: false })} height={80} />
                   </CardBody>
                 <p className="update-text">Last Update 25/01/2021 09:35 am</p>
               </Card>
