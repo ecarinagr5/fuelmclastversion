@@ -74,9 +74,16 @@ th{
 .table-responsive{
   font-size: 14px;
 }
+.table th{
+  padding: 0.5rem !important;
+  font-size: 11px !important;
+}
 .graph-line{
   /*height: 400px;*/
   overflow: hidden;
+}
+.text-mini{
+  font-size: 12px;
 }
 .text-shadow{
   background-color: #f1f1f1;
@@ -103,6 +110,10 @@ th{
 .txt-high{
   color: red;
   font-weight: 900;
+}
+.header-txt-v2{
+  font-size: 12px;
+  margin-bottom: 1%;
 }
 .txt-ok{
   color:#61b15a;

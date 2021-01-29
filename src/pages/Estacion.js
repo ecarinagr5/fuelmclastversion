@@ -173,7 +173,7 @@ class Estacion extends React.Component {
           competenciaestrategica:11.4,
           preciomodificado:0,
           preciodecompra:13.4,
-          preciopromediodeventa:11.3,
+          preciopromediodeventa:16,
           competenciaA:12.4,
           competenciaB:11.4,
           competenciaC:12.4,
@@ -188,8 +188,8 @@ class Estacion extends React.Component {
           preciorecomenda:10.3,
           competenciaestrategica:12.4,
           preciomodificado:0,
-          preciodecompra:15.4,
-          preciopromediodeventa:10.3,
+          preciodecompra:13,
+          preciopromediodeventa:16,
           competenciaA:11.4,
           competenciaB:13.4,
           competenciaC:16.4,
@@ -204,8 +204,8 @@ class Estacion extends React.Component {
           preciorecomenda:11.2,
           competenciaestrategica:12.4,
           preciomodificado:0,
-          preciodecompra:12.4,
-          preciopromediodeventa:12.3,
+          preciodecompra:14,
+          preciopromediodeventa:17,
           competenciaA:10.4,
           competenciaB:12.4,
           competenciaC:14.4,
@@ -220,7 +220,7 @@ class Estacion extends React.Component {
           preciorecomenda:10.7,
           competenciaestrategica:12.4,
           preciomodificado:0,
-          preciodecompra:17.4,
+          preciodecompra:14,
           preciopromediodeventa:16.3,
           competenciaA:13.4,
           competenciaB:11.4,
@@ -236,8 +236,8 @@ class Estacion extends React.Component {
           preciomodificado:0,
           preciorecomenda:13.3,
           competenciaestrategica:14.4,
-          preciodecompra:18.4,
-          preciopromediodeventa:13.3,
+          preciodecompra:15,
+          preciopromediodeventa:18,
           competenciaA:12.4,
           competenciaB:12.8,
           competenciaC:12.4,
@@ -549,7 +549,7 @@ resetSimulador(){
             ...moreData,
           },
           {
-            label: 'PRECIO DE PROMEDIO DE VENTA',
+            label: 'PRECIO PROMEDIO DE VENTA',
             backgroundColor: getColor('info'),
             borderColor: getColor('info'),
             borderWidth: 3,
@@ -645,25 +645,9 @@ resetSimulador(){
             ...moreData2,
           },
           {
-            label: 'PRECIO RECOMENDADO',
+            label: 'MI PRECIO DE VENTA SELECCIONADO',
             backgroundColor: getColor('primary'),
             borderColor: getColor('primary'),
-            borderWidth: 1,
-            data: [
-              this.state.productsData[0].competenciaD,
-              this.state.productsData[1].competenciaD,
-              this.state.productsData[2].competenciaD,
-              this.state.productsData[3].competenciaD,
-              this.state.productsData[4].competenciaD,
-              this.state.productsData[1].competenciaD,
-              this.state.productsData[2].competenciaD,
-            ],
-            ...moreData2,
-          },
-       {
-            label:this.state.simular ? 'PRECIO REAL DE HOY ' : 'PRECIO REAL DE HOY',
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
             borderWidth: 1,
             data: [
               this.state.productsData[0].competenciaD,
@@ -691,12 +675,34 @@ resetSimulador(){
                     ACEPTAR PRECIOS
                   </ModalHeader>
                   <ModalBody>
-                    Estas seguro de Aplicar los siguientes cambios:
-                    {
-                      this.state.productsData.map( product =>
-                      <p className="product-row"> { product.nombre } <span className="text-validate">$ { product.preciomodificado } </span> </p>
-                      )
-                    }
+                    <p className="header-txt">Estas seguro de Aplicar los siguientes cambios:</p>
+                      <br />
+                      <Table responsive>
+                        <thead>
+                          <tr>
+                            <th className="header-table">PRODUCTO</th>
+                            <th className="header-table">PRECIO DE VENTA SELECCIONADO</th>
+                            <th className="header-table">MARGEN REAL</th>
+                            <th className="header-table">MARGEN REAL OBJETIVO</th>
+                            <th className="header-table">UTILIDAD</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {   
+
+                          this.state.productsData.map((prop, key) => {
+                            return (
+                              <tr>
+                                  <td className="text-center text-mini">{prop.nombre}</td>
+                                  <td className="text-center text-mini">${  prop.preciomodificado }</td>
+                                  <td className="text-center text-mini">72 %</td>
+                                  <td className="text-center text-mini">62 %</td>
+                                  <td className="text-center text-mini">$11200</td>
+                            </tr>
+                            )
+                          })}
+                        </tbody>
+                      </Table>
                     <br />
 
                     <Modal
