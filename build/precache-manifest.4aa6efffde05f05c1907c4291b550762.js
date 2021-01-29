@@ -8,8 +8,8 @@ self.__precacheManifest = [
     "url": "/static/js/1.993b8b3d.chunk.js"
   },
   {
-    "revision": "c7b5f78476e18d0a85f1",
-    "url": "/static/js/2.44fefc6a.chunk.js"
+    "revision": "2879eab804f908611d2a",
+    "url": "/static/js/2.9f242b79.chunk.js"
   },
   {
     "revision": "323f6d0c22e3f696708d",
@@ -20,20 +20,20 @@ self.__precacheManifest = [
     "url": "/static/js/4.f676910b.chunk.js"
   },
   {
-    "revision": "ede952960cb96b633aa0",
+    "revision": "e8d067f85182fc44b488",
     "url": "/static/css/main.7ce802dd.chunk.css"
   },
   {
-    "revision": "ede952960cb96b633aa0",
-    "url": "/static/js/main.b3b83df3.chunk.js"
+    "revision": "e8d067f85182fc44b488",
+    "url": "/static/js/main.773721f8.chunk.js"
   },
   {
-    "revision": "0acf1b78d008e6d97910",
-    "url": "/static/js/runtime~main.95852321.js"
+    "revision": "eb2d02fb54ce5dbf03ce",
+    "url": "/static/js/runtime~main.4d593aef.js"
   },
   {
-    "revision": "fde3a50d111eb06cc386",
-    "url": "/static/js/7.e9b16fed.chunk.js"
+    "revision": "a044c35cae4021f1d108",
+    "url": "/static/js/7.051e1efd.chunk.js"
   },
   {
     "revision": "474d00d07cfe6dc3ab49",
@@ -64,8 +64,8 @@ self.__precacheManifest = [
     "url": "/static/js/14.f0f9a119.chunk.js"
   },
   {
-    "revision": "a01ff4991f52b63076eb",
-    "url": "/static/js/15.d0167a13.chunk.js"
+    "revision": "2703d72337495946c212",
+    "url": "/static/js/15.acebf23f.chunk.js"
   },
   {
     "revision": "5b22f0652a3e94457595",
@@ -104,8 +104,8 @@ self.__precacheManifest = [
     "url": "/static/js/24.35ee1411.chunk.js"
   },
   {
-    "revision": "56f4c232e350c5df4f1b",
-    "url": "/static/js/25.67be1236.chunk.js"
+    "revision": "801a50507fbc126015b7",
+    "url": "/static/js/25.076e4318.chunk.js"
   },
   {
     "revision": "c30ddf7d296ea78d8cec",
@@ -212,7 +212,7 @@ self.__precacheManifest = [
     "url": "/static/media/product_640-6.f9249755.jpg"
   },
   {
-    "revision": "6cec5616279a7ca3e39779a56cbd5466",
+    "revision": "95eb3b713059d7e69573accb560b54e8",
     "url": "/index.html"
   }
 ];

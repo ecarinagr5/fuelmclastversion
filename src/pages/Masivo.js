@@ -14,6 +14,7 @@ import  Filter  from 'components/Filter';
 import ver from "assets/img/ver.png";
 import favoritos from "assets/img/star.png";
 
+
 import {
   avatarsData,
   chartjs,
@@ -53,7 +54,7 @@ import {
 } from 'reactstrap';
 import { getColor } from 'utils/colors';
 
-const tableTypes = ['', 'bordered', 'striped', 'hover'];
+const tableTypes = ['PROMEDIOS', 'MÁXIMOS', 'MÍNIMOS'];
 
 const today = new Date();
 const lastWeek = new Date(
@@ -548,8 +549,66 @@ class Masivo extends React.Component {
                 RESUMEN{' '}
                 <small className="text-muted text-capitalize">Por día</small>
               </CardHeader>
+
               <CardBody>
-               
+              {tableTypes.map((tableType, index) => (
+                <row><p className="titles-m">{tableType }</p>
+                      <Table {...{ [tableType || 'default']: true }} className="min_max">
+                        <thead>
+                          <tr>
+                          <th className="header-table"></th>
+                            <th className="header-table">Diesel A+</th>
+                            <th className="header-table">{'<92'}</th>
+                            <th className="header-table">{'>92'}</th>
+                            <th className="header-table">Gasoleo B</th>
+                            <th className="header-table">PEMEX</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Ingreso</th>
+                            <td>$12,023</td>
+                            <td>$23,932</td>
+                            <td>$22,333</td>
+                            <td>$23,932</td>
+                            <td>$23,932</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Precio</th>
+                            <td>$23.3</td>
+                            <td>$13.3</td>
+                            <td>$12.3</td>
+                            <td>$13.3</td>
+                            <td>$12.3</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Utilidad</th>
+                            <td>$10,000</td>
+                            <td>$20,000</td>
+                            <td>$22,500</td>
+                            <td>$20,000</td>
+                            <td>$22,500</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Volumen</th>
+                            <td>290 lts</td>
+                            <td>320 lts</td>
+                            <td>250 lts</td>
+                            <td>290 lts</td>
+                            <td>320 lts</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen</th>
+                            <td>10%</td>
+                            <td>50%</td>
+                            <td>65%</td>
+                            <td>10%</td>
+                            <td>50%</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                      </row>
+                        ))}
               </CardBody>
             </Card>
           </Col>
