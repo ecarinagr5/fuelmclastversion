@@ -24,7 +24,7 @@ import {
   userProgressTableData,
 } from 'demos/dashboardPage';
 import React from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import { Line, Pie, Doughnut, Bar, Radar, Polar } from 'react-chartjs-2';
 import {
   MdBubbleChart,
   MdInsertChart,
@@ -182,7 +182,24 @@ const genLineData = (moreData = {}, moreData2 = {}) => {
     ],
   };
 };
-
+const genPieData = () => {
+  return {
+    datasets: [
+      {
+        data: [4,5,6,7,8,9],
+        backgroundColor: [
+          getColor('primary'),
+          getColor('secondary'),
+          getColor('success'),
+          getColor('info'),
+          getColor('danger'),
+        ],
+        label: 'Dataset 1',
+      },
+    ],
+    labels: ['<92', '>92', 'PEMEX DIESEL', 'Gasoleo B', 'Diesel A+'],
+  };
+};
 const genPriceBuy = (moreData = {}, moreData2 = {}) => {
   return {
     labels: MONTHS,
@@ -567,43 +584,43 @@ class Masivo extends React.Component {
                         <tbody>
                           <tr>
                             <th scope="row">Ingreso</th>
-                            <td>$12,023</td>
-                            <td>$23,932</td>
-                            <td>$22,333</td>
-                            <td>$23,932</td>
-                            <td>$23,932</td>
+                            <td className="menos-espacio">$12,023</td>
+                            <td className="menos-espacio">$23,932</td>
+                            <td className="menos-espacio">$22,333</td>
+                            <td className="menos-espacio">$23,932</td>
+                            <td className="menos-espacio">$23,932</td>
                           </tr>
                           <tr>
                             <th scope="row">Precio</th>
-                            <td>$23.3</td>
-                            <td>$13.3</td>
-                            <td>$12.3</td>
-                            <td>$13.3</td>
-                            <td>$12.3</td>
+                            <td className="menos-espacio">$23.3</td>
+                            <td className="menos-espacio">$13.3</td>
+                            <td className="menos-espacio">$12.3</td>
+                            <td className="menos-espacio">$13.3</td>
+                            <td className="menos-espacio">$12.3</td>
                           </tr>
                           <tr>
                             <th scope="row">Utilidad</th>
-                            <td>$10,000</td>
-                            <td>$20,000</td>
-                            <td>$22,500</td>
-                            <td>$20,000</td>
-                            <td>$22,500</td>
+                            <td className="menos-espacio">$10,000</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
                           </tr>
                           <tr>
                             <th scope="row">Volumen</th>
-                            <td>290 lts</td>
-                            <td>320 lts</td>
-                            <td>250 lts</td>
-                            <td>290 lts</td>
-                            <td>320 lts</td>
+                            <td className="menos-espacio">290 lts</td>
+                            <td className="menos-espacio">320 lts</td>
+                            <td className="menos-espacio">250 lts</td>
+                            <td className="menos-espacio">290 lts</td>
+                            <td className="menos-espacio">320 lts</td>
                           </tr>
                           <tr>
                             <th scope="row">Margen</th>
-                            <td>10%</td>
-                            <td>50%</td>
-                            <td>65%</td>
-                            <td>10%</td>
-                            <td>50%</td>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -650,6 +667,33 @@ class Masivo extends React.Component {
                   <Badge color="">30</Badge>
                 </ListGroupItem>
               </ListGroup>
+            </Card>
+          </Col>
+        </Row>
+        
+        <Row>
+            <Col xl={6} lg={12} md={12}>
+            <Card>
+              <CardHeader>UTILIDAD</CardHeader>
+              <CardBody>
+                <Pie data={genPieData()} />
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xl={6} lg={12} md={12}>
+            <Card>
+              <CardHeader>MARGEN</CardHeader>
+              <CardBody>
+                <Doughnut data={genPieData()} />
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xl={6} lg={12} md={12}>
+            <Card>
+              <CardHeader>VOLUMEN</CardHeader>
+              <CardBody>
+                <Doughnut data={genPieData()} />
+              </CardBody>
             </Card>
           </Col>
         </Row>
