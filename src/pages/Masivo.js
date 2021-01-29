@@ -245,7 +245,10 @@ class Masivo extends React.Component {
 
     this.state = { 
       selectAll:false, 
-      simular:false
+      simular:false,
+      simular1:false,
+      simular2:false,
+      simular3:false
     }
 
     this.selectAll = this.selectAll.bind(this);
@@ -256,8 +259,21 @@ class Masivo extends React.Component {
     this.setState({selectAll: !this.state.selectAll})
     
   }
-  handleClick(){
-    this.setState({ simular: true})
+  handleClick(event){
+    console.log("c",event.target.id)
+      if(event.target.id === '0' ) {
+        this.setState({ simular: true})
+      }
+      if(event.target.id === '1' ) {
+        this.setState({ simular1: true})
+      }
+      if(event.target.id === '2' ) {
+        this.setState({ simular2: true})
+      }
+      if(event.target.id === '3' ) {
+        this.setState({ simular3: true})
+      }
+      
   }
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
@@ -307,6 +323,7 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table">PVP SELECCIONADO</th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
                                   <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
                                   <th className="text-center header-table">UTILIDAD TOTAL</th>                         
                                   <th className="text-center header-table"></th>
@@ -320,19 +337,20 @@ class Masivo extends React.Component {
                                   <td className="text-center"> B</td>
                                   <td className="text-center">$13.5</td>
                                   <td className="text-center">$15.6</td>
-                                  <td className="text-center">$12.2</td>
-                                  <td className="text-center">$15.3</td>
-                                  <td className="text-center">$12.2</td>
-                                  <td className="text-center">$13.3</td>
-                                  <td className="text-center">$15.2</td>
-                                  <td className="text-center bg-gray-light">$13.2</td>
-                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
+                                  <td className="text-center text-shadow">$12.2</td>
+                                  <td className="text-center text-shadow">$15.3</td>
+                                  <td className="text-center text-shadow">$12.2</td>
+                                  <td className="text-center text-shadow">$13.3</td>
+                                  <td className="text-center text-shadow text-shadow">{ this.state.simular ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-ok"> 18.2%</td>
                                   <td className="text-center bg-gray-light"> 16.8% </td>
+                                  <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light">$10,4423</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16" onClick={this.handleClick}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="0" onClick={this.handleClick}>
                                       <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                     </svg>
                                     </td>
@@ -343,19 +361,20 @@ class Masivo extends React.Component {
                                   <td className="text-center"> A</td>
                                   <td className="text-center">$13.5</td>
                                   <td className="text-center">$12.2</td>
-                                  <td className="text-center">$13.6 </td>
-                                  <td className="text-center">$13.2 </td>
-                                  <td className="text-center">$12.2</td>
-                                  <td className="text-center">$13.3</td>
-                                  <td className="text-center">$15.23</td>
-                                  <td className="text-center bg-gray-light">$11.2</td>
-                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
+                                  <td className="text-center text-shadow">$13.6 </td>
+                                  <td className="text-center text-shadow">$13.2 </td>
+                                  <td className="text-center text-shadow">$12.2</td>
+                                  <td className="text-center text-shadow">$13.3</td>
+                                  <td className="text-center text-shadow">{ this.state.simular1 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular1 ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-ok">18.3%</td>
                                   <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="1" onClick={this.handleClick}>
                                       <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                     </svg>
                                   </td>
@@ -366,19 +385,20 @@ class Masivo extends React.Component {
                                   <td className="text-center"> A</td>
                                   <td className="text-center">$13.5</td>
                                   <td className="text-center">$12.2</td>
-                                  <td className="text-center">$13.6 </td>
-                                  <td className="text-center">$13.2 </td>
-                                  <td className="text-center">$12.2</td>
-                                  <td className="text-center">$13.3</td>
-                                  <td className="text-center">$15.23</td>
-                                  <td className="text-center bg-gray-light">$11.2</td>
-                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
-                                  <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center text-shadow">$13.6 </td>
+                                  <td className="text-center text-shadow">$13.2 </td>
+                                  <td className="text-center text-shadow">$12.2</td>
+                                  <td className="text-center text-shadow">$13.3</td>
+                                  <td className="text-center text-shadow">{ this.state.simular2 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular2 ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-high">18.3%</td>
+                                  <td className="text-center">13.3%</td>
+                                  <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="2" onClick={this.handleClick}>
                                       <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                     </svg>
                                   </td>
@@ -389,19 +409,20 @@ class Masivo extends React.Component {
                                   <td className="text-center"> A</td>
                                   <td className="text-center">$13.5</td>
                                   <td className="text-center">$12.2</td>
-                                  <td className="text-center">$13.6 </td>
-                                  <td className="text-center">$13.2 </td>
-                                  <td className="text-center">$12.2</td>
-                                  <td className="text-center">$13.3</td>
-                                  <td className="text-center">$15.23</td>
-                                  <td className="text-center bg-gray-light">$11.2</td>
-                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
-                                  <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center text-shadow">$13.6 </td>
+                                  <td className="text-center text-shadow">$13.2 </td>
+                                  <td className="text-center text-shadow">$12.2</td>
+                                  <td className="text-center text-shadow">$13.3</td>
+                                  <td className="text-center text-shadow">{ this.state.simular3 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular3 ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-high">18.3%</td>
+                                  <td className="text-center">13.3%</td>
+                                  <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="3" onClick={this.handleClick}>
                                       <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                     </svg>
                                   </td>
@@ -427,6 +448,7 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table">PVP SELECCIONADO</th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
                                   <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
                                   <th className="text-center header-table">UTILIDAD TOTAL</th>                         
                                   <th className="text-center header-table"></th>
@@ -478,6 +500,7 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table">PVP SELECCIONADO</th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
                                   <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
                                   <th className="text-center header-table">UTILIDAD TOTAL</th>                         
                                   <th className="text-center header-table"></th>
@@ -512,7 +535,6 @@ class Masivo extends React.Component {
                       </Table>
                         </Tab>                 
                     </Tabs>
-                    
             </CardBody>
           </Card>
         </Col>

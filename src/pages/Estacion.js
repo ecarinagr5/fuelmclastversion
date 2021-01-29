@@ -675,7 +675,7 @@ resetSimulador(){
                     ACEPTAR PRECIOS
                   </ModalHeader>
                   <ModalBody>
-                    <p className="header-txt">Estas seguro de Aplicar los siguientes cambios:</p>
+                    <p className="header-txt-v2">Estas seguro de Aplicar los siguientes cambios:</p>
                       <br />
                       <Table responsive>
                         <thead>
