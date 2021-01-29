@@ -316,7 +316,7 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
                                   <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
                                   <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMA DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
                                   <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
                                   <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
                                   <th className="text-center header-table">PVP RECOMENDADO</th>
@@ -441,7 +441,7 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
                                   <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
                                   <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMA DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
                                   <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
                                   <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
                                   <th className="text-center header-table">PVP RECOMENDADO</th>
@@ -493,7 +493,7 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
                                   <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
                                   <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMA DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
                                   <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
                                   <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
                                   <th className="text-center header-table">PVP RECOMENDADO</th>
@@ -539,7 +539,60 @@ class Masivo extends React.Component {
           </Card>
         </Col>
       </Row>
-        <Row>
+
+{/* RESUMEN*/}
+<Row>
+          <Col lg="8" md="12" sm="12" xs="12">
+            <Card>
+              <CardHeader>
+                RESUMEN{' '}
+                <small className="text-muted text-capitalize">Por día</small>
+              </CardHeader>
+              <CardBody>
+               
+              </CardBody>
+            </Card>
+          </Col>
+
+          <Col lg="4" md="12" sm="12" xs="12">
+            <Card>
+              <CardHeader>
+                RESUMEN
+              </CardHeader>
+              <CardBody className="bg-gradient-primary">
+                <MapWithBubbles />
+              </CardBody>
+              <ListGroup flush>
+                <ListGroupItem>
+                  <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones{' '}
+                  <h4 className="text-center"><Badge color="">80</Badge></h4>
+                </ListGroupItem>
+                <ListGroupItem>
+                <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones por Producto{' '}
+                </ListGroupItem>
+                <ListGroupItem>
+                {'<92'}
+                  <Badge color="">10</Badge>
+                </ListGroupItem>
+                <ListGroupItem>
+                {'>92'}{' '}
+                  <Badge color="">10</Badge>
+                </ListGroupItem>
+                <ListGroupItem>
+                  {'Gasoleo B'}{' '}
+                  <Badge color="">20</Badge>
+                </ListGroupItem>
+                <ListGroupItem>
+                  {'Diesel A+'}{' '}
+                  <Badge color="">10</Badge>
+                </ListGroupItem>
+                <ListGroupItem>
+                  {'PEMEX DIESEL (DIESEL)'}{' '}
+                  <Badge color="">30</Badge>
+                </ListGroupItem>
+              </ListGroup>
+            </Card>
+          </Col>
         </Row>
       </Page>
     );

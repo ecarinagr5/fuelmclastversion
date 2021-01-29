@@ -20,16 +20,16 @@ self.__precacheManifest = [
     "url": "/static/js/4.f676910b.chunk.js"
   },
   {
-    "revision": "f4d6b04688bc8df79240",
-    "url": "/static/css/main.aba48f2c.chunk.css"
+    "revision": "ede952960cb96b633aa0",
+    "url": "/static/css/main.7ce802dd.chunk.css"
   },
   {
-    "revision": "f4d6b04688bc8df79240",
+    "revision": "ede952960cb96b633aa0",
     "url": "/static/js/main.b3b83df3.chunk.js"
   },
   {
-    "revision": "8508865db86ffdbb67f4",
-    "url": "/static/js/runtime~main.d771d5ca.js"
+    "revision": "0acf1b78d008e6d97910",
+    "url": "/static/js/runtime~main.95852321.js"
   },
   {
     "revision": "fde3a50d111eb06cc386",
@@ -96,16 +96,16 @@ self.__precacheManifest = [
     "url": "/static/js/22.3f20f48a.chunk.js"
   },
   {
-    "revision": "6330cd7f867e2ffac842",
-    "url": "/static/js/23.aa9a6c94.chunk.js"
+    "revision": "e85b61ca9a67753cdc7f",
+    "url": "/static/js/23.c10242d9.chunk.js"
   },
   {
     "revision": "83f30ee541938407f9f7",
     "url": "/static/js/24.35ee1411.chunk.js"
   },
   {
-    "revision": "3376f3067a62984204dd",
-    "url": "/static/js/25.ae136b09.chunk.js"
+    "revision": "56f4c232e350c5df4f1b",
+    "url": "/static/js/25.67be1236.chunk.js"
   },
   {
     "revision": "c30ddf7d296ea78d8cec",
@@ -212,7 +212,7 @@ self.__precacheManifest = [
     "url": "/static/media/product_640-6.f9249755.jpg"
   },
   {
-    "revision": "9d05ea7c8cdedf0a51370da41551d51e",
+    "revision": "6cec5616279a7ca3e39779a56cbd5466",
     "url": "/index.html"
   }
 ];
