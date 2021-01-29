@@ -51,6 +51,13 @@ import {
   ListGroup,
   ListGroupItem,
   Row,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Input,
+  Label,
+  FormGroup
 } from 'reactstrap';
 import { getColor } from 'utils/colors';
 
@@ -62,6 +69,7 @@ const lastWeek = new Date(
   today.getMonth(),
   today.getDate() - 7,
 );
+
 const MONTHS = ['12/01/2021', '13/01/2021', '14/01/2021', '15/01/2021', '16/01/2021', '17/01/2021', '18/01/2021'];
 const genLineData = (moreData = {}, moreData2 = {}) => {
   return {
@@ -273,6 +281,19 @@ class Masivo extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  toggle = modalType => () => {
+    if (!modalType) {
+      return this.setState({
+        modal: !this.state.modal,
+      });
+    }
+  
+    this.setState({
+      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+    });
+  };
+   
+
   selectAll(){
     this.setState({selectAll: !this.state.selectAll})
     
@@ -304,6 +325,54 @@ class Masivo extends React.Component {
 
     return (
       <Page>
+        <Modal
+                  isOpen={this.state.modal_nested_parent}
+                  toggle={this.toggle('nested_parent')}
+                  className={this.props.className}>
+                  <ModalHeader toggle={this.toggle('nested_parent')}>
+                    ACEPTAR PRECIOS
+                  </ModalHeader>
+                  <ModalBody>
+                    <p className="header-txt-v2">Introducir</p>
+                    <FormGroup>
+                      <Label for="exampleNumber">PRECIO:</Label>
+                      <Input
+                        type="number"
+                        name="number"
+                        id="exampleNumber"
+                        placeholder=""
+                      />
+                    </FormGroup>
+                    <Modal
+                      isOpen={this.state.modal_nested}
+                      toggle={this.toggle('nested')}>
+                      <ModalHeader>Nested Modal title</ModalHeader>
+                      <ModalBody>Stuff and things</ModalBody>
+                      <ModalFooter>
+                        <Button color="primary" onClick={this.toggle('nested')}>
+                          APLICAR
+                        </Button>{' '}
+                        <Button
+                          color="secondary"
+                          onClick={this.toggle('nested_parent')}>
+                          CANCELAR
+                        </Button>
+                      </ModalFooter>
+                    </Modal>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color="primary"
+                      onClick={this.toggle('nested_parent')}>
+                        ACEPTAR
+                    </Button>{' '}
+                    <Button
+                      color="danger"
+                      onClick={this.toggle('nested_parent')}>
+                        CANCELAR
+                    </Button>
+                  </ModalFooter>
+                </Modal>
     <Row>
         <Col>
   
@@ -312,7 +381,7 @@ class Masivo extends React.Component {
           <Card className="mb-3">
             <CardBody>
             <Col md={3} className="container-btn-masiva">
-                <Button color="primary btn-barra-simular">SIMULACIÓN MASIVA</Button>
+                <Button color="primary btn-barra-simular" onClick={this.toggle('nested_parent')}>SIMULACIÓN MASIVA</Button>
                 <Button color="primary btn-barra-simular">
                   ACEPTAR &nbsp;
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
