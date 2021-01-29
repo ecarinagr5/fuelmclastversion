@@ -150,7 +150,7 @@ export const userProgressTableData = [
     margenreal:72,
     volumenpromediodelmes: 123,
     progress: 75,
-    volumen:120
+    volumen:50
   },
   {
     avatar: user2Image,
@@ -164,7 +164,7 @@ export const userProgressTableData = [
     volumenpromediodelmes: 323,
     margen: 50,
     progress: 75,
-    volumen:180
+    volumen:60
   },
   {
     avatar: user3Image,
@@ -178,7 +178,7 @@ export const userProgressTableData = [
     volumenpromediodelmes: 191,
     margen: 60,
     progress: 75,
-    volumen:110
+    volumen:40
   },
   {
     avatar: user4Image,
@@ -192,7 +192,7 @@ export const userProgressTableData = [
     volumenpromediodelmes: 483,
     margen: 60,
     progress: 75,
-    volumen:280
+    volumen:60
   },
   {
     avatar: user5Image,
@@ -206,7 +206,7 @@ export const userProgressTableData = [
     volumenpromediodelmes: 223,
     margen: 30,
     progress: 75,
-    volumen:150
+    volumen:50
   },
 ];
 

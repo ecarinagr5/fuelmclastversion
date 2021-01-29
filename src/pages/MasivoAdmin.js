@@ -272,104 +272,145 @@ class MasivoAdmin extends React.Component {
       <Page>
     <Row>
         <Col>
+  
         {/* FILTRO */}
           <Filter />
           <Card className="mb-3">
             <CardBody>
+            <Col md={3} className="container-btn-masiva">
+                <Button color="primary btn-barra-simular">SIMULACIÓN MASIVA</Button>
+                <Button color="primary btn-barra-simular">
+                  ACEPTAR &nbsp;
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
+                    <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                  </svg>
+                </Button>
+
+            </Col>
             <Tabs headerStyle={{fontWeight: 'bold'}} activeHeaderStyle={{color:'black'}} >
                         <Tab label="Diesel" >
                           <Table responsive>
                             <thead>
                                 <tr>
                                   <th className="text-center header-table">All <input type="radio" onChange={this.selectAll}></input></th>
-                                  <th className="text-center header-table">OPERADORA</th>
-                                  <th className="text-center header-table">CLIENTE</th>
-                                  <th className="text-center header-table"><span className="meaning">TAR</span><span className="detail">Precio de venta TAR de Suministro</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP EESS</span><span className="detail">Precio de venta de estación de Servicio</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP COM </span><span className="detail">Precio medio de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MAX</span><span className="detail">Precio máximo de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MIN</span><span className="detail">Precio mínimo de la competencia</span></th>
-                                  <th className="text-center header-table">ESTRATÉGICO</th>
-                                  <th className="text-center header-table"><span className="meaning">MARGEN REP ES</span><span className="detail">Margen teórico de la estación de servicio</span></th>
-                                  <th className="text-center header-table"><span className="meaning">MARGEN SUM ES</span><span className="detail">Margen sobre suministro (sobre la compra)</span></th>
-                                  <th className="text-center header-table"><span className="meaning">MARGEN PROM POND</span><span className="detail">Margen promedio ponderado del mes</span></th>
-                                  <th className="text-center header-table"><span className="meaning">EV VTA ES</span><span className="detail"> Desviación del volumen (Volumen objetivo vs. Volumen real)</span></th>
-                                  <th className="text-center header-table">PRECIO RECOMENDADO</th>
-                                  <th className="text-center header-table">MARGEN POR LITRO OBJETIVO</th>
-                                  <th className="text-center header-table">VOLUMEN OBJETIVO</th>
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>  
-                                  <th className="text-center header-table">USUARIO</th>                             
-                                  <th className="text-center header-table"></th>
-                                  <th className="text-center header-table"></th>
+                                  <th className="text-center header-table">EMPRESA</th>
+                                  <th className="text-center header-table">NEGOCIO</th>
+                                  <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
+                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMA DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
+                                  <th className="text-center header-table">PVP RECOMENDADO</th>
+                                  <th className="text-center header-table">PVP SELECCIONADO</th>
+                                  <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
+                                  <th className="text-center header-table">UTILIDAD TOTAL</th>      
+                                  <th className="text-center header-table">USUARIO</th>                         
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                                 </tr>
                             </thead>
                           <tbody>
                               <tr>
-                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" checked={this.state.selectAll ? true : false }/></td>
-                                  <td className="text-center">Servicio Aztecas</td>
+                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
+                                  <td className="text-left">Servicio Aztecas</td>
                                   <td className="text-center"> B</td>
-                                  <td className="text-center"> 13.5</td>
-                                  <td className="text-center">15.5</td>
-                                  <td className="text-center"> 13.6 </td>
-                                  <td className="text-center">15.6</td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center">15.3 <span className="txt-ok">*</span></td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.3</td>
-                                  <td className="text-center">15.2</td>
-                                  <td className="text-center bg-gray-light">13.2</td>
-                                  <td className="text-center bg-gray-light"> { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
-                                  <td className="text-center bg-gray-light">  12.8% </td>
-                                  <td className="text-center bg-gray-light"> 150 lts</td>
-                                  <td className="text-center bg-gray-light">$20,4423</td>
-                                  <td className="text-center bg-gray-light user-name"> Karla_Perez</td>
+                                  <td className="text-center">$13.5</td>
+                                  <td className="text-center">$15.6</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$15.3</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.3</td>
+                                  <td className="text-center">$15.2</td>
+                                  <td className="text-center bg-gray-light">$13.2</td>
+                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
+                                  <td className="text-center bg-gray-light"> 16.8% </td>
+                                  <td className="text-center bg-gray-light"> 250 lts</td>
+                                  <td className="text-center bg-gray-light">$10,4423</td>
+                                  <td className="text-center bg-gray-light text-nombre">Karla Perez</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle color-check" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                                  </svg>
-                                </td>
-                                <td className="text-center">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill color-cancel" viewBox="0 0 16 16">
-                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
-                                  </svg>
-                                </td>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16" onClick={this.handleClick}>
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                    </td>
                               </tr>
                               <tr>
-                              <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" checked={this.state.selectAll ? true : false } /></td>
-                              <td className="text-center">Servico Neza</td>
+                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
+                                  <td className="text-left">Servicio Neza</td>
                                   <td className="text-center"> A</td>
-                                  <td className="text-center"> 13.5</td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.6 </td>
-                                  <td className="text-center">15.6</td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.2 </td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.3</td>
-                                  <td className="text-center">15.23</td>
-                                  <td className="text-center bg-gray-light">11.2</td>
-                                  <td className="text-center bg-gray-light"> 1</td>
+                                  <td className="text-center">$13.5</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.6 </td>
+                                  <td className="text-center">$13.2 </td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.3</td>
+                                  <td className="text-center">$15.23</td>
+                                  <td className="text-center bg-gray-light">$11.2</td>
+                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
                                   <td className="text-center bg-gray-light">  12.8% </td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
-                                  <td className="text-center bg-gray-light user-name"> Roman_Perez</td>
+                                  <td className="text-center bg-gray-light text-nombre">Karla Perez</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle color-check" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                                  </svg>
-                                </td>
-                                <td className="text-center">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill color-cancel" viewBox="0 0 16 16">
-                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
-                                  </svg>
-                                </td>
-                              </tr>                 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                  </td>
+                              </tr> 
+                              <tr>
+                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
+                                  <td className="text-left">Servicio Atizapán</td>
+                                  <td className="text-center"> A</td>
+                                  <td className="text-center">$13.5</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.6 </td>
+                                  <td className="text-center">$13.2 </td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.3</td>
+                                  <td className="text-center">$15.23</td>
+                                  <td className="text-center bg-gray-light">$11.2</td>
+                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
+                                  <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center bg-gray-light"> 150 lts</td>
+                                  <td className="text-center bg-gray-light">$20,4423</td>
+                                  <td className="text-center bg-gray-light text-nombre">Karla Perez</td>
+                                  <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
+                                  <td className="text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                  </td>
+                              </tr>  
+                              <tr>
+                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
+                                  <td className="text-left">Servico Tlalnepantla</td>
+                                  <td className="text-center"> A</td>
+                                  <td className="text-center">$13.5</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.6 </td>
+                                  <td className="text-center">$13.2 </td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.3</td>
+                                  <td className="text-center">$15.23</td>
+                                  <td className="text-center bg-gray-light">$11.2</td>
+                                  <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
+                                  <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center bg-gray-light"> 150 lts</td>
+                                  <td className="text-center bg-gray-light">$20,4423</td>
+                                  <td className="text-center bg-gray-light text-nombre">Karla Perez</td>
+                                  <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
+                                  <td className="text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                  </td>
+                              </tr>                  
                           </tbody>
                         </Table>
                             
@@ -378,26 +419,22 @@ class MasivoAdmin extends React.Component {
                         <Table responsive>
                           <thead>
                               <tr>
-                              <th className="text-center header-table"></th>
-                                  <th className="text-center header-table">OPERADORA</th>
-                                  <th className="text-center header-table">CLIENTE</th>
-                                  <th className="text-center header-table">TAR </th>
-                                  <th className="text-center header-table">PVP EESS</th>
-                                  <th className="text-center header-table">PVP COM</th>
-                                  <th className="text-center header-table">PVP MAX</th>
-                                  <th className="text-center header-table">PVP MIN</th>
-                                  <th className="text-center header-table">ESTRATÉGICO</th>
-                                  <th className="text-center header-table">MARGEN REP ES</th>
-                                  <th className="text-center header-table">MARGEN SUM ES</th>
-                                  <th className="text-center header-table">MARGEN PROM POND</th>
-                                  <th className="text-center header-table">EV VTA ES</th>
-                                  <th className="text-center header-table">PRECIO RECOMENDADO</th>
-                                  <th className="text-center header-table">MARGEN POR LITRO OBJETIVO</th>
-                                  <th className="text-center header-table">VOLUMEN OBJETIVO</th>
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>  
-                                  <th className="text-center header-table">USUARIO</th>         
-                                  <th className="text-center header-table"></th>
-                                  <th className="text-center header-table"></th>
+                              <th className="text-center header-table">All <input type="radio" onChange={this.selectAll}></input></th>
+                                  <th className="text-center header-table">EMPRESA</th>
+                                  <th className="text-center header-table">NEGOCIO</th>
+                                  <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
+                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMA DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
+                                  <th className="text-center header-table">PVP RECOMENDADO</th>
+                                  <th className="text-center header-table">PVP SELECCIONADO</th>
+                                  <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
+                                  <th className="text-center header-table">UTILIDAD TOTAL</th>   
+                                  <th className="text-center header-table">USUARIO</th>                          
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                               </tr>
@@ -406,27 +443,25 @@ class MasivoAdmin extends React.Component {
                             <tr>
                               <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
                               <td className="text-center">Azcapotzalco</td>
-                                <td className="text-center"> 15.2</td>
-                                <td className="text-center"> 13.5</td>
-                                <td className="text-center">15.5</td>
-                                <td className="text-center"> 12.2</td>
-                                <td className="text-center"> 13.6 </td>
-                                <td className="text-center"> 13.2 </td>
-                                <td className="text-center"> 13.3</td>
-                                <td className="text-center"> 12.23</td>
-                                <td className="text-center"> 13.2</td>
-                                <td className="text-center">15.23</td>
-                                <td className="text-center bg-gray-light">13.2</td>
-                                <td className="text-center bg-gray-light"> 12</td>
-                                <td className="text-center bg-gray-light"> 12</td>
-                                <td className="text-center bg-gray-light"> 12.2</td>
-                                <td className="text-center bg-gray-light bg-redb">1.4</td>
-                                <td className="text-center bg-gray-light user-name"> Isabel_Perez</td>
+                                <td className="text-center">$15.2</td>
+                                <td className="text-center">$13.5</td>
+                                <td className="text-center">$15.5</td>
+                                <td className="text-center">$12.2</td>
+                                <td className="text-center">$13.6 </td>
+                                <td className="text-center">$13.2 </td>
+                                <td className="text-center">$13.3</td>
+                                <td className="text-center">$12.23</td>
+                                <td className="text-center bg-gray-light">$13.2</td>
+                                <td className="text-center bg-gray-light">$12</td>
+                                <td className="text-center bg-gray-light">$12</td>
+                                <td className="text-center bg-gray-light">$12.2</td>
+                                <td className="text-center bg-gray-light bg-redb">$1.4</td>
+                                <td className="text-center bg-gray-light text-nombre">Karla Perez</td>
                                 <td className="text-center color-red"> <a href="estacion#Azcapotzalco" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                 <td className="text-center">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill color-cancel" viewBox="0 0 16 16">
-                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
-                                  </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
                                 </td>
                             </tr>                
                         </tbody>
@@ -437,26 +472,22 @@ class MasivoAdmin extends React.Component {
                         <Table responsive>
                           <thead>
                               <tr>
-                              <th className="text-center header-table"></th>
-                                  <th className="text-center header-table">OPERADORA</th>
-                                  <th className="text-center header-table">CLIENTE</th>
-                                  <th className="text-center header-table"><span className="meaning">TAR</span><span className="detail">TERMINAL</span></th>
-                                  <th className="text-center header-table">PVP EESS</th>
-                                  <th className="text-center header-table">PVP COM</th>
-                                  <th className="text-center header-table">PVP MAX</th>
-                                  <th className="text-center header-table">PVP MIN</th>
-                                  <th className="text-center header-table">ESTRATÉGICO</th>
-                                  <th className="text-center header-table">MARGEN REP ES</th>
-                                  <th className="text-center header-table">MARGEN SUM ES</th>
-                                  <th className="text-center header-table">MARGEN PROM POND</th>
-                                  <th className="text-center header-table">EV VTA ES</th>
-                                  <th className="text-center header-table">PRECIO RECOMENDADO</th>
-                                  <th className="text-center header-table">MARGEN POR LITRO OBJETIVO</th>
-                                  <th className="text-center header-table">VOLUMEN OBJETIVO</th>
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>  
-                                  <th className="text-center header-table">USUARIO</th>            
-                                  <th className="text-center header-table"></th>
-                                  <th className="text-center header-table"></th>
+                              <th className="text-center header-table">All <input type="radio" onChange={this.selectAll}></input></th>
+                                  <th className="text-center header-table">EMPRESA</th>
+                                  <th className="text-center header-table">NEGOCIO</th>
+                                  <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
+                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMA DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
+                                  <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
+                                  <th className="text-center header-table">PVP RECOMENDADO</th>
+                                  <th className="text-center header-table">PVP SELECCIONADO</th>
+                                  <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
+                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
+                                  <th className="text-center header-table">UTILIDAD TOTAL</th>   
+                                  <th className="text-center header-table">USUARIO</th>                          
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                               </tr>
@@ -470,30 +501,21 @@ class MasivoAdmin extends React.Component {
                                 <td className="text-center">15.5</td>
                                 <td className="text-center"> 13.6 </td>
                                 <td className="text-center">15.6</td>
-                                <td className="text-center"> 12.2</td>
-                                <td className="text-center"> 12.2</td>
                                 <td className="text-center">15.2</td>
                                 <td className="text-center"> 12.23</td>
                                 <td className="text-center"> 13.2</td>
-                                <td className="text-center">15.23</td>
                                 <td className="text-center bg-gray-light">13.2</td>
                                 <td className="text-center bg-gray-light"> 12</td>
-                                <td className="text-center bg-gray-light">  12.8% </td>
-                                  <td className="text-center bg-gray-light"> 150 lts</td>
-                                  <td className="text-center bg-gray-light">$20,4423</td>
-                                <td className="text-center bg-gray-light user-name"> Fernando_Robles</td>
+                                <td className="text-center bg-gray-light"> 12</td>
+                                <td className="text-center bg-gray-light"> 1.3</td>
+                                <td className="text-center bg-gray-light">1.5</td>
+                                <td className="text-center bg-gray-light text-nombre">Karla Perez</td>
                                 <td className="text-center color-red"> <a href="estacion#Naucalpan" target="_self"> <img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                 <td className="text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle color-check" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                                  </svg>
-                                </td>
-                                <td className="text-center">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill color-cancel" viewBox="0 0 16 16">
-                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
-                                  </svg>
-                                </td>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                    </svg>
+                                    </td>
                             </tr>                
                         </tbody>
                       </Table>

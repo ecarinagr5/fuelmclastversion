@@ -5,6 +5,7 @@ import SearchInput from 'components/SearchInput';
 import { notificationsData } from 'demos/header';
 import withBadge from 'hocs/withBadge';
 import logopemex from '../../assets/img/logo/logo_pemex_v2.png'
+import logoeveris from '../../assets/img/logoeveris.png'
 
 import React from 'react';
 import {
@@ -117,6 +118,7 @@ change(event) {
             <MdClearAll size={25} />
           </Button>
         </Nav>
+        <img src={logoeveris} alt="fuel" className="logo-everis"/>
         <img src={ logopemex }  alt="fuel" className="logo-station"/>
         <Nav navbar>
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :

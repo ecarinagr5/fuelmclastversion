@@ -64,6 +64,10 @@ th{
 .color-primary{
   color:#9aaa04;
 }
+.logo-everis{
+  width: 100px;
+  height: auto;
+}
 .chart-container-esp{
   height: 300px !important;
 }
@@ -73,6 +77,10 @@ th{
 .graph-line{
   /*height: 400px;*/
   overflow: hidden;
+}
+.text-shadow{
+  background-color: #f1f1f1;
+  font-weight: 600;
 }
 .color-gray{
   background-color: #f1f1f1;
@@ -192,10 +200,6 @@ th{
   margin-top: 2%;
   color: #9aaa04;
   font-weight: 900;
-}
-.multiselect-container{
-  width: 90% !important;
-  float: left;
 }
 .btn-main-fuel-right{
   margin: 0 5px;
@@ -386,4 +390,9 @@ slideLeft
 	100% {
 		-webkit-transform: translateX(0%);
 	}
+}
+
+.multiselect-container{
+  width:100% !important;
+  float: left;
 }

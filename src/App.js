@@ -61,7 +61,7 @@ class App extends React.Component {
                 <Route exact path="/input-groups" component={InputGroupPage} />
                 <Route exact path="/charts" component={ChartPage} />
               </React.Suspense>
-            </MainLayout>
+          </MainLayout>
           </Switch>
           </Router>
     );

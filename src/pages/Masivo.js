@@ -341,14 +341,14 @@ class Masivo extends React.Component {
                                   <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
                                   <td className="text-left">Servicio Neza</td>
                                   <td className="text-center"> A</td>
-                                  <td className="text-center"> 13.5</td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.6 </td>
-                                  <td className="text-center"> 13.2 </td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.3</td>
-                                  <td className="text-center">15.23</td>
-                                  <td className="text-center bg-gray-light">11.2</td>
+                                  <td className="text-center">$13.5</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.6 </td>
+                                  <td className="text-center">$13.2 </td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.3</td>
+                                  <td className="text-center">$15.23</td>
+                                  <td className="text-center bg-gray-light">$11.2</td>
                                   <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
                                   <td className="text-center bg-gray-light">  12.8% </td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
@@ -364,14 +364,14 @@ class Masivo extends React.Component {
                                   <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
                                   <td className="text-left">Servicio Atizapán</td>
                                   <td className="text-center"> A</td>
-                                  <td className="text-center"> 13.5</td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.6 </td>
-                                  <td className="text-center"> 13.2 </td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.3</td>
-                                  <td className="text-center">15.23</td>
-                                  <td className="text-center bg-gray-light">11.2</td>
+                                  <td className="text-center">$13.5</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.6 </td>
+                                  <td className="text-center">$13.2 </td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.3</td>
+                                  <td className="text-center">$15.23</td>
+                                  <td className="text-center bg-gray-light">$11.2</td>
                                   <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
                                   <td className="text-center bg-gray-light">  12.8% </td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
@@ -387,14 +387,14 @@ class Masivo extends React.Component {
                                   <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
                                   <td className="text-left">Servico Tlalnepantla</td>
                                   <td className="text-center"> A</td>
-                                  <td className="text-center"> 13.5</td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.6 </td>
-                                  <td className="text-center"> 13.2 </td>
-                                  <td className="text-center"> 12.2</td>
-                                  <td className="text-center"> 13.3</td>
-                                  <td className="text-center">15.23</td>
-                                  <td className="text-center bg-gray-light">11.2</td>
+                                  <td className="text-center">$13.5</td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.6 </td>
+                                  <td className="text-center">$13.2 </td>
+                                  <td className="text-center">$12.2</td>
+                                  <td className="text-center">$13.3</td>
+                                  <td className="text-center">$15.23</td>
+                                  <td className="text-center bg-gray-light">$11.2</td>
                                   <td className="text-center bg-gray-light"> $ { this.state.simular ? <input type="number" className="input-simulacion" placeholder="12"/>  : 12 }</td>
                                   <td className="text-center bg-gray-light">  12.8% </td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
@@ -437,19 +437,19 @@ class Masivo extends React.Component {
                             <tr>
                               <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
                               <td className="text-center">Azcapotzalco</td>
-                                <td className="text-center"> 15.2</td>
-                                <td className="text-center"> 13.5</td>
-                                <td className="text-center">15.5</td>
-                                <td className="text-center"> 12.2</td>
-                                <td className="text-center"> 13.6 </td>
-                                <td className="text-center"> 13.2 </td>
-                                <td className="text-center"> 13.3</td>
-                                <td className="text-center"> 12.23</td>
-                                <td className="text-center bg-gray-light">13.2</td>
-                                <td className="text-center bg-gray-light"> 12</td>
-                                <td className="text-center bg-gray-light"> 12</td>
-                                <td className="text-center bg-gray-light"> 12.2</td>
-                                <td className="text-center bg-gray-light bg-redb">1.4</td>
+                                <td className="text-center">$15.2</td>
+                                <td className="text-center">$13.5</td>
+                                <td className="text-center">$15.5</td>
+                                <td className="text-center">$12.2</td>
+                                <td className="text-center">$13.6 </td>
+                                <td className="text-center">$13.2 </td>
+                                <td className="text-center">$13.3</td>
+                                <td className="text-center">$12.23</td>
+                                <td className="text-center bg-gray-light">$13.2</td>
+                                <td className="text-center bg-gray-light">$12</td>
+                                <td className="text-center bg-gray-light">$12</td>
+                                <td className="text-center bg-gray-light">$12.2</td>
+                                <td className="text-center bg-gray-light bg-redb">$1.4</td>
                                 <td className="text-center color-red"> <a href="estacion#Azcapotzalco" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                 <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

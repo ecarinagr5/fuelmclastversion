@@ -314,13 +314,13 @@ resetSimulador(){
             borderColor: getColor('secondary'),
             borderWidth: 1,
             data: [
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
-              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
-              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
-              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa           
+              this.state.simular ? this.state.productsData[0].precioventa : this.state.productsData[0].precioventa,
+              this.state.simular ? this.state.productsData[1].precioventa : this.state.productsData[1].precioventa,
+              this.state.simular ? this.state.productsData[2].precioventa : this.state.productsData[2].precioventa,
+              this.state.simular ? this.state.productsData[3].precioventa : this.state.productsData[3].precioventa,
+              this.state.simular ? this.state.productsData[4].precioventa : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].precioventa : this.state.productsData[4].precioventa,  
+              this.state.simular ? this.state.productsData[4].precioventa : this.state.productsData[4].precioventa           
             ],
             ...moreData,
           },
@@ -660,19 +660,19 @@ resetSimulador(){
             ],
             ...moreData2,
           },
-          {
+       {
             label:this.state.simular ? 'PRECIO REAL DE HOY ' : 'PRECIO REAL DE HOY',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
             data: [
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
-              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
-              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
-              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,
-              this.state.simular ? this.state.productsData[5].modificado : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[6].modificado : this.state.productsData[4].precioventa,
+              this.state.productsData[0].competenciaD,
+              this.state.productsData[1].competenciaD,
+              this.state.productsData[2].competenciaD,
+              this.state.productsData[3].competenciaD,
+              this.state.productsData[4].competenciaD,
+              this.state.productsData[1].competenciaD,
+              this.state.productsData[2].competenciaD,
             ],
             ...moreData2,
           },
@@ -800,28 +800,7 @@ resetSimulador(){
         </Col>
       </Row>
 
-        <Row>
-          <Col md="12" sm="12" xs="12">
-            <Card>
-              <CardHeader>RECOMENDACIÓN</CardHeader>
-              <CardBody>
-                { this.state.simular ?
-                <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN PROMEDIO DEL MES','DIFERENCIA CON EL VOLUMEN OBJETIVO','UTILIDAD TOTAL']}
-                  usersData={userProgressTableData}
-                /> :
-                <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN PROMEDIO DEL MES','DIFERENCIA CON EL VOLUMEN OBJETIVO','UTILIDAD TOTAL']}
-                  usersData={userProgressTableData}
-                />
-                }
-              </CardBody>
-              <p className="update-text">Last Update 25/01/2021 09:35 am</p>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row className="graph-line">
+      <Row className="graph-line">
           <Col md="12" >
               <select class="select-estacion-grafica">
                 <option value="5">PEMEX DIESEL (DIESEL)</option>
@@ -841,6 +820,28 @@ resetSimulador(){
               </Card>
           </Col>
         </Row>
+
+        <Row>
+          <Col md="12" sm="12" xs="12">
+            <Card>
+              <CardHeader>RECOMENDACIÓN</CardHeader>
+              <CardBody>
+                { this.state.simular ?
+                <UserProgressTable
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','UTILIDAD TOTAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN DEL MES HASTA AHORA']}
+                  usersData={userProgressTableData}
+                /> :
+                <UserProgressTable
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA RECOMENDADO','MARGEN TEÓRICO','MARGEN REAL','UTILIDAD TOTAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
+                  usersData={userProgressTableData}
+                />
+                }
+              </CardBody>
+              <p className="update-text">Last Update 25/01/2021 09:35 am</p>
+            </Card>
+          </Col>
+        </Row>
+
         <Row>
         </Row>
       </Page>
