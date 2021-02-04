@@ -6,6 +6,7 @@ import { notificationsData } from 'demos/header';
 import withBadge from 'hocs/withBadge';
 import logopemex from '../../assets/img/logo/logo_pemex_v2.png'
 import logoeveris from '../../assets/img/logoeveris.png'
+import moment from "moment";
 
 import React from 'react';
 import {
@@ -58,6 +59,7 @@ class Header extends React.Component {
         isOpenUserCardPopover: false,
         station:'Gasolinera PEMEX | 3529',
         direccion:0,
+        date:'',
         estacion:[
           {
             nombre:'Gasolinera PEMEX | 3529',
@@ -80,9 +82,14 @@ class Header extends React.Component {
       this.change = this.change.bind(this);
 }
 
+componentDidMount(){
+  var date = new Date().toLocaleDateString();
+  date = date;
+  this.setState({ date });
+}
+
 change(event) {
- console.log("change", event.target.value)
- this.setState({direccion: event.target.value, state: this.state.estacion[event.target.value].nombre })
+  this.setState({direccion: event.target.value, state: this.state.estacion[event.target.value].nombre })
 }
 
   toggleNotificationPopover = () => {
@@ -109,8 +116,9 @@ change(event) {
   };
 
   render() {
-    const { isNotificationConfirmed } = this.state;
+    const { isNotificationConfirmed, date } = this.state;
     let { pathname } = this.props.location;
+
     return (
       <Navbar light expand className={bem.b('bg-white')}>
         <Nav navbar className="mr-2">
@@ -118,12 +126,11 @@ change(event) {
             <MdClearAll size={25} />
           </Button>
         </Nav>
-        <img src={logoeveris} alt="fuel" className="logo-everis"/>
         <img src={ logopemex }  alt="fuel" className="logo-station"/>
         <Nav navbar>
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
             <li>
-                <select class="select-estacion-title" onChange={this.change} value={ this.state.station } >
+                <select class="select-estacion-title" onChange={ this.change } value={ this.state.station } >
                   <option value={ 0 } selected>{ this.state.estacion[0].nombre }</option>
                   <option value={ 1 }>{ this.state.estacion[1].nombre } </option>
                   <option value={ 2 }>{ this.state.estacion[2].nombre }</option>
@@ -137,15 +144,14 @@ change(event) {
                 { this.state.estacion[this.state.direccion].direccion }
               </div>
             </li>
-         }
+        }
         </Nav>
 
         <Nav navbar className={bem.e('nav-right')}>
           <NavItem className="d-inline-flex">
             <NavLink id="Popover1" className="position-relative">
               <p className="station-type">
-                Estación <span className="station-name"> Líder</span>
-                <p className="mini-text text-describe-station">¿Qué significa?</p>
+                Ranking <p className="station-name"> 1er lugar</p>
               </p>
               
             </NavLink>
@@ -165,17 +171,15 @@ change(event) {
   
           </NavItem>
           <NavItem>
-            <select class="select-estacion-hoy" onChange={this.change} value={ this.state.station } >
+            <select className="select-estacion-hoy" onChange={this.change} value={ this.state.station } >
               <option value={ 0 } selected>Hoy para Hoy</option>
               <option value={ 0 } selected>Hoy para Mañana</option>
             </select>
+            <p>{ date }</p>
           </NavItem>
           <NavItem>
             <NavLink id="Popover2">
-              <Avatar
-                onClick={this.toggleUserCardPopover}
-                className="can-click"
-              />
+                <img src={logoeveris} alt="fuel" className="logo-everis"/>
             </NavLink>
             <Popover
               placement="bottom-end"
@@ -196,7 +200,7 @@ change(event) {
                     <ListGroupItem tag="button" action className="border-light">
                       <MdPersonPin /> Perfil
                     </ListGroupItem>
-                   {/*} <ListGroupItem tag="button" action className="border-light">
+                    {/*} <ListGroupItem tag="button" action className="border-light">
                       <MdInsertChart /> Stats
                     </ListGroupItem>
                     <ListGroupItem tag="button" action className="border-light">

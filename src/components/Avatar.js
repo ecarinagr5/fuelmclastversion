@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'utils/propTypes';
 
 import classNames from 'classnames';
-
+import logoeveris from '../assets/img/logoeveris.png'
 import userImage from 'assets/img/users/carina_001.png';
 
 const Avatar = ({

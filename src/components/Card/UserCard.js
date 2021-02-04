@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'utils/propTypes';
 
 import classNames from 'classnames';
+import logoeveris from '../../assets/img/logoeveris.png'
 
 import { Card, CardTitle, CardSubtitle, CardText, CardBody } from 'reactstrap';
 
@@ -22,7 +23,7 @@ const UserCard = ({
   return (
     <Card inverse className={classes} {...restProps}>
       <CardBody className="d-flex justify-content-center align-items-center flex-column">
-        <Avatar src={avatar} size={avatarSize} className="mb-2" />
+        <Avatar src={logoeveris} size={avatarSize} className="mb-2" />
         <CardTitle>{title}</CardTitle>
         <CardSubtitle>{subtitle}</CardSubtitle>
         <CardText>

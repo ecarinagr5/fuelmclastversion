@@ -174,6 +174,7 @@ class Estacion extends React.Component {
           preciomodificado:0,
           preciodecompra:13.4,
           preciopromediodeventa:16,
+          mipreciopromediodeventa:12,
           competenciaA:12.4,
           competenciaB:11.4,
           competenciaC:12.4,
@@ -190,6 +191,7 @@ class Estacion extends React.Component {
           preciomodificado:0,
           preciodecompra:13,
           preciopromediodeventa:16,
+          mipreciopromediodeventa:12,
           competenciaA:11.4,
           competenciaB:13.4,
           competenciaC:16.4,
@@ -206,6 +208,7 @@ class Estacion extends React.Component {
           preciomodificado:0,
           preciodecompra:14,
           preciopromediodeventa:17,
+          mipreciopromediodeventa:12,
           competenciaA:10.4,
           competenciaB:12.4,
           competenciaC:14.4,
@@ -222,6 +225,7 @@ class Estacion extends React.Component {
           preciomodificado:0,
           preciodecompra:14,
           preciopromediodeventa:16.3,
+          mipreciopromediodeventa:12,
           competenciaA:13.4,
           competenciaB:11.4,
           competenciaC:13.4,
@@ -238,6 +242,7 @@ class Estacion extends React.Component {
           competenciaestrategica:14.4,
           preciodecompra:15,
           preciopromediodeventa:18,
+          mipreciopromediodeventa:12,
           competenciaA:12.4,
           competenciaB:12.8,
           competenciaC:12.4,
@@ -460,7 +465,7 @@ resetSimulador(){
             ...moreData,
           },*/
           {
-            label: 'COMPETENCIA A',
+            label: 'PRECIO COMPETENCIA A',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -476,7 +481,7 @@ resetSimulador(){
             ...moreData2,
           },
           {
-            label: 'COMPETENCIA B',
+            label: 'PRECIO COMPETENCIA B',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -492,7 +497,7 @@ resetSimulador(){
             ...moreData2,
           },
           {
-            label: 'COMPETENCIA C',
+            label: 'PRECIO COMPETENCIA C',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -508,7 +513,7 @@ resetSimulador(){
             ...moreData2,
           },
           {
-            label: 'COMPETENCIA D',
+            label: 'PRECIO COMPETENCIA D',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -533,7 +538,7 @@ resetSimulador(){
         labels: MONTHS,
         datasets: [
           {
-            label: 'PRECIO DE COMPRA',
+            label: 'MI PRECIO DE COMPRA',
             backgroundColor: getColor('danger'),
             borderColor: getColor('danger'),
             borderWidth: 2,
@@ -549,7 +554,7 @@ resetSimulador(){
             ...moreData,
           },
           {
-            label: 'PRECIO PROMEDIO DE VENTA',
+            label: 'PRECIO PROMEDIO DE VENTA DE LA COMPETENCIA',
             backgroundColor: getColor('info'),
             borderColor: getColor('info'),
             borderWidth: 3,
@@ -561,6 +566,22 @@ resetSimulador(){
               this.state.productsData[4].preciopromediodeventa,
               this.state.productsData[1].preciopromediodeventa,
               this.state.productsData[2].preciopromediodeventa,
+            ],
+            ...moreData,
+          },
+          {
+            label: 'MI PRECIO DE VENTA PROMEDIO',
+            backgroundColor: getColor('warning'),
+            borderColor: getColor('warning'),
+            borderWidth: 3,
+            data: [
+              this.state.productsData[0].mipreciopromediodeventa,
+              this.state.productsData[1].mipreciopromediodeventa,
+              this.state.productsData[2].mipreciopromediodeventa,
+              this.state.productsData[3].mipreciopromediodeventa,
+              this.state.productsData[4].mipreciopromediodeventa,
+              this.state.productsData[1].mipreciopromediodeventa,
+              this.state.productsData[2].mipreciopromediodeventa,
             ],
             ...moreData,
           },
@@ -581,7 +602,7 @@ resetSimulador(){
             ...moreData2,
           }, 
           {
-            label: 'COMPETENCIA A',
+            label: 'PRECIO COMPETENCIA A',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -597,7 +618,7 @@ resetSimulador(){
             ...moreData2,
           },
           {
-            label: 'COMPETENCIA B',
+            label: 'PRECIO COMPETENCIA B',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -613,7 +634,7 @@ resetSimulador(){
             ...moreData2,
           },
           {
-            label: 'COMPETENCIA C',
+            label: 'PRECIO COMPETENCIA C',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -629,7 +650,7 @@ resetSimulador(){
             ...moreData2,
           },
           {
-            label: 'COMPETENCIA D',
+            label: 'PRECIO COMPETENCIA D',
             backgroundColor: getColor('secondary'),
             borderColor: getColor('secondary'),
             borderWidth: 1,
@@ -769,6 +790,7 @@ resetSimulador(){
                     {this.state.simular ? <th className="header-table text-left">SIMULACIÓN</th> : '' }
                     <th className="header-table">PRECIO RECOMENDADO</th>
                     <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
+                    <th className="header-table">DIFERENCIA PRECIO REAL<br></br>PRECIO RECOMENDADO</th>
                     <th className="header-table">COMPETENCIA ESTRATÉGICA</th>
                     <th className="header-table">COMPETENCIA A</th>
                     <th className="header-table">COMPETENCIA B</th>
@@ -780,6 +802,7 @@ resetSimulador(){
                 {   
                     productsData.map((prop, key) => {
                       let precioponderado =  (prop.precioventa * 100 ) / promedio; 
+                      let diferenciaprecio =  prop.preciorealdehoy -  prop.preciorecomenda;
                     /*return <th key={key}>{prop}</th>;*/
                     return (
                       <tr>
@@ -790,7 +813,8 @@ resetSimulador(){
                               <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } />  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           <td className="text-center">${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
-                          <td className="text-center">${ precioponderado.toFixed(1)  / 2}</td>
+                          <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
+                          <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                           <td className= { prop.competenciaestrategica > 14 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaestrategica }</td>
                           <td className= { prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>$ { prop.competenciaA }</td>
                           <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaB }</td>
