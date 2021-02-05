@@ -58,6 +58,7 @@ class Header extends React.Component {
         isNotificationConfirmed: false,
         isOpenUserCardPopover: false,
         station:'Gasolinera PEMEX | 3529',
+        currentCount: 10,
         direccion:0,
         date:'',
         estacion:[
@@ -83,8 +84,13 @@ class Header extends React.Component {
 }
 
 componentDidMount(){
-  var date = new Date().toLocaleDateString();
-  date = date;
+  this.intervalId = setInterval(this.dateToShow.bind(this), 1000);
+}
+componentWillUnmount(){
+  clearInterval(this.intervalId);
+}
+dateToShow(){
+  let date = new Date();
   this.setState({ date });
 }
 
@@ -136,6 +142,7 @@ change(event) {
                   <option value={ 2 }>{ this.state.estacion[2].nombre }</option>
                   <option value={ 3 }>{ this.state.estacion[3].nombre }</option>
                 </select>
+                <p className="ranking">Ranking 4.3 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></p>
             </li>
         }
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
@@ -150,10 +157,9 @@ change(event) {
         <Nav navbar className={bem.e('nav-right')}>
           <NavItem className="d-inline-flex">
             <NavLink id="Popover1" className="position-relative">
-              <p className="station-type">
+              {/*<p className="station-type">
                 Ranking <p className="station-name"> 1er lugar</p>
-              </p>
-              
+              </p>*/}
             </NavLink>
               <Popover
               placement="bottom"
@@ -171,11 +177,12 @@ change(event) {
   
           </NavItem>
           <NavItem>
-            <select className="select-estacion-hoy" onChange={this.change} value={ this.state.station } >
+            <p className="time-date">{ moment(date).format("MMM D YYYY hh:mm:ss") }</p>
+            <p className="tipo-vision"><span className="color-hoy">Hoy para Hoy </span><br></br><span> Cambio de día 7:00 pm</span></p>
+            {/*<select className="select-estacion-hoy" onChange={this.change} value={ this.state.station } >
               <option value={ 0 } selected>Hoy para Hoy</option>
               <option value={ 0 } selected>Hoy para Mañana</option>
-            </select>
-            <p>{ date }</p>
+            </select>*/}
           </NavItem>
           <NavItem>
             <NavLink id="Popover2">

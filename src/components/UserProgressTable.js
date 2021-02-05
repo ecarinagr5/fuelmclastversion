@@ -38,7 +38,7 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
             <td className="align-middle text-center">$ {preciocompramañana}</td>
             <td className="align-middle text-center">$ {(preciocompra - preciocompramañana).toFixed(2)}</td>
             <td className="align-middle text-center text-shadow">$ {precioventa}</td>
-            <td className={margen > 59 ? "align-middle text-center txt-high" : "align-middle text-center txt-ok" }>{margen} %</td>
+            <td className={margen > 59 ? "align-middle text-center txt-high" : "align-middle text-center txt-ok" }>$ {margen}</td>
               {/*<Progress
                   color="success"
                   value={margen}
@@ -46,7 +46,7 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
                 >
                   {margen}%
               </Progress>*/}
-            <td className={margenreal > 59 ? "align-middle text-center txt-high" : "align-middle text-center txt-ok" }>{margenreal} %</td>
+            <td className={margenreal > 59 ? "align-middle text-center txt-high" : "align-middle text-center txt-ok" }>$ {margenreal}</td>
               {/*<Progress
                 color="success"
                 value={margenreal}

@@ -787,7 +787,7 @@ resetSimulador(){
                   <tr>
                     <th className="header-table">PRODUCTO</th>
                     <th className="header-table">PRECIO REAL DE HOY</th>
-                    {this.state.simular ? <th className="header-table text-left">SIMULACIÓN</th> : '' }
+                    {this.state.simular ? <th className="header-table">SIMULACIÓN</th> : '' }
                     <th className="header-table">PRECIO RECOMENDADO</th>
                     <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
                     <th className="header-table">DIFERENCIA PRECIO REAL<br></br>PRECIO RECOMENDADO</th>
@@ -806,13 +806,13 @@ resetSimulador(){
                     /*return <th key={key}>{prop}</th>;*/
                     return (
                       <tr>
-                        <th  className="text-center" scope="row">{ prop.nombre }</th>
+                          <td  className="text-center">{ prop.nombre }</td>
                           <td className="text-center">${ prop.preciorealdehoy }</td>
                           { this.state.simular ? 
                           <td className="text-left">
                               <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } />  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
                           </td>:'' }
-                          <td className="text-center">${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
+                          <td className={this.state.simular ? "text-center td-size":"text-center" }>${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
                           <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                           <td className= { prop.competenciaestrategica > 14 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaestrategica }</td>

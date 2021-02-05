@@ -89,8 +89,52 @@ th{
   background-color: #f1f1f1;
   font-weight: 600;
 }
+.table thead th{
+  text-align: center;
+}
+.bi.bi-check-circle{
+  cursor: pointer;
+}
+.bi.bi-check-circle:hover{
+  color:#55b3b1;
+}
+.bi.bi-x-circle{
+  cursor: pointer;
+  color:#f05454;
+}
+.bi.bi-x-circle:hover{ 
+  color:#55b3b1;
+}
 .color-gray{
   background-color: #f1f1f1;
+}
+.ranking{
+  margin-left: 12%;
+  font-size: 13px;
+  color: #505050;
+  font-weight: 600;
+}
+.bi.bi-star-fill{
+  color:#fed821;
+}
+.bi.bi-star-half{
+  color:#fed821;
+}
+.td-size{
+  padding: 0 !important;
+}
+.color-hoy{
+  color: #9aaa04;
+  font-weight: 600;
+}
+.time-date{
+  color: #505050;
+  margin-top:10%;
+  font-size: 12px;
+  font-weight: 600;
+}
+.table th, .table td{
+  padding: 0.3rem;
 }
 .select-estacion-title{
   padding: 0% 5%;
@@ -98,18 +142,21 @@ th{
   font-size: 20px;
   border: 1px solid #f1f1f1;
   font-weight: 600;
-  margin: 5%;
+  margin: 0 5%;
 }
 .select-estacion-hoy{
   color: #9aaa04;
   font-size: 17px;
   border: 1px solid #f1f1f1;
   font-weight: 600;
-  margin-top: 17%;
   text-align: center;
 }
 .editicon{
   cursor: pointer;
+  width: 13px;
+}
+.editicon:hover{
+  color:#55b3b1;
 }
 .txt-high{
   color: red;
@@ -129,12 +176,15 @@ th{
 .titles-m{
   font-weight: 600;
 }
+.tipo-vision{
+  margin-top:-10%;
+  font-size: 14px;
+}
 .direccion-estacion{
   font-size: 12px;
   font-weight: 600;
   margin-left: 15%;
   line-height: 1.5;
-  margin-top: 10px;
   color:#505050;
 }
 .logo-station{
@@ -148,11 +198,17 @@ th{
   font-size: 12px;
   font-weight: 600;
 }
+.bi.bi-calendar-date{
+  color:#9aaa04;
+}
 .station-name{
   color:#9aaa04;
   font-size: 20px;
   width: 100px;
   font-weight:500;
+}
+.date-format{
+  padding-top: 10%;
 }
 .station-name:hover{
   color:#f05454;
@@ -167,7 +223,7 @@ th{
   color: #ffffff;
 }
 .ver-dashboard{
-  width: 20px;
+  width: 14px;
   height: auto;
 }
 .float-left-five{

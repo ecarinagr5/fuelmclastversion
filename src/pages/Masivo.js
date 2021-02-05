@@ -643,11 +643,11 @@ class Masivo extends React.Component {
                         <thead>
                           <tr>
                           <th className="header-table"></th>
-                            <th className="header-table">Diesel A+</th>
-                            <th className="header-table">{'<92'}</th>
-                            <th className="header-table">{'>92'}</th>
-                            <th className="header-table">Gasoleo B</th>
-                            <th className="header-table">PEMEX</th>
+                            <th className="header-table text-left">Diesel A+</th>
+                            <th className="header-table text-left">{'<92'}</th>
+                            <th className="header-table text-left">{'>92'}</th>
+                            <th className="header-table text-left">Gasoleo B</th>
+                            <th className="header-table text-left">PEMEX</th>
                           </tr>
                         </thead>
                         <tbody>
