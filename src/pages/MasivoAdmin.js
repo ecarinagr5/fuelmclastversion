@@ -554,24 +554,24 @@ class MasivoAdmin extends React.Component {
                           <thead>
                               <tr>
                               <th className="text-center header-table">All <input type="radio" onChange={this.selectAll}></input></th>
-                                  <th className="text-center header-table">EMPRESA</th>
-                                  <th className="text-center header-table">NEGOCIO</th>
-                                  <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
-                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
-                                  <th className="text-center header-table">PVP RECOMENDADO</th>
-                                  <th className="text-center header-table">PVP SELECCIONADO</th>
-                                  <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
-                                  <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
-                                  <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
-                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>  
-                                  <th className="text-center header-table">USUARIO</th>                          
-                                  <th className="text-center header-table"></th>
-                                  <th className="text-center header-table"></th>
+                              <th className="text-center header-table">EMPRESA</th>
+                              <th className="text-center header-table">NEGOCIO</th>
+                              <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
+                              <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
+                              <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
+                              <th className="text-center header-table"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
+                              <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
+                              <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
+                              <th className="text-center header-table">PVP RECOMENDADO</th>
+                              <th className="text-center header-table">PVP SELECCIONADO</th>
+                              <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
+                              <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
+                              <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
+                              <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
+                              <th className="text-center header-table">UTILIDAD TOTAL</th>  
+                              <th className="text-center header-table">USUARIO</th>                          
+                              <th className="text-center header-table"></th>
+                              <th className="text-center header-table"></th>
                               </tr>
                           </thead>
                         <tbody>

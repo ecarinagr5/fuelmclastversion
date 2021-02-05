@@ -326,20 +326,29 @@ class Masivo extends React.Component {
     return (
       <Page>
         <Modal
-                  isOpen={this.state.modal_nested_parent}
-                  toggle={this.toggle('nested_parent')}
-                  className={this.props.className}>
+              isOpen={this.state.modal_nested_parent}
+              toggle={this.toggle('nested_parent')}
+              className={this.props.className}>
                   <ModalHeader toggle={this.toggle('nested_parent')}>
                     ACEPTAR PRECIOS
                   </ModalHeader>
                   <ModalBody>
                     <p className="header-txt-v2">Introducir</p>
                     <FormGroup>
-                      <Label for="exampleNumber">PRECIO:</Label>
+                      <Label for="precio">PRECIO:</Label>
                       <Input
                         type="number"
                         name="number"
-                        id="exampleNumber"
+                        id="precio"
+                        placeholder=""
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="diferencia">DIFERENCIA:</Label>
+                      <Input
+                        type="number"
+                        name="number"
+                        id="diferencia"
                         placeholder=""
                       />
                     </FormGroup>
@@ -429,7 +438,7 @@ class Masivo extends React.Component {
                                   <td className="text-center text-shadow">$12.2</td>
                                   <td className="text-center text-shadow">$13.3</td>
                                   <td className="text-center text-shadow text-shadow">{ this.state.simular ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="12"/> </p> : 13.2 }</td>
                                   <td className="text-center bg-gray-light txt-ok"> 18.2%</td>
                                   <td className="text-center bg-gray-light"> 16.8% </td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>

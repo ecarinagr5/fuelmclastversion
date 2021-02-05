@@ -9,6 +9,7 @@ import UserProgressTable from 'components/UserProgressTable';
 import { IconWidget, NumberWidget } from 'components/Widget';
 import { getStackLineChart, stackLineChartOptions } from 'demos/chartjs';
 import { randomNum } from 'utils/demos';
+import Slider from "react-slick";
 import {
   avatarsData,
   chartjs,
@@ -155,6 +156,14 @@ const genPriceBuy = (moreData = {}, moreData2 = {}) => {
   };
 };
 
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
+
 class Estacion extends React.Component {
   constructor(props) {
     super(props);
@@ -293,7 +302,7 @@ resetSimulador(){
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
   }
-  
+
   handleClick(){
     this.setState({ simular: true})
   }
@@ -688,6 +697,28 @@ resetSimulador(){
     let promedio = 63 //Promedio de competencia estrategica;
     return (
       <Page>
+              {/*<div className="bienvenida-class">
+              <Slider {...settings}>
+                <div className="bg-red">
+                
+                </div>
+                <div className="bg-blue">
+                  <h3>2</h3>
+                </div>
+                <div className="bg-red">
+                  <h3>3</h3>
+                </div>
+                <div className="bg-blue">
+                  <h3>4</h3>
+                </div>
+                <div className="bg-red">
+                  <h3>5</h3>
+                </div>
+                <div className="bg-blue">
+                  <h3>6</h3>
+                </div>
+              </Slider>
+              </div>*/}
               <Modal
                   isOpen={this.state.modal_nested_parent}
                   toggle={this.toggle('nested_parent')}
@@ -704,7 +735,7 @@ resetSimulador(){
                             <th className="header-table">PRODUCTO</th>
                             <th className="header-table">PRECIO DE VENTA SELECCIONADO</th>
                             <th className="header-table">MARGEN REAL</th>
-                            <th className="header-table">MARGEN REAL OBJETIVO</th>
+                            <th className="header-table">MARGEN TEÓRICO</th>
                             <th className="header-table">UTILIDAD</th>
                           </tr>
                         </thead>
@@ -716,8 +747,8 @@ resetSimulador(){
                               <tr>
                                   <td className="text-center text-mini">{prop.nombre}</td>
                                   <td className="text-center text-mini">${  prop.preciomodificado }</td>
-                                  <td className="text-center text-mini">72 %</td>
-                                  <td className="text-center text-mini">62 %</td>
+                                  <td className="text-center text-mini">$1,293</td>
+                                  <td className="text-center text-mini">$2,193</td>
                                   <td className="text-center text-mini">$11200</td>
                             </tr>
                             )
@@ -725,7 +756,6 @@ resetSimulador(){
                         </tbody>
                       </Table>
                     <br />
-
                     <Modal
                       isOpen={this.state.modal_nested}
                       toggle={this.toggle('nested')}>
