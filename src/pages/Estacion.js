@@ -9,6 +9,8 @@ import UserProgressTable from 'components/UserProgressTable';
 import { IconWidget, NumberWidget } from 'components/Widget';
 import { getStackLineChart, stackLineChartOptions } from 'demos/chartjs';
 import { randomNum } from 'utils/demos';
+import moment from "moment";
+
 import Slider from "react-slick";
 import {
   avatarsData,
@@ -164,6 +166,8 @@ const settings = {
   slidesToScroll: 1
 };
 
+
+
 class Estacion extends React.Component {
   constructor(props) {
     super(props);
@@ -171,6 +175,7 @@ class Estacion extends React.Component {
     this.state = { 
       simular:false,
       tools:false,
+      date:'', 
       productsData:[
         {
           nombre: '<92',
@@ -266,6 +271,11 @@ class Estacion extends React.Component {
     this.handTools = this.handTools.bind(this);
  }
 
+ componentDidMount(){
+  let date = new Date();
+  this.setState({ date });
+}
+
  handTools() {
   this.setState({ tools: !this.state.tools })
  }
@@ -275,11 +285,12 @@ class Estacion extends React.Component {
       modal: !this.state.modal,
     });
   }
-
+  
   this.setState({
     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
   });
 };
+
 
 resetSimulador(){
   this.setState({simular:false})
@@ -312,12 +323,10 @@ resetSimulador(){
   render() {
     const primaryColor = getColor('primary');
     const secondaryColor = getColor('secondary');
-
     const PRODUCTOS =[];
     this.state.productsData.map(prop => {
         PRODUCTOS.push(prop.nombre)
     })
-
     const genLineDataHistorico = (moreData = {}, moreData2 = {}) => {
       return {
         labels: MONTHS,
@@ -747,9 +756,9 @@ resetSimulador(){
                               <tr>
                                   <td className="text-center text-mini">{prop.nombre}</td>
                                   <td className="text-center text-mini">${  prop.preciomodificado }</td>
-                                  <td className="text-center text-mini">$1,293</td>
-                                  <td className="text-center text-mini">$2,193</td>
-                                  <td className="text-center text-mini">$11200</td>
+                                  <td className="text-center text-mini">$1.1</td>
+                                  <td className="text-center text-mini">$1.4</td>
+                                  <td className="text-center text-mini">$1,1200</td>
                             </tr>
                             )
                           })}

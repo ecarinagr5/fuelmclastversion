@@ -16,7 +16,6 @@ const AvatarWithBadge = withBadge({
   position: 'bottom-right',
   color: 'success',
 })(Avatar);
-
 const UserProgressTable = ({ headers, usersData, ...restProps }) => {
   return (
     <Table responsive hover {...restProps}>
@@ -26,8 +25,10 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
         </tr>
       </thead>
       <tbody>
-        { usersData.map(({ avatar, name, precioventa, utilidad,precioultimacompra, preciocompra,preciocompramañana, margen,margenreal, volumenpromediodelmes, progress,volumen }, index) => (
-      
+        { usersData.map(({ avatar, name, precioventa, utilidad, precioultimacompra, preciocompra,preciocompramañana, margen,margenreal, volumenpromediodelmes, progress,volumen }, index) => {
+          let diferencia = preciocompra - preciocompramañana;
+          let utilidadtotal = (precioventa * margen * 10000 ) / 100;
+        return (
           <tr key={index}>
             <td className="align-middle text-center">
               <AvatarWithBadge src={avatar} />
@@ -36,7 +37,7 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
             <td className="align-middle text-center">$ {precioultimacompra} <Badge color="primary" className="mr-1"><span className="update-date">24/01/2021</span></Badge></td>
             <td className="align-middle text-center">$ {preciocompra}</td>
             <td className="align-middle text-center">$ {preciocompramañana}</td>
-            <td className="align-middle text-center">$ {(preciocompra - preciocompramañana).toFixed(2)}</td>
+            <td className="align-middle text-center">$ {diferencia.toFixed(2)}</td>
             <td className="align-middle text-center text-shadow">$ {precioventa}</td>
             <td className={margen > 59 ? "align-middle text-center txt-high" : "align-middle text-center txt-ok" }>$ {margen}</td>
               {/*<Progress
@@ -54,7 +55,7 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
               >
                 {margenreal}%
               </Progress>*/}
-            <td className="align-middle text-center">${ (precioventa * margen * 10000 ) / 100 } </td>
+            <td className="align-middle text-center">${ utilidadtotal.toFixed(2) } </td>
             <td className="align-middle text-center">
               <Progress
                   color="success"
@@ -74,7 +75,7 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
               </Progress>  
               </td>
           </tr>
-        ))}
+        )})}
       </tbody>
     </Table>
   );

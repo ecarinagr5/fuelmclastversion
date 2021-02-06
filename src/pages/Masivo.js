@@ -194,7 +194,7 @@ const genPieData = () => {
   return {
     datasets: [
       {
-        data: [4,5,6,7,8,9],
+        data: [4,5,6,7,8],
         backgroundColor: [
           getColor('primary'),
           getColor('secondary'),
@@ -274,10 +274,12 @@ class Masivo extends React.Component {
       simular:false,
       simular1:false,
       simular2:false,
-      simular3:false
+      simular3:false,
+      preciotoplay:'',
+      diferencia:'',
     }
 
-    this.selectAll = this.selectAll.bind(this);
+    this.selectChooseAll = this.selectChooseAll.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -292,14 +294,20 @@ class Masivo extends React.Component {
       [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
     });
   };
-   
 
-  selectAll(){
-    this.setState({selectAll: !this.state.selectAll})
-    
+  selectChooseAll(){
+    console.log("this.state.selectAll", this.state.selectAll)
+
+    if(this.state.selectAll) {
+      console.log("true")
+      this.setState({selectAll: false})
+    } else {
+      console.log("false")
+    this.setState({selectAll: true}) 
+    }
   }
+
   handleClick(event){
-    console.log("c",event.target.id)
       if(event.target.id === '0' ) {
         this.setState({ simular: true})
       }
@@ -322,7 +330,7 @@ class Masivo extends React.Component {
   render() {
     const primaryColor = getColor('primary');
     const secondaryColor = getColor('secondary');
-
+    console.log("preciotoplay", this.state.preciotoplay)
     return (
       <Page>
         <Modal
@@ -337,20 +345,16 @@ class Masivo extends React.Component {
                     <FormGroup>
                       <Label for="precio">PRECIO:</Label>
                       <Input
-                        type="number"
-                        name="number"
                         id="precio"
-                        placeholder=""
-                      />
+                        value={this.state.preciotoplay}
+                        onChange={(e) => this.setState({preciotoplay:e.target.value })}  />
                     </FormGroup>
                     <FormGroup>
                       <Label for="diferencia">DIFERENCIA:</Label>
                       <Input
-                        type="number"
-                        name="number"
                         id="diferencia"
-                        placeholder=""
-                      />
+                        value={this.state.diferencia}
+                        onChange={(e) => this.setState({diferencia:e.target.value })}  />
                     </FormGroup>
                     <Modal
                       isOpen={this.state.modal_nested}
@@ -406,7 +410,7 @@ class Masivo extends React.Component {
                           <Table responsive>
                             <thead>
                                 <tr>
-                                  <th className="text-center header-table">All <input type="radio" onChange={this.selectAll}></input></th>
+                                  <th className="text-center header-table">All <input type="radio" onChange={this.selectChooseAll}></input></th>
                                   <th className="text-center header-table">EMPRESA</th>
                                   <th className="text-center header-table">NEGOCIO</th>
                                   <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
@@ -428,7 +432,7 @@ class Masivo extends React.Component {
                             </thead>
                           <tbody>
                               <tr>
-                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
+                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" checked={this.state.selectAll ? true : false}/></td>
                                   <td className="text-left">Servicio Aztecas</td>
                                   <td className="text-center"> B</td>
                                   <td className="text-center">$13.5</td>
@@ -437,10 +441,10 @@ class Masivo extends React.Component {
                                   <td className="text-center text-shadow">$15.3</td>
                                   <td className="text-center text-shadow">$12.2</td>
                                   <td className="text-center text-shadow">$13.3</td>
-                                  <td className="text-center text-shadow text-shadow">{ this.state.simular ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="12"/> </p> : 13.2 }</td>
-                                  <td className="text-center bg-gray-light txt-ok"> 18.2%</td>
-                                  <td className="text-center bg-gray-light"> 16.8% </td>
+                                  <td className="text-center text-shadow text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <p><input type="radio" name="radio1" value={''} className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="" value={this.state.preciotoplay > 0 ? this.state.preciotoplay : ''}/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-ok"> $1.2</td>
+                                  <td className="text-center bg-gray-light"> $1.5 </td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light">$10,4423</td>
@@ -452,7 +456,7 @@ class Masivo extends React.Component {
                                     </td>
                               </tr>
                               <tr>
-                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
+                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" checked={this.state.selectAll ? true : false}/></td>
                                   <td className="text-left">Servicio Neza</td>
                                   <td className="text-center"> A</td>
                                   <td className="text-center">$13.5</td>
@@ -461,10 +465,10 @@ class Masivo extends React.Component {
                                   <td className="text-center text-shadow">$13.2 </td>
                                   <td className="text-center text-shadow">$12.2</td>
                                   <td className="text-center text-shadow">$13.3</td>
-                                  <td className="text-center text-shadow">{ this.state.simular1 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular1 ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
-                                  <td className="text-center bg-gray-light txt-ok">18.3%</td>
-                                  <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center text-shadow">{ this.state.simular1 || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular1 || this.state.preciotoplay > 0 ? <p><input type="radio" name="radio1" value={''} className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="" value={this.state.preciotoplay > 0 ? this.state.preciotoplay : ''}/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-ok">$1.3</td>
+                                  <td className="text-center bg-gray-light">  $1.4 </td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
@@ -476,7 +480,7 @@ class Masivo extends React.Component {
                                   </td>
                               </tr> 
                               <tr>
-                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
+                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" checked={this.state.selectAll ? true : false}/></td>
                                   <td className="text-left">Servicio Atizapán</td>
                                   <td className="text-center"> A</td>
                                   <td className="text-center">$13.5</td>
@@ -485,10 +489,10 @@ class Masivo extends React.Component {
                                   <td className="text-center text-shadow">$13.2 </td>
                                   <td className="text-center text-shadow">$12.2</td>
                                   <td className="text-center text-shadow">$13.3</td>
-                                  <td className="text-center text-shadow">{ this.state.simular2 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular2 ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
-                                  <td className="text-center bg-gray-light txt-high">18.3%</td>
-                                  <td className="text-center">13.3%</td>
+                                  <td className="text-center text-shadow">{ this.state.simular2 || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular2 || this.state.preciotoplay > 0 ? <p><input type="radio" name="radio1" value={''} className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="" value={this.state.preciotoplay > 0 ? this.state.preciotoplay : ''}/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-high">$1.1</td>
+                                  <td className="text-center">$1.3</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
@@ -500,7 +504,7 @@ class Masivo extends React.Component {
                                   </td>
                               </tr>  
                               <tr>
-                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
+                                  <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" checked={this.state.selectAll ? true : false}/></td>
                                   <td className="text-left">Servico Tlalnepantla</td>
                                   <td className="text-center"> A</td>
                                   <td className="text-center">$13.5</td>
@@ -509,10 +513,10 @@ class Masivo extends React.Component {
                                   <td className="text-center text-shadow">$13.2 </td>
                                   <td className="text-center text-shadow">$12.2</td>
                                   <td className="text-center text-shadow">$13.3</td>
-                                  <td className="text-center text-shadow">{ this.state.simular3 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular3 ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
-                                  <td className="text-center bg-gray-light txt-high">18.3%</td>
-                                  <td className="text-center">13.3%</td>
+                                  <td className="text-center text-shadow">{ this.state.simular3  || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular3 || this.state.preciotoplay > 0 ? <p><input type="radio" name="radio1" value={''} className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="" value={this.state.preciotoplay > 0 ? this.state.preciotoplay : ''}/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-high">$1.2</td>
+                                  <td className="text-center">$1.1</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
@@ -754,7 +758,7 @@ class Masivo extends React.Component {
             <Card>
               <CardHeader>UTILIDAD</CardHeader>
               <CardBody>
-                <Pie data={genPieData()} />
+                <Doughnut data={genPieData()} />
               </CardBody>
             </Card>
           </Col>

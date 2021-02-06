@@ -194,7 +194,7 @@ const genPieData = () => {
   return {
     datasets: [
       {
-        data: [4,5,6,7,8,9],
+        data: [4,5,6,7,8],
         backgroundColor: [
           getColor('primary'),
           getColor('secondary'),
@@ -296,7 +296,6 @@ class MasivoAdmin extends React.Component {
 
   selectAll(){
     this.setState({selectAll: !this.state.selectAll})
-    
   }
   handleClick(event){
     console.log("c",event.target.id)
@@ -326,22 +325,27 @@ class MasivoAdmin extends React.Component {
     return (
       <Page>
         <Modal
-                  isOpen={this.state.modal_nested_parent}
-                  toggle={this.toggle('nested_parent')}
-                  className={this.props.className}>
+              isOpen={this.state.modal_nested_parent}
+              toggle={this.toggle('nested_parent')}
+              className={this.props.className}>
                   <ModalHeader toggle={this.toggle('nested_parent')}>
                     ACEPTAR PRECIOS
                   </ModalHeader>
                   <ModalBody>
                     <p className="header-txt-v2">Introducir</p>
                     <FormGroup>
-                      <Label for="exampleNumber">PRECIO:</Label>
+                      <Label for="precio">PRECIO:</Label>
                       <Input
-                        type="number"
-                        name="number"
-                        id="exampleNumber"
-                        placeholder=""
-                      />
+                        id="precio"
+                        value={this.state.preciotoplay}
+                        onChange={(e) => this.setState({preciotoplay:e.target.value })}  />
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="diferencia">DIFERENCIA:</Label>
+                      <Input
+                        id="diferencia"
+                        value={this.state.diferencia}
+                        onChange={(e) => this.setState({diferencia:e.target.value })}  />
                     </FormGroup>
                     <Modal
                       isOpen={this.state.modal_nested}
@@ -431,10 +435,10 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center text-shadow">$15.3</td>
                                   <td className="text-center text-shadow">$12.2</td>
                                   <td className="text-center text-shadow">$13.3</td>
-                                  <td className="text-center text-shadow text-shadow">{ this.state.simular ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
-                                  <td className="text-center bg-gray-light txt-ok"> 18.2%</td>
-                                  <td className="text-center bg-gray-light"> 16.8% </td>
+                                  <td className="text-center text-shadow text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <p><input type="radio" name="radio1" value={''} className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="" value={this.state.preciotoplay > 0 ? this.state.preciotoplay : ''}/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-ok">$1.1</td>
+                                  <td className="text-center bg-gray-light">$1.2</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light">$10,4423</td>
@@ -462,10 +466,10 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center text-shadow">$13.2 </td>
                                   <td className="text-center text-shadow">$12.2</td>
                                   <td className="text-center text-shadow">$13.3</td>
-                                  <td className="text-center text-shadow">{ this.state.simular1 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular1 ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
-                                  <td className="text-center bg-gray-light txt-ok">18.3%</td>
-                                  <td className="text-center bg-gray-light">  12.8% </td>
+                                  <td className="text-center text-shadow text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <p><input type="radio" name="radio1" value={''} className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="" value={this.state.preciotoplay > 0 ? this.state.preciotoplay : ''}/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-ok">$1.4</td>
+                                  <td className="text-center bg-gray-light"> $1.2 </td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
@@ -493,10 +497,10 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center text-shadow">$13.2 </td>
                                   <td className="text-center text-shadow">$12.2</td>
                                   <td className="text-center text-shadow">$13.3</td>
-                                  <td className="text-center text-shadow">{ this.state.simular2 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular2 ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
-                                  <td className="text-center bg-gray-light txt-high">18.3%</td>
-                                  <td className="text-center">13.3%</td>
+                                  <td className="text-center text-shadow text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <p><input type="radio" name="radio1" value={''} className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="" value={this.state.preciotoplay > 0 ? this.state.preciotoplay : ''}/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-high">$1.3</td>
+                                  <td className="text-center">$1.6</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
@@ -524,10 +528,10 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center text-shadow">$13.2 </td>
                                   <td className="text-center text-shadow">$12.2</td>
                                   <td className="text-center text-shadow">$13.3</td>
-                                  <td className="text-center text-shadow">{ this.state.simular3 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular3 ? <p><input type="radio" name="radio1" value="" className="dato_ms" /><input type="number" className="input-simulacion" placeholder="12"/> </p> : 13.2 }</td>
-                                  <td className="text-center bg-gray-light txt-high">18.3%</td>
-                                  <td className="text-center">13.3%</td>
+                                  <td className="text-center text-shadow text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $15.2 </td>
+                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <p><input type="radio" name="radio1" value={''} className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="" value={this.state.preciotoplay > 0 ? this.state.preciotoplay : ''}/> </p> : 13.2 }</td>
+                                  <td className="text-center bg-gray-light txt-high">$1.0</td>
+                                  <td className="text-center">$1.1</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light">$20,4423</td>
@@ -780,7 +784,7 @@ class MasivoAdmin extends React.Component {
             <Card>
               <CardHeader>UTILIDAD</CardHeader>
               <CardBody>
-                <Pie data={genPieData()} />
+                <Doughnut data={genPieData()} />
               </CardBody>
             </Card>
           </Col>
