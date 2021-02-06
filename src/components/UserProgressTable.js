@@ -55,7 +55,6 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
               >
                 {margenreal}%
               </Progress>*/}
-            <td className="align-middle text-center">${ utilidadtotal.toFixed(2) } </td>
             <td className="align-middle text-center">
               <Progress
                   color="success"

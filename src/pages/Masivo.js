@@ -424,8 +424,7 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
-                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>                         
+                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                     
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                                 </tr>
@@ -447,7 +446,6 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light"> $1.5 </td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
-                                  <td className="text-center bg-gray-light">$10,4423</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="0" onClick={this.handleClick}>
@@ -471,7 +469,6 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light">  $1.4 </td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
-                                  <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="1" onClick={this.handleClick}>
@@ -495,7 +492,6 @@ class Masivo extends React.Component {
                                   <td className="text-center">$1.3</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
-                                  <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="2" onClick={this.handleClick}>
@@ -519,7 +515,6 @@ class Masivo extends React.Component {
                                   <td className="text-center">$1.1</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
-                                  <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="3" onClick={this.handleClick}>
@@ -549,8 +544,7 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
-                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>                         
+                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                      
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                               </tr>
@@ -601,8 +595,7 @@ class Masivo extends React.Component {
                                   <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
-                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>                         
+                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                        
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                               </tr>

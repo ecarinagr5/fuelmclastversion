@@ -416,7 +416,6 @@ class MasivoAdmin extends React.Component {
                                   <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
                                   <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>  
                                   <th className="text-center header-table">USUARIO</th>                         
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
@@ -441,7 +440,6 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center bg-gray-light">$1.2</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
-                                  <td className="text-center bg-gray-light">$10,4423</td>
                                   <td className="text-center bg-gray-light">Carlos Luna</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
@@ -472,7 +470,6 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center bg-gray-light"> $1.2 </td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
-                                  <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center bg-gray-light">Jorge Luna</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
@@ -503,7 +500,6 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center">$1.6</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
-                                  <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center bg-gray-light">Jorge Luna</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
@@ -534,7 +530,6 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center">$1.1</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
-                                  <td className="text-center bg-gray-light">$20,4423</td>
                                   <td className="text-center bg-gray-light">Karla Luna</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
@@ -572,7 +567,6 @@ class MasivoAdmin extends React.Component {
                               <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                               <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
                               <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
-                              <th className="text-center header-table">UTILIDAD TOTAL</th>  
                               <th className="text-center header-table">USUARIO</th>                          
                               <th className="text-center header-table"></th>
                               <th className="text-center header-table"></th>
@@ -626,7 +620,6 @@ class MasivoAdmin extends React.Component {
                                   <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                                   <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
                                   <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>  
-                                  <th className="text-center header-table">UTILIDAD TOTAL</th>
                                   <th className="text-center header-table">USUARIO</th>                            
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>

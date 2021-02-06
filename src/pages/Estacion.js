@@ -826,7 +826,6 @@ resetSimulador(){
                   <tr>
                     <th className="header-table">PRODUCTO</th>
                     <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
-                    <th className="header-table">DIFERENCIA PRECIO REAL<br></br>PRECIO RECOMENDADO</th>
                     <th className="header-table">COMPETENCIA ESTRATÉGICA</th>
                     <th className="header-table">COMPETENCIA A</th>
                     <th className="header-table">COMPETENCIA B</th>
@@ -835,6 +834,7 @@ resetSimulador(){
                     <th className="header-table">PRECIO REAL DE HOY</th>
                     {this.state.simular ? <th className="header-table">SIMULACIÓN</th> : '' }
                     <th className="header-table">PRECIO RECOMENDADO</th>
+                    <th className="header-table">DIFERENCIA PRECIO REAL<br></br>PRECIO SELECCIONADO</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -847,7 +847,6 @@ resetSimulador(){
                       <tr>
                           <td  className="text-center">{ prop.nombre }</td>
                           <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
-                          <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                           <td className= { prop.competenciaestrategica > 14 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaestrategica }</td>
                           <td className= { prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>$ { prop.competenciaA }</td>
                           <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaB }</td>
@@ -859,6 +858,7 @@ resetSimulador(){
                               <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } />  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           <td className={this.state.simular ? "text-center td-size":"text-center" }>${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
+                          <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                     </tr>
                     )
                   })}
@@ -897,11 +897,11 @@ resetSimulador(){
               <CardBody>
                 { this.state.simular ?
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','UTILIDAD TOTAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
                   usersData={userProgressTableData}
                 /> :
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA RECOMENDADO','MARGEN TEÓRICO','MARGEN REAL','UTILIDAD TOTAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA RECOMENDADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
                   usersData={userProgressTableData}
                 />
                 }
