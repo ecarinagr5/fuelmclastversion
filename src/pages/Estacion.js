@@ -798,7 +798,7 @@ resetSimulador(){
       <Row>
           <Col>
             <Card className="mb-3">
-              <CardHeader>PRECIO DE VENTA
+              <CardHeader>PRECIOS DE VENTA
               <div className="container-buttons">
                 <Button color="primary" onClick={this.handleClick} className="btn-main-fuel-right">SIMULAR</Button>
                 <Button color="primary" onClick={this.handleClick} className="btn-main-fuel-right">APLICAR</Button>
@@ -879,7 +879,7 @@ resetSimulador(){
                 <option value="4">Diesel A+ </option>
               </select>
               <Card>
-              <CardHeader>PRECIO DE VENTA</CardHeader>
+              <CardHeader>GRÁFICA DE PRECIO</CardHeader>
                   <CardBody>
                     {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
                     {/*<Bar data={ genLineData() } height={80} />*/}
@@ -893,11 +893,11 @@ resetSimulador(){
         <Row>
           <Col md="12" sm="12" xs="12">
             <Card>
-              <CardHeader>RECOMENDACIÓN</CardHeader>
+              <CardHeader>TABLA RESUMEN</CardHeader>
               <CardBody>
                 { this.state.simular ?
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','UTILIDAD TOTAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN DEL MES HASTA AHORA']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','UTILIDAD TOTAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
                   usersData={userProgressTableData}
                 /> :
                 <UserProgressTable

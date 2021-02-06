@@ -194,7 +194,7 @@ const genPieData = () => {
   return {
     datasets: [
       {
-        data: [4,5,6,7,8],
+        data: [40,20,10,10,20],
         backgroundColor: [
           getColor('primary'),
           getColor('secondary'),
