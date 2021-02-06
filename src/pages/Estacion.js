@@ -706,28 +706,28 @@ resetSimulador(){
     let promedio = 63 //Promedio de competencia estrategica;
     return (
       <Page>
-              {/*<div className="bienvenida-class">
+            {/*<div className="bienvenida-class">
               <Slider {...settings}>
-                <div className="bg-red">
+                <div className="background-slider bg-red">
                 
                 </div>
-                <div className="bg-blue">
+                <div className="background-slider bg-blue">
                   <h3>2</h3>
                 </div>
-                <div className="bg-red">
+                <div className="background-slider bg-red">
                   <h3>3</h3>
                 </div>
-                <div className="bg-blue">
+                <div className="background-slider bg-blue">
                   <h3>4</h3>
                 </div>
-                <div className="bg-red">
+                <div className="background-slider bg-red">
                   <h3>5</h3>
                 </div>
-                <div className="bg-blue">
+                <div className="background-slider bg-blue">
                   <h3>6</h3>
                 </div>
               </Slider>
-              </div>*/}
+    </div>*/}
               <Modal
                   isOpen={this.state.modal_nested_parent}
                   toggle={this.toggle('nested_parent')}
@@ -825,9 +825,6 @@ resetSimulador(){
                 <thead>
                   <tr>
                     <th className="header-table">PRODUCTO</th>
-                    <th className="header-table">PRECIO REAL DE HOY</th>
-                    {this.state.simular ? <th className="header-table">SIMULACIÓN</th> : '' }
-                    <th className="header-table">PRECIO RECOMENDADO</th>
                     <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
                     <th className="header-table">DIFERENCIA PRECIO REAL<br></br>PRECIO RECOMENDADO</th>
                     <th className="header-table">COMPETENCIA ESTRATÉGICA</th>
@@ -835,6 +832,9 @@ resetSimulador(){
                     <th className="header-table">COMPETENCIA B</th>
                     <th className="header-table">COMPETENCIA C</th>
                     <th className="header-table">COMPETENCIA D</th>
+                    <th className="header-table">PRECIO REAL DE HOY</th>
+                    {this.state.simular ? <th className="header-table">SIMULACIÓN</th> : '' }
+                    <th className="header-table">PRECIO RECOMENDADO</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -846,12 +846,6 @@ resetSimulador(){
                     return (
                       <tr>
                           <td  className="text-center">{ prop.nombre }</td>
-                          <td className="text-center">${ prop.preciorealdehoy }</td>
-                          { this.state.simular ? 
-                          <td className="text-left">
-                              <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } />  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
-                          </td>:'' }
-                          <td className={this.state.simular ? "text-center td-size":"text-center" }>${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
                           <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                           <td className= { prop.competenciaestrategica > 14 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaestrategica }</td>
@@ -859,6 +853,12 @@ resetSimulador(){
                           <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaB }</td>
                           <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" :  "text-center"}>${ prop.competenciaC }</td>
                           <td className= { prop.competenciaD > 13 ? "text-center txt-high" : "text-center"}>${ prop.competenciaD }</td>
+                          <td className="text-center">${ prop.preciorealdehoy }</td>
+                          { this.state.simular ? 
+                          <td className="text-left">
+                              <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } />  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
+                          </td>:'' }
+                          <td className={this.state.simular ? "text-center td-size":"text-center" }>${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
                     </tr>
                     )
                   })}
