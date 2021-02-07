@@ -1,162 +1,26 @@
-import { AnnouncementCard, TodosCard } from 'components/Card';
-import HorizontalAvatarList from 'components/HorizontalAvatarList';
-import MapWithBubbles from 'components/MapWithBubbles';
-import Page from 'components/Page';
-import ProductMedia from 'components/ProductMedia';
-import {Tabs, Tab} from 'react-bootstrap-tabs';
-import SupportTicket from 'components/SupportTicket';
-import UserProgressTable from 'components/UserProgressTable';
-import { IconWidget, NumberWidget } from 'components/Widget';
-import { getStackLineChart, stackLineChartOptions } from 'demos/chartjs';
-import { randomNum } from 'utils/demos';
+//Libraries
 import moment from "moment";
-
 import Slider from "react-slick";
-import {
-  avatarsData,
-  chartjs,
-  productsData,
-  supportTicketsData,
-  todosData,
-  userProgressTableData,
-} from 'demos/dashboardPage';
+
+//Connect Redux
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { getDataAction } from '../Redux/dataToShow'
+
+//Components
+import Page from 'components/Page';
+import UserProgressTable from 'components/UserProgressTable';
+import { randomNum } from 'utils/demos';
+
+
+import { userProgressTableData } from 'demos/dashboardPage';
 import React from 'react';
 import { Bar, Line } from 'react-chartjs-2';
-import {
-  MdBubbleChart,
-  MdInsertChart,
-  MdPersonPin,
-  MdPieChart,
-  MdRateReview,
-  MdShare,
-  MdShowChart,
-  MdThumbUp,
-} from 'react-icons/md';
-import InfiniteCalendar from 'react-infinite-calendar';
-import {
-  Badge,
-  Button,
-  Card,
-  CardBody,
-  CardDeck,
-  CardGroup,
-  CardHeader,
-  Form,
-  FormFeedback,
-  FormGroup,
-  FormText,
-  Input,
-  Label,
-  Col,
-  Table,
-  ListGroup,
-  ListGroupItem,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Row,
-} from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Table, Modal, ModalBody,ModalFooter, ModalHeader, Row } from 'reactstrap';
 import { getColor } from 'utils/colors';
 
-const tableTypes = ['', 'bordered', 'striped', 'hover'];
-
-const today = new Date();
-const lastWeek = new Date(
-  today.getFullYear(),
-  today.getMonth(),
-  today.getDate() - 7,
-);
 const MONTHS = ['21/01/2021', '22/01/2021', '23/01/2021', '24/01/2021', '25/01/2021', '26/01/2021', '27/01/2021'];
-const PRODUCTS = ['<92', '>92', 'Gasoleo B', 'Diesel A+', 'PEMEX DIESEL'];
 
-const genPriceBuy = (moreData = {}, moreData2 = {}) => {
-  return {
-    labels: MONTHS,
-    datasets: [
-      {
-        label: '< 92',
-        backgroundColor: getColor('primary'),
-        borderColor: getColor('primary'),
-        borderWidth: 1,
-        data: [
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-        ],
-        ...moreData,
-      },
-      {
-        label: '>92',
-        backgroundColor: getColor('secondary'),
-        borderColor: getColor('secondary'),
-        borderWidth: 1,
-        data: [
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-        ],
-        ...moreData2,
-      },
-      {
-        label: 'Gasoleo B',
-        backgroundColor: getColor('third'),
-        borderColor: getColor('third'),
-        borderWidth: 1,
-        data: [
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-        ],
-        ...moreData2,
-      },
-      {
-        label: 'Diesel A+',
-        backgroundColor: getColor('third'),
-        borderColor: getColor('third'),
-        borderWidth: 1,
-        data: [
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-        ],
-        ...moreData2,
-      },
-      {
-        label: 'PEMEX DIESEL (DIESEL)',
-        backgroundColor: getColor('third'),
-        borderColor: getColor('third'),
-        borderWidth: 1,
-        data: [
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-          randomNum(),
-        ],
-        ...moreData2,
-      },
-    ],
-  };
-};
 
 const settings = {
   dots: true,
@@ -321,235 +185,13 @@ resetSimulador(){
 
 
   render() {
+    console.log("redux", this.props)
     const primaryColor = getColor('primary');
     const secondaryColor = getColor('secondary');
     const PRODUCTOS =[];
     this.state.productsData.map(prop => {
         PRODUCTOS.push(prop.nombre)
     })
-    const genLineDataHistorico = (moreData = {}, moreData2 = {}) => {
-      return {
-        labels: MONTHS,
-        datasets: [
-          {
-            label: this.state.productsData[0].nombre,
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
-            borderWidth: 1,
-            data: [
-              this.state.simular ? this.state.productsData[0].precioventa : this.state.productsData[0].precioventa,
-              this.state.simular ? this.state.productsData[1].precioventa : this.state.productsData[1].precioventa,
-              this.state.simular ? this.state.productsData[2].precioventa : this.state.productsData[2].precioventa,
-              this.state.simular ? this.state.productsData[3].precioventa : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[4].precioventa : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].precioventa : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].precioventa : this.state.productsData[4].precioventa           
-            ],
-            ...moreData,
-          },
-          {
-            label: this.state.productsData[1].nombre,
-            backgroundColor: getColor('primary'),
-            borderColor: getColor('primary'),
-            borderWidth: 1,
-            data: [
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
-              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
-              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
-              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa 
-            ],
-            ...moreData,
-          },
-          {
-            label: this.state.productsData[2].nombre,
-            backgroundColor: getColor('third'),
-            borderColor: getColor('third'),
-            borderWidth: 1,
-            data: [
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
-              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
-              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
-              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa 
-            ],
-            ...moreData2,
-          },
-          {
-            label:this.state.productsData[3].nombre,
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
-            borderWidth: 1,
-            data: [
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
-              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
-              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
-              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa 
-            ],
-            ...moreData2,
-          },
-          {
-            label: this.state.productsData[4].nombre,
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
-            borderWidth: 1,
-            data: [
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
-              this.state.simular ? this.state.productsData[1].modificado : this.state.productsData[1].precioventa,
-              this.state.simular ? this.state.productsData[2].modificado : this.state.productsData[2].precioventa,
-              this.state.simular ? this.state.productsData[3].modificado : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa,  
-              this.state.simular ? this.state.productsData[4].modificado : this.state.productsData[4].precioventa 
-            ],
-            ...moreData2,
-          }
-        ],
-      };
-    };
-
-
-    const genLineData = (moreData = {}, moreData2 = {}) => {
-      return {
-        labels: PRODUCTS,
-        datasets: [
-          {
-            label:this.state.simular ? 'PRECIO REAL DE HOY ' : 'PRECIO REAL DE HOY',
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
-            borderWidth: 1,
-            data: [
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[0].precioventa,
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[1].precioventa,
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[2].precioventa,
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[4].precioventa,
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[3].precioventa,
-              this.state.simular ? this.state.productsData[0].modificado : this.state.productsData[4].precioventa,
-            ],
-            ...moreData,
-          },
-          {
-            label: 'PRECIO RECOMENDADO',
-            backgroundColor: getColor('primary'),
-            borderColor: getColor('primary'),
-            borderWidth: 1,
-            data: [
-              this.state.productsData[0].preciorecomenda,
-              this.state.productsData[1].preciorecomenda,
-              this.state.productsData[2].preciorecomenda,
-              this.state.productsData[3].preciorecomenda,
-              this.state.productsData[4].preciorecomenda,
-              this.state.productsData[1].preciorecomenda,
-              this.state.productsData[2].preciorecomenda,
-            ],
-            ...moreData,
-          },
-          {
-            label: 'COMPETENCIA ESTRATÉGICA',
-            backgroundColor: getColor('third'),
-            borderColor: getColor('third'),
-            borderWidth: 1,
-            data: [
-              this.state.productsData[0].competenciaestrategica,
-              this.state.productsData[1].competenciaestrategica,
-              this.state.productsData[2].competenciaestrategica,
-              this.state.productsData[3].competenciaestrategica,
-              this.state.productsData[4].competenciaestrategica,
-              this.state.productsData[1].competenciaestrategica,
-              this.state.productsData[2].competenciaestrategica,
-            ],
-            ...moreData2,
-          },
-          /*{
-            label: 'PRECIO PROMEDIO PONDERADO',
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
-            borderWidth: 1,
-            data: [
-              this.state.productsData[0].preciorecomendadoponderado,
-              this.state.productsData[1].preciorecomendadoponderado,
-              this.state.productsData[2].preciorecomendadoponderado,
-              this.state.productsData[3].preciorecomendadoponderado,
-              this.state.productsData[4].preciorecomendadoponderado,
-            ],
-            ...moreData,
-          },*/
-          {
-            label: 'PRECIO COMPETENCIA A',
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
-            borderWidth: 1,
-            data: [
-              this.state.productsData[0].competenciaA,
-              this.state.productsData[1].competenciaA,
-              this.state.productsData[2].competenciaA,
-              this.state.productsData[3].competenciaA,
-              this.state.productsData[4].competenciaA,
-              this.state.productsData[3].competenciaA,
-              this.state.productsData[4].competenciaA,
-            ],
-            ...moreData2,
-          },
-          {
-            label: 'PRECIO COMPETENCIA B',
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
-            borderWidth: 1,
-            data: [
-              this.state.productsData[0].competenciaB,
-              this.state.productsData[1].competenciaB,
-              this.state.productsData[2].competenciaB,
-              this.state.productsData[3].competenciaB,
-              this.state.productsData[4].competenciaB,
-              this.state.productsData[1].competenciaB,
-              this.state.productsData[2].competenciaB,
-            ],
-            ...moreData2,
-          },
-          {
-            label: 'PRECIO COMPETENCIA C',
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
-            borderWidth: 1,
-            data: [
-              this.state.productsData[0].competenciaC,
-              this.state.productsData[1].competenciaC,
-              this.state.productsData[2].competenciaC,
-              this.state.productsData[3].competenciaC,
-              this.state.productsData[4].competenciaC,
-              this.state.productsData[2].competenciaC,
-              this.state.productsData[3].competenciaC,
-            ],
-            ...moreData2,
-          },
-          {
-            label: 'PRECIO COMPETENCIA D',
-            backgroundColor: getColor('secondary'),
-            borderColor: getColor('secondary'),
-            borderWidth: 1,
-            data: [
-              this.state.productsData[0].competenciaD,
-              this.state.productsData[1].competenciaD,
-              this.state.productsData[2].competenciaD,
-              this.state.productsData[3].competenciaD,
-              this.state.productsData[4].competenciaD,
-              this.state.productsData[1].competenciaD,
-              this.state.productsData[2].competenciaD,
-            ],
-            ...moreData2,
-          }
-        ],
-      };
-    };
-
 
     const genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
       return {
@@ -917,4 +559,20 @@ resetSimulador(){
     );
   }
 }
-export default Estacion;
+//Received Information REDUX
+function mapStateToProps(state){
+  return {
+      data: state.metrics.array,
+  }
+}
+//Send Information REDUX
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+      getDataAction
+  }, dispatch )
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Estacion);
+
+
+

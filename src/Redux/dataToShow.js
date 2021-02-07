@@ -34,9 +34,9 @@ export const getDataAction = () => async (dispatch) => {
         })
         return
     }*/
-
+/*Example:https://run.mocky.io/v3/cc4c350b-1f11-42a0-a1aa-f8593eafeb1e */
     try {
-        const res = await axios.get('https://run.mocky.io/v3/cc4c350b-1f11-42a0-a1aa-f8593eafeb1e')
+        const res = await axios.get('https://firebasestorage.googleapis.com/v0/b/fuelmc-590d7.appspot.com/o/dataFuel.json?alt=media&token=6d2ee0dd-693c-478b-9708-3ee17d7246de')
         console.log('API Storage', res)
         dispatch({
             type: GET_DATA_SUCCESSFULL,
@@ -45,7 +45,7 @@ export const getDataAction = () => async (dispatch) => {
         //The goal is use localstorage to avoid force call API and keep the performance
         /*localStorage.setItem('offset=0', JSON.stringify(res.data)) //with JSON change array to JSON*/
     } catch (error) {
-        console.log(error)
+        console.log("ERRORFIREBASE",error)
     }
 
 }
