@@ -164,6 +164,7 @@ resetSimulador(){
 }
 
  handSimulate(event) {
+   console.log("key", event.target)
   this.state.productsData[event.target.id].preciomodificado =  event.target.value;
   this.setState({productsData: this.state.productsData })
 }
@@ -185,7 +186,10 @@ resetSimulador(){
 
 
   render() {
-    console.log("redux", this.props)
+
+    /*console.log("redux", this.props)*/
+
+
     const primaryColor = getColor('primary');
     const secondaryColor = getColor('secondary');
     const PRODUCTOS =[];
@@ -394,10 +398,11 @@ resetSimulador(){
                         {   
 
                           this.state.productsData.map((prop, key) => {
+                            console.log("porp",prop.preciomodificado, prop.preciorecomenda)
                             return (
                               <tr>
                                   <td className="text-center text-mini">{prop.nombre}</td>
-                                  <td className="text-center text-mini">${  prop.preciomodificado }</td>
+                                  <td className="text-center text-mini">${  prop.preciomodificado > 0 ? prop.preciomodificado  : prop.preciorecomenda}</td>
                                   <td className="text-center text-mini">$1.1</td>
                                   <td className="text-center text-mini">$1.4</td>
                                   <td className="text-center text-mini">$1,1200</td>
@@ -497,9 +502,9 @@ resetSimulador(){
                           <td className="text-center">${ prop.preciorealdehoy }</td>
                           { this.state.simular ? 
                           <td className="text-left">
-                              <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } />  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
+                              <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
                           </td>:'' }
-                          <td className={this.state.simular ? "text-center td-size":"text-center" }>${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate} /> : '' }</td>
+                          <td className={this.state.simular ? "text-center text-shadow td-size":"text-center text-shadow" }>${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                     </tr>
                     )
@@ -561,8 +566,9 @@ resetSimulador(){
 }
 //Received Information REDUX
 function mapStateToProps(state){
+  console.log("state",state)
   return {
-      data: state.metrics.array,
+      data: state,
   }
 }
 //Send Information REDUX

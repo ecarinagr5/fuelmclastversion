@@ -19,7 +19,7 @@ const AvatarWithBadge = withBadge({
 const UserProgressTable = ({ headers, usersData, ...restProps }) => {
   return (
     <Table responsive hover {...restProps}>
-      <thead>
+      <thead className="header-table">
         <tr className="text-capitalize align-middle text-center">
           {headers.map((item, index) => <th key={index}>{item}</th>)}
         </tr>

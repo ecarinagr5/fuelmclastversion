@@ -1,4 +1,6 @@
 import axios from 'axios'
+const dataMerge = require('../Estructuras/data.json');
+
 
 //CONTANTS
 //Receive data
@@ -36,12 +38,14 @@ export const getDataAction = () => async (dispatch) => {
     }*/
 /*Example:https://run.mocky.io/v3/cc4c350b-1f11-42a0-a1aa-f8593eafeb1e */
     try {
-        const res = await axios.get('https://firebasestorage.googleapis.com/v0/b/fuelmc-590d7.appspot.com/o/dataFuel.json?alt=media&token=6d2ee0dd-693c-478b-9708-3ee17d7246de')
-        console.log('API Storage', res)
+        /*const res = await axios.get('https://firebasestorage.googleapis.com/v0/b/fuelmc-590d7.appspot.com/o/dataFuel.json?alt=media&token=6d2ee0dd-693c-478b-9708-3ee17d7246de')*/
+        const res = dataMerge;
+        console.log('API Storage')
         dispatch({
-            type: GET_DATA_SUCCESSFULL,
-            payload: res.data
-        })
+                type: GET_DATA_SUCCESSFULL,
+                /*payload: res.data*/
+                payload: res[0].usuario
+            })
         //The goal is use localstorage to avoid force call API and keep the performance
         /*localStorage.setItem('offset=0', JSON.stringify(res.data)) //with JSON change array to JSON*/
     } catch (error) {
