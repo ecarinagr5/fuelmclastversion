@@ -450,7 +450,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
               <CardHeader>PRECIOS DE VENTA
               <div className="container-buttons">
                 <Button color="primary" onClick={this.handleClick} className="btn-main-fuel-right">SIMULAR</Button>
-                <Button color="primary" onClick={this.handleClick} className="btn-main-fuel-right">APLICAR</Button>
+                {/*<Button color="primary" onClick={this.handleClick} className="btn-main-fuel-right">APLICAR</Button>*/}
                 <Button color="primary" onClick={this.toggle('nested_parent')} className="btn-main-fuel-right">
                   ACEPTAR &nbsp;
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
