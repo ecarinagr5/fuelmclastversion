@@ -86,9 +86,11 @@ class Header extends React.Component {
 componentDidMount(){
   this.intervalId = setInterval(this.dateToShow.bind(this), 1000);
 }
+
 componentWillUnmount(){
   clearInterval(this.intervalId);
 }
+
 dateToShow(){
   let date = new Date();
   this.setState({ date });

@@ -18,6 +18,7 @@ import React from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import { Button, Card, CardBody, CardHeader, Col, Table, Modal, ModalBody,ModalFooter, ModalHeader, Row } from 'reactstrap';
 import { getColor } from 'utils/colors';
+import user1Image from 'assets/img/lata-de-gasolina.png';
 
 const MONTHS = ['21/01/2021', '22/01/2021', '23/01/2021', '24/01/2021', '25/01/2021', '26/01/2021', '27/01/2021'];
 
@@ -42,6 +43,7 @@ class Estacion extends React.Component {
       date:'', 
       productsData:[
         {
+          avatar: user1Image,
           nombre: '<92',
           precioventa: 13.41,
           simular:null,
@@ -51,14 +53,24 @@ class Estacion extends React.Component {
           competenciaestrategica:11.4,
           preciomodificado:0,
           preciodecompra:13.4,
+          precioultimacompra:12.4,
+          fechadeultimacompra:20210129,
+          preciocompramanana:12.3,
           preciopromediodeventa:16,
-          mipreciopromediodeventa:12,
+          mipreciopromediodeventa:10.3,
+          pvppromediodelacompentencia:13.6,
           competenciaA:12.4,
           competenciaB:11.4,
           competenciaC:12.4,
           competenciaD:12.3,
+          volumenpromediodelmes:30,
+          volumenobjetivomensual:120,
+          margenteorico:1.1,
+          margenreal:1.2,
+          utilidad:1242
         },
         {
+          avatar: user1Image,
           nombre: '>92',
           precioventa: 14.41,
           simular:null,
@@ -68,14 +80,24 @@ class Estacion extends React.Component {
           competenciaestrategica:12.4,
           preciomodificado:0,
           preciodecompra:13,
+          precioultimacompra:12.4,
+          fechadeultimacompra:20210123,
           preciopromediodeventa:16,
-          mipreciopromediodeventa:12,
+          mipreciopromediodeventa:10.6,
+          preciocompramanana:14.3,
+          pvppromediodelacompentencia:13.6,
           competenciaA:11.4,
           competenciaB:13.4,
           competenciaC:16.4,
           competenciaD:12.3,
+          volumenpromediodelmes:60,
+          volumenobjetivomensual:130,
+          margenteorico:1.2,
+          margenreal:1.5,
+          utilidad:1442
         },
         {
+          avatar: user1Image,
           nombre: 'Gasoleo B',
           precioventa: 15.41,
           simular:null,
@@ -85,14 +107,24 @@ class Estacion extends React.Component {
           competenciaestrategica:12.4,
           preciomodificado:0,
           preciodecompra:14,
+          precioultimacompra:12.4,
+          fechadeultimacompra:20210112,
           preciopromediodeventa:17,
-          mipreciopromediodeventa:12,
+          mipreciopromediodeventa:10.6,
+          preciocompramanana:11.3,
+          pvppromediodelacompentencia:14.6,
           competenciaA:10.4,
           competenciaB:12.4,
           competenciaC:14.4,
           competenciaD:12.3,
+          volumenpromediodelmes:60,
+          volumenobjetivomensual:160,
+          margenteorico:1.5,
+          margenreal:1.4,
+          utilidad:1542
         },
         {
+          avatar: user1Image,
           nombre: 'Diesel A+',
           precioventa: 16.41,
           preciorealdehoy:12.11,
@@ -102,14 +134,24 @@ class Estacion extends React.Component {
           competenciaestrategica:12.4,
           preciomodificado:0,
           preciodecompra:14,
+          precioultimacompra:12.4,
+          fechadeultimacompra:20210130,
           preciopromediodeventa:16.3,
-          mipreciopromediodeventa:12,
+          pvppromediodelacompentencia:14.6,
+          preciocompramanana:12.3,
+          mipreciopromediodeventa:12.4,
           competenciaA:13.4,
           competenciaB:11.4,
           competenciaC:13.4,
           competenciaD:12.3,
+          volumenpromediodelmes:50,
+          volumenobjetivomensual:140,
+          margenteorico:1.1,
+          margenreal:1.2,
+          utilidad:1142
         },
         {
+          avatar: user1Image,
           nombre: 'PEMEX DIESEL (DIESEL)',
           precioventa: 17.41,
           preciorealdehoy:13.41,
@@ -119,12 +161,21 @@ class Estacion extends React.Component {
           preciorecomenda:13.3,
           competenciaestrategica:14.4,
           preciodecompra:15,
+          precioultimacompra:12.4,
+          fechadeultimacompra:20210112,
           preciopromediodeventa:18,
-          mipreciopromediodeventa:12,
+          mipreciopromediodeventa:12.3,
+          preciocompramanana:11.3,
+          pvppromediodelacompentencia:13.6,
           competenciaA:12.4,
           competenciaB:12.8,
           competenciaC:12.4,
           competenciaD:12.3,
+          volumenpromediodelmes:40,
+          volumenobjetivomensual:130,
+          margenteorico:1.1,
+          margenreal:1.2,
+          utilidad:1642
         }
       ]
     }
@@ -137,14 +188,24 @@ class Estacion extends React.Component {
  }
 
  componentDidMount(){
-  let date = new Date();
-  this.setState({ date });
+  this.intervalId = setInterval(this.dateToShow.bind(this), 1000);
 }
 
- handTools() {
+componentWillUnmount(){
+  clearInterval(this.intervalId);
+}
+
+dateToShow(){
+  let date = new Date();
+  this.setState({ date });
+  console.log("dateToShow", date)
+}
+
+handTools() {
   this.setState({ tools: !this.state.tools })
- }
- toggle = modalType => () => {
+}
+
+toggle = modalType => () => {
   if (!modalType) {
     return this.setState({
       modal: !this.state.modal,
@@ -185,7 +246,6 @@ handSimulate(event) {
 
   //Function to return lines
 genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
-  console.log("line", this.state.productsData[0].preciorecomenda)
     return {
       labels: MONTHS,
       datasets: [
@@ -211,20 +271,20 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           borderColor: getColor('info'),
           borderWidth: 3,
           data: [
-            this.state.productsData[0].preciopromediodeventa,
-            this.state.productsData[1].preciopromediodeventa,
-            this.state.productsData[2].preciopromediodeventa,
-            this.state.productsData[3].preciopromediodeventa,
-            this.state.productsData[4].preciopromediodeventa,
-            this.state.productsData[1].preciopromediodeventa,
-            this.state.productsData[2].preciopromediodeventa,
+            this.state.productsData[0].pvppromediodelacompentencia,
+            this.state.productsData[1].pvppromediodelacompentencia,
+            this.state.productsData[2].pvppromediodelacompentencia,
+            this.state.productsData[3].pvppromediodelacompentencia,
+            this.state.productsData[4].pvppromediodelacompentencia,
+            this.state.productsData[1].pvppromediodelacompentencia,
+            this.state.productsData[2].pvppromediodelacompentencia,
           ],
           ...moreData,
         },
         {
           label: 'MI PRECIO DE VENTA PROMEDIO',
-          backgroundColor: getColor('warning'),
-          borderColor: getColor('warning'),
+          backgroundColor: getColor('average'),
+          borderColor: getColor('average'),
           borderWidth: 3,
           data: [
             this.state.productsData[0].mipreciopromediodeventa,
@@ -340,12 +400,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
 
   render() {
-
-    /*console.log("redux", this.props)*/
-
-
-    const primaryColor = getColor('primary');
-    const secondaryColor = getColor('secondary');
+    console.log("date", this.state.date)
     const PRODUCTOS =[];
     this.state.productsData.map(prop => {
         PRODUCTOS.push(prop.nombre)
@@ -400,14 +455,14 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                         {   
 
                           this.state.productsData.map((prop, key) => {
-                            console.log("porp",prop.preciomodificado, prop.preciorecomenda)
+                            console.log("productsData",prop)
                             return (
                               <tr>
-                                  <td className="text-center text-mini">{prop.nombre}</td>
-                                  <td className="text-center text-mini">${  prop.preciomodificado >  0 ? prop.preciomodificado  : prop.preciorecomenda }</td>
-                                  <td className="text-center text-mini">$1.1</td>
-                                  <td className="text-center text-mini">$1.4</td>
-                                  <td className="text-center text-mini">$1,1200</td>
+                                <td className="text-center text-mini">{prop.nombre}</td>
+                                <td className="text-center text-mini">${ prop.preciomodificado >  0 ? prop.preciomodificado  : prop.preciorecomenda }</td>
+                                <td className="text-center text-mini">${ prop.margenreal }</td>
+                                <td className="text-center text-mini">${ prop.margenteorico }</td>
+                                <td className="text-center text-mini">${ prop.utilidad }</td>
                             </tr>
                             )
                           })}
@@ -481,7 +536,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                     <th className="header-table">COMPETENCIA C</th>
                     <th className="header-table">COMPETENCIA D</th>
                     <th className="header-table">PRECIO REAL DE HOY</th>
-                    {this.state.simular ? <th className="header-table">SIMULACIÓN</th> : '' }
+                    { this.state.simular ? <th className="header-table">SIMULACIÓN</th> : '' }
                     <th className="header-table">PRECIO RECOMENDADO</th>
                     <th className="header-table">DIFERENCIA PRECIO REAL<br></br>PRECIO SELECCIONADO</th>
                   </tr>
@@ -491,22 +546,31 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                     productsData.map((prop, key) => {
                       let precioponderado =  (prop.precioventa * 100 ) / promedio; 
                       let diferenciaprecio =  prop.preciorealdehoy -  prop.preciorecomenda;
-                    /*return <th key={key}>{prop}</th>;*/
+                      let arrayToDefine = [ prop.competenciaestrategica, prop.preciorecomenda, prop.competenciaA, prop.competenciaB, prop.competenciaC, prop.competenciaD, prop.preciorealdehoy, prop.preciorecomenda ];
+                      let min = Math.min.apply(Math, arrayToDefine);
+                      let max = Math.max.apply(Math, arrayToDefine);
+                      //Review this part
+                      this.state.mipreciopromediodeventa = precioponderado;
+    
+            
                     return (
                       <tr>
                           <td  className="text-center">{ prop.nombre }</td>
                           <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
-                          <td className= { prop.competenciaestrategica > 14 ? "text-center txt-high" : prop.competenciaestrategica < 10 ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaestrategica }</td>
-                          <td className= { prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}>$ { prop.competenciaA }</td>
-                          <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" : prop.preciorecomenda === 10.3 || prop.preciorecomenda === 10.7  ? "text-center txt-ok" : "text-center"}> $ { prop.competenciaB }</td>
-                          <td className={ prop.preciorecomenda > 14 ? "text-center txt-high" :  "text-center"}>${ prop.competenciaC }</td>
-                          <td className= { prop.competenciaD > 13 ? "text-center txt-high" : "text-center"}>${ prop.competenciaD }</td>
-                          <td className="text-center">${ prop.preciorealdehoy }</td>
+                          <td className={ prop.competenciaestrategica === min ? "text-center txt-ok" : prop.competenciaestrategica === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaestrategica }</td>
+                          <td className={ prop.competenciaA === min ? "text-center txt-ok" : prop.competenciaA === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaA }</td>
+                          <td className={ prop.competenciaB === min ? "text-center txt-ok" : prop.competenciaB === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaB }</td>
+                          <td className={ prop.competenciaC === min ? "text-center txt-ok" : prop.competenciaC === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaC }</td>
+                          <td className={ prop.competenciaD === min ? "text-center txt-ok" : prop.competenciaD === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaD }</td>
+                          <td className= { prop.preciorealdehoy === min ? "text-center txt-ok" : prop.preciorealdehoy === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealdehoy }</td>
                           { this.state.simular ? 
                           <td className="text-left">
                               <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
                           </td>:'' }
-                          <td className={this.state.simular ? "text-center text-shadow td-size":"text-center text-shadow" }>${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          <td className={this.state.simular ? 
+                            prop.preciorecomenda === min ? "text-center text-shadow td-size txt-ok" : prop.preciorecomenda === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
+                            prop.preciorecomenda === min ? "text-center text-shadow td-size txt-ok" : prop.preciorecomenda === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
+                          >${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                     </tr>
                     )
@@ -547,11 +611,11 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 { this.state.simular ?
                 <UserProgressTable
                   headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
-                  usersData={userProgressTableData}
+                  usersData={this.state.productsData}
                 /> :
                 <UserProgressTable
                   headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA RECOMENDADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
-                  usersData={userProgressTableData}
+                  usersData={this.state.productsData}
                 />
                 }
               </CardBody>

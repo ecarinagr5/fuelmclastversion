@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'utils/propTypes';
+import moment from "moment";
 
 import { Table, Progress } from 'reactstrap';
 import { getThemeColors } from 'utils/colors';
@@ -25,52 +26,42 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
         </tr>
       </thead>
       <tbody>
-        { usersData.map(({ avatar, name, precioventa, utilidad, precioultimacompra, preciocompra,preciocompramañana, margen,margenreal, volumenpromediodelmes, progress,volumen }, index) => {
-          let diferencia = preciocompra - preciocompramañana;
-          let utilidadtotal = (precioventa * margen * 10000 ) / 100;
+        { usersData.map(({ avatar, nombre, precioventa, utilidad, preciodecompra, fechadeultimacompra, precioultimacompra, preciocompramanana, margenteorico ,margenreal,volumenpromediodelmes, volumenobjetivomensual }, index) => {
+          let diferencia = preciodecompra - preciocompramanana;
+
+          let arrayToDefine = [ precioultimacompra, preciodecompra, preciocompramanana, precioventa, margenteorico, margenreal];
+          let min = Math.min.apply(Math, arrayToDefine);
+          let max = Math.max.apply(Math, arrayToDefine);
+
         return (
           <tr key={index}>
             <td className="align-middle text-center">
               <AvatarWithBadge src={avatar} />
             </td>
-            <td className="align-middle text-left ">{name}</td>
-            <td className="align-middle text-center">$ {precioultimacompra} <Badge color="primary" className="mr-1"><span className="update-date">24/01/2021</span></Badge></td>
-            <td className="align-middle text-center">$ {preciocompra}</td>
-            <td className="align-middle text-center">$ {preciocompramañana}</td>
+            <td className="align-middle text-left ">{nombre}</td>
+            <td className={ precioultimacompra === min ? "align-middle text-center txt-ok" : precioultimacompra === max ? "align-middle text-center txt-high" : "align-middle text-center" }>$ {precioultimacompra.toFixed(2)} <Badge color="primary" className="mr-1"><span className="update-date">{fechadeultimacompra}</span></Badge></td>
+            <td className={ preciodecompra === min ? "align-middle text-center txt-ok" : preciodecompra === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {preciodecompra.toFixed(2)}</td>
+            <td className={ preciocompramanana === min ? "align-middle text-center txt-ok" : preciocompramanana === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {preciocompramanana}</td>
             <td className="align-middle text-center">$ {diferencia.toFixed(2)}</td>
-            <td className="align-middle text-center text-shadow">$ {precioventa}</td>
-            <td className={margen > 59 ? "align-middle text-center txt-high" : "align-middle text-center txt-ok" }>$ {margen}</td>
-              {/*<Progress
-                  color="success"
-                  value={margen}
-                  className="mb-3"
-                >
-                  {margen}%
-              </Progress>*/}
-            <td className={margenreal > 59 ? "align-middle text-center txt-high" : "align-middle text-center txt-ok" }>$ {margenreal}</td>
-              {/*<Progress
-                color="success"
-                value={margenreal}
-                className="mb-3"
-              >
-                {margenreal}%
-              </Progress>*/}
+            <td className={ precioventa === min ? "align-middle text-center txt-ok" : precioventa === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {precioventa}</td>
+            <td className={ margenteorico === min ? "align-middle text-center txt-ok" : margenteorico === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenteorico}</td>
+            <td className={ margenreal === min ? "align-middle text-center txt-ok" : margenreal === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenreal}</td>
             <td className="align-middle text-center">
               <Progress
                   color="success"
-                  value={volumen}
+                  value={volumenpromediodelmes}
                   className="mb-3"
                 >
-                {volumen} lts
+                {volumenpromediodelmes} lts
               </Progress>  
             </td>
             <td className="align-middle text-center">
             <Progress
                   color="success"
-                  value={100}
+                  value={volumenobjetivomensual}
                   className="mb-3"
                 >
-                100 lts
+                {volumenobjetivomensual} lts
               </Progress>  
               </td>
           </tr>
