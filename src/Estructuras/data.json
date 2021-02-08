@@ -1,18 +1,19 @@
 [{
     "usuario":{
+        "iduser":12,
         "nombrecompleto":"Sergio Perez Rodriguez",
         "tipodeperfil":"colaborador",
         "horacambiodedia":"7:00 pm",
-        "estaciones":{
-            "gasolinerapemex":{
+        "estaciones":[
+                {
                 "empresa": "Gasolinera PEMEX",
                 "negocio":"A",
                 "PRE_EST_PERMISO_CRE": "PL/658/EXP/ES/2015",
                 "direccion":"Av. Adolfo López Mateos 518-520 Agua Azul, Mx.19 EDOMEX",
                 "rankin":4,
                 "logo":"",
-                "productos":{ 
-                    "<92":{
+                "productos":[
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -20,21 +21,27 @@
                         "pvprecomendado":11.3,
                         "competenciaestrategica":11.4,
                         "preciodecompra":13.4,
+                        "fechadeultimacompra":20210129,
                         "preciopromediodeventa":16,
                         "mipreciopromediodeventa":12,
+                        "preciocompramanana":12.3,
+                        "precioultimacompra":11.3,
                         "competenciaA":12.4,
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
-                        "pvpcompentenciaestrategicca":12.3,
+                        "pvpcompentenciaestrategica":12.3,
                         "margenteorico":1.2,
                         "margenreal":1.5,
-                        "volumenpromediodelmes":150
+                        "volumenpromediodelmes":150,
+                        "volumenobjetivomensual":150,
+                        "utilidad":1394
                     },
-                    ">92":{
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -42,21 +49,27 @@
                         "pvprecomendado":11.3,
                         "competenciaestrategica":11.4,
                         "preciodecompra":13.4,
+                        "fechadeultimacompra":20210129,
                         "preciopromediodeventa":16,
                         "mipreciopromediodeventa":12,
+                        "preciocompramanana":12.3,
+                        "precioultimacompra":11.3,
                         "competenciaA":12.4,
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
-                        "pvpcompentenciaestrategicca":12.3,
+                        "pvpcompentenciaestrategica":12.3,
                         "margenteorico":1.2,
                         "margenreal":1.5,
-                        "volumenpromediodelmes":150
+                        "volumenpromediodelmes":150,
+                        "volumenobjetivomensual":150,
+                        "utilidad":1394
                     },
-                    "GasoleoB":{
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -64,21 +77,27 @@
                         "pvprecomendado":11.3,
                         "competenciaestrategica":11.4,
                         "preciodecompra":13.4,
+                        "fechadeultimacompra":20210129,
                         "preciopromediodeventa":16,
                         "mipreciopromediodeventa":12,
+                        "preciocompramanana":12.3,
+                        "precioultimacompra":11.3,
                         "competenciaA":12.4,
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
-                        "pvpcompentenciaestrategicca":12.3,
+                        "pvpcompentenciaestrategica":12.3,
                         "margenteorico":1.2,
                         "margenreal":1.5,
-                        "volumenpromediodelmes":150
+                        "volumenpromediodelmes":150,
+                        "volumenobjetivomensual":150,
+                        "utilidad":1394
                     },
-                    "DieselA+":{
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -86,21 +105,27 @@
                         "pvprecomendado":11.3,
                         "competenciaestrategica":11.4,
                         "preciodecompra":13.4,
+                        "fechadeultimacompra":20210129,
                         "preciopromediodeventa":16,
                         "mipreciopromediodeventa":12,
+                        "preciocompramanana":12.3,
+                        "precioultimacompra":11.3,
                         "competenciaA":12.4,
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
-                        "pvpcompentenciaestrategicca":12.3,
+                        "pvpcompentenciaestrategica":12.3,
                         "margenteorico":1.2,
                         "margenreal":1.5,
-                        "volumenpromediodelmes":150
+                        "volumenpromediodelmes":150,
+                        "volumenobjetivomensual":150,
+                        "utilidad":1394
                     },
-                    "PEMEX":{
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -108,22 +133,28 @@
                         "pvprecomendado":11.3,
                         "competenciaestrategica":11.4,
                         "preciodecompra":13.4,
+                        "fechadeultimacompra":20210129,
                         "preciopromediodeventa":16,
                         "mipreciopromediodeventa":12,
+                        "preciocompramanana":12.3,
+                        "precioultimacompra":11.3,
                         "competenciaA":12.4,
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
-                        "pvpcompentenciaestrategicca":12.3,
+                        "pvpcompentenciaestrategica":12.3,
                         "margenteorico":1.2,
                         "margenreal":1.5,
-                        "volumenpromediodelmes":150
+                        "volumenpromediodelmes":150,
+                        "volumenobjetivomensual":150,
+                        "utilidad":1394
                     }      
-                }
+                ]
             }
-        }
+        ]
     }
 }]

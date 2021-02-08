@@ -1,18 +1,68 @@
 [{
     "usuario":{
+        "id":12,
         "nombrecompleto":"Sergio Perez Rodriguez",
         "tipodeperfil":"colaborador",
         "horacambiodedia":"7:00 pm",
-        "estaciones":{
-            "gasolinerapemex":{
+        "promedios":[
+            {
+                "numerodeestaciones":80,
+                "porestacion":[
+                    {
+                        "nombre":"<92",
+                        "totaldeestaciones":10,
+                        "ingresos":12023,
+                        "precio":12.4,
+                        "volumen":320,
+                        "margen":1.2
+                    },
+                    {
+                        "nombre":">92",
+                        "totaldeestaciones":10,
+                        "ingresos":12023,
+                        "precio":12.4,
+                        "volumen":320,
+                        "margen":1.2
+                    },
+                    {
+                        "nombre":"Gasoleo B",
+                        "totaldeestaciones":10,
+                        "ingresos":12023,
+                        "precio":12.4,
+                        "volumen":320,
+                        "margen":1.2
+                    },
+                    {
+                        "nombre":"Diesel A+",
+                        "totaldeestaciones":10,
+                        "ingresos":12023,
+                        "precio":12.4,
+                        "volumen":320,
+                        "margen":1.2
+                    },
+                    {
+                        "nombre":"PEMEX DIESEL (DIESEL)",
+                        "totaldeestaciones":30,
+                        "ingresos":12023,
+                        "precio":12.4,
+                        "volumen":320,
+                        "margen":1.2
+                    }
+                ]
+            }
+        ],
+        "estaciones":[
+                {
                 "empresa": "Gasolinera PEMEX",
                 "negocio":"A",
                 "PRE_EST_PERMISO_CRE": "PL/658/EXP/ES/2015",
                 "direccion":"Av. Adolfo López Mateos 518-520 Agua Azul, Mx.19 EDOMEX",
                 "rankin":4,
                 "logo":"",
-                "productos":{ 
-                    "<92":{
+                "latitud":"",
+                "longitud":"",
+                "productos":[
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -29,6 +79,7 @@
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
@@ -36,10 +87,9 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
-                        "utilidad":1394
+                        "volumenobjetivomensual":150
                     },
-                    ">92":{
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -56,6 +106,7 @@
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
@@ -63,10 +114,9 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
-                        "utilidad":1394
+                        "volumenobjetivomensual":150
                     },
-                    "GasoleoB":{
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -83,6 +133,7 @@
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
@@ -90,10 +141,9 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
-                        "utilidad":1394
+                        "volumenobjetivomensual":150
                     },
-                    "DieselA+":{
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -110,6 +160,7 @@
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
@@ -117,10 +168,9 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
-                        "utilidad":1394
+                        "volumenobjetivomensual":150
                     },
-                    "PEMEX":{
+                    {
                         "nombre": "<92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
@@ -137,6 +187,7 @@
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
                         "pvpminimodelacompetencia":13.3,
@@ -144,11 +195,10 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
-                        "utilidad":1394
+                        "volumenobjetivomensual":150
                     }      
-                }
+                ]
             }
-        }
+        ]
     }
 }]

@@ -192,9 +192,8 @@ class Estacion extends React.Component {
  }
 
  componentDidMount(){
-   console.log("ddd")
-  /*let data = this.props.data.metrics.array;
-  this.setState({dataReal: data})*/
+  let data = this.props.data.metrics.array;
+  this.setState({dataReal: data})
   this.intervalId = setInterval(this.dateToShow.bind(this), 1000);
 }
 
@@ -407,14 +406,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
   render() {
     /*console.log("prodc", this.props.data.metrics.array)*/
-    /*console.log("state", this.props.data.metrics.array)*/
-
-    const allProducts = this.props.data.metrics.array.estaciones[0].productos;
-    console.log("allProducts",allProducts)
-
-    allProducts.map(prop => {
-      console.log("pro", prop)
-      })
+    console.log("state", this.state.dataReal)
     const PRODUCTOS =[];
     this.state.productsData.map(prop => {
         PRODUCTOS.push(prop.nombre)
@@ -453,11 +445,11 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           this.state.productsData.map((prop, key) => {
                             return (
                               <tr>
-                                <td key={ key }  className="text-center text-mini">{prop.nombre}</td>
-                                <td key={ key }  className="text-center text-mini">${ prop.preciomodificado >  0 ? prop.preciomodificado  : prop.preciorecomenda }</td>
-                                <td key={ key }  className="text-center text-mini">${ prop.margenreal }</td>
-                                <td key={ key }  className="text-center text-mini">${ prop.margenteorico }</td>
-                                <td key={ key }  className="text-center text-mini">${ prop.utilidad }</td>
+                                <td className="text-center text-mini">{prop.nombre}</td>
+                                <td className="text-center text-mini">${ prop.preciomodificado >  0 ? prop.preciomodificado  : prop.preciorecomenda }</td>
+                                <td className="text-center text-mini">${ prop.margenreal }</td>
+                                <td className="text-center text-mini">${ prop.margenteorico }</td>
+                                <td className="text-center text-mini">${ prop.utilidad }</td>
                             </tr>
                             )
                           })}
