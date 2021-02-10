@@ -79,6 +79,7 @@
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "preciomodificado":0.00,
                         "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
@@ -87,10 +88,11 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150
+                        "volumenobjetivomensual":150,
+                        "utilidad":1249
                     },
                     {
-                        "nombre": "<92",
+                        "nombre": ">92",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
                         "preciorecomendadoponderado":0,
@@ -106,6 +108,7 @@
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "preciomodificado":0.00,
                         "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
@@ -114,10 +117,11 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150
+                        "volumenobjetivomensual":150,
+                        "utilidad":1249
                     },
                     {
-                        "nombre": "<92",
+                        "nombre": "Gasoleo B",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
                         "preciorecomendadoponderado":0,
@@ -133,6 +137,7 @@
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "preciomodificado":0.00,
                         "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
@@ -141,10 +146,11 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150
+                        "volumenobjetivomensual":150,
+                        "utilidad":1249
                     },
                     {
-                        "nombre": "<92",
+                        "nombre": "Diesel A+",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
                         "preciorecomendadoponderado":0,
@@ -156,10 +162,11 @@
                         "mipreciopromediodeventa":12,
                         "preciocompramanana":12.3,
                         "precioultimacompra":11.3,
-                        "competenciaA":12.4,
+                        "competenciaA":18.4,
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "preciomodificado":0.00,
                         "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
@@ -168,10 +175,11 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150
+                        "volumenobjetivomensual":150,
+                        "utilidad":1249
                     },
                     {
-                        "nombre": "<92",
+                        "nombre": "PEMEX DIESEL (DIESEL)",
                         "precioventa":13.41,
                         "preciorealdehoy":12.21,
                         "preciorecomendadoponderado":0,
@@ -183,10 +191,11 @@
                         "mipreciopromediodeventa":12,
                         "preciocompramanana":12.3,
                         "precioultimacompra":11.3,
-                        "competenciaA":12.4,
+                        "competenciaA":15.4,
                         "competenciaB":11.4,
                         "competenciaC":12.4,
                         "competenciaD":12.3,
+                        "preciomodificado":0.00,
                         "simular":null,
                         "pvppromediodelacompentencia":12.2,
                         "pvpmaximodelacompetencia":15.3,
@@ -195,7 +204,8 @@
                         "margenteorico":1.2,
                         "margenreal":1.5,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150
+                        "volumenobjetivomensual":150,
+                        "utilidad":1249
                     }      
                 ]
             }

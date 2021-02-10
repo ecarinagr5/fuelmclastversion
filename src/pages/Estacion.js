@@ -12,18 +12,16 @@ import Page from 'components/Page';
 import UserProgressTable from 'components/UserProgressTable';
 import { randomNum } from 'utils/demos';
 
-//img
-
-import screen from '../assets/img/demo-screen-1.jpg'
-
-import { userProgressTableData } from 'demos/dashboardPage';
 import React from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import { Button, Card, CardBody, CardHeader, Col, Table, Modal, ModalBody,ModalFooter, ModalHeader, Row } from 'reactstrap';
 import { getColor } from 'utils/colors';
-import user1Image from 'assets/img/lata-de-gasolina.png';
 
-const MONTHS = ['21/01/2021', '22/01/2021', '23/01/2021', '24/01/2021', '25/01/2021', '26/01/2021', '27/01/2021'];
+
+//Views
+import Welcome from './Welcome';
+
+const MONTHS = ['10/02/2021'];
 
 
 const settings = {
@@ -45,143 +43,10 @@ class Estacion extends React.Component {
       tools:false,
       date:'', 
       dataReal:[],
-      productsData:[
-        {
-          avatar: user1Image,
-          nombre: '<92',
-          precioventa: 11.41,
-          simular:null,
-          preciorealdehoy:12.21,
-          preciorecomendadoponderado:0,
-          preciorecomenda:11.3,
-          competenciaestrategica:11.4,
-          preciomodificado:0,
-          preciodecompra:13.4,
-          precioultimacompra:12.4,
-          fechadeultimacompra:20210129,
-          preciocompramanana:12.3,
-          preciopromediodeventa:16,
-          mipreciopromediodeventa:10.3,
-          pvppromediodelacompentencia:13.6,
-          competenciaA:12.6,
-          competenciaB:11.4,
-          competenciaC:12.4,
-          competenciaD:12.3,
-          volumenpromediodelmes:30,
-          volumenobjetivomensual:120,
-          margenteorico:1.1,
-          margenreal:1.2,
-          utilidad:1242
-        },
-        {
-          avatar: user1Image,
-          nombre: '>92',
-          precioventa: 14.41,
-          simular:null,
-          preciorealdehoy:13.11,
-          preciorecomendadoponderado:0,
-          preciorecomenda:10.3,
-          competenciaestrategica:12.4,
-          preciomodificado:0,
-          preciodecompra:13,
-          precioultimacompra:12.4,
-          fechadeultimacompra:20210123,
-          preciopromediodeventa:16,
-          mipreciopromediodeventa:10.6,
-          preciocompramanana:14.3,
-          pvppromediodelacompentencia:13.6,
-          competenciaA:11.4,
-          competenciaB:13.6,
-          competenciaC:16.4,
-          competenciaD:12.3,
-          volumenpromediodelmes:60,
-          volumenobjetivomensual:130,
-          margenteorico:1.2,
-          margenreal:1.5,
-          utilidad:1442
-        },
-        {
-          avatar: user1Image,
-          nombre: 'Gasoleo B',
-          precioventa: 12.41,
-          simular:null,
-          preciorealdehoy:14.10,
-          preciorecomendadoponderado:0,
-          preciorecomenda:11.2,
-          competenciaestrategica:12.4,
-          preciomodificado:0,
-          preciodecompra:14,
-          precioultimacompra:12.4,
-          fechadeultimacompra:20210112,
-          preciopromediodeventa:17,
-          mipreciopromediodeventa:10.6,
-          preciocompramanana:11.3,
-          pvppromediodelacompentencia:14.6,
-          competenciaA:10.4,
-          competenciaB:12.9,
-          competenciaC:14.4,
-          competenciaD:12.3,
-          volumenpromediodelmes:60,
-          volumenobjetivomensual:160,
-          margenteorico:1.5,
-          margenreal:1.4,
-          utilidad:1542
-        },
-        {
-          avatar: user1Image,
-          nombre: 'Diesel A+',
-          precioventa: 16.41,
-          preciorealdehoy:12.11,
-          simular:null,
-          preciorecomendadoponderado:0,
-          preciorecomenda:10.7,
-          competenciaestrategica:12.4,
-          preciomodificado:0,
-          preciodecompra:14,
-          precioultimacompra:12.4,
-          fechadeultimacompra:20210130,
-          preciopromediodeventa:16.3,
-          pvppromediodelacompentencia:14.6,
-          preciocompramanana:12.3,
-          mipreciopromediodeventa:12.4,
-          competenciaA:13.1,
-          competenciaB:11.4,
-          competenciaC:13.4,
-          competenciaD:12.3,
-          volumenpromediodelmes:50,
-          volumenobjetivomensual:140,
-          margenteorico:1.1,
-          margenreal:1.2,
-          utilidad:1142
-        },
-        {
-          avatar: user1Image,
-          nombre: 'PEMEX DIESEL (DIESEL)',
-          precioventa: 17.41,
-          preciorealdehoy:13.21,
-          simular:null,
-          preciorecomendadoponderado:0,
-          preciomodificado:0,
-          preciorecomenda:13.3,
-          competenciaestrategica:14.4,
-          preciodecompra:15,
-          precioultimacompra:12.4,
-          fechadeultimacompra:20210112,
-          preciopromediodeventa:18,
-          mipreciopromediodeventa:12.3,
-          preciocompramanana:11.3,
-          pvppromediodelacompentencia:13.6,
-          competenciaA:12.4,
-          competenciaB:12.8,
-          competenciaC:12.4,
-          competenciaD:12.3,
-          volumenpromediodelmes:40,
-          volumenobjetivomensual:130,
-          margenteorico:1.1,
-          margenreal:1.2,
-          utilidad:1642
-        }
-      ]
+      graficatoshow:'',
+      competencias:[],
+      productgraph:'',
+      idproduct:0,
     }
     this.handleClick = this.handleClick.bind(this);
     this.handSimulate = this.handSimulate.bind(this);
@@ -189,12 +54,12 @@ class Estacion extends React.Component {
     this.resetSimulador = this.resetSimulador.bind(this);
     this.handTools = this.handTools.bind(this);
     this.genLineDataMONTHS = this.genLineDataMONTHS.bind(this);
+    this.updateGraph = this.updateGraph.bind(this);
  }
 
  componentDidMount(){
-   console.log("ddd")
-  /*let data = this.props.data.metrics.array;
-  this.setState({dataReal: data})*/
+  let data = this.props.data.metrics.array;
+  this.setState({dataReal: data})
   this.intervalId = setInterval(this.dateToShow.bind(this), 1000);
 }
 
@@ -202,6 +67,9 @@ componentWillUnmount(){
   clearInterval(this.intervalId);
 }
 
+updateGraph(event){
+  this.setState({productgraph: event.target.value})
+}
 dateToShow(){
   let date = new Date();
   this.setState({ date });
@@ -232,17 +100,22 @@ resetSimulador(){
 }
 
 handSimulate(event) {
-  this.state.productsData[event.target.id].preciomodificado =  event.target.value;
-  this.setState({productsData: this.state.productsData })
+  let modificado = this.state.dataReal[0];
+  modificado[event.target.id].preciomodificado = event.target.value === '' ? modificado[event.target.id].simular : event.target.value ;
+  this.setState({idproduct:0})
+  /*this.setState({dataReal: modificado })*/
 }
 
   addValue(event){
-    this.state.productsData[event.target.id].simular =  event.target.value;;
-    this.setState({productsData: this.state.productsData })
+    let m = this.state.dataReal[0];
+    m[event.target.id].simular =  event.target.value;
+    /*this.setState({dataReal: m })*/
+
+    /*this.state.productsData[event.target.id].simular =  event.target.value;;
+    this.setState({productsData: this.state.productsData })*/
   }
 
   componentDidMount() {
-    // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
   }
 
@@ -252,6 +125,21 @@ handSimulate(event) {
 
   //Function to return lines
 genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
+    let product = this.state.dataReal[0];
+    let competencias = this.state.competencias[0];
+    let productgraph = this.state.productgraph;
+    let idproduct = this.state.idproduct
+
+    product.map((x, index) => {
+      if(productgraph === x.nombre )
+        {
+          idproduct = index;
+        }
+      else{
+        return 'no'
+      }
+    });
+    
     return {
       labels: MONTHS,
       datasets: [
@@ -261,13 +149,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           borderColor: getColor('danger'),
           borderWidth: 2,
           data: [
-            this.state.productsData[0].preciodecompra,
-            this.state.productsData[1].preciodecompra,
-            this.state.productsData[2].preciodecompra,
-            this.state.productsData[3].preciodecompra,
-            this.state.productsData[4].preciodecompra,
-            this.state.productsData[1].preciodecompra,
-            this.state.productsData[2].preciodecompra,
+            product[idproduct].preciodecompra,
           ],
           ...moreData,
         },
@@ -277,13 +159,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           borderColor: getColor('info'),
           borderWidth: 3,
           data: [
-            this.state.productsData[0].pvppromediodelacompentencia,
-            this.state.productsData[1].pvppromediodelacompentencia,
-            this.state.productsData[2].pvppromediodelacompentencia,
-            this.state.productsData[3].pvppromediodelacompentencia,
-            this.state.productsData[4].pvppromediodelacompentencia,
-            this.state.productsData[1].pvppromediodelacompentencia,
-            this.state.productsData[2].pvppromediodelacompentencia,
+            product[idproduct].pvppromediodelacompentencia,
           ],
           ...moreData,
         },
@@ -293,93 +169,77 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           borderColor: getColor('average'),
           borderWidth: 3,
           data: [
-            this.state.productsData[0].mipreciopromediodeventa,
-            this.state.productsData[1].mipreciopromediodeventa,
-            this.state.productsData[2].mipreciopromediodeventa,
-            this.state.productsData[3].mipreciopromediodeventa,
-            this.state.productsData[4].mipreciopromediodeventa,
-            this.state.productsData[1].mipreciopromediodeventa,
-            this.state.productsData[2].mipreciopromediodeventa,
+            product[idproduct].mipreciopromediodeventa,
           ],
           ...moreData,
         },
         {
-          label: 'COMPETENCIA ESTRATÉGICA',
+          label: competencias[0].nombre,
           backgroundColor: getColor('third'),
           borderColor: getColor('third'),
           borderWidth: 0,
           data: [
-            this.state.productsData[0].competenciaestrategica,
-            this.state.productsData[1].competenciaestrategica,
-            this.state.productsData[2].competenciaestrategica,
-            this.state.productsData[3].competenciaestrategica,
-            this.state.productsData[4].competenciaestrategica,
-            this.state.productsData[1].competenciaestrategica,
-            this.state.productsData[2].competenciaestrategica,
+            product[idproduct].competenciaestrategica,
           ],
           ...moreData2,
         }, 
         {
-          label: 'PRECIO COMPETENCIA A',
+          label: competencias[1].nombre,
           backgroundColor: getColor('secondary'),
           borderColor: getColor('secondary'),
           borderWidth: 1,
           data: [
-            this.state.productsData[0].competenciaA,
-            this.state.productsData[1].competenciaA,
-            this.state.productsData[2].competenciaA,
-            this.state.productsData[3].competenciaA,
-            this.state.productsData[4].competenciaA,
-            this.state.productsData[3].competenciaA,
-            this.state.productsData[4].competenciaA,
+            product[idproduct].competencia1,
           ],
           ...moreData2,
         },
         {
-          label: 'PRECIO COMPETENCIA B',
+          label: competencias[2].nombre,
           backgroundColor: getColor('secondary'),
           borderColor: getColor('secondary'),
           borderWidth: 1,
           data: [
-            this.state.productsData[0].competenciaB,
-            this.state.productsData[1].competenciaB,
-            this.state.productsData[2].competenciaB,
-            this.state.productsData[3].competenciaB,
-            this.state.productsData[4].competenciaB,
-            this.state.productsData[1].competenciaB,
-            this.state.productsData[2].competenciaB,
+            product[idproduct].competencia2,
           ],
           ...moreData2,
         },
         {
-          label: 'PRECIO COMPETENCIA C',
+          label: competencias[3].nombre,
           backgroundColor: getColor('secondary'),
           borderColor: getColor('secondary'),
           borderWidth: 1,
           data: [
-            this.state.productsData[0].competenciaC,
-            this.state.productsData[1].competenciaC,
-            this.state.productsData[2].competenciaC,
-            this.state.productsData[3].competenciaC,
-            this.state.productsData[4].competenciaC,
-            this.state.productsData[2].competenciaC,
-            this.state.productsData[3].competenciaC,
+            product[idproduct].competencia3,
           ],
           ...moreData2,
         },
         {
-          label: 'PRECIO COMPETENCIA D',
+          label: competencias[4].nombre,
           backgroundColor: getColor('secondary'),
           borderColor: getColor('secondary'),
           borderWidth: 1,
           data: [
-            this.state.productsData[0].competenciaD,
-            this.state.productsData[1].competenciaD,
-            this.state.productsData[2].competenciaD,
-            this.state.productsData[3].competenciaD,
-            this.state.productsData[4].competenciaD,
-            this.state.productsData[1].competenciaD,
-            this.state.productsData[2].competenciaD,
+            product[idproduct].competencia4,
+          ],
+          ...moreData2,
+        },
+        {
+          label: competencias[5].nombre,
+          backgroundColor: getColor('secondary'),
+          borderColor: getColor('secondary'),
+          borderWidth: 1,
+          data: [
+            product[idproduct].competencia5,
+          ],
+          ...moreData2,
+        },
+        {
+          label: competencias[6].nombre,
+          backgroundColor: getColor('secondary'),
+          borderColor: getColor('secondary'),
+          borderWidth: 1,
+          data: [
+            product[idproduct].competencia6,
           ],
           ...moreData2,
         },
@@ -389,13 +249,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           borderColor: getColor('primary'),
           borderWidth: 1,
           data: [
-            this.state.productsData[0].preciomodificado > 0 ? this.state.productsData[0].preciomodificado : this.state.productsData[0].preciorecomenda,
-            this.state.productsData[1].preciomodificado > 0 ? this.state.productsData[1].preciomodificado : this.state.productsData[1].preciorecomenda,
-            this.state.productsData[2].preciomodificado > 0 ? this.state.productsData[2].preciomodificado : this.state.productsData[2].preciorecomenda,
-            this.state.productsData[3].preciomodificado > 0 ? this.state.productsData[3].preciomodificado : this.state.productsData[3].preciorecomenda,
-            this.state.productsData[4].preciomodificado > 0 ? this.state.productsData[4].preciomodificado : this.state.productsData[4].preciorecomenda,
-            this.state.productsData[1].preciomodificado > 0 ? this.state.productsData[1].preciomodificado : this.state.productsData[1].preciorecomenda,
-            this.state.productsData[2].preciomodificado > 0 ? this.state.productsData[2].preciomodificado : this.state.productsData[2].preciorecomenda,
+            product[idproduct].preciomodificado >  0 ? product[idproduct].preciomodificado  : product[idproduct].pvprecomendado
           ],
           ...moreData2,
         },
@@ -406,27 +260,18 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
 
   render() {
-    /*console.log("prodc", this.props.data.metrics.array)*/
-    /*console.log("state", this.props.data.metrics.array)*/
-
     const allProducts = this.props.data.metrics.array.estaciones[0].productos;
-    console.log("allProducts",allProducts)
+    this.state.dataReal.push(allProducts)
+    const dataReal = this.state.dataReal[0];
+    const competencias = this.props.data.metrics.array.competencias;
+    this.state.competencias.push(competencias);
 
-    allProducts.map(prop => {
-      console.log("pro", prop)
-      })
-    const PRODUCTOS =[];
-    this.state.productsData.map(prop => {
-        PRODUCTOS.push(prop.nombre)
-    })
-    let { productsData } = this.state;
     let promedio = 63 //Promedio de competencia estrategica;
     return (
       <Page>
-              {/*<div className="bienvenida-class">
-
-
-              </div>*/}
+              {/* Welcome View */}
+              {/*<Welcome />*/}
+              {/* Modal View */}
               <Modal
                   isOpen={this.state.modal_nested_parent}
                   toggle={this.toggle('nested_parent')}
@@ -449,15 +294,14 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                         </thead>
                         <tbody>
                         {   
-
-                          this.state.productsData.map((prop, key) => {
+                          dataReal.map((prop, key) => {
                             return (
                               <tr>
-                                <td key={ key }  className="text-center text-mini">{prop.nombre}</td>
-                                <td key={ key }  className="text-center text-mini">${ prop.preciomodificado >  0 ? prop.preciomodificado  : prop.preciorecomenda }</td>
-                                <td key={ key }  className="text-center text-mini">${ prop.margenreal }</td>
-                                <td key={ key }  className="text-center text-mini">${ prop.margenteorico }</td>
-                                <td key={ key }  className="text-center text-mini">${ prop.utilidad }</td>
+                                <td className="text-center text-mini">{ prop.nombre }</td>
+                                <td className="text-center text-mini">${ prop.preciomodificado >  0 ? prop.preciomodificado  : prop.pvprecomendado }</td>
+                                <td className="text-center text-mini">${ prop.margenreal }</td>
+                                <td className="text-center text-mini">${ prop.margenteorico }</td>
+                                <td className="text-center text-mini">${ prop.utilidad }</td>
                             </tr>
                             )
                           })}
@@ -525,47 +369,54 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                   <tr>
                     <th className="header-table">PRODUCTO</th>
                     <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
-                    <th className="header-table">COMPETENCIA ESTRATÉGICA</th>
-                    <th className="header-table">COMPETENCIA A</th>
-                    <th className="header-table">COMPETENCIA B</th>
-                    <th className="header-table">COMPETENCIA C</th>
-                    <th className="header-table">COMPETENCIA D</th>
+                    {   
+                    competencias.map((prop, key) => { 
+                      if( prop.estrategica ) {
+                          return(<th className="header-table color-estrategia">{prop.nombre} Competencia Estratégica</th>)
+                      }
+                      else {
+                          return(<th className="header-table">{prop.nombre}</th>)
+                      }
+                    })
+                    }
                     <th className="header-table">PRECIO REAL DE HOY</th>
                     { this.state.simular ? <th className="header-table">SIMULACIÓN</th> : '' }
                     <th className="header-table">PRECIO RECOMENDADO</th>
-                    <th className="header-table">DIFERENCIA PRECIO REAL<br></br>PRECIO SELECCIONADO</th>
+                    <th className="header-table">DIFERENCIA PRECIO REAL | PRECIO SELECCIONADO</th>
                   </tr>
                 </thead>
                 <tbody>
                 {   
-                    productsData.map((prop, key) => {
+                    dataReal.map((prop, key) => {
                       let precioponderado =  (prop.precioventa * 100 ) / promedio; 
-                      let diferenciaprecio =  prop.preciorealdehoy -  prop.preciorecomenda;
-                      let arrayToDefine = [ prop.competenciaestrategica, prop.preciorecomenda, prop.competenciaA, prop.competenciaB, prop.competenciaC, prop.competenciaD, prop.preciorealdehoy, prop.preciorecomenda ];
+                      let diferenciaprecio =  prop.preciorealdehoy -  prop.pvprecomendado;
+                      let arrayToDefine = [ prop.competenciaestrategica, prop.competencia1, prop.competencia2, prop.competencia3, prop.competencia4, prop.competencia5, prop.competencia6, prop.preciorealdehoy, prop.pvprecomendado ];
                       let min = Math.min.apply(Math, arrayToDefine);
                       let max = Math.max.apply(Math, arrayToDefine);
+
+                      let simular = prop.simular;
                       //Review this part
                       this.state.mipreciopromediodeventa = precioponderado;
-    
-            
                     return (
                       <tr>
                           <td  className="text-center">{ prop.nombre }</td>
                           <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
                           <td className={ prop.competenciaestrategica === min ? "text-center txt-ok" : prop.competenciaestrategica === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaestrategica }</td>
-                          <td className={ prop.competenciaA === min ? "text-center txt-ok" : prop.competenciaA === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaA }</td>
-                          <td className={ prop.competenciaB === min ? "text-center txt-ok" : prop.competenciaB === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaB }</td>
-                          <td className={ prop.competenciaC === min ? "text-center txt-ok" : prop.competenciaC === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaC }</td>
-                          <td className={ prop.competenciaD === min ? "text-center txt-ok" : prop.competenciaD === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaD }</td>
+                          <td className={ prop.competencia1 === min ? "text-center txt-ok" : prop.competencia1 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia1 }</td>
+                          <td className={ prop.competencia2 === min ? "text-center txt-ok" : prop.competencia2 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia2 }</td>
+                          <td className={ prop.competencia3 === min ? "text-center txt-ok" : prop.competencia3 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia3 }</td>
+                          <td className={ prop.competencia4 === min ? "text-center txt-ok" : prop.competencia4 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia4 }</td>
+                          <td className={ prop.competencia5 === min ? "text-center txt-ok" : prop.competencia5 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia5 }</td>
+                          <td className={ prop.competencia6 === min ? "text-center txt-ok" : prop.competencia6 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia6 }</td>
                           <td className= { prop.preciorealdehoy === min ? "text-center txt-ok" : prop.preciorealdehoy === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealdehoy }</td>
                           { this.state.simular ? 
                           <td className="text-left">
-                              <p><input type="number" className="input-simulacion" id={ key } value= { prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ key } id={ key } value={ prop.simular } onClick={this.handSimulate} /></p>  
+                              <p><input type="number" className="input-simulacion" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ key } id={ key } value={ prop.simular  } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           <td className={this.state.simular ? 
-                            prop.preciorecomenda === min ? "text-center text-shadow td-size txt-ok" : prop.preciorecomenda === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
-                            prop.preciorecomenda === min ? "text-center text-shadow td-size txt-ok" : prop.preciorecomenda === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
-                          >${ prop.preciorecomenda } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.preciorecomenda }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                            prop.pvprecomendado === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendado === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
+                            prop.pvprecomendado === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendado === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
+                          >${ prop.pvprecomendado } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.pvprecomendado }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                     </tr>
                     )
@@ -579,15 +430,15 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
       <Row className="graph-line">
           <Col md="12" >
-              <select class="select-estacion-grafica">
-                <option value="5">PEMEX DIESEL (DIESEL)</option>
-                <option value="1">{"< 92"}</option>
-                <option value="2">{"> 92"}</option>
-                <option value="3">Gasoleo B</option>
-                <option value="4">Diesel A+ </option>
+              <select id="productsGraph" class="select-estacion-grafica" onChange={this.updateGraph} value={this.state.productgraph}>
+              {
+                dataReal.map((prop, key) => {
+                  return ( <option key={ key } value={ prop.nombre }>{prop.nombre}</option> )
+                })
+              }
               </select>
               <Card>
-              <CardHeader>GRÁFICA DE PRECIO</CardHeader>
+              <CardHeader>GRÁFICA DE PRECIO {''}</CardHeader>
                   <CardBody>
                     {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
                     {/*<Bar data={ genLineData() } height={80} />*/}
@@ -605,12 +456,12 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
               <CardBody>
                 { this.state.simular ?
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
-                  usersData={this.state.productsData}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
+                  usersData={dataReal}
                 /> :
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA RECOMENDADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','VOLUMEN OBJETIVO MENSUAL']}
-                  usersData={this.state.productsData}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA RECOMENDADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
+                  usersData={dataReal}
                 />
                 }
               </CardBody>

@@ -347,11 +347,11 @@ label {
   position: absolute;
   background-color: #ffffff;
   border-radius: 0.25rem;
-  border:1px solid #9aaa04;
+  border:1px solid #168e7a;
   margin-top: -4%;
-  color:#9aaa04;
+  color:#168e7a;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 12px;
   font-weight: 600;
   line-height: 1.5;
   z-index: 9;
@@ -530,4 +530,176 @@ slideLeft
 }
 .btn-outline-secondary{
   display: none;
+}
+.color-estrategia{
+  color:#168e7a;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+#splash {
+  background: linear-gradient(to bottom, #9aaa04 0%, #999999 50%, rgba(255,255,255,0) 100%);
+  background-repeat: repeat-y;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  animation: splash 3s ease-in;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%,0);
+}
+
+#loader:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  margin-left: -8px;
+  bottom: -170px;
+  width: 3px;
+  background: #fff;
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  height: 200px;
+}
+
+#loader:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  margin-left: 8px;
+  bottom: -190px;
+  width: 3px;
+  background: #000;
+  background: linear-gradient(to bottom, rgba(0,0,0,.2) 0%, rgba(0,0,0,.2) 50%, rgba(0,0,0,0) 100%);
+  height: 200px;
+}
+
+#splash .anim {
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  width: 100px;
+  transform: translate(-50%,100%);
+  animation: loader 10s linear;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes loader {
+  0% {
+    transform: translate(-50%,110%);
+  }
+  /*30% {
+    transform: translate(-50%,50%);
+  }*/
+  100% {
+    transform: translate(-50%,0%);
+  }
+}
+
+@keyframes splash {
+  0% {
+    transform: translate(0%,0%);
+  }
+  /*50% {
+    transform: translate(0%,0%);
+  }*/
+  100% {
+    transform: translate(0%,-100%);
+  }
+}
+
+img.car {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#car1, #car2, #car3 {
+  width: 55px;
+  z-index: 5;
+}
+
+#car1 {
+  left: -65px;
+  top: 165px;
+  animation-name: carleftpumptwo;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+#car3 {
+    left: -65px;
+  top: 165px;
+  animation-name: carleftpumpone;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+}
+
+#car2 {
+  left: -65px;
+  top: 165px;
+  animation-name: carleftpumpthree;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-delay: 1.5s;
+  z-index:2;
+}
+
+@keyframes carleftpumpone {
+    0%   {left: -65px; top: 155px;}
+    40% {left: 81px; top: 245px;}
+    60% {left: 81px; top: 245px;animation-timing-function: ease-in;}
+    90% {left: 320px; top: 383px;}
+    100% {left: 320px; top: 383px;}
+}
+
+@keyframes carleftpumptwo {
+    0%   {left: -65px; top: 155px;}
+    45% {left: 138px; top: 270px;}
+    55% {left: 138px; top: 270px;animation-timing-function: ease-in;}
+    78% {left: 320px; top: 383px;}
+    100% {left: 320px; top: 383px;}
+}
+
+@keyframes carleftpumpthree {
+0%   {left: 305px; top: 317px;}
+    35% {left: 163px; top: 235px;}
+    55% {left: 163px; top: 235px;animation-timing-function: ease-in;}
+    78% {left: -68px; top: 96px;}
+    100% {left: -68px; top: 96px;}
+}
+
+#gas {
+  width: 100px;
+  top: 195px;
+  left: 101px;
+  z-index:3;
+}
+
+#a {
+  border: 1px solid #ccc;
+  width: 300px;
+  height: 540px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow:hidden;
+}
+
+svg.svgwelcome {
+  position: absolute;
+  bottom: 100px;
+  left: 70px;
 }

@@ -6,17 +6,19 @@ import { Table, Progress } from 'reactstrap';
 import { getThemeColors } from 'utils/colors';
 
 import Avatar from 'components/Avatar';
+import productimg from '../assets/img/lata-de-gasolina.png';
 
 import withBadge from 'hocs/withBadge';
 import {
   Badge,
 } from 'reactstrap';
 
-const colors = getThemeColors();
+
 const AvatarWithBadge = withBadge({
   position: 'bottom-right',
   color: 'success',
 })(Avatar);
+
 const UserProgressTable = ({ headers, usersData, ...restProps }) => {
   return (
     <Table responsive hover {...restProps}>
@@ -26,26 +28,22 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
         </tr>
       </thead>
       <tbody>
-        { usersData.map(({ avatar, nombre, precioventa, utilidad, preciodecompra, fechadeultimacompra, precioultimacompra, preciocompramanana, margenteorico ,margenreal,volumenpromediodelmes, volumenobjetivomensual }, index) => {
-          let diferencia = preciodecompra - preciocompramanana;
-
-          let arrayToDefine = [ precioultimacompra, preciodecompra, preciocompramanana, precioventa, margenteorico, margenreal];
-          let min = Math.min.apply(Math, arrayToDefine);
-          let max = Math.max.apply(Math, arrayToDefine);
-
+        { 
+          usersData.map(({ avatar, nombre, precioventa, utilidad, preciodecomprahoy, fechadeultimacompra, precioultimacompra, preciocompramanana, margenteorico ,margenreal,volumenpromediodelmes, volumenobjetivomensual, margenobjetivo }, index) => {
+          let diferencia = preciodecomprahoy - preciocompramanana;
         return (
           <tr key={index}>
             <td className="align-middle text-center">
-              <AvatarWithBadge src={avatar} />
+              <AvatarWithBadge src={productimg} />
             </td>
             <td className="align-middle text-left ">{nombre}</td>
-            <td className={ precioultimacompra === min ? "align-middle text-center txt-ok" : precioultimacompra === max ? "align-middle text-center txt-high" : "align-middle text-center" }>$ {precioultimacompra.toFixed(2)} <Badge color="primary" className="mr-1"><span className="update-date">{fechadeultimacompra}</span></Badge></td>
-            <td className={ preciodecompra === min ? "align-middle text-center txt-ok" : preciodecompra === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {preciodecompra.toFixed(2)}</td>
-            <td className={ preciocompramanana === min ? "align-middle text-center txt-ok" : preciocompramanana === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {preciocompramanana}</td>
+            <td className={"align-middle text-center"}>$ {precioultimacompra.toFixed(2)} <Badge color="primary" className="mr-1"><span className="update-date">{fechadeultimacompra}</span></Badge></td>
+            <td className={"align-middle text-center"}>$ {preciodecomprahoy.toFixed(2)}</td>
+            <td className={"align-middle text-center"}>$ {preciocompramanana}</td>
             <td className="align-middle text-center">$ {diferencia.toFixed(2)}</td>
-            <td className={ precioventa === min ? "align-middle text-center txt-ok" : precioventa === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {precioventa}</td>
-            <td className={ margenteorico === min ? "align-middle text-center txt-ok" : margenteorico === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenteorico}</td>
-            <td className={ margenreal === min ? "align-middle text-center txt-ok" : margenreal === max ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenreal}</td>
+            <td className="align-middle text-center">$ {precioventa}</td>
+            <td className={ margenteorico < margenobjetivo ? "align-middle text-center txt-ok" : margenteorico > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenteorico}</td>
+            <td className={ margenreal < margenobjetivo ? "align-middle text-center txt-ok" : margenreal > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenreal}</td>
             <td className="align-middle text-center">
               <Progress
                   color="success"
@@ -67,7 +65,7 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
           </tr>
         )})}
       </tbody>
-    </Table>
+        </Table>
   );
 };
 

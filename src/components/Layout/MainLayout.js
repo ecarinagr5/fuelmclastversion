@@ -1,12 +1,12 @@
 import { Content, Footer, Header, Sidebar } from 'components/Layout';
 import React from 'react';
-import {
-  MdImportantDevices,
-  // MdCardGiftcard,
-  MdLoyalty,
-} from 'react-icons/md';
 import NotificationSystem from 'react-notification-system';
 import { NOTIFICATION_SYSTEM_STYLE } from 'utils/constants';
+
+//Connect Redux
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { getDataAction } from '../../Redux/dataToShow'
 
 class MainLayout extends React.Component {
   static isSidebarOpen() {
@@ -108,5 +108,16 @@ class MainLayout extends React.Component {
     );
   }
 }
-
-export default MainLayout;
+//Received Information REDUX
+function mapStateToProps(state){
+  return {
+      data: state,
+  }
+}
+//Send Information REDUX
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+      getDataAction
+  }, dispatch )
+}
+export default connect(mapStateToProps,mapDispatchToProps)(MainLayout);

@@ -420,7 +420,6 @@ class MasivoAdmin extends React.Component {
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
                                   <th className="text-center header-table"></th>
-                                  <th className="text-center header-table"></th>
                                 </tr>
                             </thead>
                           <tbody>
@@ -450,9 +449,6 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center">
                                     <i class="bi bi-check-circle"></i>
                                   </td>
-                                  <td className="text-center">
-                                    <i class="bi bi-x-circle"></i>
-                                  </td>
                               </tr>
                               <tr>
                                   <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
@@ -479,9 +475,6 @@ class MasivoAdmin extends React.Component {
                                   </td>
                                   <td className="text-center">
                                     <i class="bi bi-check-circle"></i>
-                                  </td>
-                                  <td className="text-center">
-                                    <i class="bi bi-x-circle"></i>
                                   </td>
                               </tr> 
                               <tr>
@@ -510,9 +503,6 @@ class MasivoAdmin extends React.Component {
                                   <td className="text-center">
                                     <i class="bi bi-check-circle"></i>
                                   </td>
-                                  <td className="text-center">
-                                    <i class="bi bi-x-circle"></i>
-                                  </td>
                               </tr>  
                               <tr>
                                   <td className="text-center color-blue"> <input type="radio" id="" name="" value="dewey" /></td>
@@ -539,9 +529,6 @@ class MasivoAdmin extends React.Component {
                                   </td>
                                   <td className="text-center">
                                     <i class="bi bi-check-circle"></i>
-                                  </td>
-                                  <td className="text-center">
-                                    <i class="bi bi-x-circle"></i>
                                   </td>
                               </tr>                  
                           </tbody>
@@ -700,6 +687,14 @@ class MasivoAdmin extends React.Component {
                             <td className="menos-espacio">$12.3</td>
                           </tr>
                           <tr>
+                            <th scope="row">Utilidad</th>
+                            <td className="menos-espacio">$10,000</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
+                          </tr>
+                          <tr>
                             <th scope="row">Volumen</th>
                             <td className="menos-espacio">290 lts</td>
                             <td className="menos-espacio">320 lts</td>
@@ -765,6 +760,14 @@ class MasivoAdmin extends React.Component {
         </Row>
         
         <Row>
+            <Col xl={6} lg={12} md={12}>
+            <Card>
+              <CardHeader>UTILIDAD</CardHeader>
+              <CardBody>
+                <Doughnut data={genPieData()} />
+              </CardBody>
+            </Card>
+          </Col>
           <Col xl={6} lg={12} md={12}>
             <Card>
               <CardHeader>MARGEN</CardHeader>
