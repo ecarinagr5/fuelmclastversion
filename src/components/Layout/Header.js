@@ -52,6 +52,7 @@ class Header extends React.Component {
         currentCount: 10,
         direccion:0,
         date:'',
+        estaciones:[],
         estacion:[
           {
             nombre:'Gasolinera PEMEX | 3529',
@@ -75,6 +76,8 @@ class Header extends React.Component {
 }
 
 componentDidMount(){
+  const estaciones = this.props.data.metrics.array.estaciones[0];
+  this.state.estaciones.push(estaciones)
   this.intervalId = setInterval(this.dateToShow.bind(this), 1000);
 }
 
@@ -115,7 +118,7 @@ change(event) {
   };
 
   render() {
-    const { isNotificationConfirmed, date } = this.state;
+    const { isNotificationConfirmed, date, estaciones } = this.state;
     let { pathname } = this.props.location;
 
     return (
@@ -129,11 +132,15 @@ change(event) {
         <Nav navbar>
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
             <li className="margin-gasolineras">
-                <select class="select-estacion-title" onChange={ this.change } value={ this.state.station } >
-                  <option value={ 0 } selected>{ this.state.estacion[0].nombre }</option>
-                  <option value={ 1 }>{ this.state.estacion[1].nombre } </option>
-                  <option value={ 2 }>{ this.state.estacion[2].nombre }</option>
-                  <option value={ 3 }>{ this.state.estacion[3].nombre }</option>
+                <select class="select-estacion-title" onChange={ this.change } value={ this.state.station } >            
+                  {
+                    estaciones.map((prop, key)=>{
+                      let concatenanameycre = prop.PRE_EST_PERMISO_CRE + ' ' +  prop.empresa ;
+                      return (
+                          <option value={ prop.cre } selected>{ concatenanameycre }</option>
+                      )
+                    })
+                  }
                 </select>
                 <p className="ranking"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></p>
             </li>
