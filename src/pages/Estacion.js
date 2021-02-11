@@ -263,9 +263,15 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
     const allProducts = this.props.data.metrics.array.estaciones[0].productos;
     this.state.dataReal.push(allProducts)
     const dataReal = this.state.dataReal[0];
-    const competencias = this.props.data.metrics.array.competencias;
-    this.state.competencias.push(competencias);
+    const competenciastotal = this.props.data.metrics.array.estaciones;
 
+    let date = new Date();
+    date = moment(date).format("MMM D YYYY hh:mm:ss") 
+
+    competenciastotal.map(( prop ) =>{
+        this.state.competencias.push(prop.competencias);
+    })
+    let competencias =  this.state.competencias[0]
     let promedio = 63 //Promedio de competencia estrategica;
     return (
       <Page>
@@ -277,7 +283,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                   toggle={this.toggle('nested_parent')}
                   className={this.props.className}>
                   <ModalHeader toggle={this.toggle('nested_parent')}>
-                    ACEPTAR PRECIOS
+                    APLICAR PRECIOS
                   </ModalHeader>
                   <ModalBody>
                     <p className="header-txt-v2">Estas seguro de Aplicar los siguientes cambios:</p>
@@ -306,6 +312,15 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                             )
                           })}
                         </tbody>
+                      </Table>
+                      <br></br>
+                      <Table>
+                        <tr>
+                          <td className="id_negocio_class">Id Negocio: <span className="id_negocio">129AB</span></td>
+                        </tr>
+                        <tr>
+                          <td className="id_negocio_class">Hora de Aplicación: <input type="text"/></td>
+                        </tr>
                       </Table>
                     <br />
                     <Modal
@@ -369,16 +384,16 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                   <tr>
                     <th className="header-table">PRODUCTO</th>
                     <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
-                    {   
+                    {  
                     competencias.map((prop, key) => { 
                       if( prop.estrategica ) {
                           return(<th className="header-table color-estrategia">{prop.nombre} Competencia Estratégica</th>)
                       }
                       else {
-                          return(<th className="header-table">{prop.nombre}</th>)
+                          return( <th className="header-table">{prop.nombre}</th> )
                       }
                     })
-                    }
+                  }
                     <th className="header-table">PRECIO REAL DE HOY</th>
                     { this.state.simular ? <th className="header-table">SIMULACIÓN</th> : '' }
                     <th className="header-table">PRECIO RECOMENDADO</th>
@@ -424,6 +439,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 </tbody>
               </Table>
             </CardBody>
+            <p className="update-text">Last Update { date }</p>
           </Card>
         </Col>
       </Row>
@@ -442,9 +458,9 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                   <CardBody>
                     {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
                     {/*<Bar data={ genLineData() } height={80} />*/}
-                    <Bar data={this.genLineDataMONTHS({ type: 'line', fill: false })} height={80} />
+            <Bar data={this.genLineDataMONTHS({ type: 'line', fill: false })} height={80} />
                   </CardBody>
-                <p className="update-text">Last Update 25/01/2021 09:35 am</p>
+                  <p className="update-text">Last Update { date }</p>
               </Card>
           </Col>
         </Row>
@@ -465,7 +481,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 />
                 }
               </CardBody>
-              <p className="update-text">Last Update 25/01/2021 09:35 am</p>
+              <p className="update-text">Last Update { date }</p>
             </Card>
           </Col>
         </Row>

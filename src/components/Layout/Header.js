@@ -4,6 +4,12 @@ import logopemex from '../../assets/img/logo/logo_pemex_v2.png'
 import logoeveris from '../../assets/img/logoeveris.png'
 import moment from "moment";
 
+//Connect Redux
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { setCurrentVisualization } from '../../Redux/dataToUpdate'
+
+
 import React from 'react';
 import {
   MdClearAll,
@@ -91,6 +97,7 @@ dateToShow(){
 }
 
 change(event) {
+  console.log("change", event.target)
   this.setState({direccion: event.target.value, state: this.state.estacion[event.target.value].nombre })
 }
 
@@ -120,7 +127,6 @@ change(event) {
   render() {
     const { isNotificationConfirmed, date, estaciones } = this.state;
     let { pathname } = this.props.location;
-
     return (
       <Navbar light expand className={bem.b('bg-white')}>
         <Nav navbar className="mr-2">
@@ -137,7 +143,7 @@ change(event) {
                     estaciones.map((prop, key)=>{
                       let concatenanameycre = prop.PRE_EST_PERMISO_CRE + ' ' +  prop.empresa ;
                       return (
-                          <option value={ prop.cre } selected>{ concatenanameycre }</option>
+                          <option value={ key } selected>{ concatenanameycre }</option>
                       )
                     })
                   }
@@ -148,7 +154,10 @@ change(event) {
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
             <li>
               <div className="direccion-estacion margin-gasolineras">
-                { this.state.estacion[this.state.direccion].direccion }
+                { /*estacion[this.state.direccion].direccion */}
+                {
+
+                }
               </div>
             </li>
         }
@@ -178,7 +187,7 @@ change(event) {
           </NavItem>
           <NavItem>
             <p className="time-date">{ moment(date).format("MMM D YYYY hh:mm:ss") }</p>
-            <p className="tipo-vision"> Cambio de día 7:00 pm</p>
+            <p className="tipo-vision"> Hora de aplicación 7:00 pm</p>
             <select className="select-estacion-hoy" onChange={this.change} value={ this.state.station } >
               <option value={ 0 } selected>Hoy para Hoy</option>
               <option value={ 0 } selected>Hoy para Mañana</option>
@@ -233,5 +242,16 @@ change(event) {
   }
 }
 
+//Received Information REDUX
+function mapStateToProps(state){
+  return {
+      data: state,
+  }
+}
+//Send Information REDUX
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+  }, dispatch )
+}
 
-export default Header;
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

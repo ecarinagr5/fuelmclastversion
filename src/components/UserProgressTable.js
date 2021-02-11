@@ -59,7 +59,7 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
                   value={volumenobjetivomensual}
                   className="mb-3"
                 >
-                {volumenobjetivomensual} lts
+                {volumenobjetivomensual} %
               </Progress>  
               </td>
           </tr>

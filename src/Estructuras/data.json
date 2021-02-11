@@ -3,7 +3,7 @@
         "id":12,
         "nombrecompleto":"Sergio Perez Rodriguez",
         "tipodeperfil":"colaborador",
-        "horacambiodedia":"7:00 pm",
+        "horadeaplicacion":"7:00 pm",
         "promedios":[
             {
                 "numerodeestaciones":80,
@@ -93,7 +93,7 @@
                         "margenreal":1.5,
                         "margenobjetivo":1.8,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
+                        "volumenobjetivomensual":30,
                         "utilidad":1249
                     },
                     {
@@ -127,7 +127,7 @@
                         "margenreal":1.4,
                         "margenobjetivo":1.8,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
+                        "volumenobjetivomensual":28,
                         "utilidad":1249
                     },
                     {
@@ -161,7 +161,7 @@
                         "margenreal":1.5,
                         "margenobjetivo":1.3,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
+                        "volumenobjetivomensual":50,
                         "utilidad":1249
                     },
                     {
@@ -195,7 +195,7 @@
                         "margenreal":1.5,
                         "margenobjetivo":1.8,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
+                        "volumenobjetivomensual":35,
                         "utilidad":1249
                     },
                     {
@@ -229,49 +229,50 @@
                         "margenreal":1.5,
                         "margenobjetivo":1.3,
                         "volumenpromediodelmes":150,
-                        "volumenobjetivomensual":150,
+                        "volumenobjetivomensual":15,
                         "utilidad":1249
                     }      
+                ],
+                "competencias":[
+                    {
+                        "nombre":"Servicio Lomas Madin",
+                        "estacionid":1,
+                        "estrategica":true
+                    },
+                    {
+                        "nombre":"Servicio Tlalnepantla",
+                        "estacionid":2,
+                        "estrategica":false
+                    },
+                    {
+                        "nombre":"Gas station Italica",
+                        "estacionid":3,
+                        "estrategica":false
+                    },
+                    {
+                        "nombre":"Servicio Esmeralda",
+                        "estacionid":4,
+                        "estrategica":false
+                    },
+                    {
+                        "nombre":"Esmeralda Admongas",
+                        "estacionid":5,
+                        "estrategica":false
+                    },
+                    {
+                        "nombre":"Atigas SA de CV",
+                        "estacionid":6,
+                        "estrategica":false
+                    },
+                    {
+                        "nombre":"Gasolineria Chiluca",
+                        "estacionid":7,
+                        "estrategica":false
+                    }
+        
                 ]
             }
-        ],
-        "competencias":[
-            {
-                "nombre":"Servicio Lomas Madin",
-                "estacionid":1,
-                "estrategica":true
-            },
-            {
-                "nombre":"Servicio Tlalnepantla",
-                "estacionid":2,
-                "estrategica":false
-            },
-            {
-                "nombre":"Gas station Italica",
-                "estacionid":3,
-                "estrategica":false
-            },
-            {
-                "nombre":"Servicio Esmeralda",
-                "estacionid":4,
-                "estrategica":false
-            },
-            {
-                "nombre":"Esmeralda Admongas",
-                "estacionid":5,
-                "estrategica":false
-            },
-            {
-                "nombre":"Atigas SA de CV",
-                "estacionid":6,
-                "estrategica":false
-            },
-            {
-                "nombre":"Gasolineria Chiluca",
-                "estacionid":7,
-                "estrategica":false
-            }
-
+            
         ]
     }
 }]
