@@ -7,6 +7,8 @@ yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
 
+#add 'node_modules' to .gitignore file
+node_modules
 # Firebase cache
 .firebase/
 
