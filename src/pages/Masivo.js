@@ -445,7 +445,7 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light txt-ok"> $1.2</td>
                                   <td className="text-center bg-gray-light"> $1.5 </td>
                                   <td className="text-center bg-gray-light"> 150 lts</td>
-                                  <td className="text-center bg-gray-light"> 250 lts</td>
+                                  <td className="text-center bg-gray-light"> 50 %</td>
                                   <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="0" onClick={this.handleClick}>
@@ -468,7 +468,7 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light txt-ok">$1.3</td>
                                   <td className="text-center bg-gray-light">  $1.4 </td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
-                                  <td className="text-center bg-gray-light"> 150 lts</td>
+                                  <td className="text-center bg-gray-light"> 50 %</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="1" onClick={this.handleClick}>
@@ -491,7 +491,7 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light txt-high">$1.1</td>
                                   <td className="text-center">$1.3</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
-                                  <td className="text-center bg-gray-light"> 150 lts</td>
+                                  <td className="text-center bg-gray-light"> 50 %</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="2" onClick={this.handleClick}>
@@ -514,7 +514,7 @@ class Masivo extends React.Component {
                                   <td className="text-center bg-gray-light txt-high">$1.2</td>
                                   <td className="text-center">$1.1</td>
                                   <td className="text-center bg-gray-light"> 250 lts</td>
-                                  <td className="text-center bg-gray-light"> 150 lts</td>
+                                  <td className="text-center bg-gray-light"> 50 %</td>
                                   <td className="text-center color-red"> <a href="/#ServicoNeza" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                                   <td className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="3" onClick={this.handleClick}>
