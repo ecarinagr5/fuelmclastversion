@@ -1,6 +1,6 @@
 import { STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
 import GAListener from 'components/GAListener';
-import { EmptyLayout, LayoutRoute, MainLayout } from 'components/Layout';
+import {  MainLayout } from 'components/Layout';
 import PageSpinner from 'components/PageSpinner';
 import AuthPage from 'pages/AuthPage';
 import React from 'react';
@@ -8,12 +8,28 @@ import componentQueries from 'react-component-queries';
 import {  BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
 
+//Firebase
+import {firebase} from './firebase'
+
 const Estacion = React.lazy(() => import('pages/Estacion'));
 const Welcome = React.lazy(() => import('pages/Welcome'));
 const Masivo = React.lazy(() => import('pages/Masivo'));
 const MasivoAdmin = React.lazy(() => import('pages/MasivoAdmin'));
 
+//Firebase
+const obtenerDatos = async () => {
 
+  try {
+      const db = firebase.firestore()
+      const datadb = await db.collection('fuelmc-590d7').get()
+      console.log("datadb", datadb)
+  } catch(error) {
+    console.log(error)
+  }
+
+}
+
+obtenerDatos()
 
 class App extends React.Component {
   render() {

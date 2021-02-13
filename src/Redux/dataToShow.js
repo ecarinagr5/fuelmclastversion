@@ -1,5 +1,5 @@
 import axios from 'axios'
-const dataMerge = require('../Estructuras/data.json');
+const dataMerge = require('../DataDummy/data.json');
 
 
 //CONTANTS

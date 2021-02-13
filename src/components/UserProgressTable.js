@@ -41,7 +41,6 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
             <td className={"align-middle text-center"}>$ {preciodecomprahoy.toFixed(2)}</td>
             <td className={"align-middle text-center"}>$ {preciocompramanana}</td>
             <td className="align-middle text-center">$ {diferencia.toFixed(2)}</td>
-            <td className="align-middle text-center">$ {precioventa}</td>
             <td className={ margenteorico < margenobjetivo ? "align-middle text-center txt-ok" : margenteorico > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenteorico}</td>
             <td className={ margenreal < margenobjetivo ? "align-middle text-center txt-ok" : margenreal > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenreal}</td>
             <td className="align-middle text-center">

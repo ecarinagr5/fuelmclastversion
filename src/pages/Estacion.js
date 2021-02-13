@@ -144,7 +144,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
       labels: MONTHS,
       datasets: [
         {
-          label: 'MI PRECIO DE COMPRA',
+          label: 'Precio de Compra',
           backgroundColor: getColor('danger'),
           borderColor: getColor('danger'),
           borderWidth: 2,
@@ -154,22 +154,12 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           ...moreData,
         },
         {
-          label: 'PRECIO PROMEDIO DE VENTA DE LA COMPETENCIA',
+          label: 'Precio Promedio de venta de la competencia',
           backgroundColor: getColor('info'),
           borderColor: getColor('info'),
           borderWidth: 3,
           data: [
             product[idproduct].pvppromediodelacompentencia,
-          ],
-          ...moreData,
-        },
-        {
-          label: 'MI PRECIO DE VENTA PROMEDIO',
-          backgroundColor: getColor('average'),
-          borderColor: getColor('average'),
-          borderWidth: 3,
-          data: [
-            product[idproduct].mipreciopromediodeventa,
           ],
           ...moreData,
         },
@@ -224,27 +214,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           ...moreData2,
         },
         {
-          label: competencias[5].nombre,
-          backgroundColor: getColor('secondary'),
-          borderColor: getColor('secondary'),
-          borderWidth: 1,
-          data: [
-            product[idproduct].competencia5,
-          ],
-          ...moreData2,
-        },
-        {
-          label: competencias[6].nombre,
-          backgroundColor: getColor('secondary'),
-          borderColor: getColor('secondary'),
-          borderWidth: 1,
-          data: [
-            product[idproduct].competencia6,
-          ],
-          ...moreData2,
-        },
-        {
-          label: 'MI PRECIO DE VENTA SELECCIONADO',
+          label: 'Precio de venta promedio del día',
           backgroundColor: getColor('primary'),
           borderColor: getColor('primary'),
           borderWidth: 1,
@@ -303,11 +273,11 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           dataReal.map((prop, key) => {
                             return (
                               <tr>
-                                <td className="text-center text-mini">{ prop.nombre }</td>
-                                <td className="text-center text-mini">${ prop.preciomodificado >  0 ? prop.preciomodificado  : prop.pvprecomendado }</td>
-                                <td className="text-center text-mini">${ prop.margenreal }</td>
-                                <td className="text-center text-mini">${ prop.margenteorico }</td>
-                                <td className="text-center text-mini">${ prop.utilidad }</td>
+                                <td key={key} className="text-center text-mini">{ prop.nombre }</td>
+                                <td key={key} className="text-center text-mini">${ prop.preciomodificado >  0 ? prop.preciomodificado  : prop.pvprecomendado }</td>
+                                <td key={key} className="text-center text-mini">${ prop.margenreal }</td>
+                                <td key={key} className="text-center text-mini">${ prop.margenteorico }</td>
+                                <td key={key} className="text-center text-mini">${ prop.utilidad }</td>
                             </tr>
                             )
                           })}
@@ -362,7 +332,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 {/*<Button color="primary" onClick={this.handleClick} className="btn-main-fuel-right">APLICAR</Button>*/}
                 <Button color="primary" onClick={this.toggle('nested_parent')} className="btn-main-fuel-right">
                   ACEPTAR &nbsp;
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-calendar2-event" viewBox="0 0 16 16">
                     <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
                     <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
                     <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
@@ -370,7 +340,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 </Button>
 
                 <Button color="danger" onClick={this.resetSimulador} className="btn-main-fuel-right">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-all-fill" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-reply-all-fill" viewBox="0 0 16 16">
                   <path d="M8.021 11.9L3.453 8.62a.719.719 0 0 1 0-1.238L8.021 4.1a.716.716 0 0 1 1.079.619V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
                   <path d="M5.232 4.293a.5.5 0 0 1-.106.7L1.114 7.945a.5.5 0 0 1-.042.028.147.147 0 0 0 0 .252.503.503 0 0 1 .042.028l4.012 2.954a.5.5 0 1 1-.593.805L.539 9.073a1.147 1.147 0 0 1 0-1.946l3.994-2.94a.5.5 0 0 1 .699.106z"/>
                 </svg>
@@ -395,8 +365,12 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                     })
                   }
                     <th className="header-table">PRECIO REAL DE HOY</th>
-                    { this.state.simular ? <th className="header-table">SIMULACIÓN</th> : '' }
-                    <th className="header-table">PRECIO RECOMENDADO</th>
+                    { this.state.simular ? <th className="header-table">SIMULACIÓN FRANJA 1</th> : '' }
+                    <th className="header-table">PRECIO RECOMENDADO FRANJA 1</th>
+                    { this.state.simular ? <th className="header-table">SIMULACIÓN FRANJA 2</th> : '' }
+                    <th className="header-table">PRECIO RECOMENDADO FRANJA 2</th>
+                    { this.state.simular ? <th className="header-table">SIMULACIÓN FRANJA 3</th> : '' }
+                    <th className="header-table">PRECIO RECOMENDADO FRANJA 3</th>
                     <th className="header-table">DIFERENCIA PRECIO REAL | PRECIO SELECCIONADO</th>
                   </tr>
                 </thead>
@@ -404,7 +378,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 {   
                     dataReal.map((prop, key) => {
                       let precioponderado =  (prop.precioventa * 100 ) / promedio; 
-                      let diferenciaprecio =  prop.preciorealdehoy -  prop.pvprecomendado;
+                      let diferenciaprecio =  prop.preciorealdehoy -  prop.pvprecomendadofranja1;
                       let arrayToDefine = [ prop.competenciaestrategica, prop.competencia1, prop.competencia2, prop.competencia3, prop.competencia4, prop.competencia5, prop.competencia6, prop.preciorealdehoy, prop.pvprecomendado ];
                       let min = Math.min.apply(Math, arrayToDefine);
                       let max = Math.max.apply(Math, arrayToDefine);
@@ -421,17 +395,38 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className={ prop.competencia2 === min ? "text-center txt-ok" : prop.competencia2 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia2 }</td>
                           <td className={ prop.competencia3 === min ? "text-center txt-ok" : prop.competencia3 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia3 }</td>
                           <td className={ prop.competencia4 === min ? "text-center txt-ok" : prop.competencia4 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia4 }</td>
-                          <td className={ prop.competencia5 === min ? "text-center txt-ok" : prop.competencia5 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia5 }</td>
-                          <td className={ prop.competencia6 === min ? "text-center txt-ok" : prop.competencia6 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia6 }</td>
                           <td className= { prop.preciorealdehoy === min ? "text-center txt-ok" : prop.preciorealdehoy === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealdehoy }</td>
                           { this.state.simular ? 
                           <td className="text-left">
                               <p><input type="number" className="input-simulacion" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ key } id={ key } value={ prop.simular  } onClick={this.handSimulate} /></p>  
                           </td>:'' }
+                          {/* Precio Franja 1 */}
                           <td className={this.state.simular ? 
-                            prop.pvprecomendado === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendado === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
-                            prop.pvprecomendado === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendado === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
-                          >${ prop.pvprecomendado } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.pvprecomendado }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                            prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
+                            prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
+                          >${ prop.pvprecomendadofranja1 } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.pvprecomendadofranja1 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          
+                          {/* Precio Franja 2 */}
+                          { this.state.simular ? 
+                          <td className="text-left">
+                              <p><input type="number" className="input-simulacion" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ key } id={ key } value={ prop.simular  } onClick={this.handSimulate} /></p>  
+                          </td>:'' }
+                          <td className={this.state.simular ? 
+                            prop.pvprecomendadofranja2 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
+                            prop.pvprecomendadofranja2 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
+                          >${ prop.pvprecomendadofranja1 } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.pvprecomendadofranja1 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          
+
+                          {/* Precio Franja 3 */}
+                          { this.state.simular ? 
+                          <td className="text-left">
+                              <p><input type="number" className="input-simulacion" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ key } id={ key } value={ prop.simular  } onClick={this.handSimulate} /></p>  
+                          </td>:'' }
+                          <td className={this.state.simular ? 
+                            prop.pvprecomendadofranja3 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
+                            prop.pvprecomendadofranja3 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
+                          >${ prop.pvprecomendadofranja3 } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.pvprecomendadofranja3 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                     </tr>
                     )
@@ -446,7 +441,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
       <Row className="graph-line">
           <Col md="12" >
-              <select id="productsGraph" class="select-estacion-grafica" onChange={this.updateGraph} value={this.state.productgraph}>
+              <select id="productsGraph" className="select-estacion-grafica" onChange={this.updateGraph} value={this.state.productgraph}>
               {
                 dataReal.map((prop, key) => {
                   return ( <option key={ key } value={ prop.nombre }>{prop.nombre}</option> )
@@ -472,11 +467,11 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
               <CardBody>
                 { this.state.simular ?
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA3','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
                   usersData={dataReal}
                 /> :
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA RECOMENDADO','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
                   usersData={dataReal}
                 />
                 }

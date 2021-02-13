@@ -138,17 +138,17 @@ change(event) {
         <Nav navbar>
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
             <li className="margin-gasolineras">
-                <select class="select-estacion-title" onChange={ this.change } value={ this.state.station } >            
+                <select className="select-estacion-title" onChange={ this.change } value={ this.state.station } >            
                   {
                     estaciones.map((prop, key)=>{
                       let concatenanameycre = prop.PRE_EST_PERMISO_CRE + ' ' +  prop.empresa ;
                       return (
-                          <option value={ key } selected>{ concatenanameycre }</option>
+                          <option key={key} value={ key } defaultValue>{ concatenanameycre }</option>
                       )
                     })
                   }
                 </select>
-                <p className="ranking"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></p>
+                <p className="ranking"><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-half"></i></p>
             </li>
         }
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
