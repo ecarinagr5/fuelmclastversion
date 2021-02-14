@@ -47,6 +47,7 @@ class Estacion extends React.Component {
       competencias:[],
       productgraph:'',
       idproduct:0,
+      update:0,
     }
     this.handleClick = this.handleClick.bind(this);
     this.handSimulate = this.handSimulate.bind(this);
@@ -94,15 +95,22 @@ toggle = modalType => () => {
 
 resetSimulador(){
   this.setState({simular:false})
-  this.state.productsData.map(data => {
-    data.modificado= null
-  })
+  let modificado = this.state.dataReal[0];
+      modificado.map((pop, i) => {
+        pop.simularfranja1 = null;
+        pop.simularfranja2 = null;
+        pop.simularfranja3 = null;
+        pop.preciomodificadofranja1 = 0;
+        pop.preciomodificadofranja2 = 0;
+        pop.preciomodificadofranja3 = 0;
+      })
+
+  console.log("modificado", modificado)
 }
 
   handSimulate(event) {
-    console.log("handSimulate", event.target.name, event.target)
+    let count = this.state.update + 1;
     let modificado = this.state.dataReal[0];
-    console.log("modifi", modificado[event.target.id] )
     let name = event.target.name;
     let tipodefranja = name.indexOf('ja1') > 0 ? 'franja1': name.indexOf('ja2') > 0 ? 'franja2' :  name.indexOf('ja3') > 0 ? 'franja3': '';
 
@@ -115,11 +123,9 @@ resetSimulador(){
     else if (tipodefranja ===  'franja3') {
       modificado[event.target.id].preciomodificadofranja3 = event.target.value === '' ? modificado[event.target.id].simularfranja3 : event.target.value
     }
-    console.log("franjas", this.state.dataReal[0])
-    /*modificado[event.target.id].tipodefranja = event.target.value === '' ? modificado[event.target.id].tiposimular : event.target.value ;
-    console.log("franjas", this.state.dataReal[0])
-    this.setState({idproduct:0})
-    /*this.setState({dataReal: modificado })*/
+
+    //Update Margen Table
+    this.setState({update: count})
   }
 
   addValue(event){
@@ -289,7 +295,9 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                         <thead>
                           <tr>
                             <th className="header-table">PRODUCTO</th>
-                            <th className="header-table">PRECIO DE VENTA SELECCIONADO</th>
+                            <th className="header-table">PVP FRANJA 1</th>
+                            <th className="header-table">PVP FRANJA 2</th>
+                            <th className="header-table">PVP FRANJA 3</th>
                             <th className="header-table">MARGEN REAL</th>
                             <th className="header-table">MARGEN TEÓRICO</th>
                             <th className="header-table">UTILIDAD</th>
@@ -301,7 +309,9 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                             return (
                               <tr>
                                 <td key={key} className="text-center text-mini">{ prop.nombre }</td>
-                                <td key={key} className="text-center text-mini">${ prop.preciomodificado >  0 ? prop.preciomodificado  : prop.pvprecomendado }</td>
+                                <td key={key} className="text-center text-mini text-shadow">${ prop.preciomodificadofranja1 >  0 ? prop.preciomodificadofranja1  : prop.pvprecomendadofranja1 }</td>
+                                <td key={key} className="text-center text-mini text-shadowb">${ prop.preciomodificadofranja2 >  0 ? prop.preciomodificadofranja2  : prop.pvprecomendadofranja2 }</td>
+                                <td key={key} className="text-center text-mini text-shadowc">${ prop.preciomodificadofranja3 >  0 ? prop.preciomodificadofranja3  : prop.pvprecomendadofranja3 }</td>
                                 <td key={key} className="text-center text-mini">${ prop.margenreal }</td>
                                 <td key={key} className="text-center text-mini">${ prop.margenteorico }</td>
                                 <td key={key} className="text-center text-mini">${ prop.utilidad }</td>
@@ -439,8 +449,8 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                               <p><input type="number" className="input-simulacion" name="simularfranja2"  id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" tipo="preciomodificadofranja2"  name={ 'franja2'+prop.nombre+key } id={ key } value={ prop.simularfranja2  } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           <td className={this.state.simular ? 
-                            prop.pvprecomendadofranja2 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
-                            prop.pvprecomendadofranja2 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
+                            prop.pvprecomendadofranja2 === min ? "text-center text-shadowb td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadowb td-size txt-high" : "text-center text-shadowb td-size" : 
+                            prop.pvprecomendadofranja2 === min ? "text-center text-shadowb td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadowb td-size txt-high": "text-center text-shadowb" }
                           >${ prop.pvprecomendadofranja2 } { this.state.simular ?  <input type="radio" tipo="preciomodificadofranja2"  name={ 'franja2'+prop.nombre+key} id={ 'franja2'+prop.nombre+key } value={ prop.pvprecomendadofranja2 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
 
@@ -450,8 +460,8 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                               <p><input type="number" className="input-simulacion" name="simularfranja3"  id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" tipo="preciomodificadofranja3"  name={ 'franja3'+prop.nombre+key } id={ key } value={ prop.simularfranja3  } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           <td className={this.state.simular ? 
-                            prop.pvprecomendadofranja3 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
-                            prop.pvprecomendadofranja3 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
+                            prop.pvprecomendadofranja3 === min ? "text-center text-shadowc td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadowc td-size txt-high" : "text-center text-shadowc td-size" : 
+                            prop.pvprecomendadofranja3 === min ? "text-center text-shadowc td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadowc td-size txt-high": "text-center text-shadowc" }
                           >${ prop.pvprecomendadofranja3 } { this.state.simular ?  <input type="radio" tipo="preciomodificadofranja3"  name={ 'franja3'+prop.nombre+key} id={ 'franja3'+prop.nombre+key } value={ prop.pvprecomendadofranja3 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
@@ -496,10 +506,14 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 <UserProgressTable
                   headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA3','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
                   usersData={dataReal}
+                  simular={this.state.simular}
+                  update={this.state.update}
                 /> :
                 <UserProgressTable
                   headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
                   usersData={dataReal}
+                  simular={this.state.simular}
+                  update={this.state.update}
                 />
                 }
               </CardBody>

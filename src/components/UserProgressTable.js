@@ -19,7 +19,9 @@ const AvatarWithBadge = withBadge({
   color: 'success',
 })(Avatar);
 
-const UserProgressTable = ({ headers, usersData, ...restProps }) => {
+const UserProgressTable = ({ headers, usersData, simular, ...restProps }) => {
+
+  console.log("simular",simular)
   return (
     <Table responsive hover {...restProps}>
       <thead className="header-table">
@@ -29,7 +31,7 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
       </thead>
       <tbody>
         { 
-          usersData.map(({ avatar, nombre, precioventa, utilidad, preciodecomprahoy, fechadeultimacompra, precioultimacompra, preciocompramanana, margenteorico ,margenreal,volumenpromediodelmes, volumenobjetivomensual, margenobjetivo }, index) => {
+          usersData.map(({ avatar, nombre, precioventa, utilidad, preciodecomprahoy, fechadeultimacompra, precioultimacompra, preciocompramanana, margenteorico ,margenreal,volumenpromediodelmes, volumenobjetivomensual, margenobjetivo , preciomodificadofranja1,preciomodificadofranja2, preciomodificadofranja3, pvprecomendadofranja1, pvprecomendadofranja2, pvprecomendadofranja3}, index) => {
           let diferencia = preciodecomprahoy - preciocompramanana;
         return (
           <tr key={index}>
@@ -41,6 +43,9 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
             <td className={"align-middle text-center"}>$ {preciodecomprahoy.toFixed(2)}</td>
             <td className={"align-middle text-center"}>$ {preciocompramanana}</td>
             <td className="align-middle text-center">$ {diferencia.toFixed(2)}</td>
+            { simular ? <td className="align-middle text-center">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> : ''}
+            { simular ? <td className="align-middle text-center">$ {preciomodificadofranja2 > 0 ? preciomodificadofranja2 : pvprecomendadofranja2 }</td> : ''}
+            { simular ? <td className="align-middle text-center">$ {preciomodificadofranja3 > 0 ? preciomodificadofranja3 : pvprecomendadofranja3 }</td> : ''}
             <td className={ margenteorico < margenobjetivo ? "align-middle text-center txt-ok" : margenteorico > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenteorico}</td>
             <td className={ margenreal < margenobjetivo ? "align-middle text-center txt-ok" : margenreal > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenreal}</td>
             <td className="align-middle text-center">
