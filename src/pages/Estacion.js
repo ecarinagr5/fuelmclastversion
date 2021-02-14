@@ -104,18 +104,18 @@ resetSimulador(){
         pop.preciomodificadofranja2 = 0;
         pop.preciomodificadofranja3 = 0;
       })
-
-  console.log("modificado", modificado)
 }
 
   handSimulate(event) {
+
     let count = this.state.update + 1;
     let modificado = this.state.dataReal[0];
     let name = event.target.name;
     let tipodefranja = name.indexOf('ja1') > 0 ? 'franja1': name.indexOf('ja2') > 0 ? 'franja2' :  name.indexOf('ja3') > 0 ? 'franja3': '';
 
     if (tipodefranja ===  'franja1') {
-        modificado[event.target.id].preciomodificadofranja1 = event.target.value === '' ? modificado[event.target.id].simularfranja1 : event.target.value
+        //Update Data
+        modificado[event.target.id].preciomodificadofranja1 = event.target.value === '' ? modificado[event.target.id].simularfranja1 : event.target.value;
     }
     else if (tipodefranja === 'franja2') {
       modificado[event.target.id].preciomodificadofranja2 = event.target.value === '' ? modificado[event.target.id].simularfranja2 : event.target.value
@@ -123,6 +123,13 @@ resetSimulador(){
     else if (tipodefranja ===  'franja3') {
       modificado[event.target.id].preciomodificadofranja3 = event.target.value === '' ? modificado[event.target.id].simularfranja3 : event.target.value
     }
+
+    //Calculate Average
+    let franja1 = modificado[event.target.id].preciomodificadofranja1 > 0 ? parseInt(modificado[event.target.id].preciomodificadofranja1) : parseInt(modificado[event.target.id].pvprecomendadofranja1);
+    let franja2 =  modificado[event.target.id].preciomodificadofranja2 > 0 ? parseInt(modificado[event.target.id].preciomodificadofranja2) : parseInt(modificado[event.target.id].pvprecomendadofranja2);
+    let franja3 =  modificado[event.target.id].preciomodificadofranja3 > 0 ? parseInt(modificado[event.target.id].preciomodificadofranja3) : parseInt(modificado[event.target.id].pvprecomendadofranja3);
+    
+    modificado[event.target.id].preciopromediofranjas = ( franja1 + franja2 + franja3 ) / 3;
 
     //Update Margen Table
     this.setState({update: count})
@@ -172,7 +179,8 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
         return 'no'
       }
     });
-    
+    let promedioactual =  ( product[idproduct].pvprecomendadofranja1 + product[idproduct].pvprecomendadofranja2 + product[idproduct].pvprecomendadofranja3 ) / 3;
+    let promedio = product[idproduct].preciopromediofranjas > 0 ? product[idproduct].preciopromediofranjas : promedioactual;
     return {
       labels: MONTHS,
       datasets: [
@@ -252,7 +260,8 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           borderColor: getColor('primary'),
           borderWidth: 1,
           data: [
-            product[idproduct].preciomodificado >  0 ? product[idproduct].preciomodificado  : product[idproduct].pvprecomendado
+            /*product[idproduct].preciomodificado >  0 ? product[idproduct].preciomodificado  : product[idproduct].pvprecomendado*/
+            promedio.toFixed(2)
           ],
           ...moreData2,
         },
@@ -441,17 +450,17 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className={this.state.simular ? 
                             prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
                             prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
-                          >${ prop.pvprecomendadofranja1 } { this.state.simular ?  <input type="radio" tipo="preciomodificadofranja1"  name={ 'franja1'+prop.nombre+key } id={ key } value={ prop.pvprecomendadofranja1 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          >${ prop.pvprecomendadofranja1 } { this.state.simular ?  <input type="radio"  name={ 'franja1'+prop.nombre+key } id={ key } value={ prop.pvprecomendadofranja1 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
                           {/* Precio Franja 2 */}
                           { this.state.simular ? 
                           <td className="text-left">
-                              <p><input type="number" className="input-simulacion" name="simularfranja2"  id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" tipo="preciomodificadofranja2"  name={ 'franja2'+prop.nombre+key } id={ key } value={ prop.simularfranja2  } onClick={this.handSimulate} /></p>  
+                              <p><input type="number" className="input-simulacion" name="simularfranja2"  id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ 'franja2' + prop.nombre + key } id={ key } value={ prop.simularfranja2  } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           <td className={this.state.simular ? 
                             prop.pvprecomendadofranja2 === min ? "text-center text-shadowb td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadowb td-size txt-high" : "text-center text-shadowb td-size" : 
                             prop.pvprecomendadofranja2 === min ? "text-center text-shadowb td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadowb td-size txt-high": "text-center text-shadowb" }
-                          >${ prop.pvprecomendadofranja2 } { this.state.simular ?  <input type="radio" tipo="preciomodificadofranja2"  name={ 'franja2'+prop.nombre+key} id={ 'franja2'+prop.nombre+key } value={ prop.pvprecomendadofranja2 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          >${ prop.pvprecomendadofranja2 } { this.state.simular ?  <input type="radio" name={ 'franja2'+prop.nombre+key} id={ key } value={ prop.pvprecomendadofranja2 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
 
                           {/* Precio Franja 3 */}
@@ -462,7 +471,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className={this.state.simular ? 
                             prop.pvprecomendadofranja3 === min ? "text-center text-shadowc td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadowc td-size txt-high" : "text-center text-shadowc td-size" : 
                             prop.pvprecomendadofranja3 === min ? "text-center text-shadowc td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadowc td-size txt-high": "text-center text-shadowc" }
-                          >${ prop.pvprecomendadofranja3 } { this.state.simular ?  <input type="radio" tipo="preciomodificadofranja3"  name={ 'franja3'+prop.nombre+key} id={ 'franja3'+prop.nombre+key } value={ prop.pvprecomendadofranja3 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          >${ prop.pvprecomendadofranja3 } { this.state.simular ?  <input type="radio" name={ 'franja3'+prop.nombre+key} id={ key } value={ prop.pvprecomendadofranja3 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                     </tr>
@@ -504,7 +513,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
               <CardBody>
                 { this.state.simular ?
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA3','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA2','PRECIO DE VENTA SELECCIONADO FRANJA3','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
                   usersData={dataReal}
                   simular={this.state.simular}
                   update={this.state.update}
