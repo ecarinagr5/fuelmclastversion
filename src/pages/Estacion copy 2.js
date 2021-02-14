@@ -58,32 +58,20 @@ class Estacion extends React.Component {
     this.updateGraph = this.updateGraph.bind(this);
  }
 
- componentWillMount(){
-    //Setea los datos de redux
-    const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
-    const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
-    this.state.dataReal.push(allProducts)
-    console.log("componentWillMount", this.state.dataReal)
- }
  componentDidMount(){
   window.scrollTo(0, 0);
-}
-
-componentWillUpdate(next_props, next_state){
-  console.log("next_state", next_state)
+  //Setea los datos de redux
   const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
   const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
-  this.state.dataReal =[] 
   this.state.dataReal.push(allProducts)
+  console.log("this.state.dataReal", this.state.dataReal)
 }
-
 
 componentDidUpdate(){
   const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
   const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
-  this.state.dataReal =[] 
-  this.state.dataReal.push(allProducts)
-  console.log("componentDidUpdate", this.state.dataReal)
+  /*this.state.dataReal =[] 
+  this.state.dataReal.push(allProducts)*/
 }
 
 updateGraph(event){
@@ -281,9 +269,12 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
 
   render() {
-    console.log("REDNDER", this.state.dataReal)
+    //Setea los datos de redux
+    const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
+    const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
+    this.state.dataReal.push(allProducts)
     
-    const dataReal = this.state.dataReal[0];
+   /* const dataReal = this.state.dataReal[0];
     const competenciastotal = this.props.data.metrics.array.estaciones;
 
     let date = new Date();
@@ -293,10 +284,10 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
         this.state.competencias.push(prop.competencias);
     })
     let competencias =  this.state.competencias[0]
-    let promedio = 63 //Promedio de competencia estrategica;
+    let promedio = 63 //Promedio de competencia estrategica;*/
     return (
       <Page>
-                      {/* Welcome View */}
+              {/* Welcome View */}
               {/*7 <Welcome />*/}
               {/* Modal View */}
               <Modal
@@ -542,7 +533,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
         <Row>
         </Row>
-
       </Page>
     );
   }

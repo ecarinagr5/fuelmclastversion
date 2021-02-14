@@ -1,11 +1,11 @@
-const chart = 'Bar'
+const station = 0
 //TYPES
-export const SET_CURRENT_VISUALIZATION  = 'SET_CURRENT_VISUALIZATION'
+export const SET_CURRENT_STATION  = 'SET_CURRENT_STATION'
 
 //REDUCERS
-export default function setVisualization ( state = chart , action){
+export default function setStation ( state = 0 , action){
     switch(action.type){
-        case SET_CURRENT_VISUALIZATION:
+        case SET_CURRENT_STATION:
             return action
         default:
             return state;
@@ -14,10 +14,9 @@ export default function setVisualization ( state = chart , action){
 
 //ACTIONS 
 
-export function setCurrentVisualization(chart) {
-    console.log("chart", chart)
+export function setCurrentStation (station) {
     return {
-      type: SET_CURRENT_VISUALIZATION,
-      chart,
+      type: SET_CURRENT_STATION,
+      station,
     };
   }

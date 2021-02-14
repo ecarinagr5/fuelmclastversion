@@ -7,7 +7,7 @@ import moment from "moment";
 //Connect Redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { setCurrentVisualization } from '../../Redux/dataToUpdate'
+import { setCurrentStation } from '../../Redux/dataToUpdate' //Function to update station
 
 
 import React from 'react';
@@ -46,6 +46,7 @@ const MdNotificationsActiveWithBadge = withBadge({
   children: <small>5</small>,
 })(MdNotificationsActive);
 
+
 class Header extends React.Component {
   constructor(props) {
     super(props)
@@ -54,52 +55,47 @@ class Header extends React.Component {
         isOpenNotificationPopover: false,
         isNotificationConfirmed: false,
         isOpenUserCardPopover: false,
-        station:'Gasolinera PEMEX | 3529',
         currentCount: 10,
+        station:'',
         direccion:0,
         date:'',
         estaciones:[],
-        estacion:[
-          {
-            nombre:'Gasolinera PEMEX | 3529',
-            direccion: 'Av. Adolfo López Mateos 518-520 Agua Azul, Mx.19 EDOMEX'
-          },
-          {
-            nombre:'FUEL A | 3421',
-            direccion: 'Av. México, No.26C,Atizapán de Zaragoza EDOMEX'
-          },
-          {
-            nombre:'FUEL B | 1121',
-            direccion: 'Calle Ignacio Zaragoza 24, CDMX'
-          },
-          {
-            nombre:'FUEL C | 1013',
-            direccion: 'Calz. Vallejo No. 510, Pro Hogar, Azcapotzalco, CDMX'
-          }
-        ]
+        direccionactual:'',
       }
       this.change = this.change.bind(this);
 }
 
-componentDidMount(){
-  const estaciones = this.props.data.metrics.array.estaciones[0];
-  this.state.estaciones.push(estaciones)
-  this.intervalId = setInterval(this.dateToShow.bind(this), 1000);
-}
+  componentDidMount(){
+    const estaciones = this.props.data.metrics.array.estaciones;
 
-componentWillUnmount(){
-  clearInterval(this.intervalId);
-}
+    estaciones.map( gasolinera => {
+      
+      let estacion = {
+        nombre:  gasolinera.PRE_EST_PERMISO_CRE + ' ' +  gasolinera.empresa,
+        direccion: gasolinera.direccion,
+        cre: gasolinera.PRE_EST_PERMISO_CRE
+      }
+      this.state.estaciones.push(estacion)
+    })
+    this.intervalId = setInterval(this.dateToShow.bind(this), 1000);
+    this.state.direccionactual = this.state.estaciones[this.props.currentStation].direccion;
+  }
 
-dateToShow(){
-  let date = new Date();
-  this.setState({ date });
-}
+  componentWillUnmount(){
+    clearInterval(this.intervalId);
+  }
 
-change(event) {
-  console.log("change", event.target)
-  this.setState({direccion: event.target.value, state: this.state.estacion[event.target.value].nombre })
-}
+  dateToShow(){
+    let date = new Date();
+    this.setState({ date });
+  }
+
+  change(event) {
+    let val = this.state.estaciones[event.target.value].direccion;
+    this.setState({direccionactual:val})
+    this.props.setCurrentStation(event.target.value)
+  }
+
 
   toggleNotificationPopover = () => {
     this.setState({
@@ -120,12 +116,13 @@ change(event) {
   handleSidebarControlButton = event => {
     event.preventDefault();
     event.stopPropagation();
-
     document.querySelector('.cr-sidebar').classList.toggle('cr-sidebar--open');
   };
 
+
+
   render() {
-    const { isNotificationConfirmed, date, estaciones } = this.state;
+    const { isNotificationConfirmed, date, estaciones, direccionactual, idestacionactual } = this.state;
     let { pathname } = this.props.location;
     return (
       <Navbar light expand className={bem.b('bg-white')}>
@@ -138,28 +135,17 @@ change(event) {
         <Nav navbar>
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
             <li className="margin-gasolineras">
-                <select className="select-estacion-title" onChange={ this.change } value={ this.state.station } >            
+                <select className="select-estacion-title" onChange={ this.change }>            
                   {
                     estaciones.map((prop, key)=>{
-                      let concatenanameycre = prop.PRE_EST_PERMISO_CRE + ' ' +  prop.empresa ;
                       return (
-                          <option key={key} value={ key } defaultValue>{ concatenanameycre }</option>
+                          <option id={key} key={key} value={key }>{ prop.nombre }</option>
                       )
                     })
                   }
                 </select>
+                <p className="direccion-estacion">{ direccionactual }</p>
                 <p className="ranking"><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-fill"></i><i className="bi bi-star-half"></i></p>
-            </li>
-        }
-        { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
-            <li>
-              <div className="direccion-estacion margin-gasolineras">
-              Av. Adolfo López Mateos 518-520 Agua Azul, Mx.19 EDOMEX
-                { /*estacion[this.state.direccion].direccion */}
-                {
-
-                }
-              </div>
             </li>
         }
         </Nav>
@@ -247,11 +233,13 @@ change(event) {
 function mapStateToProps(state){
   return {
       data: state,
+      currentStation: state.station
   }
 }
 //Send Information REDUX
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch ){
   return bindActionCreators({
+    setCurrentStation
   }, dispatch )
 }
 

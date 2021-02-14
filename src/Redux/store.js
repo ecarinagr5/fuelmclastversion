@@ -1,10 +1,14 @@
 import { createStore, combineReducers, compose , applyMiddleware } from 'redux'
 import thunk from 'redux-thunk' //promises
 
+//Reducer
 import ipcReducer from './dataToShow'
+import setStation from './dataToUpdate'
+
 
 const rootReducer  = combineReducers({
     metrics: ipcReducer,
+    station: setStation,
 })
 
 //code to setup redux dev tools
