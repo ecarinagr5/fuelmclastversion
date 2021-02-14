@@ -21,8 +21,12 @@ const obtenerDatos = async () => {
 
   try {
       const db = firebase.firestore()
-      const datadb = await db.collection('fuelmc-590d7').get()
-      console.log("datadb", datadb)
+      const data = await db.collection('registrosimulador').get()
+      const arrayData = await data.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data() // Obtenemos elementos en elementos separados
+      }))
+      console.log("datadb", arrayData)
   } catch(error) {
     console.log(error)
   }
@@ -38,13 +42,13 @@ class App extends React.Component {
       <Router>
           <Switch>
           <Route exact path="/login" component={AuthPage} />
-        <MainLayout breakpoint={this.props.breakpoint}>
-              <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/" component={Estacion} />
-                <Route exact path="/masivo" component={Masivo} />
-                <Route exact path="/masivoadmin" component={MasivoAdmin} />
-              </React.Suspense>
-          </MainLayout>
+            <MainLayout breakpoint={this.props.breakpoint}>
+                  <React.Suspense fallback={<PageSpinner />}>
+                    <Route exact path="/" component={Estacion} />
+                    <Route exact path="/masivo" component={Masivo} />
+                    <Route exact path="/masivoadmin" component={MasivoAdmin} />
+                  </React.Suspense>
+              </MainLayout>
           </Switch>
           </Router>
     );

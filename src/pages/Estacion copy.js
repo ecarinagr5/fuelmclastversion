@@ -99,43 +99,17 @@ resetSimulador(){
   })
 }
 
-  handSimulate(event) {
-    console.log("handSimulate", event.target.name, event.target)
-    let modificado = this.state.dataReal[0];
-    console.log("modifi", modificado[event.target.id] )
-    let name = event.target.name;
-    let tipodefranja = name.indexOf('ja1') > 0 ? 'franja1': name.indexOf('ja2') > 0 ? 'franja2' :  name.indexOf('ja3') > 0 ? 'franja3': '';
-
-    if (tipodefranja ===  'franja1') {
-        modificado[event.target.id].preciomodificadofranja1 = event.target.value === '' ? modificado[event.target.id].simularfranja1 : event.target.value
-    }
-    else if (tipodefranja === 'franja2') {
-      modificado[event.target.id].preciomodificadofranja2 = event.target.value === '' ? modificado[event.target.id].simularfranja2 : event.target.value
-    }
-    else if (tipodefranja ===  'franja3') {
-      modificado[event.target.id].preciomodificadofranja3 = event.target.value === '' ? modificado[event.target.id].simularfranja3 : event.target.value
-    }
-    console.log("franjas", this.state.dataReal[0])
-    /*modificado[event.target.id].tipodefranja = event.target.value === '' ? modificado[event.target.id].tiposimular : event.target.value ;
-    console.log("franjas", this.state.dataReal[0])
-    this.setState({idproduct:0})
-    /*this.setState({dataReal: modificado })*/
-  }
+handSimulate(event) {
+  console.log("handSimulate", event.target)
+  let modificado = this.state.dataReal[0];
+  modificado[event.target.id].preciomodificado = event.target.value === '' ? modificado[event.target.id].simular : event.target.value ;
+  this.setState({idproduct:0})
+  /*this.setState({dataReal: modificado })*/
+}
 
   addValue(event){
     let m = this.state.dataReal[0];
-    let name = event.target.name;
-    console.log("name", name)
-    if( name === 'simularfranja1' ) {
-      m[event.target.id].simularfranja1 =  event.target.value;
-    }
-    else if ( name === 'simularfranja2' ) {
-      m[event.target.id].simularfranja2 =  event.target.value;
-    }
-    else if ( name === 'simularfranja3' ) {
-      m[event.target.id].simularfranja3 =  event.target.value;
-    }
-   
+    m[event.target.id].simular =  event.target.value;
     /*this.setState({dataReal: m })*/
 
     /*this.state.productsData[event.target.id].simular =  event.target.value;;
@@ -404,18 +378,19 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 <tbody>
                 {   
                     dataReal.map((prop, key) => {
+                      console.log("porps")
                       let precioponderado =  (prop.precioventa * 100 ) / promedio; 
                       let diferenciaprecio =  prop.preciorealdehoy -  prop.pvprecomendadofranja1;
                       let arrayToDefine = [ prop.competenciaestrategica, prop.competencia1, prop.competencia2, prop.competencia3, prop.competencia4, prop.competencia5, prop.competencia6, prop.preciorealdehoy, prop.pvprecomendado ];
                       let min = Math.min.apply(Math, arrayToDefine);
                       let max = Math.max.apply(Math, arrayToDefine);
 
-          
+                      let simular = prop.simular;
                       //Review this part
                       this.state.mipreciopromediodeventa = precioponderado;
                     return (
                       <tr>
-                          <td className="text-center">{ prop.nombre }</td>
+                          <td  className="text-center">{ prop.nombre }</td>
                           <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
                           <td className={ prop.competenciaestrategica === min ? "text-center txt-ok" : prop.competenciaestrategica === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaestrategica }</td>
                           <td className={ prop.competencia1 === min ? "text-center txt-ok" : prop.competencia1 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia1 }</td>
@@ -425,34 +400,34 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className= { prop.preciorealdehoy === min ? "text-center txt-ok" : prop.preciorealdehoy === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealdehoy }</td>
                           { this.state.simular ? 
                           <td className="text-left">
-                              <p><input type="number" className="input-simulacion" name="simularfranja1" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" tipo="preciomodificadofranja1" name={ 'franja1'+prop.nombre+key } id={ key } value={ prop.simularfranja1  } onClick={this.handSimulate } /></p>  
+                              <p><input type="number" className="input-simulacion" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ key } id={ key } value={ prop.simularfranja1  } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           {/* Precio Franja 1 */}
                           <td className={this.state.simular ? 
                             prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
                             prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
-                          >${ prop.pvprecomendadofranja1 } { this.state.simular ?  <input type="radio" tipo="preciomodificadofranja1"  name={ 'franja1'+prop.nombre+key } id={ key } value={ prop.pvprecomendadofranja1 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          >${ prop.pvprecomendadofranja1 } { this.state.simular ?  <input type="radio" name={ key } id={ key } value={ prop.pvprecomendadofranja1 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
                           {/* Precio Franja 2 */}
                           { this.state.simular ? 
                           <td className="text-left">
-                              <p><input type="number" className="input-simulacion" name="simularfranja2"  id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" tipo="preciomodificadofranja2"  name={ 'franja2'+prop.nombre+key } id={ key } value={ prop.simularfranja2  } onClick={this.handSimulate} /></p>  
+                              <p><input type="number" className="input-simulacion" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ 'pvprecomendadofranja2' } id={ key } value={ prop.simularfranja2  } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           <td className={this.state.simular ? 
                             prop.pvprecomendadofranja2 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
                             prop.pvprecomendadofranja2 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
-                          >${ prop.pvprecomendadofranja2 } { this.state.simular ?  <input type="radio" tipo="preciomodificadofranja2"  name={ 'franja2'+prop.nombre+key} id={ 'franja2'+prop.nombre+key } value={ prop.pvprecomendadofranja2 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          >${ prop.pvprecomendadofranja2 } { this.state.simular ?  <input type="radio" name={ 'pvprecomendadofranja2' } id={ key } value={ prop.pvprecomendadofranja2 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
 
                           {/* Precio Franja 3 */}
                           { this.state.simular ? 
                           <td className="text-left">
-                              <p><input type="number" className="input-simulacion" name="simularfranja3"  id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" tipo="preciomodificadofranja3"  name={ 'franja3'+prop.nombre+key } id={ key } value={ prop.simularfranja3  } onClick={this.handSimulate} /></p>  
+                              <p><input type="number" className="input-simulacion" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" name={ 'pvprecomendadofranja3' } id={ key } value={ prop.simularfranja3  } onClick={this.handSimulate} /></p>  
                           </td>:'' }
                           <td className={this.state.simular ? 
                             prop.pvprecomendadofranja3 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
                             prop.pvprecomendadofranja3 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
-                          >${ prop.pvprecomendadofranja3 } { this.state.simular ?  <input type="radio" tipo="preciomodificadofranja3"  name={ 'franja3'+prop.nombre+key} id={ 'franja3'+prop.nombre+key } value={ prop.pvprecomendadofranja3 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          >${ prop.pvprecomendadofranja3 } { this.state.simular ?  <input type="radio" name={ 'pvprecomendadofranja3' } id={ key } value={ prop.pvprecomendadofranja3 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                     </tr>
