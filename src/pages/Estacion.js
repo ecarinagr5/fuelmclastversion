@@ -63,28 +63,38 @@ class Estacion extends React.Component {
     const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
     const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
     this.state.dataReal.push(allProducts)
-    console.log("componentWillMount", this.state.dataReal)
+    console.log("componentWillMount", this.props.currentStation)
  }
+
+ /*shouldComponentUpdate(nextProps){
+  const idestacion = !nextProps.currentStation ?  nextProps.currentStation.station : nextProps.currentStation.station;
+     //Setea los datos de redux
+     const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
+     this.state.dataReal =[] 
+     this.state.dataReal.push(allProducts)
+     console.log("shouldComponentUpdate",    this.state.dataReal)
+ }*/
+
  componentDidMount(){
   window.scrollTo(0, 0);
 }
 
-componentWillUpdate(next_props, next_state){
-  console.log("next_state", next_state)
-  const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
-  const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
-  this.state.dataReal =[] 
+componentWillUpdate(prevProps, prevState){
+  console.log("componentWillUpdate",prevProps.currentStation.station)
+   this.state.dataReal =[] 
+  /*const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;*/
+  const allProducts = this.props.data.metrics.array.estaciones[prevProps.currentStation.station].productos;
+  console.log("allProducts", allProducts)
   this.state.dataReal.push(allProducts)
 }
 
 
-componentDidUpdate(){
+/*componentDidUpdate(prevProps, prevState, snapshot){
   const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
   const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
   this.state.dataReal =[] 
   this.state.dataReal.push(allProducts)
-  console.log("componentDidUpdate", this.state.dataReal)
-}
+}*/
 
 updateGraph(event){
   this.setState({productgraph: event.target.value})
