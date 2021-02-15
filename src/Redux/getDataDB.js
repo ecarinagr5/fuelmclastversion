@@ -24,7 +24,6 @@ export default function ipcReducer( state = data, action ) {
 }
 
 //ACTIONS 
-
 //asyn to call API
 export const getDataAction = () => async (dispatch) => {
 

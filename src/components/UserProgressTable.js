@@ -20,8 +20,6 @@ const AvatarWithBadge = withBadge({
 })(Avatar);
 
 const UserProgressTable = ({ headers, usersData, simular, ...restProps }) => {
-
-  console.log("simular",simular)
   return (
     <Table responsive hover {...restProps}>
       <thead className="header-table">

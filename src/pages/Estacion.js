@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { getDataAction } from '../Redux/dataToShow'
+import { sendDataDatabase } from '../Redux/sendToDb'
 
 //Components
 import Page from 'components/Page';
@@ -63,38 +64,21 @@ class Estacion extends React.Component {
     const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
     const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
     this.state.dataReal.push(allProducts)
-    console.log("componentWillMount", this.props.currentStation)
  }
-
- /*shouldComponentUpdate(nextProps){
-  const idestacion = !nextProps.currentStation ?  nextProps.currentStation.station : nextProps.currentStation.station;
-     //Setea los datos de redux
-     const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
-     this.state.dataReal =[] 
-     this.state.dataReal.push(allProducts)
-     console.log("shouldComponentUpdate",    this.state.dataReal)
- }*/
 
  componentDidMount(){
   window.scrollTo(0, 0);
 }
 
-componentWillUpdate(prevProps, prevState){
-  console.log("componentWillUpdate",prevProps.currentStation.station)
-   this.state.dataReal =[] 
-  /*const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;*/
-  const allProducts = this.props.data.metrics.array.estaciones[prevProps.currentStation.station].productos;
-  console.log("allProducts", allProducts)
-  this.state.dataReal.push(allProducts)
+componentWillUpdate(prevProps){
+  console.log("prevProps",prevProps.currentStation.station)
+  if(prevProps.currentStation.station) {
+    this.state.dataReal =[] 
+    const allProducts = this.props.data.metrics.array.estaciones[prevProps.currentStation.station].productos;
+    this.state.dataReal.push(allProducts)
+  }
 }
 
-
-/*componentDidUpdate(prevProps, prevState, snapshot){
-  const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
-  const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
-  this.state.dataReal =[] 
-  this.state.dataReal.push(allProducts)
-}*/
 
 updateGraph(event){
   this.setState({productgraph: event.target.value})
@@ -118,6 +102,11 @@ toggle = modalType => () => {
   this.setState({
     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
   });
+
+  let data=[ {
+    preciosimulado:23.4
+  }]
+  this.props.sendDataDatabase(data)
 };
 
 
@@ -165,7 +154,6 @@ resetSimulador(){
   addValue(event){
     let m = this.state.dataReal[0];
     let name = event.target.name;
-    console.log("name", name)
     if( name === 'simularfranja1' ) {
       m[event.target.id].simularfranja1 =  event.target.value;
     }
@@ -291,8 +279,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
 
   render() {
-    console.log("REDNDER", this.state.dataReal)
-    
     const dataReal = this.state.dataReal[0];
     const competenciastotal = this.props.data.metrics.array.estaciones;
 
@@ -306,8 +292,8 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
     let promedio = 63 //Promedio de competencia estrategica;
     return (
       <Page>
-                      {/* Welcome View */}
-              {/*7 <Welcome />*/}
+            {/* Welcome View */}
+              {/* <Welcome />*/}
               {/* Modal View */}
               <Modal
                   isOpen={this.state.modal_nested_parent}
@@ -354,26 +340,10 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className="id_negocio_class">Id Negocio: <span className="id_negocio">129AB</span></td>
                         </tr>
                         <tr>
-                          <td className="id_negocio_class">Hora de Aplicación: <input type="text"/></td>
+                          <td className="id_negocio_class">Hora de Aplicación: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
                         </tr>
                       </Table>
                     <br />
-                    <Modal
-                      isOpen={this.state.modal_nested}
-                      toggle={this.toggle('nested')}>
-                      <ModalHeader>Nested Modal title</ModalHeader>
-                      <ModalBody>Stuff and things</ModalBody>
-                      <ModalFooter>
-                        <Button color="primary" onClick={this.toggle('nested')}>
-                          APLICAR
-                        </Button>{' '}
-                        <Button
-                          color="secondary"
-                          onClick={this.toggle('nested_parent')}>
-                          CANCELAR
-                        </Button>
-                      </ModalFooter>
-                    </Modal>
                   </ModalBody>
                   <ModalFooter>
                     <Button
@@ -567,7 +537,8 @@ function mapStateToProps(state){
 //Send Information REDUX
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-      getDataAction
+      getDataAction,
+      sendDataDatabase
   }, dispatch )
 }
 
