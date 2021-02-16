@@ -5,12 +5,14 @@ import thunk from 'redux-thunk' //promises
 import ipcReducer from './dataToShow'
 import setStation from './dataToUpdate'
 import sendDataBase from './sendToDb'
+import getDataBase from './getDataDb'
 
 
 const rootReducer  = combineReducers({
     metrics: ipcReducer,
     station: setStation,
-    sendata: sendDataBase
+    sendata: sendDataBase,
+    getDataBase: getDataBase
 })
 
 //code to setup redux dev tools

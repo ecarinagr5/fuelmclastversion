@@ -16,24 +16,6 @@ const Welcome = React.lazy(() => import('pages/Welcome'));
 const Masivo = React.lazy(() => import('pages/Masivo'));
 const MasivoAdmin = React.lazy(() => import('pages/MasivoAdmin'));
 
-//Firebase
-const obtenerDatos = async () => {
-
-  try {
-      const db = firebase.firestore()
-      const data = await db.collection('registrosimulador').get()
-      const arrayData = await data.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data() // Obtenemos elementos en elementos separados
-      }))
-      console.log("datadb", arrayData)
-  } catch(error) {
-    console.log(error)
-  }
-
-}
-
-obtenerDatos()
 
 class App extends React.Component {
   render() {

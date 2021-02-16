@@ -1,6 +1,7 @@
 import { UserCard } from 'components/Card';
 import withBadge from 'hocs/withBadge';
 import logopemex from '../../assets/img/logo/logo_pemex_v2.png'
+import logonatgas from '../../assets/img/logo/natgas_logo.png'
 import logoeveris from '../../assets/img/logoeveris.png'
 import moment from "moment";
 
@@ -61,6 +62,7 @@ class Header extends React.Component {
         date:'',
         estaciones:[],
         direccionactual:'',
+        imglogo: 0,
       }
       this.change = this.change.bind(this);
 }
@@ -80,6 +82,7 @@ class Header extends React.Component {
     this.intervalId = setInterval(this.dateToShow.bind(this), 1000);
     this.state.direccionactual = this.state.estaciones[this.props.currentStation].direccion;
   }
+
 
   componentWillUnmount(){
     clearInterval(this.intervalId);
@@ -122,8 +125,11 @@ class Header extends React.Component {
 
 
   render() {
-    const { isNotificationConfirmed, date, estaciones, direccionactual, idestacionactual } = this.state;
+    const { isNotificationConfirmed, date, estaciones, direccionactual, idestacionactual, imglogo} = this.state;
     let { pathname } = this.props.location;
+    let  data  = this.props.data.metrics.array;
+    let lasttime = new Date();
+    lasttime = moment(lasttime).format("MMM D YYYY hh:mm:ss") 
     return (
       <Navbar light expand className={bem.b('bg-white')}>
         <Nav navbar className="mr-2">
@@ -131,7 +137,9 @@ class Header extends React.Component {
             <MdClearAll size={25} />
           </Button>
         </Nav>
-        <img src={ logopemex }  alt="fuel" className="logo-station"/>
+        { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
+          <img src={ this.props.currentStation.station === 1 ?  logonatgas : logopemex}  alt="fuel" className="logo-station"/> 
+        }
         <Nav navbar>
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
             <li className="margin-gasolineras">
@@ -153,9 +161,6 @@ class Header extends React.Component {
         <Nav navbar className={bem.e('nav-right')}>
           <NavItem className="d-inline-flex">
             <NavLink id="Popover1" className="position-relative">
-              {/*<p className="station-type">
-                Ranking <p className="station-name"> 1er lugar</p>
-              </p>*/}
             </NavLink>
               <Popover
               placement="bottom"
@@ -174,7 +179,7 @@ class Header extends React.Component {
           </NavItem>
           <NavItem>
             <p className="time-date">{ moment(date).format("MMM D YYYY hh:mm:ss") }</p>
-            <p className="tipo-vision"> Hora de aplicación 7:00 pm</p>
+            <p className="tipo-vision"> Hora de aplicación {data.horadeaplicacion}</p>
             <select className="select-estacion-hoy" onChange={this.change} value={ this.state.station } >
               <option value={ 0 } selected>Hoy para Hoy</option>
               <option value={ 0 } selected>Hoy para Mañana</option>
@@ -194,27 +199,15 @@ class Header extends React.Component {
             >
               <PopoverBody className="p-0 border-light">
                 <UserCard
-                  title="Carina González"
-                  subtitle="Carina@everis.com"
-                  text="Última conexión 25 Enero 2021 10:21am"
+                  title= {data.datanombrecompleto}
+                  subtitle={data.nombrecompleto}
+                  text={`Última conexión ${lasttime} `}
                   className="border-light"
                 >
                   <ListGroup flush>
                     <ListGroupItem tag="button" action className="border-light">
                       <MdPersonPin /> Perfil
                     </ListGroupItem>
-                    {/*} <ListGroupItem tag="button" action className="border-light">
-                      <MdInsertChart /> Stats
-                    </ListGroupItem>
-                    <ListGroupItem tag="button" action className="border-light">
-                      <MdMessage /> Messages
-                    </ListGroupItem>
-                    <ListGroupItem tag="button" action className="border-light">
-                      <MdSettingsApplications /> Settings
-                    </ListGroupItem>
-                    <ListGroupItem tag="button" action className="border-light">
-                      <MdHelp /> Help
-              </ListGroupItem>*/}
                     <ListGroupItem tag="button" action className="border-light">
                       <MdExitToApp /> Cerrar Sesión
                     </ListGroupItem>

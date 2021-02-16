@@ -41,9 +41,9 @@ const UserProgressTable = ({ headers, usersData, simular, ...restProps }) => {
             <td className={"align-middle text-center"}>$ {preciodecomprahoy.toFixed(2)}</td>
             <td className={"align-middle text-center"}>$ {preciocompramanana}</td>
             <td className="align-middle text-center">$ {diferencia.toFixed(2)}</td>
-            { simular ? <td className="align-middle text-center">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> : ''}
-            { simular ? <td className="align-middle text-center">$ {preciomodificadofranja2 > 0 ? preciomodificadofranja2 : pvprecomendadofranja2 }</td> : ''}
-            { simular ? <td className="align-middle text-center">$ {preciomodificadofranja3 > 0 ? preciomodificadofranja3 : pvprecomendadofranja3 }</td> : ''}
+            { simular ? <td className="align-middle text-center text-shadow">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> : ''}
+            { simular ? <td className="align-middle text-center text-shadowb">$ {preciomodificadofranja2 > 0 ? preciomodificadofranja2 : pvprecomendadofranja2 }</td> : ''}
+            { simular ? <td className="align-middle text-center text-shadowc">$ {preciomodificadofranja3 > 0 ? preciomodificadofranja3 : pvprecomendadofranja3 }</td> : ''}
             <td className={ margenteorico < margenobjetivo ? "align-middle text-center txt-ok" : margenteorico > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenteorico}</td>
             <td className={ margenreal < margenobjetivo ? "align-middle text-center txt-ok" : margenreal > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenreal}</td>
             <td className="align-middle text-center">

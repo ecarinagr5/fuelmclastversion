@@ -18,7 +18,6 @@ import { Bar, Line } from 'react-chartjs-2';
 import { Button, Card, CardBody, CardHeader, Col, Table, Modal, ModalBody,ModalFooter, ModalHeader, Row } from 'reactstrap';
 import { getColor } from 'utils/colors';
 
-
 //Views
 import Welcome from './Welcome';
 
@@ -71,14 +70,12 @@ class Estacion extends React.Component {
 }
 
 componentWillUpdate(prevProps){
-  console.log("prevProps",prevProps.currentStation.station)
   if(prevProps.currentStation.station) {
     this.state.dataReal =[] 
     const allProducts = this.props.data.metrics.array.estaciones[prevProps.currentStation.station].productos;
     this.state.dataReal.push(allProducts)
   }
 }
-
 
 updateGraph(event){
   this.setState({productgraph: event.target.value})
@@ -168,7 +165,6 @@ resetSimulador(){
   handleClick(){
     this.setState({ simular: true})
   }
-
 
 
   //Function to return lines

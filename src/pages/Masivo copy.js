@@ -74,11 +74,9 @@ class Masivo extends React.Component {
     this.state.dataReal.push(allEstaciones)
     allEstaciones.map((prod, i) => {
       this.state.empresa.push({name: prod.empresa, id: i})
-      this.state.negocio.push ({name:prod.negocio, id: i})
       prod.productos.map((s, i) => {
         this.state.productos.push(s.nombre)
-        this.state.precio.push({name:s.preciodecomprahoy , id: i})
-        this.state.margen.push({name:s.margenteorico, id: i})
+        console.log("ssss", s)
       })
     })
     const newArr = []
@@ -201,17 +199,61 @@ class Masivo extends React.Component {
         <Col>
   
         {/* FILTRO */}
-
-  
-        {/* FILTRO */}
         <Row>
               <hr></hr>
             <Col md={12} >
 
             <div className="content-filter">
-              <Col md={2} className="float-left-five">
+                <Col md={2} className="float-left-five">
+                  <label>
+                    Empresa 
+                  </label>
+                  <p className="filter-container">
+                    <Multiselect
+                        options={ empresa } // Options to display in the dropdown
+                        selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
+                        onSelect={this.onSelect} // Function will trigger on select event
+                        onRemove={this.onRemove} // Function will trigger on remove event
+                        displayValue="name" // Property name to display in the dropdown options
+                        className="row-filter"
+                        />
+                  </p>
+                </Col>
+                  <Col md={2} className="float-left-five">
+                      <label>Negocio</label>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel icono-filter-main" viewBox="0 0 16 16" className="icon-filter">
+                        <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                      </svg>
+                  <p className="filter-container">
+                      <Multiselect
+                          options={negocio} // Options to display in the dropdown
+                          selectedValues={this.state.selectedValue1} // Preselected value to persist in dropdown
+                          onSelect={this.onSelect} // Function will trigger on select event
+                          onRemove={this.onRemove} // Function will trigger on remove event
+                          displayValue="name" // Property name to display in the dropdown options
+                          />
+                  </p>
+                  </Col>
+                  <Col md={2} className="float-left-five">
+                      <label>
+                        Precio 
+                      </label>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel icono-filter-main" viewBox="0 0 16 16" className="icon-filter">
+                      <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                    </svg>
+                    <p className="filter-container">
+                      <Multiselect
+                          options={precio} // Options to display in the dropdown
+                          selectedValues={this.state.selectedValue2} // Preselected value to persist in dropdown
+                          onSelect={this.onSelect} // Function will trigger on select event
+                          onRemove={this.onRemove} // Function will trigger on remove event
+                          displayValue="name" // Property name to display in the dropdown options
+                          />
+                    </p>
+                  </Col>
+                  <Col md={2} className="float-left-five">
                     <label>
-                      Empresa 
+                      Margen 
                     </label>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel icono-filter-main" viewBox="0 0 16 16" className="icon-filter">
                       <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
@@ -224,57 +266,17 @@ class Masivo extends React.Component {
                         displayValue="name" // Property name to display in the dropdown options
                         />
                   </Col>
-                <Col md={2} className="float-left-five">
-                    <label>
-                      Negocio 
-                    </label>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel icono-filter-main" viewBox="0 0 16 16" className="icon-filter">
-                      <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
-                    </svg>
-                      <Multiselect
-                        options={negocio} // Options to display in the dropdown
-                        selectedValues={this.state.selectedValue3} // Preselected value to persist in dropdown
-                        onSelect={this.onSelect} // Function will trigger on select event
-                        onRemove={this.onRemove} // Function will trigger on remove event
-                        displayValue="name" // Property name to display in the dropdown options
-                        />
-                  </Col>
                   <Col md={2} className="float-left-five">
-                    <label>
-                      Precio 
-                    </label>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel icono-filter-main" viewBox="0 0 16 16" className="icon-filter">
-                      <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
-                    </svg>
-                      <Multiselect
-                        options={precio} // Options to display in the dropdown
-                        selectedValues={this.state.selectedValue3} // Preselected value to persist in dropdown
-                        onSelect={this.onSelect} // Function will trigger on select event
-                        onRemove={this.onRemove} // Function will trigger on remove event
-                        displayValue="name" // Property name to display in the dropdown options
-                        />
-                  </Col>
-                  <Col md={2} className="float-left-five">
-                    <label>
-                      Margen 
-                    </label>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel icono-filter-main" viewBox="0 0 16 16" className="icon-filter">
-                      <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
-                    </svg>
-                      <Multiselect
-                        options={margen} // Options to display in the dropdown
-                        selectedValues={this.state.selectedValue3} // Preselected value to persist in dropdown
-                        onSelect={this.onSelect} // Function will trigger on select event
-                        onRemove={this.onRemove} // Function will trigger on remove event
-                        displayValue="name" // Property name to display in the dropdown options
-                        />
+                    <button className="btn btn-outline-secondary clear-filter btn-red">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply-all-fill" viewBox="0 0 16 16">
+                        <path d="M8.021 11.9L3.453 8.62a.719.719 0 0 1 0-1.238L8.021 4.1a.716.716 0 0 1 1.079.619V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
+                        <path d="M5.232 4.293a.5.5 0 0 1-.106.7L1.114 7.945a.5.5 0 0 1-.042.028.147.147 0 0 0 0 .252.503.503 0 0 1 .042.028l4.012 2.954a.5.5 0 1 1-.593.805L.539 9.073a1.147 1.147 0 0 1 0-1.946l3.994-2.94a.5.5 0 0 1 .699.106z"/>
+                      </svg>
+                    </button>
                   </Col>
               </div>
             </Col>
           </Row>
-
-
-     {/* FILTRO */}
           <Card className="mb-3">
             <CardBody>
             <Col md={3} className="container-btn-masiva">
@@ -289,75 +291,9 @@ class Masivo extends React.Component {
                 </Button>
 
             </Col>
+
             <Tabs headerStyle={{fontWeight: 'bold'}} activeHeaderStyle={{color:'black'}} >
-                        <Tab label="Diesel" >
-                          <Table responsive>
-                            <thead>
-                                <tr>
-                                  <th className="text-center header-table">All <input type="radio" onChange={this.selectChooseAll}></input></th>
-                                  <th className="text-center header-table">EMPRESA</th>
-                                  <th className="text-center header-table">NEGOCIO</th>
-                                  <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
-                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
-                                  <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
-                                  <th className="text-center header-table">PVP RECOMENDADO FRANJA 1</th>
-                                  <th className="text-center header-table">PVP RECOMENDADO FRANJA 2</th>
-                                  <th className="text-center header-table">PVP RECOMENDADO FRANJA 3</th>
-                                  <th className="text-center header-table">PVP SELECCIONADO</th>
-                                  <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
-                                  <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
-                                  <th className="text-center header-table"><span className="meaning">VOLUMEN PROMEDIO DEL MES</span><span className="detail">Volumen promedio del mes</span></th>  
-                                  <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                     
-                                  <th className="text-center header-table"></th>
-                                  <th className="text-center header-table"></th>
-                                </tr>
-                            </thead>
-                          <tbody>
-                          {
-                            dataReal[0].map((prop,i) => {
-                                let producto = prop.productos
-                                let diferenciaprecio =  producto[0].preciodecomprahoy - producto[0].preciocompramanana;
-                                let preciopromediocompetencia = (producto[0].competencia1 + producto[0].competencia2 +producto[0].competencia3 + producto[0].competencia4 + producto[0].competencia5)/ 5;
-                                let arrayToDefine = [ producto[0].competenciaestrategica, producto[0].competencia1, producto[0].competencia2, producto[0].competencia3, producto[0].competencia4, producto[0].competencia5, producto[0].competenciaestrategica ];
-                                let min = Math.min.apply(Math, arrayToDefine);
-                                let max = Math.max.apply(Math, arrayToDefine);
-                                return (
-                                <tr>
-                                  <td className="text-center color-blue"> <input type="radio" id={ i } name={ i } value="dewey" checked={this.state.selectAll ? true : false}/></td>
-                                  <td className="text-left nombre-empresa">{ prop.empresa }</td>
-                                  <td className="text-center"> { prop.negocio } </td>
-                                  <td className="text-center">$ { producto[0].preciodecomprahoy }</td>
-                                  <td className="text-center">$ { diferenciaprecio.toFixed(2) }</td>
-                                  <td className="text-center text-shadow">$ {preciopromediocompetencia.toFixed(2)}</td>
-                                  <td className="text-center text-shadow">$ {max.toFixed(2)}</td>
-                                  <td className="text-center text-shadow">$ {min.toFixed(2)}</td>
-                                  <td className="text-center text-shadow">$ {producto[0].competenciaestrategica}</td>
-                                  <td className="text-center text-shadow text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $ { producto[0].pvprecomendadofranja1} </td>
-                                  <td className="text-center bg-gray-light text-shadow">{ this.state.simular  || this.state.preciotoplay > 0 ? <p><input type="radio" name="radio1" value={''} className="dato_ms" /><input type="number" className="input-simulacion-dos" placeholder="" value={this.state.preciotoplay > 0 ? this.state.preciotoplay : ''}/> </p> : 13.2 }</td>
-                                  <td className="text-center text-shadow text-shadowb">{ this.state.simular  || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $ { producto[0].pvprecomendadofranja2} </td>
-                                  <td className="text-center text-shadow text-shadowc">{ this.state.simular  || this.state.preciotoplay > 0 ? <input type="radio" name="radio1" value=""  /> : ''} $ { producto[0].pvprecomendadofranja3} </td>
-                                  <td className={ producto[0].margenteorico < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenteorico > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > $ { producto[0].margenteorico }</td>
-                                  <td className={ producto[0].margenreal < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenreal > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > ${ producto[0].margenreal} </td>
-                                  <td className="text-center bg-gray-light"> { producto[0].volumenpromediodelmes } lts</td>
-                                  <td className="text-center bg-gray-light"> { producto[0].volumenobjetivomensual }%</td>
-                                  <td className="text-center"><a href="/#ServicioAztecas" target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
-                                  <td className="text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="0" onClick={this.handleClick}>
-                                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                    </svg>
-                                    </td>
-                                </tr>
-                                )
 
-                            })
-                          }            
-                          </tbody>
-                        </Table>
-
-                        </Tab>
                         <Tab label="< 92">
                         <Table responsive>
                           <thead>

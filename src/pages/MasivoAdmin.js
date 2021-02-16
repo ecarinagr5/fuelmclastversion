@@ -14,6 +14,12 @@ import  Filter  from 'components/Filter';
 import ver from "assets/img/ver.png";
 import favoritos from "assets/img/star.png";
 
+//Connect Redux
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { getDataAction } from '../Redux/dataToShow'
+import { sendDataDatabase } from '../Redux/sendToDb'
+
 
 import {
   avatarsData,
@@ -789,4 +795,20 @@ class MasivoAdmin extends React.Component {
     );
   }
 }
-export default MasivoAdmin;
+
+//Received Information REDUX
+function mapStateToProps(state){
+  return {
+      data: state,
+      currentStation: state.station
+  }
+}
+//Send Information REDUX
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+      getDataAction,
+      sendDataDatabase
+  }, dispatch )
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(MasivoAdmin);

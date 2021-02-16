@@ -1,58 +1,34 @@
-import axios from 'axios'
-const dataMerge = require('../DataDummy/data.json');
 
+//Firebase
+import {firebase} from '../firebase'
 
-//CONTANTS
-//Receive data
-const data = {
-    array : [],
-    offset: 0
-}
-
+const data = []
 //TYPES
-const GET_DATA_SUCCESSFULL  = 'GET_DATA_SUCCESSFULL'
+export const GET_DATA_DB = 'GET_DATA_DB'
 
 //REDUCERS
-export default function ipcReducer( state = data, action ) {
-    switch( action.type ){
-        case GET_DATA_SUCCESSFULL:
-            //send data to array data
-            return { ...state, array: action.payload }
+export default function getDataBase ( state = [] , action){
+    switch(action.type){
+        case GET_DATA_DB:
+            return action
         default:
-            return state
+            return state;
     }
 }
 
 //ACTIONS 
-//asyn to call API
-export const getDataAction = () => async (dispatch) => {
-
-    /*if( localStorage.getItem('offset=0') ) {
-        console.log('Local Storage Data')
-        dispatch({
-            type: GET_DATA_SUCCESSFULL,
-            payload: JSON.parse(localStorage.getItem('offset=0')) //with JSON change array to JSON
-        })
-        return
-    }*/
-/*Example:https://run.mocky.io/v3/cc4c350b-1f11-42a0-a1aa-f8593eafeb1e */
+export const getDataDatabase = (data) => async (dispatch) => {
+    console.log("getDataDsdfdsatabase", data)
     try {
-        /*const res = await axios.get('https://firebasestorage.googleapis.com/v0/b/fuelmc-590d7.appspot.com/o/dataFuel.json?alt=media&token=6d2ee0dd-693c-478b-9708-3ee17d7246de')*/
-        const res = dataMerge;
-        console.log('API Storage')
-        dispatch({
-                type: GET_DATA_SUCCESSFULL,
-                /*payload: res.data*/
-                payload: res[0].usuario
-            })
-        //The goal is use localstorage to avoid force call API and keep the performance
-        /*localStorage.setItem('offset=0', JSON.stringify(res.data)) //with JSON change array to JSON*/
-    } catch (error) {
-        console.log("ERRORFIREBASE",error)
+        const db = firebase.firestore()
+        const data = await db.collection('registrosimulador').get()
+        const arrayData = await data.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data() // Obtenemos elementos en elementos separados
+        }))
+        console.log("getDataDatabase", arrayData)
+    } catch(error) {
+      console.log(error)
     }
-
-}
-
-export const getDetailsAction = () => async (dispatch, getState) => {
 
 }
