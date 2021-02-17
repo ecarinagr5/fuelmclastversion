@@ -6,13 +6,15 @@ import ipcReducer from './dataToShow'
 import setStation from './dataToUpdate'
 import sendDataBase from './sendToDb'
 import getDataBase from './getDataDb'
+import setView from './updateView'
 
 
 const rootReducer  = combineReducers({
     metrics: ipcReducer,
     station: setStation,
     sendata: sendDataBase,
-    getDataBase: getDataBase
+    getDataBase: getDataBase,
+    setView: setView
 })
 
 //code to setup redux dev tools

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { getDataAction } from '../Redux/dataToShow'
 import { sendDataDatabase } from '../Redux/sendToDb'
+import { setCurrentView } from '../Redux/updateView' //Function to update station
 
 //Components
 import Page from 'components/Page';
@@ -48,6 +49,7 @@ class Estacion extends React.Component {
       productgraph:'',
       idproduct:0,
       update:0,
+      view:''
     }
     this.handleClick = this.handleClick.bind(this);
     this.handSimulate = this.handSimulate.bind(this);
@@ -63,6 +65,7 @@ class Estacion extends React.Component {
     const idestacion = !this.props.currentStation ?  this.props.currentStation : this.props.currentStation.station;
     const allProducts = this.props.data.metrics.array.estaciones[idestacion].productos;
     this.state.dataReal.push(allProducts)
+    this.setState({view: this.props.currentView})
  }
 
  componentDidMount(){
@@ -277,6 +280,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
   render() {
     const dataReal = this.state.dataReal[0];
     const competenciastotal = this.props.data.metrics.array.estaciones;
+    const view = this.props.currentView.view
 
     let date = new Date();
     date = moment(date).format("MMM D YYYY hh:mm:ss") 
@@ -336,7 +340,13 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className="id_negocio_class">Id Negocio: <span className="id_negocio">129AB</span></td>
                         </tr>
                         <tr>
-                          <td className="id_negocio_class">Hora de Aplicación: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
+                          <td className="id_negocio_class">Hora de Aplicación Franja 1: <input type="time" id="appt" name="appt" min="09:00" max="18:00" placeholder="8:00" required/></td>
+                        </tr>
+                        <tr>
+                          <td className="id_negocio_class">Hora de Aplicación Franja 2: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
+                        </tr>
+                        <tr>
+                          <td className="id_negocio_class">Hora de Aplicación Franja 3: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
                         </tr>
                       </Table>
                     <br />
@@ -395,7 +405,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                       }
                     })
                   }
-                    <th className="header-table">PRECIO REAL DE HOY</th>
+                    {view === 'manana' ? <th className="header-table">PRECIO REAL DE MAÑANA </th> : <th className="header-table">PRECIO REAL DE HOY</th>}
                     { this.state.simular ? <th className="header-table">SIMULACIÓN FRANJA 1</th> : '' }
                     <th className="header-table">PRECIO RECOMENDADO FRANJA 1</th>
                     { this.state.simular ? <th className="header-table">SIMULACIÓN FRANJA 2</th> : '' }
@@ -426,7 +436,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className={ prop.competencia2 === min ? "text-center txt-ok" : prop.competencia2 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia2 }</td>
                           <td className={ prop.competencia3 === min ? "text-center txt-ok" : prop.competencia3 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia3 }</td>
                           <td className={ prop.competencia4 === min ? "text-center txt-ok" : prop.competencia4 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia4 }</td>
-                          <td className= { prop.preciorealdehoy === min ? "text-center txt-ok" : prop.preciorealdehoy === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealdehoy }</td>
+                          { view === 'manana' ? <td className= { prop.preciorealmanana === min ? "text-center txt-ok" : prop.preciorealmanana === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealmanana } </td> : <td className= { prop.preciorealdehoy === min ? "text-center txt-ok" : prop.preciorealdehoy === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealdehoy }</td>}
                           { this.state.simular ? 
                           <td className="text-left">
                               <p><input type="number" className="input-simulacion" name="simularfranja1" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" tipo="preciomodificadofranja1" name={ 'franja1'+prop.nombre+key } id={ key } value={ prop.simularfranja1  } onClick={this.handSimulate } /></p>  
@@ -527,14 +537,16 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 function mapStateToProps(state){
   return {
       data: state,
-      currentStation: state.station
+      currentStation: state.station,
+      currentView: state.setView
   }
 }
 //Send Information REDUX
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
       getDataAction,
-      sendDataDatabase
+      sendDataDatabase,
+      setCurrentView
   }, dispatch )
 }
 

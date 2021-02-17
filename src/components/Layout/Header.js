@@ -9,6 +9,7 @@ import moment from "moment";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { setCurrentStation } from '../../Redux/dataToUpdate' //Function to update station
+import { setCurrentView } from '../../Redux/updateView' //Function to update station
 
 
 import React from 'react';
@@ -63,15 +64,15 @@ class Header extends React.Component {
         estaciones:[],
         direccionactual:'',
         imglogo: 0,
+        view:'hoy'
       }
       this.change = this.change.bind(this);
+      this.changeView = this.changeView.bind(this);
 }
 
   componentDidMount(){
     const estaciones = this.props.data.metrics.array.estaciones;
-
     estaciones.map( gasolinera => {
-      
       let estacion = {
         nombre:  gasolinera.PRE_EST_PERMISO_CRE + ' ' +  gasolinera.empresa,
         direccion: gasolinera.direccion,
@@ -99,6 +100,10 @@ class Header extends React.Component {
     this.props.setCurrentStation(event.target.value)
   }
 
+  changeView(event) {
+    this.setState({ view: event.target.value})
+    this.props.setCurrentView(event.target.value)
+  }
 
   toggleNotificationPopover = () => {
     this.setState({
@@ -125,11 +130,14 @@ class Header extends React.Component {
 
 
   render() {
-    const { isNotificationConfirmed, date, estaciones, direccionactual, idestacionactual, imglogo} = this.state;
+    const { date, estaciones, direccionactual, idestacionactual, imglogo} = this.state;
     let { pathname } = this.props.location;
     let  data  = this.props.data.metrics.array;
     let lasttime = new Date();
     lasttime = moment(lasttime).format("MMM D YYYY hh:mm:ss") 
+
+
+    /*console.log("Estacion ", direccionactual)*/
     return (
       <Navbar light expand className={bem.b('bg-white')}>
         <Nav navbar className="mr-2">
@@ -146,6 +154,7 @@ class Header extends React.Component {
                 <select className="select-estacion-title" onChange={ this.change }>            
                   {
                     estaciones.map((prop, key)=>{
+                      console.log("hash", this.props.location.hash)
                       return (
                           <option id={key} key={key} value={key }>{ prop.nombre }</option>
                       )
@@ -180,9 +189,9 @@ class Header extends React.Component {
           <NavItem>
             <p className="time-date">{ moment(date).format("MMM D YYYY hh:mm:ss") }</p>
             <p className="tipo-vision"> Hora de aplicación {data.horadeaplicacion}</p>
-            <select className="select-estacion-hoy" onChange={this.change} value={ this.state.station } >
-              <option value={ 0 } selected>Hoy para Hoy</option>
-              <option value={ 0 } selected>Hoy para Mañana</option>
+            <select className="select-estacion-hoy" onChange={this.changeView} value={ this.state.view } >
+              <option id={1} key={1} value="hoy">Hoy para Hoy</option>
+              <option id={2} key={2} value="manana">Hoy para Mañana</option>
             </select>
           </NavItem>
           <NavItem>
@@ -232,7 +241,8 @@ function mapStateToProps(state){
 //Send Information REDUX
 function mapDispatchToProps(dispatch ){
   return bindActionCreators({
-    setCurrentStation
+    setCurrentStation,
+    setCurrentView
   }, dispatch )
 }
 
