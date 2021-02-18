@@ -16,7 +16,7 @@ import { randomNum } from 'utils/demos';
 
 import React from 'react';
 import { Bar, Line } from 'react-chartjs-2';
-import { Button, Card, CardBody, CardHeader, Col, Table, Modal, ModalBody,ModalFooter, ModalHeader, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Table, Modal, ModalBody,ModalFooter, ModalHeader, Row, Badge } from 'reactstrap';
 import { getColor } from 'utils/colors';
 
 //Views
@@ -293,7 +293,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
     return (
       <Page>
             {/* Welcome View */}
-              {/* <Welcome />*/}
+            {/*} <Welcome />*/}
               {/* Modal View */}
               <Modal
                   isOpen={this.state.modal_nested_parent}
@@ -364,6 +364,15 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                     </Button>
                   </ModalFooter>
                 </Modal>
+                <div class="card-body">
+                  {
+                    dataReal.map((prop, key) => {
+                      return (
+                        <button class="mr-1 btn btn-outline-third bold"> Precio Diario {prop.nombre} <span class="color_price"> { prop.preciorealdehoy }</span></button>
+                      )
+                    })
+                  }
+                </div>
       <Row>
           <Col>
             <Card className="mb-3">
@@ -388,7 +397,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
               </Button>
               </div>
               </CardHeader>
-        
               <CardBody>
               <Table responsive>
                 <thead>
@@ -508,13 +516,13 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
               <CardBody>
                 { this.state.simular ?
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA2','PRECIO DE VENTA SELECCIONADO FRANJA3','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA2','PRECIO DE VENTA SELECCIONADO FRANJA3','MARGEN TEÓRICO PROMEDIO','MARGEN REAL PROMEDIO','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
                   usersData={dataReal}
                   simular={this.state.simular}
                   update={this.state.update}
                 /> :
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','MARGEN TEÓRICO','MARGEN REAL','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','MARGEN TEÓRICO PROMEDIO','MARGEN REAL PROMEDIO','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
                   usersData={dataReal}
                   simular={this.state.simular}
                   update={this.state.update}

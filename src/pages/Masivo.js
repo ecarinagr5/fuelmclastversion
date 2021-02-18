@@ -51,7 +51,9 @@ class Masivo extends React.Component {
       simular1:false,
       simular2:false,
       simular3:false,
-      preciotoplay:'',
+      preciotoplay1:null,
+      preciotoplay2:null,
+      preciotoplay3:null,
       diferencia:'',
       dataReal:[],
       productos:[],
@@ -60,6 +62,7 @@ class Masivo extends React.Component {
       negocio:[],
       precio:[], 
       margen:[],
+      idtomodify:[],
       simularid:null,
     }
 
@@ -68,6 +71,7 @@ class Masivo extends React.Component {
     this.onSelect = this.onSelect.bind(this);
     this.fillFilter = this.fillFilter.bind(this);
     this.onRemove = this.onRemove.bind(this);
+    this.close = this.close.bind(this);
   }
 
   componentWillMount(){
@@ -80,7 +84,6 @@ class Masivo extends React.Component {
   const json = []
   const allEstaciones = this.props.data.metrics.array.estaciones;
   json.push(allEstaciones)
-  console.log("allEstaciones",allEstaciones)
   this.setState({ dataReal: json})
   this.fillFilter(this.state.dataReal)
  }
@@ -95,10 +98,8 @@ class Masivo extends React.Component {
       negocio.push ({name:prod.negocio, id: i})
       prod.productos.map((s, i) => {
         if (s.preciodecomprahoy === s.preciodecomprahoy) {
-          console.log("igual", s.preciodecomprahoy)
         }
         else {
-          console.log("diferente", s.preciodecomprahoy)
         }
         this.state.productos.push(s.nombre)
         this.state.precio.push({name:s.preciodecomprahoy , id: i})
@@ -138,12 +139,11 @@ class Masivo extends React.Component {
     return hero.empresa == filtrarpor[0];
   });
   json.push(marvelHeroes )
-  console.log(json)
   this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
   this.fillFilter(this.state.dataReal)
  }
 
-  toggle = modalType => () => {
+  toggle = modalType => (event, val) => {
     if (!modalType) {
       return this.setState({
         modal: !this.state.modal,
@@ -153,8 +153,27 @@ class Masivo extends React.Component {
     this.setState({
       [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
     });
+    this.close();
   };
 
+  close() {
+
+    let simular1 = this.state.preciotoplay1;
+    let simular2 = this.state.preciotoplay2;
+    let simular3 = this.state.preciotoplay3;
+
+    this.state.dataReal[0].map((prop, key) => {
+      console.log("prod",prop.productos[key].preciotoplay1)
+      prop.productos[key].preciotoplay = simular1;
+        /*prop.productos((prod) => {
+          prop.productos = simular1
+          console.log("prod",prod)
+        })*/
+    })
+    console.log("siam",simular1,simular2, simular3)
+
+this.setState({simular:true})
+  }
   selectChooseAll(){
     if(this.state.selectAll) {
       this.setState({selectAll: false})
@@ -177,46 +196,44 @@ class Masivo extends React.Component {
           toggle={this.toggle('nested_parent')}
           className={this.props.className}>
               <ModalHeader toggle={this.toggle('nested_parent')}>
-                ACEPTAR PRECIOS
+                SIMULACIÓN MASIVA
               </ModalHeader>
                   <ModalBody>
-                    <p className="header-txt-v2">Introducir</p>
                     <FormGroup>
-                      <Label for="precio">PRECIO:</Label>
+                      <Label for="precio"> PRECIO FRANJA 1:</Label>
                       <Input
-                        id="precio"
-                        value={this.state.preciotoplay}
-                        onChange={(e) => this.setState({preciotoplay:e.target.value })}  />
+                        id="preciotoplay1"
+                        value={this.state.preciotoplay1}
+                        onChange={(e) => this.setState({preciotoplay1:e.target.value })}  />
                     </FormGroup>
                     <FormGroup>
+                      <Label for="precio"> PRECIO FRANJA 2:</Label>
+                      <Input
+                        id="preciotoplay2"
+                        value={this.state.preciotoplay2}
+                        onChange={(e) => this.setState({preciotoplay2:e.target.value })}  />
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="precio"> PRECIO FRANJA 3:</Label>
+                      <Input
+                        id="preciotoplay3"
+                        value={this.state.preciotoplay3}
+                        onChange={(e) => this.setState({preciotoplay3:e.target.value })}  />
+                    </FormGroup>
+                    {/*<FormGroup>
                       <Label for="diferencia">DIFERENCIA:</Label>
                       <Input
                         id="diferencia"
                         value={this.state.diferencia}
                         onChange={(e) => this.setState({diferencia:e.target.value })}  />
-                    </FormGroup>
-                    <Modal
-                      isOpen={this.state.modal_nested}
-                      toggle={this.toggle('nested')}>
-                      <ModalHeader>Nested Modal title</ModalHeader>
-                      <ModalBody>Stuff and things</ModalBody>
-                      <ModalFooter>
-                        <Button color="primary" onClick={this.toggle('nested')}>
-                          APLICAR
-                        </Button>{' '}
-                        <Button
-                          color="secondary"
-                          onClick={this.toggle('nested_parent')}>
-                          CANCELAR
-                        </Button>
-                      </ModalFooter>
-                    </Modal>
+                    </FormGroup>*/}
                   </ModalBody>
                   <ModalFooter>
                     <Button
+                      name="simularmasiva"
                       color="primary"
                       onClick={this.toggle('nested_parent')}>
-                        ACEPTAR
+                        APLICAR
                     </Button>{' '}
                     <Button
                       color="danger"
@@ -312,28 +329,28 @@ class Masivo extends React.Component {
             </Col>
 
             <Tabs headerStyle={{fontWeight: 'bold'}} activeHeaderStyle={{color:'black'}} >
-                <Tab label="Estaciones" >
+                <Tab label="Diesel" >
                     <Table responsive>
                       <thead>
                           <tr>
-                            <th className="text-center header-table">All <input type="radio" onChange={this.selectChooseAll}></input></th>
-                            <th className="text-center header-table">EMPRESA</th>
-                            <th className="text-center header-table">NEGOCIO</th>
-                            <th className="text-center header-table"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
-                            <th className="text-center header-table"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
-                            <th className="text-center header-table"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
-                            <th className="text-center header-table"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
-                            <th className="text-center header-table"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
-                            <th className="text-center header-table"><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
-                            { this.state.simular ? <th className="header-table">SIMULACIÓN FRANJA 1</th> : '' }
-                            <th className="text-center header-table">PVP RECOMENDADO FRANJA 1</th>
-                            { this.state.simular ? <th className="header-table">SIMULACIÓN FRANJA 2</th> : '' }
-                            <th className="text-center header-table">PVP RECOMENDADO FRANJA 2</th>
-                            { this.state.simular ? <th className="header-table">SIMULACIÓN FRANJA 3</th> : '' }
-                            <th className="text-center header-table">PVP RECOMENDADO FRANJA 3</th>
-                            <th className="text-center header-table"><span className="meaning">MARGEN TEÓRICO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
-                            <th className="text-center header-table"><span className="meaning">MARGEN REAL</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
-                            <th className="text-center header-table"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                     
+                            <th className="text-center header-table min-font">All <input type="radio" onChange={this.selectChooseAll}></input></th>
+                            <th className="text-center header-table min-font">EMPRESA</th>
+                            <th className="text-center header-table min-font">NEGOCIO</th>
+                            <th className="text-center header-table min-font"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
+                            <th className="text-center header-table" min-font><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
+                            { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 1</th> : '' }
+                            <th className="text-center header-table min-font">PVP RECOMENDADO FRANJA 1</th>
+                            { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 2</th> : '' }
+                            <th className="text-center header-table min-font">PVP RECOMENDADO FRANJA 2</th>
+                            { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 3</th> : '' }
+                            <th className="text-center header-table min-font">PVP RECOMENDADO FRANJA 3</th>
+                            <th className="text-center header-table min-font"><span className="meaning">MARGEN TEÓRICO PROMEDIO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">MARGEN REAL PROMEDIO</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                     
                             <th className="text-center header-table"></th>
                             <th className="text-center header-table"></th>
                           </tr>
@@ -349,9 +366,10 @@ class Masivo extends React.Component {
                           let min = Math.min.apply(Math, arrayToDefine);
                           let max = Math.max.apply(Math, arrayToDefine);
                           let estacionroute = '/#' + prop.PRE_EST_PERMISO_CRE;
+                          let diferenciaVolumen = producto[0].volumenobjetivo - producto[0].volumenreal; 
                           return (
                           <tr>
-                            <td className="text-center color-blue"> <input type="radio" id={ i } name={ i } value="dewey" checked={this.state.selectAll ? true : false}/></td>
+                            <td className="text-center color-blue"> <input type="radio" id={ i } name={ i } value={ i } checked={this.state.selectAll ? true : false}/></td>
                             <td className="text-left nombre-empresa">{ prop.empresa }</td>
                             <td className="text-center"> { prop.negocio } </td>
                             <td className="text-center">$ { producto[0].preciodecomprahoy }</td>
@@ -360,21 +378,27 @@ class Masivo extends React.Component {
                             <td className="text-center">$ {max.toFixed(2)}</td>
                             <td className="text-center">$ {min.toFixed(2)}</td>
                             <td className="text-center">$ {producto[0].competenciaestrategica}</td>
-                            { this.state.simularid === i ? <td className="text-center bg-gray-light"><p><input type="radio" name="radio1" value={''} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja1}/> </p></td> : '' }
-                            <td className="text-center text-shadow text-shadow">{ this.state.simularid === i  ? <input type="radio" name="radio1" value=""  /> : ''} $ { producto[0].pvprecomendadofranja1} </td>
-                            { this.state.simularid === i  ? <td className="text-center bg-gray-light"><p><input type="radio" name="radio1" value={''} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja2}/> </p></td> : '' }
-                            <td className="text-center text-shadow text-shadowb">{ this.state.simularid === i  ? <input type="radio" name="radio1" value=""  /> : ''} $ { producto[0].pvprecomendadofranja2} </td>
-                            { this.state.simularid  === i ? <td className="text-center bg-gray-light"><p><input type="radio" name="radio1" value={''} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja3}/> </p></td> : '' }
-                            <td className="text-center text-shadow text-shadowc">{ this.state.simularid === i   ? <input type="radio" name="radio1" value=""  /> : ''} $ { producto[0].pvprecomendadofranja3} </td>
+                          { this.state.simular ? this.state.simularid === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja1}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.preciotoplay1 }</td> : '' }
+                          <td className="text-center text-shadow text-shadow">{ this.state.simularid === i  ? <input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1}  /> :''} $ { producto[0].pvprecomendadofranja1} </td>
+                          { this.state.simular ? this.state.simularid === i  ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja2}/> </p></td> :  <td className="text-center bg-gray-light">{ this.state.preciotoplay2 }</td> : '' }
+                            <td className="text-center text-shadow text-shadowb">{ this.state.simularid === i  ? <input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2}  /> : ''  } $ { producto[0].pvprecomendadofranja2} </td>
+                          { this.state.simular ? this.state.simularid  === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja3}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.preciotoplay3  }</td> : '' }
+                            <td className="text-center text-shadow text-shadowc">{ this.state.simularid === i   ? <input type="radio" name="radio1" value=""  /> : '' } $ { producto[0].pvprecomendadofranja3} </td>
                             <td className={ producto[0].margenteorico < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenteorico > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > $ { producto[0].margenteorico }</td>
                             <td className={ producto[0].margenreal < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenreal > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > ${ producto[0].margenreal} </td>
                             <td className="text-center bg-gray-light"> { producto[0].volumenobjetivomensual }%</td>
                             <td className="text-center"><a href={estacionroute} target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
+                            {this.state.simularid === i ? 
+                            <td className="text-center">
+                              <span> X </span>
+                            </td>
+                            :
                             <td className="text-center">
                               <svg xmlns="http://www.w3.org/2000/svg" id={i} width="16" height="16" fill="currentColor" class="bi bi-pencil editicon" viewBox="0 0 16 16" id="0" onClick={ (e) => this.handleClick(e, i) }>
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                               </svg>
-                              </td>
+                            </td>
+                            }
                           </tr>
                           )
                       })

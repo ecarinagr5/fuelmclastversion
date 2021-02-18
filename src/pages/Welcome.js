@@ -82,9 +82,9 @@ class Welcome extends React.Component {
     return (
       <Page>
         <div className="bienvenida-class">
-          <div>
+          {/*<div>
             SIMULACIÓN
-          </div>
+          </div>*/}
           <div id="splash">
             <div class="anim">
               <div id="loader">

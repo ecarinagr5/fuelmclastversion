@@ -75,8 +75,8 @@ th{
   font-size: 14px;
 }
 .table th{
-  padding: 0.5rem !important;
-  font-size: 11px !important;
+  padding: 0.2rem !important;
+  font-size: 11px;
 }
 .graph-line{
   /*height: 400px;*/
@@ -143,6 +143,7 @@ h1 {
   font-weight: 600;
   margin-top: -4%;
 }
+
 .background-slider {
   width: 100%;
   height: auto;
@@ -157,7 +158,7 @@ h1 {
   padding: 0 !important;
 }
 .color-hoy{
-  color: #9aaa04;
+  color: #2A3F54;
   font-weight: 600;
 }
 .time-date{
@@ -167,18 +168,28 @@ h1 {
   font-weight: 600;
 }
 .lhyQmCtWOINviMz0WG_gr {
-  background: #9aaa04 !important; 
+  background: #2A3F54 !important; 
 }
 ._7ahQImyV4dj0EpcNOjnwA{
   background: transparent !important; 
-  border: 1px solid #9aaa04 !important;
-  color:#9aaa04 !important;
+  border: 1px solid #2A3F54 !important;
+  color:#2A3F54 !important;
 }
 .table th, .table td{
   padding: 0.2rem;
 }
+.badge-color{
+  color:#f1f1f1;
+  padding: 0 5%;
+}
+.bold{
+  font-weight: 600;
+}
+.color_price{
+  color: #2A3F54;
+}
 .id_negocio{
-  color: #9aaa04;
+  color: #2A3F54;
   font-weight: 600;
   padding: 0 2%;
 }
@@ -187,16 +198,16 @@ h1 {
 }
 .select-estacion-title{
   padding: 0% 1%;
-  color: #9aaa04;
+  color: #2A3F54;
   font-size: 16px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #2A3F54;
   font-weight: 600;
   margin: 0 5%;
 }
 .select-estacion-hoy{
-  color: #9aaa04;
+  color: #2A3F54;
   font-size: 16px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #2A3F54;
   font-weight: 600;
   text-align: center;
   margin-top: -5%;
@@ -427,7 +438,7 @@ label {
 }
 .update-text{
   font-size: 10px;
-  color:#9aaa04;
+  color:#2A3F54;
   margin-left: 2%;
 }
 .container-tools-inside{
@@ -474,7 +485,7 @@ li a{
   cursor: pointer;
 }
 input[type="radio"], input[type="checkbox"] {
-  border:1px solid #9aaa04;
+  border:1px solid #2A3F54;
 }
 /*Medida General phone*/
 @media only screen and (max-width: 667px) { 
@@ -490,7 +501,7 @@ input[type="radio"], input[type="checkbox"] {
   }
   .select-estacion-title {
     padding: 0% 1%;
-    color: #9aaa04;
+    color: #2A3F54;
     font-size: 14px; 
   }
   .logo-station {
@@ -611,7 +622,7 @@ input[type=number]::-webkit-outer-spin-button {
   left: 50%;
   width: 100px;
   transform: translate(-50%,100%);
-  animation: loader 10s linear;
+  animation: loader 5s linear;
   animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
 }
@@ -620,9 +631,9 @@ input[type=number]::-webkit-outer-spin-button {
   0% {
     transform: translate(-50%,110%);
   }
-  /*30% {
+  30% {
     transform: translate(-50%,50%);
-  }*/
+  }
   100% {
     transform: translate(-50%,0%);
   }
@@ -632,9 +643,9 @@ input[type=number]::-webkit-outer-spin-button {
   0% {
     transform: translate(0%,0%);
   }
-  /*50% {
+  50% {
     transform: translate(0%,0%);
-  }*/
+  }
   100% {
     transform: translate(0%,-100%);
   }
@@ -725,4 +736,7 @@ svg.svgwelcome {
   position: absolute;
   bottom: 100px;
   left: 70px;
+}
+.min-font{
+  font-size: 10px !important;
 }

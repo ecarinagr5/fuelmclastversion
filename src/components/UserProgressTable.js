@@ -29,8 +29,11 @@ const UserProgressTable = ({ headers, usersData, simular, ...restProps }) => {
       </thead>
       <tbody>
         { 
-          usersData.map(({ avatar, nombre, precioventa, utilidad, preciodecomprahoy, fechadeultimacompra, precioultimacompra, preciocompramanana, margenteorico ,margenreal,volumenpromediodelmes, volumenobjetivomensual, margenobjetivo , preciomodificadofranja1,preciomodificadofranja2, preciomodificadofranja3, pvprecomendadofranja1, pvprecomendadofranja2, pvprecomendadofranja3}, index) => {
+          usersData.map(({ avatar, nombre, precioventa, utilidad, volumenobjetivo,volumenreal,preciodecomprahoy, fechadeultimacompra, precioultimacompra, preciocompramanana, margenteorico ,margenreal,volumenpromediodelmes, volumenobjetivomensual, margenobjetivo , preciomodificadofranja1,preciomodificadofranja2, preciomodificadofranja3, pvprecomendadofranja1, pvprecomendadofranja2, pvprecomendadofranja3}, index) => {
           let diferencia = preciodecomprahoy - preciocompramanana;
+          let diferenciaVolumen = volumenobjetivo - volumenreal;
+          //Diferencia Volumen volumenreal - volumenobjetivo
+          //
         return (
           <tr key={index}>
             <td className="align-middle text-center">
@@ -56,13 +59,7 @@ const UserProgressTable = ({ headers, usersData, simular, ...restProps }) => {
               </Progress>  
             </td>
             <td className="align-middle text-center">
-            <Progress
-                  color="success"
-                  value={volumenobjetivomensual}
-                  className="mb-3"
-                >
-                {volumenobjetivomensual} %
-              </Progress>  
+                {diferenciaVolumen} %
               </td>
           </tr>
         )})}

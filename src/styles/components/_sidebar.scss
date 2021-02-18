@@ -7,7 +7,7 @@
   --main--color--gray-light:#eceff1;
   --main--color--green:#1abc9c;
   --main--color--gray-everis:#505050;
-  --main--color--green-everis:#9aaa04;
+  --main--color--green-everis:#2A3F54;
 }
 .cr-sidebar {
   // @include media-breakpoint-down(md) {
@@ -50,8 +50,8 @@
   &::after {
     z-index: 3;
     // sublime light
-    background: #9aaa04; /* fallback for old browsers */
-    background: linear-gradient(to bottom, #9aaa04, #505050);
+    background: #2A3F54; /* fallback for old browsers */
+    background: linear-gradient(to bottom, #2A3F54, #505050);
     opacity: 1;
   }
 
