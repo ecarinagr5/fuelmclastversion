@@ -25,7 +25,7 @@ const genPieData = () => {
   return {
     datasets: [
       {
-        data: [40,20,10,10,20],
+        data: [30,30,40],
         backgroundColor: [
           getColor('primary'),
           getColor('secondary'),
@@ -36,7 +36,7 @@ const genPieData = () => {
         label: 'Dataset 1',
       },
     ],
-    labels: ['<92', '>92', 'PEMEX DIESEL', 'Gasoleo B', 'Diesel A+'],
+    labels: [ 'regular', 'diesel', 'premium'],
   };
 };
 
@@ -428,11 +428,9 @@ this.setState({simular:true})
                         <thead>
                           <tr>
                           <th className="header-table"></th>
-                            <th className="header-table text-left">Diesel A+</th>
-                            <th className="header-table text-left">{'<92'}</th>
-                            <th className="header-table text-left">{'>92'}</th>
-                            <th className="header-table text-left">Gasoleo B</th>
-                            <th className="header-table text-left">PEMEX</th>
+                            <th className="header-table text-left">regular</th>
+                            <th className="header-table text-left">diesel</th>
+                            <th className="header-table text-left">premium</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -441,14 +439,10 @@ this.setState({simular:true})
                             <td className="menos-espacio">$12,023</td>
                             <td className="menos-espacio">$23,932</td>
                             <td className="menos-espacio">$22,333</td>
-                            <td className="menos-espacio">$23,932</td>
-                            <td className="menos-espacio">$23,932</td>
                           </tr>
                           <tr>
                             <th scope="row">Precio</th>
                             <td className="menos-espacio">$23.3</td>
-                            <td className="menos-espacio">$13.3</td>
-                            <td className="menos-espacio">$12.3</td>
                             <td className="menos-espacio">$13.3</td>
                             <td className="menos-espacio">$12.3</td>
                           </tr>
@@ -457,24 +451,19 @@ this.setState({simular:true})
                             <td className="menos-espacio">$10,000</td>
                             <td className="menos-espacio">$20,000</td>
                             <td className="menos-espacio">$22,500</td>
-                            <td className="menos-espacio">$20,000</td>
-                            <td className="menos-espacio">$22,500</td>
                           </tr>
                           <tr>
                             <th scope="row">Volumen</th>
                             <td className="menos-espacio">290 lts</td>
                             <td className="menos-espacio">320 lts</td>
                             <td className="menos-espacio">250 lts</td>
-                            <td className="menos-espacio">290 lts</td>
-                            <td className="menos-espacio">320 lts</td>
                           </tr>
                           <tr>
                             <th scope="row">Margen</th>
                             <td className="menos-espacio">10%</td>
                             <td className="menos-espacio">50%</td>
                             <td className="menos-espacio">65%</td>
-                            <td className="menos-espacio">10%</td>
-                            <td className="menos-espacio">50%</td>
+
                           </tr>
                         </tbody>
                       </Table>
@@ -495,30 +484,22 @@ this.setState({simular:true})
               <ListGroup flush>
                 <ListGroupItem>
                   <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones{' '}
-                  <h4 className="text-center"><Badge color="">80</Badge></h4>
+                  <h4 className="text-center"><Badge color="">5</Badge></h4>
                 </ListGroupItem>
                 <ListGroupItem>
                 <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones por Producto{' '}
                 </ListGroupItem>
                 <ListGroupItem>
-                {'<92'}
-                  <Badge color="">10</Badge>
+                {'regular'}
+                  <Badge color="">2</Badge>
                 </ListGroupItem>
                 <ListGroupItem>
-                {'>92'}{' '}
-                  <Badge color="">10</Badge>
+                {'diesel'}{' '}
+                  <Badge color="">2</Badge>
                 </ListGroupItem>
                 <ListGroupItem>
-                  {'Gasoleo B'}{' '}
-                  <Badge color="">20</Badge>
-                </ListGroupItem>
-                <ListGroupItem>
-                  {'Diesel A+'}{' '}
-                  <Badge color="">10</Badge>
-                </ListGroupItem>
-                <ListGroupItem>
-                  {'PEMEX DIESEL (DIESEL)'}{' '}
-                  <Badge color="">30</Badge>
+                  {'premium'}{' '}
+                  <Badge color="">1</Badge>
                 </ListGroupItem>
               </ListGroup>
             </Card>

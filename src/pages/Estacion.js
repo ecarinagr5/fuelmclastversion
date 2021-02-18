@@ -141,9 +141,9 @@ resetSimulador(){
     }
 
     //Calculate Average
-    let franja1 = modificado[event.target.id].preciomodificadofranja1 > 0 ? parseInt(modificado[event.target.id].preciomodificadofranja1) : parseInt(modificado[event.target.id].pvprecomendadofranja1);
-    let franja2 =  modificado[event.target.id].preciomodificadofranja2 > 0 ? parseInt(modificado[event.target.id].preciomodificadofranja2) : parseInt(modificado[event.target.id].pvprecomendadofranja2);
-    let franja3 =  modificado[event.target.id].preciomodificadofranja3 > 0 ? parseInt(modificado[event.target.id].preciomodificadofranja3) : parseInt(modificado[event.target.id].pvprecomendadofranja3);
+    let franja1 =  this.state.view === 'manana' ? modificado[event.target.id].pvprecomendadomananafranja1 > 0 ? parseInt(modificado[event.target.id].pvprecomendadomananafranja1) : parseInt(modificado[event.target.id].pvprecomendadofranja1) : modificado[event.target.id].preciomodificadofranja1 > 0 ? parseInt(modificado[event.target.id].preciomodificadofranja1) : parseInt(modificado[event.target.id].pvprecomendadofranja1);
+    let franja2 =  this.state.view === 'manana' ? modificado[event.target.id].pvprecomendadomananafranja2 > 0 ? parseInt(modificado[event.target.id].pvprecomendadomananafranja2) : parseInt(modificado[event.target.id].pvprecomendadofranja1) : modificado[event.target.id].preciomodificadofranja2 > 0 ? parseInt(modificado[event.target.id].preciomodificadofranja2) : parseInt(modificado[event.target.id].pvprecomendadofranja2);
+    let franja3 =   this.state.view === 'manana' ? modificado[event.target.id].pvprecomendadomananafranja3 > 0 ? parseInt(modificado[event.target.id].pvprecomendadomananafranja3) : parseInt(modificado[event.target.id].pvprecomendadofranja1) : modificado[event.target.id].preciomodificadofranja3 > 0 ? parseInt(modificado[event.target.id].preciomodificadofranja3) : parseInt(modificado[event.target.id].pvprecomendadofranja3);
     
     modificado[event.target.id].preciopromediofranjas = ( franja1 + franja2 + franja3 ) / 3;
 
@@ -186,7 +186,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
         return 'no'
       }
     });
-    let promedioactual =  ( product[idproduct].pvprecomendadofranja1 + product[idproduct].pvprecomendadofranja2 + product[idproduct].pvprecomendadofranja3 ) / 3;
+    let promedioactual =  this.state.view === 'manana' ? ( product[idproduct].pvprecomendadomananafranja1 + product[idproduct].pvprecomendadomananafranja2 + product[idproduct].pvprecomendadomananafranja3 ) / 3 : ( product[idproduct].pvprecomendadofranja1 + product[idproduct].pvprecomendadofranja2 + product[idproduct].pvprecomendadofranja3 ) / 3;
     let promedio = product[idproduct].preciopromediofranjas > 0 ? product[idproduct].preciopromediofranjas : promedioactual;
     return {
       labels: MONTHS,
@@ -293,7 +293,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
     return (
       <Page>
             {/* Welcome View */}
-            {/*} <Welcome />*/}
+            {/* <Welcome />*/}
               {/* Modal View */}
               <Modal
                   isOpen={this.state.modal_nested_parent}
@@ -368,7 +368,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                   {
                     dataReal.map((prop, key) => {
                       return (
-                        <button class="mr-1 btn btn-outline-third bold"> Precio Diario {prop.nombre} <span class="color_price"> { prop.preciorealdehoy }</span></button>
+                        <button class="mr-1 btn btn-outline-third bold"> Precio Diario {prop.nombre} <span class="color_price"> {prop.preciorealdehoy }</span></button>
                       )
                     })
                   }
@@ -453,7 +453,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className={this.state.simular ? 
                             prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
                             prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
-                          >${ prop.pvprecomendadofranja1 } { this.state.simular ?  <input type="radio"  name={ 'franja1'+prop.nombre+key } id={ key } value={ prop.pvprecomendadofranja1 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          >${  view === 'manana' ? prop.pvprecomendadomananafranja1 : prop.pvprecomendadofranja1 } { this.state.simular ?  <input type="radio"  name={ 'franja1'+prop.nombre+key } id={ key } value={  view === 'manana' ? prop.preciodiariomanana : prop.pvprecomendadofranja1 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
                           {/* Precio Franja 2 */}
                           { this.state.simular ? 
@@ -463,7 +463,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className={this.state.simular ? 
                             prop.pvprecomendadofranja2 === min ? "text-center text-shadowb td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadowb td-size txt-high" : "text-center text-shadowb td-size" : 
                             prop.pvprecomendadofranja2 === min ? "text-center text-shadowb td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadowb td-size txt-high": "text-center text-shadowb" }
-                          >${ prop.pvprecomendadofranja2 } { this.state.simular ?  <input type="radio" name={ 'franja2'+prop.nombre+key} id={ key } value={ prop.pvprecomendadofranja2 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          >${  view === 'manana' ? prop.pvprecomendadomananafranja2 : prop.pvprecomendadofranja2 } { this.state.simular ?  <input type="radio" name={ 'franja2'+prop.nombre+key} id={ key } value={  view === 'manana' ? prop.preciodiariomanana : prop.pvprecomendadofranja2 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
 
                           {/* Precio Franja 3 */}
@@ -474,7 +474,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className={this.state.simular ? 
                             prop.pvprecomendadofranja3 === min ? "text-center text-shadowc td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadowc td-size txt-high" : "text-center text-shadowc td-size" : 
                             prop.pvprecomendadofranja3 === min ? "text-center text-shadowc td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadowc td-size txt-high": "text-center text-shadowc" }
-                          >${ prop.pvprecomendadofranja3 } { this.state.simular ?  <input type="radio" name={ 'franja3'+prop.nombre+key} id={ key } value={ prop.pvprecomendadofranja3 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                          >${  view === 'manana' ? prop.pvprecomendadomananafranja3 :  prop.pvprecomendadofranja3 } { this.state.simular ?  <input type="radio" name={ 'franja3'+prop.nombre+key} id={ key } value={  view === 'manana' ? prop.preciodiariomanana : prop.pvprecomendadofranja3 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                           
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
                     </tr>
