@@ -309,9 +309,9 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                         <thead>
                           <tr>
                             <th className="header-table">PRODUCTO</th>
-                            <th className="header-table">PVP FRANJA 1</th>
-                            <th className="header-table">PVP FRANJA 2</th>
-                            <th className="header-table">PVP FRANJA 3</th>
+                            { this.props.viewprice ? <th className="header-table">PVP RECOMENDADO </th> :  <th className="header-table">PVP FRANJA 1</th> }
+                            { this.props.viewprice ? '' : <th className="header-table">PVP FRANJA 2</th> }
+                            { this.props.viewprice ? '' : <th className="header-table">PVP FRANJA 3</th> }
                             <th className="header-table">MARGEN REAL</th>
                             <th className="header-table">MARGEN TEÓRICO</th>
                             <th className="header-table">UTILIDAD</th>
@@ -368,11 +368,12 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                   {
                     dataReal.map((prop, key) => {
                       return (
-                        <button class="mr-1 btn btn-outline-third bold"> Precio Diario {prop.nombre} <span class="color_price"> {prop.preciorealdehoy }</span></button>
+                        <button class="mr-1 btn btn-outline-third bold">{prop.nombre} <span class="color_price"> ${prop.preciorealdehoy }</span></button>
                       )
                     })
                   }
-                </div>
+                <Button color="primary" onClick={this.handleClick} className="btn-main-fuel-right">FRANJAS</Button>
+              </div>
       <Row>
           <Col>
             <Card className="mb-3">
@@ -546,7 +547,8 @@ function mapStateToProps(state){
   return {
       data: state,
       currentStation: state.station,
-      currentView: state.setView
+      currentView: state.setView,
+      viewprice: state.changePrice
   }
 }
 //Send Information REDUX

@@ -7,6 +7,7 @@ import setStation from './dataToUpdate'
 import sendDataBase from './sendToDb'
 import getDataBase from './getDataDb'
 import setView from './updateView'
+import changePrice from './changePrice'
 
 
 const rootReducer  = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer  = combineReducers({
     station: setStation,
     sendata: sendDataBase,
     getDataBase: getDataBase,
-    setView: setView
+    setView: setView,
+    changePrice:changePrice
 })
 
 //code to setup redux dev tools

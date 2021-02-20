@@ -185,6 +185,28 @@ h1 {
 .bold{
   font-weight: 600;
 }
+.img_franjas{
+  width: 40px;
+}
+.calc_type{
+  position: fixed;
+  bottom: 2%;
+  right: 0;
+  z-index: 3;
+  background: #2A3F54 linear-gradient(180deg, #4a5c6e, #2A3F54) repeat-x;
+  border-color: #2A3F54;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+}
+.calc_type:hover{
+  background: #999999 linear-gradient(180deg, #4a5c6e, #4a5c6e) repeat-x;
+  border-color: #2A3F54;
+}
 .color_price{
   color: #2A3F54;
 }

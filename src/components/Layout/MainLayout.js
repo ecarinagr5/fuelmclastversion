@@ -3,10 +3,15 @@ import React from 'react';
 import NotificationSystem from 'react-notification-system';
 import { NOTIFICATION_SYSTEM_STYLE } from 'utils/constants';
 
+//imagenes
+import oneprice from '../../assets/img/cashback.png'
+import franjasprice from '../../assets/img/price-tags.png'
+
 //Connect Redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { getDataAction } from '../../Redux/dataToShow'
+import { setTypePrice } from '../../Redux/changePrice'
 import moment from "moment";
 
 class MainLayout extends React.Component {
@@ -51,6 +56,12 @@ class MainLayout extends React.Component {
     }, 2500);*/
   }
 
+  changePriceView = event => {
+    let val = this.props.viewprice ?  !this.props.viewprice  : this.props.viewprice;
+    this.props.setTypePrice(val)
+    console.log("sdfsdfds",this.props.viewprice)
+    }
+
   // close sidebar when
   handleContentClick = event => {
     // close sidebar if sidebar is open and screen size is less than `md`
@@ -88,9 +99,12 @@ class MainLayout extends React.Component {
   }
 
   render() {
+    let  { viewprice } = this.props;
     const { children } = this.props;
+    console.log("viewprice", viewprice)
     return (
       <main className="cr-app bg-light">
+        <p className="calc_type" onClick={this.changePriceView}><img src={viewprice ? franjasprice : oneprice } alt="simuladoreveris" className="img_franjas" /></p>
         <Sidebar />
         <Content fluid onClick={this.handleContentClick}>
           <Header {...this.props} />
@@ -113,12 +127,14 @@ class MainLayout extends React.Component {
 function mapStateToProps(state){
   return {
       data: state,
+      viewprice: state.changePrice
   }
 }
 //Send Information REDUX
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-      getDataAction
+      getDataAction,
+      setTypePrice
   }, dispatch )
 }
 export default connect(mapStateToProps,mapDispatchToProps)(MainLayout);
