@@ -132,11 +132,15 @@ class Header extends React.Component {
   render() {
     const { date, estaciones, direccionactual, idestacionactual, imglogo} = this.state;
     let { pathname } = this.props.location;
-    let  data  = this.props.data.metrics.array;
+    let data  = this.props.data.metrics.array;
+    let stations = this.props.data.metrics.array.estaciones;
+    let current = this.props.currentStation.station;
     let lasttime = new Date();
+    //console.log("stcion",stations[this.props.currentStation.station].imgid)
+
     lasttime = moment(lasttime).format("MMM D YYYY hh:mm:ss") 
 
-
+    //console.log("data", estaciones[ this.props.currentStation.station === 'undefined' ? 0 : this.props.currentStation.station].imgid  )
     /*console.log("Estacion ", direccionactual)*/
     return (
       <Navbar light expand className={bem.b('bg-white')}>
@@ -146,7 +150,7 @@ class Header extends React.Component {
           </Button>
         </Nav>
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
-          <img src={ this.props.currentStation.station === 1 ?  logonatgas : logopemex}  alt="fuel" className="logo-station"/> 
+          <img src={ stations[this.props.currentStation.station] ?  stations[current].imgid : stations[0].imgid}  alt="fuel" className="logo-station"/> 
         }
         <Nav navbar>
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
