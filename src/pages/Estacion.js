@@ -290,6 +290,9 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
         this.state.competencias.push(prop.competencias);
     })
     let competencias =  this.state.competencias[0]
+
+    //let promedioestrategicas = 
+    console.log("s",dataReal )
     let promedio = 63 //Promedio de competencia estrategica;
 
     return (
@@ -407,7 +410,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 <thead>
                   <tr>
                     <th className="header-table">PRODUCTO</th>
-                    <th className="header-table">PRECIO PROMEDIO PONDERADO</th>
+                    <th className="header-table"><span className="meaning">PRECIO PROMEDIO PONDERADO</span><span className="detail">Precio promedio ponderado de la competencia</span> </th>
                     {  
                     competencias.map((prop, key) => { 
                       if( prop.estrategica ) {
@@ -418,14 +421,14 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                       }
                     })
                   }
-                    { view === 'manana' ? <th className="header-table">PRECIO REAL DE MAÑANA </th> : <th className="header-table">PRECIO ACTUAL</th>}
+                    { view === 'manana' ? <th className="header-table"><span className="meaning">PRECIO REAL DE MAÑANA </span><span className="detail">Precio más actualizado de la EESS publicado por la CRE</span> </th> : <th className="header-table"><span className="meaning">PRECIO ACTUAL </span><span className="detail">Precio más actualizado de la EESS publicado por la CRE</span> </th>}
                     { this.state.simular && !viewprice ? <th className="header-table">SIMULACIÓN FRANJA 1</th> : this.state.simular  ? <th className="header-table">SIMULACIÓN</th> : '' }
-                    { viewprice ? <th className="header-table">PRECIO RECOMENDADO </th> : <th className="header-table">PRECIO RECOMENDADO FRANJA 1</th> }
+                    { viewprice ? <th className="header-table">PRECIO RECOMENDADO </th> : <th className="header-table"><span className="meaning">PRECIO RECOMENDADO FRANJA 1 </span><span className="detail">Precio recomendado desde la hora { "00:01" } hasta la hora { "11:00" }</span> </th>  }
                     { this.state.simular && !viewprice ? <th className="header-table">SIMULACIÓN FRANJA 2</th> : '' }
-                    { viewprice ? '' : <th className="header-table">PRECIO RECOMENDADO FRANJA 2</th> }
+                    { viewprice ? '' : <th className="header-table"><span className="meaning">PRECIO RECOMENDADO FRANJA 2 </span><span className="detail">Precio recomendado desde la hora { "11:01" } hasta la hora { "18:00" }</span> </th>  }
                     { this.state.simular && !viewprice ? <th className="header-table">SIMULACIÓN FRANJA 3</th> : '' }
-                    { viewprice ? '' : <th className="header-table">PRECIO RECOMENDADO FRANJA 3</th> }
-                    <th className="header-table">DIFERENCIA PRECIO REAL | PRECIO SELECCIONADO</th>
+                    { viewprice ? '' :  <th className="header-table"><span className="meaning">PRECIO RECOMENDADO FRANJA 3 </span><span className="detail">Precio recomendado desde la hora { "18:01" } hasta la hora { "24:00" }</span> </th>}
+                    <th className="header-table"><span className="meaning">DIFERENCIA PRECIO REAL | PRECIO SELECCIONADO</span><span className="detail">Diferencia entre precio actual de hoy vs. precio seleccionados</span> </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -439,10 +442,10 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
           
                       //Review this part
-                      this.state.mipreciopromediodeventa = precioponderado;
+                    this.state.mipreciopromediodeventa = precioponderado;
                     return (
                       <tr>
-                          <td className="text-center">{ prop.nombre }</td>
+                          <td key={key} className="text-left"><span className="meaningprod">{ prop.nombre }</span><span className="detailprod">{ prop.tipologia }</span></td>
                           <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
                           <td className={ prop.competenciaestrategica === min ? "text-center txt-ok" : prop.competenciaestrategica === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaestrategica }</td>
                           <td className={ prop.competencia1 === min ? "text-center txt-ok" : prop.competencia1 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia1 }</td>
