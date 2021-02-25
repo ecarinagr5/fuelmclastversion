@@ -158,7 +158,6 @@ class Header extends React.Component {
                 <select className="select-estacion-title" onChange={ this.change }>            
                   {
                     estaciones.map((prop, key)=>{
-                      console.log("hash", this.props.location.hash)
                       return (
                           <option id={key} key={key} value={key }>{ prop.nombre }</option>
                       )

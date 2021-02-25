@@ -1,12 +1,13 @@
 const priceview = true
+const  valor = 1;
 //TYPES
 export const CHANGE_PRICE_VIEW= 'CHANGE_PRICE_VIEW'
 
 //REDUCERS
-export default function setPriceView ( state = 0 , action){
+export default function setPriceView ( state = valor , action){
     switch(action.type){
         case CHANGE_PRICE_VIEW:
-            return action
+            return !state
         default:
             return state;
     }
@@ -14,7 +15,6 @@ export default function setPriceView ( state = 0 , action){
 
 //ACTIONS 
   export function setTypePrice (priceview) {
-    console.log("setTypePrice", priceview)
     return {
       type: CHANGE_PRICE_VIEW,
       priceview,

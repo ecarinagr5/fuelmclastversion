@@ -57,7 +57,7 @@ class MainLayout extends React.Component {
   }
 
   changePriceView = event => {
-    let val = this.props.viewprice ?  !this.props.viewprice  : this.props.viewprice;
+    let val = this.props.viewprice ? !this.props.viewprice  : this.props.viewprice;
     this.props.setTypePrice(val)
     console.log("sdfsdfds",this.props.viewprice)
     }
@@ -101,12 +101,11 @@ class MainLayout extends React.Component {
   render() {
     let  { viewprice } = this.props;
     const { children } = this.props;
-    console.log("viewprice", viewprice)
     return (
       <main className="cr-app bg-light">
-        <p className="calc_type" onClick={this.changePriceView}><img src={viewprice ? franjasprice : oneprice } alt="simuladoreveris" className="img_franjas" /></p>
+        <p className="calc_type" onClick={this.changePriceView}> { viewprice ? <p className="pvp-franjas">PVP Franjas</p> : <p className="pvp-franjas">Recomendado</p> }</p>
         <Sidebar />
-        <Content fluid onClick={this.handleContentClick}>
+        <Content fluid onClick={this.handleContentClick} {...this.props}>
           <Header {...this.props} />
           {children}
           <Footer />

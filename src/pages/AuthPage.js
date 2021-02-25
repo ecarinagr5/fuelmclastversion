@@ -5,7 +5,6 @@ import { Card, Col, Row } from 'reactstrap';
 class AuthPage extends React.Component {
 
   handleAuthState = authState => {
-    console.log("sds", STATE_LOGIN, authState)
     if (authState === STATE_LOGIN) {
       this.props.history.push('/login');
     } else {

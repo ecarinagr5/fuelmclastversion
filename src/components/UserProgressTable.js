@@ -19,7 +19,9 @@ const AvatarWithBadge = withBadge({
   color: 'success',
 })(Avatar);
 
-const UserProgressTable = ({ headers, usersData, simular, ...restProps }) => {
+const UserProgressTable = ({ headers, usersData, simular, viewprice, ...restProps }) => {
+
+  console.log("·sds", viewprice)
   return (
     <Table responsive hover {...restProps}>
       <thead className="header-table">
@@ -29,11 +31,12 @@ const UserProgressTable = ({ headers, usersData, simular, ...restProps }) => {
       </thead>
       <tbody>
         { 
-          usersData.map(({ avatar, nombre, precioventa, utilidad, volumenobjetivo,volumenreal,preciodecomprahoy, fechadeultimacompra, precioultimacompra, preciocompramanana, margenteorico ,margenreal,volumenpromediodelmes, volumenobjetivomensual, margenobjetivo , preciomodificadofranja1,preciomodificadofranja2, preciomodificadofranja3, pvprecomendadofranja1, pvprecomendadofranja2, pvprecomendadofranja3}, index) => {
+          usersData.map(({ avatar, nombre, precioventa, utilidad ,volumenobjetivo,volumenreal,preciodecomprahoy, fechadeultimacompra, precioultimacompra, preciocompramanana, margenteorico ,margenreal,volumenpromediodelmes, volumenobjetivomensual, margenobjetivo , preciomodificadofranja1,preciomodificadofranja2, preciomodificadofranja3, pvprecomendadofranja1, pvprecomendadofranja2, pvprecomendadofranja3}, index) => {
           let diferencia = preciodecomprahoy - preciocompramanana;
           let diferenciaVolumen = volumenobjetivo - volumenreal;
           //Diferencia Volumen volumenreal - volumenobjetivo
           //
+          console.log("viewprice",viewprice)
         return (
           <tr key={index}>
             <td className="align-middle text-center">
@@ -44,9 +47,9 @@ const UserProgressTable = ({ headers, usersData, simular, ...restProps }) => {
             <td className={"align-middle text-center"}>$ {preciodecomprahoy.toFixed(2)}</td>
             <td className={"align-middle text-center"}>$ {preciocompramanana}</td>
             <td className="align-middle text-center">$ {diferencia.toFixed(2)}</td>
-            { simular ? <td className="align-middle text-center text-shadow">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> : ''}
-            { simular ? <td className="align-middle text-center text-shadowb">$ {preciomodificadofranja2 > 0 ? preciomodificadofranja2 : pvprecomendadofranja2 }</td> : ''}
-            { simular ? <td className="align-middle text-center text-shadowc">$ {preciomodificadofranja3 > 0 ? preciomodificadofranja3 : pvprecomendadofranja3 }</td> : ''}
+            { simular && !viewprice ? <td className="align-middle text-center text-shadow">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> :  simular ?  <td className="align-middle text-center text-shadow">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> : '' }
+            { simular && !viewprice ? <td className="align-middle text-center text-shadowb">$ {preciomodificadofranja2 > 0 ? preciomodificadofranja2 : pvprecomendadofranja2 }</td> : ''}
+            { simular && !viewprice ? <td className="align-middle text-center text-shadowc">$ {preciomodificadofranja3 > 0 ? preciomodificadofranja3 : pvprecomendadofranja3 }</td> : ''}
             <td className={ margenteorico < margenobjetivo ? "align-middle text-center txt-ok" : margenteorico > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenteorico}</td>
             <td className={ margenreal < margenobjetivo ? "align-middle text-center txt-ok" : margenreal > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenreal}</td>
             <td className="align-middle text-center">
