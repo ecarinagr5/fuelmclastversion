@@ -280,9 +280,8 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
   render() {
     const dataReal = this.state.dataReal[0];
     const competenciastotal = this.props.data.metrics.array.estaciones;
-    const view = this.props.currentView.view
+    const view = this.props.currentView.view ? this.props.currentView.view : this.props.currentView;
     const viewprice = this.props.viewprice;
-
     let date = new Date();
     date = moment(date).format("MMM D YYYY hh:mm:ss") 
 
@@ -291,9 +290,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
     })
     let competencias =  this.state.competencias[0]
 
-    //let promedioestrategicas = 
-    console.log("s",dataReal )
-    let promedio = 63 //Promedio de competencia estrategica;
 
     return (
       <Page>
@@ -434,13 +430,13 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 <tbody>
                 {   
                     dataReal.map((prop, key) => {
-                      let precioponderado =  (prop.precioventa * 100 ) / promedio; 
+                  
                       let diferenciaprecio =  prop.preciorealdehoy -  prop.pvprecomendadofranja1;
                       let arrayToDefine = [ prop.competenciaestrategica, prop.competencia1, prop.competencia2, prop.competencia3, prop.competencia4, prop.competencia5, prop.competencia6, prop.preciorealdehoy, prop.pvprecomendado ];
                       let min = Math.min.apply(Math, arrayToDefine);
                       let max = Math.max.apply(Math, arrayToDefine);
-
-          
+                      let promedio = ( prop.pvprecomendadofranja1 + prop.pvprecomendadofranja2 + prop.pvprecomendadofranja3) / 3
+                      let precioponderado =  promedio; 
                       //Review this part
                     this.state.mipreciopromediodeventa = precioponderado;
                     return (
@@ -452,23 +448,27 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className={ prop.competencia2 === min ? "text-center txt-ok" : prop.competencia2 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia2 }</td>
                           <td className={ prop.competencia3 === min ? "text-center txt-ok" : prop.competencia3 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia3 }</td>
                           <td className={ prop.competencia4 === min ? "text-center txt-ok" : prop.competencia4 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia4 }</td>
-                          { view === 'manana' ? <td className= { prop.preciorealmanana === min ? "text-center txt-ok" : prop.preciorealmanana === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealmanana } </td> : <td className= { prop.preciorealdehoy === min ? "text-center txt-ok" : prop.preciorealdehoy === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealdehoy }</td>}
+                          { view === 'manana' ? 
+                            <td className= { prop.preciorealmanana === min ? "text-center txt-ok" : prop.preciorealmanana === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealmanana } </td> : 
+                            <td className= { prop.preciorealdehoy === min ? "text-center txt-ok" : prop.preciorealdehoy === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealdehoy }</td>
+                          }
+                        
                           { this.state.simular ? 
-                          <td className="text-left">
-                              <p><input type="number" className="input-simulacion" name="simularfranja1" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" tipo="preciomodificadofranja1" name={ 'franja1'+prop.nombre+key } id={ key } value={ prop.simularfranja1  } onClick={this.handSimulate } /></p>  
-                          </td>:'' }
+                            <td className="text-left">
+                                <p><input type="number" className="input-simulacion" name="simularfranja1" id={ key } value={ prop.simular } onChange={ this.addValue } placeholder="0.00"/>  <input type="radio" tipo="preciomodificadofranja1" name={ 'franja1'+prop.nombre+key } id={ key } value={ prop.simularfranja1  } onClick={this.handSimulate } /></p>  
+                            </td>:'' 
+                          }
                           {/* Precio Franja 1 */}
-                          { viewprice ? 
+                          {  viewprice ? 
                             <td className={this.state.simular ? 
                               prop.pvprecomendado === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendado === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
                               prop.pvprecomendado === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendado === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
-                              >${  view === 'manana' ? prop.pvprecomendadomanana : prop.pvprecomendado } { this.state.simular ?  <input type="radio"  name={ 'franja1'+prop.nombre+key } id={ key } value={  view === 'manana' ? prop.preciodiariomanana : prop.pvprecomendado }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
+                              >${  view === 'hoy' ? promedio.toFixed(2) : promedio.toFixed(2) } { this.state.simular ?  <input type="radio"  name={ 'franja1'+prop.nombre+key } id={ key } value={  view === 'manana' ? prop.preciodiariomanana : prop.pvprecomendado }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                             :
                             <td className={this.state.simular ? 
                               prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
                               prop.pvprecomendadofranja1 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja1 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
-                              >${  view === 'manana' ? prop.pvprecomendadomananafranja1 : prop.pvprecomendadofranja1 } { this.state.simular ?  <input type="radio"  name={ 'franja1'+prop.nombre+key } id={ key } value={  view === 'manana' ? prop.preciodiariomanana : prop.pvprecomendadofranja1 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
-                              
+                              >${  view === 'hoy' ?  prop.pvprecomendadomanana : prop.pvprecomendado } { this.state.simular ?  <input type="radio"  name={ 'franja1'+prop.nombre+key } id={ key } value={  view === 'manana' ? prop.preciodiariomanana : promedio }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>
                             }
                           
                           {/* Precio Franja 2 */}
