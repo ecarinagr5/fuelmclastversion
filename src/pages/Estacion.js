@@ -534,14 +534,14 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
               <CardBody>
                 { this.state.simular && !viewprice ?
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA2','PRECIO DE VENTA SELECCIONADO FRANJA3','MARGEN TEÓRICO PROMEDIO','MARGEN REAL PROMEDIO','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO FRANJA1','PRECIO DE VENTA SELECCIONADO FRANJA2','PRECIO DE VENTA SELECCIONADO FRANJA3','MARGEN TEÓRICO PROMEDIO','MARGEN REAL PROMEDIO','DIFERENCIA VOLUMEN']}
                   usersData={dataReal}
                   simular={this.state.simular}
                   update={this.state.update}
                   viewprice = {this.props.viewprice}
                 /> :
                 <UserProgressTable
-                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO PROMEDIO','MARGEN REAL PROMEDIO','VOLUMEN DEL MES HASTA AHORA','DIFERENCIA VOLUMEN']}
+                  headers= {['','PRODUCTO','PRECIO ÚLTIMA COMPRA','PRECIO DE COMPRA DE HOY','PRECIO DE COMPRA DE MAÑANA','DIFERENCIA HOY/MAÑANA','PRECIO DE VENTA SELECCIONADO','MARGEN TEÓRICO PROMEDIO','MARGEN REAL PROMEDIO','DIFERENCIA VOLUMEN']}
                   usersData={dataReal}
                   simular={this.state.simular}
                   update={this.state.update}

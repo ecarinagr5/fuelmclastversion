@@ -49,15 +49,15 @@ const UserProgressTable = ({ headers, usersData, simular, viewprice, ...restProp
             { simular && !viewprice ? <td className="align-middle text-center text-shadowc">$ {preciomodificadofranja3 > 0 ? preciomodificadofranja3 : pvprecomendadofranja3 }</td> : ''}
             <td className={ margenteorico < margenobjetivo ? "align-middle text-center txt-ok" : margenteorico > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenteorico}</td>
             <td className={ margenreal < margenobjetivo ? "align-middle text-center txt-ok" : margenreal > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenreal}</td>
-            <td className="align-middle text-center">
-              <Progress
+            {/*<td className="align-middle text-center">
+                <Progress
                   color="success"
                   value={volumenpromediodelmes}
                   className="mb-3"
                 >
                 {volumenpromediodelmes} lts
               </Progress>  
-            </td>
+            </td>*/}
             <td className="align-middle text-center">
                 {diferenciaVolumen} %
               </td>
