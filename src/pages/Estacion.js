@@ -294,7 +294,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
     return (
       <Page>
             {/* Welcome View */}
-            {/* <Welcome />*/}
+            {/*<Welcome />*/}
               {/* Modal View */}
               <Modal
                   isOpen={this.state.modal_nested_parent}

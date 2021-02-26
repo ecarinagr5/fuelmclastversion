@@ -20,8 +20,7 @@ const AvatarWithBadge = withBadge({
 })(Avatar);
 
 const UserProgressTable = ({ headers, usersData, simular, viewprice, ...restProps }) => {
-
-  console.log("·sds", viewprice)
+  console.log("Sd", viewprice)
   return (
     <Table responsive hover {...restProps}>
       <thead className="header-table">
@@ -35,19 +34,17 @@ const UserProgressTable = ({ headers, usersData, simular, viewprice, ...restProp
           let diferencia = preciodecomprahoy - preciocompramanana;
           let diferenciaVolumen = volumenobjetivo - volumenreal;
           //Diferencia Volumen volumenreal - volumenobjetivo
-          //
-          console.log("viewprice",viewprice)
         return (
           <tr key={index}>
             <td className="align-middle text-center">
               <AvatarWithBadge src={productimg} />
             </td>
             <td className="align-middle text-left ">{nombre}</td>
-            <td className={"align-middle text-center"}>$ {precioultimacompra.toFixed(2)} <Badge color="primary" className="mr-1"><span className="update-date">{fechadeultimacompra}</span></Badge></td>
+            <td className={"align-middle text-center"}>$ {precioultimacompra.toFixed(2)} <Badge color="primary" className="mr-1"><span className="update-date">{ fechadeultimacompra }</span></Badge></td>
             <td className={"align-middle text-center"}>$ {preciodecomprahoy.toFixed(2)}</td>
             <td className={"align-middle text-center"}>$ {preciocompramanana}</td>
             <td className="align-middle text-center">$ {diferencia.toFixed(2)}</td>
-            { simular && !viewprice ? <td className="align-middle text-center text-shadow">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> :  simular ?  <td className="align-middle text-center text-shadow">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> : '' }
+            { simular && !viewprice ? <td className="align-middle text-center text-shadow">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> :   <td className="align-middle text-center text-shadow">$ {preciomodificadofranja1 > 0 ? preciomodificadofranja1 : pvprecomendadofranja1 }</td> }
             { simular && !viewprice ? <td className="align-middle text-center text-shadowb">$ {preciomodificadofranja2 > 0 ? preciomodificadofranja2 : pvprecomendadofranja2 }</td> : ''}
             { simular && !viewprice ? <td className="align-middle text-center text-shadowc">$ {preciomodificadofranja3 > 0 ? preciomodificadofranja3 : pvprecomendadofranja3 }</td> : ''}
             <td className={ margenteorico < margenobjetivo ? "align-middle text-center txt-ok" : margenteorico > margenobjetivo ? "align-middle text-center txt-high" : "align-middle text-center"  }>$ {margenteorico}</td>
