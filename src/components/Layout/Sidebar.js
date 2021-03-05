@@ -1,5 +1,5 @@
 import logo200Image from 'assets/img/logo/logo_200.png';
-import logofuel from 'assets/img/logo/logo_price.png';
+import logofuel from 'assets/img/logo/logo_fuel.jpeg';
 import sidebarBgImage from 'assets/img/img.png';
 import SourceLink from 'components/SourceLink';
 import React from 'react';
@@ -118,13 +118,10 @@ class Sidebar extends React.Component {
               <img
                 src={logofuel}
                 width="auto"
-                height="30"
+                height="80"
                 className="logoprice"
                 alt=""
               />
-              <span className="text-white">
-                SIMULADOR
-              </span>
             </SourceLink>
           </Navbar>
           <Nav vertical>

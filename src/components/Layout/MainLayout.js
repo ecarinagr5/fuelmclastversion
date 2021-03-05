@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { getDataAction } from '../../Redux/dataToShow'
 import { setTypePrice } from '../../Redux/changePrice'
+
 import moment from "moment";
 
 class MainLayout extends React.Component {
@@ -99,6 +100,7 @@ class MainLayout extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     let  { viewprice } = this.props;
     const { children } = this.props;
     return (
@@ -122,9 +124,12 @@ class MainLayout extends React.Component {
     );
   }
 }
+
+
 //Received Information REDUX
 function mapStateToProps(state){
   return {
+      test:state,
       data: state,
       viewprice: state.changePrice
   }
