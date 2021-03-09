@@ -5,7 +5,7 @@ import thunk from 'redux-thunk' //promises
 import ipcReducer from './dataToShow'
 import setStation from './dataToUpdate'
 import sendDataBase from './sendToDb'
-import getDataBase from './getDataDb'
+import getDataBase from './getDataDB'
 import setView from './updateView'
 import changePrice from './changePrice'
 
