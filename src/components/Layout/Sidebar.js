@@ -1,5 +1,5 @@
-import logo200Image from 'assets/img/logo/logo_200.png';
-import logofuel from 'assets/img/logo/logo_fuel.jpeg';
+
+import logofuel from 'assets/img/logo/LogoFuelBlanco.png';
 import sidebarBgImage from 'assets/img/img.png';
 import SourceLink from 'components/SourceLink';
 import React from 'react';

@@ -19,7 +19,7 @@ import { sendDataDatabase } from '../Redux/sendToDb'
 import { Badge, Button, Card, CardBody, CardHeader, Col, Table, ListGroup, ListGroupItem, Row, Modal, ModalBody, ModalFooter, ModalHeader, Input, Label, FormGroup} from 'reactstrap';
 import { getColor } from 'utils/colors';
 
-const tableTypes = ['PROMEDIOS', 'MÁXIMOS', 'MÍNIMOS'];
+const tableTypes = ['PROMEDIOS'];
 
 const genPieData = () => {
   return {
@@ -163,14 +163,12 @@ class Masivo extends React.Component {
     let simular3 = this.state.preciotoplay3;
 
     this.state.dataReal[0].map((prop, key) => {
-      console.log("prod",prop.productos[key].preciotoplay1)
       prop.productos[key].preciotoplay = simular1;
         /*prop.productos((prod) => {
           prop.productos = simular1
           console.log("prod",prod)
         })*/
     })
-    console.log("siam",simular1,simular2, simular3)
 
 this.setState({simular:true})
   }
@@ -244,6 +242,67 @@ this.setState({simular:true})
                 </Modal>
         <Row>
         <Col>
+
+        <Row>
+        <Col lg="12" md="12" sm="12" xs="12">
+            <Card>
+              <CardHeader>
+                RESUMEN{' '}
+                <small className="text-muted text-capitalize">Por día</small>
+              </CardHeader>
+
+              <CardBody>
+              {tableTypes.map((tableType, index) => (
+                <row><p className="titles-m">{tableType }</p>
+                      <Table {...{ [tableType || 'default']: true }} className="min_max">
+                        <thead>
+                          <tr>
+                          <th className="header-table"></th>
+                            <th className="header-table text-left">regular</th>
+                            <th className="header-table text-left">diesel</th>
+                            <th className="header-table text-left">premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Ingreso</th>
+                            <td className="menos-espacio">$12,023</td>
+                            <td className="menos-espacio">$23,932</td>
+                            <td className="menos-espacio">$22,333</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Precio</th>
+                            <td className="menos-espacio">$23.3</td>
+                            <td className="menos-espacio">$13.3</td>
+                            <td className="menos-espacio">$12.3</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Utilidad</th>
+                            <td className="menos-espacio">$10,000</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Máximos</th>
+                            <td className="menos-espacio">290</td>
+                            <td className="menos-espacio">320</td>
+                            <td className="menos-espacio">250</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Mínimos</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+
+                          </tr>
+                        </tbody>
+                      </Table>
+                      </row>
+                        ))}
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
   
         {/* FILTRO */}
         <Row>
@@ -319,12 +378,7 @@ this.setState({simular:true})
             <Col md={3} className="container-btn-masiva">
               <Button color="primary btn-barra-simular" onClick={this.toggle('nested_parent')}>SIMULACIÓN MASIVA</Button>
               <Button color="primary btn-barra-simular">
-                  APROBAR &nbsp;
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
-                  <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-                  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-                  </svg>
+                  APROBAR
               </Button>
             </Col>
 
@@ -334,6 +388,7 @@ this.setState({simular:true})
                       <thead>
                           <tr>
                             <th className="text-center header-table min-font">All <input type="radio" onChange={this.selectChooseAll}></input></th>
+                            <th className="text-center header-table"></th>
                             <th className="text-center header-table min-font">EMPRESA</th>
                             <th className="text-center header-table min-font">NEGOCIO</th>
                             <th className="text-center header-table min-font"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de compra publicado por la CRE para el día de hoy.</span></th>
@@ -352,7 +407,6 @@ this.setState({simular:true})
                             <th className="text-center header-table min-font"><span className="meaning">MARGEN REAL PROMEDIO</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                             <th className="text-center header-table min-font"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                     
                             <th className="text-center header-table"></th>
-                            <th className="text-center header-table"></th>
                           </tr>
                       </thead>
                     <tbody>
@@ -370,6 +424,7 @@ this.setState({simular:true})
                           return (
                           <tr>
                             <td className="text-center color-blue"> <input type="radio" id={ i } name={ i } value={ i } checked={this.state.selectAll ? true : false}/></td>
+                            <td className="text-center"><a href={estacionroute} target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                             <td className="text-left nombre-empresa">{ prop.empresa }</td>
                             <td className="text-center"> { prop.negocio } </td>
                             <td className="text-center">$ { producto[0].preciodecomprahoy }</td>
@@ -387,7 +442,6 @@ this.setState({simular:true})
                             <td className={ producto[0].margenteorico < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenteorico > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > $ { producto[0].margenteorico }</td>
                             <td className={ producto[0].margenreal < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenreal > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > ${ producto[0].margenreal} </td>
                             <td className="text-center bg-gray-light"> { producto[0].volumenobjetivomensual }%</td>
-                            <td className="text-center"><a href={estacionroute} target="_self"><img src={ ver } alt="ver" className="ver-dashboard" /></a></td>
                             {this.state.simularid === i ? 
                             <td className="text-center">
                               <span> X </span>
@@ -414,66 +468,7 @@ this.setState({simular:true})
 
 {/* RESUMEN*/}
 <Row>
-          <Col lg="8" md="12" sm="12" xs="12">
-            <Card>
-              <CardHeader>
-                RESUMEN{' '}
-                <small className="text-muted text-capitalize">Por día</small>
-              </CardHeader>
-
-              <CardBody>
-              {tableTypes.map((tableType, index) => (
-                <row><p className="titles-m">{tableType }</p>
-                      <Table {...{ [tableType || 'default']: true }} className="min_max">
-                        <thead>
-                          <tr>
-                          <th className="header-table"></th>
-                            <th className="header-table text-left">regular</th>
-                            <th className="header-table text-left">diesel</th>
-                            <th className="header-table text-left">premium</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">Ingreso</th>
-                            <td className="menos-espacio">$12,023</td>
-                            <td className="menos-espacio">$23,932</td>
-                            <td className="menos-espacio">$22,333</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Precio</th>
-                            <td className="menos-espacio">$23.3</td>
-                            <td className="menos-espacio">$13.3</td>
-                            <td className="menos-espacio">$12.3</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Utilidad</th>
-                            <td className="menos-espacio">$10,000</td>
-                            <td className="menos-espacio">$20,000</td>
-                            <td className="menos-espacio">$22,500</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Volumen</th>
-                            <td className="menos-espacio">290 lts</td>
-                            <td className="menos-espacio">320 lts</td>
-                            <td className="menos-espacio">250 lts</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Margen</th>
-                            <td className="menos-espacio">10%</td>
-                            <td className="menos-espacio">50%</td>
-                            <td className="menos-espacio">65%</td>
-
-                          </tr>
-                        </tbody>
-                      </Table>
-                      </row>
-                        ))}
-              </CardBody>
-            </Card>
-          </Col>
-
-          <Col lg="4" md="12" sm="12" xs="12">
+  <Col lg="8" md="12" sm="12" xs="12">
             <Card>
               <CardHeader>
                 RESUMEN
@@ -481,27 +476,6 @@ this.setState({simular:true})
               <CardBody className="bg-gradient-primary">
                 <MapWithBubbles />
               </CardBody>
-              <ListGroup flush>
-                <ListGroupItem>
-                  <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones{' '}
-                  <h4 className="text-center"><Badge color="">5</Badge></h4>
-                </ListGroupItem>
-                <ListGroupItem>
-                <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones por Producto{' '}
-                </ListGroupItem>
-                <ListGroupItem>
-                {'regular'}
-                  <Badge color="">2</Badge>
-                </ListGroupItem>
-                <ListGroupItem>
-                {'diesel'}{' '}
-                  <Badge color="">2</Badge>
-                </ListGroupItem>
-                <ListGroupItem>
-                  {'premium'}{' '}
-                  <Badge color="">1</Badge>
-                </ListGroupItem>
-              </ListGroup>
             </Card>
           </Col>
         </Row>

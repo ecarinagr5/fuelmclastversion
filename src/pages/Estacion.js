@@ -1,6 +1,5 @@
 //Libraries
 import moment from "moment";
-import Slider from "react-slick";
 
 //Connect Redux
 import { connect } from 'react-redux';
@@ -12,10 +11,9 @@ import { setCurrentView } from '../Redux/updateView' //Function to update statio
 //Components
 import Page from 'components/Page';
 import UserProgressTable from 'components/UserProgressTable';
-import { randomNum } from 'utils/demos';
 
 import React from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { Button, Card, CardBody, CardHeader, Col, Table, Modal, ModalBody,ModalFooter, ModalHeader, Row, Badge } from 'reactstrap';
 import { getColor } from 'utils/colors';
 
@@ -192,6 +190,16 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
       labels: MONTHS,
       datasets: [
         {
+          label: 'Precio de venta promedio del día',
+          backgroundColor: getColor('info'),
+          borderColor: getColor('info'),
+          borderWidth: 1,
+          data: [
+            promedio.toFixed(2)
+          ],
+          ...moreData2,
+        },
+        /*{
           label: 'Precio de Compra',
           backgroundColor: getColor('danger'),
           borderColor: getColor('danger'),
@@ -200,7 +208,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
             product[idproduct].preciodecompra,
           ],
           ...moreData,
-        },
+        },*/
         {
           label: 'Precio Promedio de venta de la competencia',
           backgroundColor: getColor('info'),
@@ -258,16 +266,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           borderWidth: 1,
           data: [
             product[idproduct].competencia4,
-          ],
-          ...moreData2,
-        },
-        {
-          label: 'Precio de venta promedio del día',
-          backgroundColor: getColor('info'),
-          borderColor: getColor('info'),
-          borderWidth: 1,
-          data: [
-            promedio.toFixed(2)
           ],
           ...moreData2,
         },
