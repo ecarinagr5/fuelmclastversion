@@ -468,7 +468,7 @@ this.setState({simular:true})
 
 {/* RESUMEN*/}
 <Row>
-  <Col lg="8" md="12" sm="12" xs="12">
+      <Col lg="12" md="12" sm="12" xs="12">
             <Card>
               <CardHeader>
                 RESUMEN
@@ -481,7 +481,7 @@ this.setState({simular:true})
         </Row>
         
         <Row>
-            <Col xl={6} lg={12} md={12}>
+        <Col xl={4} lg={12} md={12}>
             <Card>
               <CardHeader>UTILIDAD</CardHeader>
               <CardBody>
@@ -489,7 +489,7 @@ this.setState({simular:true})
               </CardBody>
             </Card>
           </Col>
-          <Col xl={6} lg={12} md={12}>
+          <Col xl={4} lg={12} md={12}>
             <Card>
               <CardHeader>MARGEN</CardHeader>
               <CardBody>
@@ -497,7 +497,7 @@ this.setState({simular:true})
               </CardBody>
             </Card>
           </Col>
-          <Col xl={6} lg={12} md={12}>
+          <Col xl={4} lg={12} md={12}>
             <Card>
               <CardHeader>VOLUMEN</CardHeader>
               <CardBody>
