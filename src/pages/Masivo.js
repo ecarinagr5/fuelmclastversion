@@ -19,7 +19,7 @@ import { sendDataDatabase } from '../Redux/sendToDb'
 import { Badge, Button, Card, CardBody, CardHeader, Col, Table, ListGroup, ListGroupItem, Row, Modal, ModalBody, ModalFooter, ModalHeader, Input, Label, FormGroup} from 'reactstrap';
 import { getColor } from 'utils/colors';
 
-const tableTypes = ['PROMEDIOS'];
+const tableTypes = ['PROMEDIOS', 'MÁXIMOS', 'MÍNIMOS'];
 
 const genPieData = () => {
   return {
@@ -242,68 +242,6 @@ this.setState({simular:true})
                 </Modal>
         <Row>
         <Col>
-
-        <Row>
-        <Col lg="12" md="12" sm="12" xs="12">
-            <Card>
-              <CardHeader>
-                RESUMEN{' '}
-                <small className="text-muted text-capitalize">Por día</small>
-              </CardHeader>
-
-              <CardBody>
-              {tableTypes.map((tableType, index) => (
-                <row><p className="titles-m">{tableType }</p>
-                      <Table {...{ [tableType || 'default']: true }} className="min_max">
-                        <thead>
-                          <tr>
-                          <th className="header-table"></th>
-                            <th className="header-table text-left">regular</th>
-                            <th className="header-table text-left">diesel</th>
-                            <th className="header-table text-left">premium</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">Ingreso</th>
-                            <td className="menos-espacio">$12,023</td>
-                            <td className="menos-espacio">$23,932</td>
-                            <td className="menos-espacio">$22,333</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Precio</th>
-                            <td className="menos-espacio">$23.3</td>
-                            <td className="menos-espacio">$13.3</td>
-                            <td className="menos-espacio">$12.3</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Utilidad</th>
-                            <td className="menos-espacio">$10,000</td>
-                            <td className="menos-espacio">$20,000</td>
-                            <td className="menos-espacio">$22,500</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Máximos</th>
-                            <td className="menos-espacio">290</td>
-                            <td className="menos-espacio">320</td>
-                            <td className="menos-espacio">250</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Mínimos</th>
-                            <td className="menos-espacio">10%</td>
-                            <td className="menos-espacio">50%</td>
-                            <td className="menos-espacio">65%</td>
-
-                          </tr>
-                        </tbody>
-                      </Table>
-                      </row>
-                        ))}
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-  
         {/* FILTRO */}
         <Row>
               <hr></hr>
@@ -467,8 +405,68 @@ this.setState({simular:true})
       </Row>
 
 {/* RESUMEN*/}
+{/* RESUMEN*/}
 <Row>
-      <Col lg="12" md="12" sm="12" xs="12">
+          <Col lg="8" md="12" sm="12" xs="12">
+            <Card>
+              <CardHeader>
+                RESUMEN{' '}
+                <small className="text-muted text-capitalize">Por día</small>
+              </CardHeader>
+
+              <CardBody>
+              {tableTypes.map((tableType, index) => (
+                <row><p className="titles-m">{tableType }</p>
+                      <Table {...{ [tableType || 'default']: true }} className="min_max">
+                        <thead>
+                          <tr>
+                          <th className="header-table"></th>
+                            <th className="header-table text-left">regular</th>
+                            <th className="header-table text-left">diesel</th>
+                            <th className="header-table text-left">premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Ingreso</th>
+                            <td className="menos-espacio">$12,023</td>
+                            <td className="menos-espacio">$23,932</td>
+                            <td className="menos-espacio">$22,333</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Precio</th>
+                            <td className="menos-espacio">$23.3</td>
+                            <td className="menos-espacio">$13.3</td>
+                            <td className="menos-espacio">$12.3</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Utilidad</th>
+                            <td className="menos-espacio">$10,000</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Volumen</th>
+                            <td className="menos-espacio">290 lts</td>
+                            <td className="menos-espacio">320 lts</td>
+                            <td className="menos-espacio">250 lts</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+
+                          </tr>
+                        </tbody>
+                      </Table>
+                      </row>
+                        ))}
+              </CardBody>
+            </Card>
+          </Col>
+
+          <Col lg="4" md="12" sm="12" xs="12">
             <Card>
               <CardHeader>
                 RESUMEN
@@ -476,6 +474,27 @@ this.setState({simular:true})
               <CardBody className="bg-gradient-primary">
                 <MapWithBubbles />
               </CardBody>
+              <ListGroup flush>
+                <ListGroupItem>
+                  <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones{' '}
+                  <h4 className="text-center"><Badge color="">5</Badge></h4>
+                </ListGroupItem>
+                <ListGroupItem>
+                <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones por Producto{' '}
+                </ListGroupItem>
+                <ListGroupItem>
+                {'regular'}
+                  <Badge color="">2</Badge>
+                </ListGroupItem>
+                <ListGroupItem>
+                {'diesel'}{' '}
+                  <Badge color="">2</Badge>
+                </ListGroupItem>
+                <ListGroupItem>
+                  {'premium'}{' '}
+                  <Badge color="">1</Badge>
+                </ListGroupItem>
+              </ListGroup>
             </Card>
           </Col>
         </Row>
