@@ -149,9 +149,7 @@ class Header extends React.Component {
             <MdClearAll size={25} />
           </Button>
         </Nav>
-        { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
           <img src={ stations[this.props.currentStation.station] ?  stations[current].imgid : stations[0].imgid}  alt="fuel" className="logo-station"/> 
-        }
         <Nav navbar>
         { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
             <li className="margin-gasolineras">
