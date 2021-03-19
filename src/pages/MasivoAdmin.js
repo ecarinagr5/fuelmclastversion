@@ -433,7 +433,7 @@ this.setState({simular:true})
                         <thead>
                           <tr>
                           <th className="header-table"></th>
-                            <th className="header-table text-left">regular</th>
+                            <th className="header-table text-left">magna</th>
                             <th className="header-table text-left">diesel</th>
                             <th className="header-table text-left">premium</th>
                           </tr>
