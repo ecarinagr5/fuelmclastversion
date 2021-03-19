@@ -315,7 +315,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                             { viewprice ? '' : <th className="header-table">PVP FRANJA 3</th> }
                             <th className="header-table">MARGEN REAL</th>
                             <th className="header-table">MARGEN TEÓRICO</th>
-                            <th className="header-table">UTILIDAD</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -329,7 +328,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                                 { viewprice ?  '' : <td key={key} className="text-center text-mini text-shadowc">${ prop.preciomodificadofranja3 >  0 ? prop.preciomodificadofranja3  : prop.pvprecomendadofranja3 }</td> }
                                 <td key={key} className="text-center text-mini">${ prop.margenreal }</td>
                                 <td key={key} className="text-center text-mini">${ prop.margenteorico }</td>
-                                <td key={key} className="text-center text-mini">${ prop.utilidad }</td>
                             </tr>
                             )
                           })}
