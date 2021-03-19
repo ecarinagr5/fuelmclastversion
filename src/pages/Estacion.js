@@ -262,7 +262,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           ...moreData2,
         },
         {
-          label: 'Precio de venta promedio del día',
+          label: 'Mi precio promedio de venta diario',
           backgroundColor: getColor('info'),
           borderColor: getColor('info'),
           borderWidth: 1,
