@@ -353,6 +353,8 @@ this.setState({simular:true})
                             <th className="text-center header-table min-font"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                     
                             <th className="text-center header-table"></th>
                             <th className="text-center header-table"></th>
+                            
+                            
                           </tr>
                       </thead>
                     <tbody>
