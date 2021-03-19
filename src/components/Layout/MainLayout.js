@@ -105,7 +105,7 @@ class MainLayout extends React.Component {
     const { children } = this.props;
     return (
       <main className="cr-app bg-light">
-        <p className="calc_type" onClick={this.changePriceView}> { viewprice ? <p className="pvp-franjas">PVP Franjas</p> : <p className="pvp-franjas">Recomendado</p> }</p>
+        <p className="calc_type" onClick={this.changePriceView}> { viewprice ? <p className="pvp-franjas">PVP Franjas</p> : <p className="pvp-franjas">PVP diario</p> }</p>
         <Sidebar />
         <Content fluid onClick={this.handleContentClick} {...this.props}>
           <Header {...this.props} />
