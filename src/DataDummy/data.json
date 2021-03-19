@@ -65,7 +65,7 @@
                 "productos":[
                     {
                         "id":"12",
-                        "nombre": "regular",
+                        "nombre": "magna",
                         "tipologia":"tipologia pemex",
                         "precioventa":14.41,
                         "preciodiario":15.05,
