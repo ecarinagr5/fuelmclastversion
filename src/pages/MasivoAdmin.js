@@ -343,11 +343,11 @@ this.setState({simular:true})
                             <th className="text-center header-table min-font"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
                             <th className="text-center header-table" min-font><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
                             { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 1</th> : '' }
-                            <th className="text-center header-table min-font">PVP RECOMENDADO FRANJA 1</th>
+                            <th className="text-center header-table min-font">PRECIO RECOMENDADO FRANJA 1</th>
                             { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 2</th> : '' }
-                            <th className="text-center header-table min-font">PVP RECOMENDADO FRANJA 2</th>
+                            <th className="text-center header-table min-font">PRECIO RECOMENDADO FRANJA 2</th>
                             { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 3</th> : '' }
-                            <th className="text-center header-table min-font">PVP RECOMENDADO FRANJA 3</th>
+                            <th className="text-center header-table min-font">PRECIO RECOMENDADO FRANJA 3</th>
                             <th className="text-center header-table min-font"><span className="meaning">MARGEN TEÓRICO PROMEDIO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
                             <th className="text-center header-table min-font"><span className="meaning">MARGEN REAL PROMEDIO</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                             <th className="text-center header-table min-font"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                     
