@@ -415,7 +415,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                       }
                     })
                   }
-                    { view === 'manana' ? <th className="header-table"><span className="meaning">PRECIO REAL DE MAÑANA </span><span className="detail">Precio más actualizado de la EESS publicado por la CRE</span> </th> : <th className="header-table"><span className="meaning">PRECIO ACTUAL </span><span className="detail">Precio más actualizado de la EESS publicado por la CRE</span> </th>}
                     { this.state.simular && !viewprice ? <th className="header-table">SIMULACIÓN FRANJA 1</th> : this.state.simular  ? <th className="header-table">SIMULACIÓN</th> : '' }
                     { viewprice ? <th className="header-table">PRECIO RECOMENDADO </th> : <th className="header-table"><span className="meaning">PRECIO RECOMENDADO FRANJA 1 </span><span className="detail">Precio recomendado desde la hora { "00:01" } hasta la hora { "11:00" }</span> </th>  }
                     { this.state.simular && !viewprice ? <th className="header-table">SIMULACIÓN FRANJA 2</th> : '' }
@@ -446,10 +445,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           <td className={ prop.competencia2 === min ? "text-center txt-ok" : prop.competencia2 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia2 }</td>
                           <td className={ prop.competencia3 === min ? "text-center txt-ok" : prop.competencia3 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia3 }</td>
                           <td className={ prop.competencia4 === min ? "text-center txt-ok" : prop.competencia4 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia4 }</td>
-                          { view === 'manana' ? 
-                            <td className= { prop.preciorealmanana === min ? "text-center txt-ok" : prop.preciorealmanana === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealmanana } </td> : 
-                            <td className= { prop.preciorealdehoy === min ? "text-center txt-ok" : prop.preciorealdehoy === max ? "text-center txt-high" : 'text-center'}>${ prop.preciorealdehoy }</td>
-                          }
                         
                           { this.state.simular ? 
                             <td className="text-left">
