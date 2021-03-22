@@ -189,7 +189,7 @@ class Header extends React.Component {
           </NavItem>
           <NavItem>
             <p className="time-date">{ moment(date).format("MMM D YYYY hh:mm:ss") }</p>
-            <p className="tipo-vision"> Hora de aplicación {data.horadeaplicacion}</p>
+            <p className="tipo-vision"><span className="meaning">Hora de aplicación</span><span className="detail">Hora de aplicación predeterminada para el cambio de precio diario.</span> </p>
             <select className="select-estacion-hoy" onChange={this.changeView} value={ this.state.view } >
               <option id={1} key={1} value="hoy">Hoy para Hoy</option>
               <option id={2} key={2} value="manana">Hoy para Mañana</option>
