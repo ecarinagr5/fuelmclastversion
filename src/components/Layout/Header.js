@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { setCurrentStation } from '../../Redux/dataToUpdate' //Function to update station
 import { setCurrentView } from '../../Redux/updateView' //Function to update station
+import {MdInsertChart} from 'react-icons/md';
+import { getColor } from 'utils/colors';
 
 
 import React from 'react';
@@ -26,6 +28,7 @@ import {
   // NavbarToggler,
   Nav,
   Navbar,
+  Badge,
   NavItem,
   NavLink,
   Popover,
@@ -131,6 +134,7 @@ class Header extends React.Component {
 
   render() {
     const { date, estaciones, direccionactual, idestacionactual, imglogo} = this.state;
+    const primaryColor = getColor('primary');
     let { pathname } = this.props.location;
     let data  = this.props.data.metrics.array;
     let stations = this.props.data.metrics.array.estaciones;
@@ -151,7 +155,42 @@ class Header extends React.Component {
         </Nav>
           <img src={ stations[this.props.currentStation.station] ?  stations[current].imgid : stations[0].imgid}  alt="fuel" className="logo-station"/> 
         <Nav navbar>
-        { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? '' :
+        { pathname === '/masivo'  ||   pathname === '/masivoadmin' ? 
+         <li className="margin-resumen">
+           <ListGroup flush>
+                <ListGroupItem>
+                {<div className="text-center divOutside">Número de estaciones</div>}
+                </ListGroupItem>
+                  <div class="row">
+                    <div class="column4" >
+                    <ListGroupItem>
+                {<hl className="text-shadows">Total</hl> }    <Badge color=" ">5</Badge>
+
+                </ListGroupItem>
+                  </div>
+                    <div class="column4" >
+                    <ListGroupItem>
+                 {'regular'} 
+                  <Badge color=" ">2</Badge>
+                </ListGroupItem>
+                  </div>
+	              <div class="column4" >
+                  <ListGroupItem>
+                {'diesel'}
+                  <Badge color=" ">1</Badge>
+                </ListGroupItem>
+                </div>
+                  <div class="column4" >
+                  <ListGroupItem>
+                {'premium'}
+                  <Badge color=" ">1</Badge>
+                </ListGroupItem>
+                  </div>
+                </div>
+              </ListGroup>
+        </li>
+
+         :
             <li className="margin-gasolineras">
                 <select className="select-estacion-title" onChange={ this.change }>            
                   {
