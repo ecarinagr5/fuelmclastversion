@@ -192,7 +192,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
       labels: MONTHS,
       datasets: [
         {
-          label: 'Precio de Compra',
+          label: 'Precio de compra',
           backgroundColor: getColor('danger'),
           borderColor: getColor('danger'),
           borderWidth: 2,
@@ -202,9 +202,19 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           ...moreData,
         },
         {
-          label: 'Precio Promedio de venta de la competencia',
+          label: 'Mi precio promedio de venta',
           backgroundColor: getColor('info'),
           borderColor: getColor('info'),
+          borderWidth: 1,
+          data: [
+            promedio.toFixed(2)
+          ],
+          ...moreData2,
+        },
+        {
+          label: 'Precio promedio de venta de la competencia',
+          backgroundColor: getColor('succes'),
+          borderColor: getColor('succes'),
           borderWidth: 3,
           data: [
             product[idproduct].pvppromediodelacompentencia,
@@ -261,16 +271,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           ],
           ...moreData2,
         },
-        {
-          label: 'Mi precio promedio de venta diario',
-          backgroundColor: getColor('info'),
-          borderColor: getColor('info'),
-          borderWidth: 1,
-          data: [
-            promedio.toFixed(2)
-          ],
-          ...moreData2,
-        },
+        
       ],
     };
   };
@@ -404,11 +405,11 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                 <thead>
                   <tr>
                     <th className="header-table">PRODUCTO</th>
-                    <th className="header-table"><span className="meaning">PRECIO PROMEDIO PONDERADO</span><span className="detail">Precio promedio ponderado de la competencia</span> </th>
+                    <th className="header-table"><span className="meaning">PVP PONDERADO COMPETIDORES</span><span className="detail">Precio promedio ponderado de la competencia</span> </th>
                     {  
                     competencias.map((prop, key) => { 
                       if( prop.estrategica ) {
-                          return(<th className="header-table color-estrategia">{prop.nombre} Competencia Estratégica</th>)
+                          return(<th className="header-table">{prop.nombre} </th>)
                       }
                       else {
                           return( <th className="header-table">{prop.nombre}</th> )
@@ -440,11 +441,11 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                       <tr>
                           <td key={key} className="text-left"><span className="meaningprod">{ prop.nombre }</span><span className="detailprod">{ prop.tipologia }</span></td>
                           <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
-                          <td className={ prop.competenciaestrategica === min ? "text-center txt-ok" : prop.competenciaestrategica === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaestrategica }</td>
-                          <td className={ prop.competencia1 === min ? "text-center txt-ok" : prop.competencia1 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia1 }</td>
-                          <td className={ prop.competencia2 === min ? "text-center txt-ok" : prop.competencia2 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia2 }</td>
-                          <td className={ prop.competencia3 === min ? "text-center txt-ok" : prop.competencia3 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia3 }</td>
-                          <td className={ prop.competencia4 === min ? "text-center txt-ok" : prop.competencia4 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia4 }</td>
+                          <td className="text-center txt-b" ><span className="meaning">${ prop.competenciaestrategica}</span><span className="detail">precio de la competencia estratégica</span></td>
+                          <td className="text-center" >${ prop.competencia1 }</td>
+                          <td className="text-center" >${ prop.competencia2 }</td>
+                          <td className="text-center" >${ prop.competencia3 }</td>
+                          <td className="text-center" >${ prop.competencia4 }</td>
                         
                           { this.state.simular ? 
                             <td className="text-left">
@@ -472,8 +473,8 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
 
                             { viewprice ? '' :
                             <td className={this.state.simular ? 
-                              prop.pvprecomendadofranja2 === min ? "text-center text-shadowb td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadowb td-size txt-high" : "text-center text-shadowb td-size" : 
-                              prop.pvprecomendadofranja2 === min ? "text-center text-shadowb td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadowb td-size txt-high": "text-center text-shadowb" }
+                              prop.pvprecomendadofranja2 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
+                              prop.pvprecomendadofranja2 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja2 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
                             >${  view === 'manana' ? prop.pvprecomendadomananafranja2 : prop.pvprecomendadofranja2 } { this.state.simular ?  <input type="radio" name={ 'franja2'+prop.nombre+key} id={ key } value={  view === 'manana' ? prop.preciodiariomanana : prop.pvprecomendadofranja2 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td>  }
 
                           {/* Precio Franja 3 */}
@@ -483,8 +484,8 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                           </td>:'' }
                           { viewprice ? '' :
                           <td className={this.state.simular ? 
-                            prop.pvprecomendadofranja3 === min ? "text-center text-shadowc td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadowc td-size txt-high" : "text-center text-shadowc td-size" : 
-                            prop.pvprecomendadofranja3 === min ? "text-center text-shadowc td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadowc td-size txt-high": "text-center text-shadowc" }
+                            prop.pvprecomendadofranja3 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadow td-size txt-high" : "text-center text-shadow td-size" : 
+                            prop.pvprecomendadofranja3 === min ? "text-center text-shadow td-size txt-ok" : prop.pvprecomendadofranja3 === max ? "text-center text-shadow td-size txt-high": "text-center text-shadow" }
                           >${  view === 'manana' ? prop.pvprecomendadomananafranja3 :  prop.pvprecomendadofranja3 } { this.state.simular ?  <input type="radio" name={ 'franja3'+prop.nombre+key} id={ key } value={  view === 'manana' ? prop.preciodiariomanana : prop.pvprecomendadofranja3 }  onClick={this.handSimulate}  defaultChecked={true}/> : '' }</td> }
                           
                           <td className="text-center">${ diferenciaprecio.toFixed(2) }</td>
@@ -573,6 +574,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Estacion);
-
-
-
