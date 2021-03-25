@@ -32,6 +32,9 @@ button,
   font-weight: $font-weight-normal;
   color:#333333;
 }
+.divOutside {
+  border-bottom:2px solid black;
+}
 
 .cr-app {
   display: flex;
@@ -90,6 +93,10 @@ th{
 .text-shadow{
   background-color: #f1f1f1;
   font-weight: 600;
+}
+.text-shadows{
+  background-color: #f1f1f1;
+
 }
 .text-shadowb {
   background-color: #52cab694;
@@ -263,6 +270,42 @@ h1 {
   color: red;
   font-weight: 600;
 }
+.txt-b{
+  color:#17A2B8;
+  font-weight: 600;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.columns3 {
+    float: left;
+    width: 33.3%;
+    padding: 10px;
+}
+.columns4 {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+.column-btns {
+  float: left;
+  padding: 10px;
+}
+.column-left {
+  width: 75%;
+}
+.column-right {
+  width: 25%;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 .header-txt-v2{
   font-size: 12px;
   margin-bottom: 1%;
@@ -270,11 +313,21 @@ h1 {
 .margin-gasolineras{
   margin-top: 20px;
 }
+.margin-resumen{
+  margin-top: 0px;
+  margin-left: 100px;
+}
 .logo-station{
   margin-top: -1%;
 }
 .menos-espacio{
   font-size: 13px;
+}
+.menos-espacio1{
+  font-size: 10px;
+}
+.menos-espacio2{
+  font-size: 15px;
 }
 .txt-ok{
   color:#61b15a;
@@ -383,7 +436,7 @@ label {
   font-weight: 600;
 }
 .btn-barra-simular{
-  margin-top: 9%;
+  margin-top: 2%;
   margin-left: 2px;
 }
 .content-filter{
