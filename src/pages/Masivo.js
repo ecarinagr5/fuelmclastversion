@@ -247,12 +247,14 @@ this.setState({simular:true})
                 </Modal>
         <Row>
         <Col>
-          
+          {/* Numero de estaciones */}
+
           <div class="card-body">
-            <button class="mr-1 btn btn-outline-third bold">Número de Estaciones: <span class="color_price">  5</span></button>
-            <button class="mr-1 btn btn-outline-third bold">Número de Estaciones Diesel <span class="color_price">5</span></button>
-            <button class="mr-1 btn btn-outline-third bold">Número de Estaciones Premium <span class="color_price">3</span></button>
-            <button class="mr-1 btn btn-outline-third bold">Número de Estaciones Diesel <span class="color_price">1</span></button>
+            <h6 className="line_sib">Número de estaciones</h6>
+            <button class="mr-1 btn btn-outline-third bold">Total:<span class="color_price">  5</span></button>
+            <button class="mr-1 btn btn-outline-third bold">Regular:<span class="color_price">5</span></button>
+            <button class="mr-1 btn btn-outline-third bold">Premium:<span class="color_price">3</span></button>
+            <button class="mr-1 btn btn-outline-third bold">Diesel: <span class="color_price">1</span></button>
           </div>
   
         {/* FILTRO */}
