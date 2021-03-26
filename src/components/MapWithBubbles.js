@@ -30,7 +30,7 @@ class BubbleMap extends Component {
       <ComposableMap
         projectionConfig={{ scale: 205 }}
         width={980}
-        height={551}
+        height={251}
         style={{
           width: '100%',
           height: 'auto',

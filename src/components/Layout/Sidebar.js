@@ -1,5 +1,6 @@
 import logo200Image from 'assets/img/logo/logo_200.png';
 import logofuel from 'assets/img/logo/logo_fuel.jpeg';
+import logoFuelBlanco from 'assets/img/logo/LogoFuelBlanco.png';
 import sidebarBgImage from 'assets/img/img.png';
 import SourceLink from 'components/SourceLink';
 import React from 'react';
@@ -116,7 +117,7 @@ class Sidebar extends React.Component {
           <Navbar>
             <SourceLink className="navbar-brand d-flex">
               <img
-                src={logofuel}
+                src={logoFuelBlanco}
                 width="auto"
                 height="80"
                 className="logoprice"

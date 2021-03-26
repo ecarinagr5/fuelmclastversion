@@ -41,4 +41,14 @@ export const getThemeColors = () => [
   'info',
   'warning',
   'danger',
+  'yellow',
+  'indigo',
+  'purple',
+  'pink',
+  'red',,
+  'cyan',
+  'green',
+  'teal',
+  'light',
+  'blue'
 ];

@@ -19,7 +19,10 @@ import { sendDataDatabase } from '../Redux/sendToDb'
 import { Badge, Button, Card, CardBody, CardHeader, Col, Table, ListGroup, ListGroupItem, Row, Modal, ModalBody, ModalFooter, ModalHeader, Input, Label, FormGroup} from 'reactstrap';
 import { getColor } from 'utils/colors';
 
-const tableTypes = ['PROMEDIOS', 'MÁXIMOS', 'MÍNIMOS'];
+const tableTypes = ['PROMEDIOS'];
+const maxTypes = ['MÁXIMOS'];
+const minTypes = ['MINÍMOS'];
+
 
 const genPieData = () => {
   return {
@@ -244,6 +247,13 @@ this.setState({simular:true})
                 </Modal>
         <Row>
         <Col>
+          
+          <div class="card-body">
+            <button class="mr-1 btn btn-outline-third bold">Número de Estaciones: <span class="color_price">  5</span></button>
+            <button class="mr-1 btn btn-outline-third bold">Número de Estaciones Diesel <span class="color_price">5</span></button>
+            <button class="mr-1 btn btn-outline-third bold">Número de Estaciones Premium <span class="color_price">3</span></button>
+            <button class="mr-1 btn btn-outline-third bold">Número de Estaciones Diesel <span class="color_price">1</span></button>
+          </div>
   
         {/* FILTRO */}
         <Row>
@@ -320,11 +330,6 @@ this.setState({simular:true})
               <Button color="primary btn-barra-simular" onClick={this.toggle('nested_parent')}>SIMULACIÓN MASIVA</Button>
               <Button color="primary btn-barra-simular">
                   ACEPTAR &nbsp;
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
-                  <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-                  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-                  </svg>
               </Button>
             </Col>
 
@@ -416,16 +421,24 @@ this.setState({simular:true})
 
 {/* RESUMEN*/}
 <Row>
-          <Col lg="8" md="12" sm="12" xs="12">
+    <Col lg="12" md="12" sm="12" xs="12">
+        <Card>
+          <CardHeader>
+            RESUMEN
+          </CardHeader>
+          <CardBody className="bg-gradient-primary">
+            <MapWithBubbles />
+          </CardBody>
+        </Card>
+      </Col>
+</Row>
+<Row>
+          <Col lg="4" md="12" sm="12" xs="12">
             <Card>
-              <CardHeader>
-                RESUMEN{' '}
-                <small className="text-muted text-capitalize">Por día</small>
-              </CardHeader>
-
               <CardBody>
               {tableTypes.map((tableType, index) => (
-                <row><p className="titles-m">{tableType }</p>
+                <row>
+                    <p className="titles-m">{tableType }</p>
                       <Table {...{ [tableType || 'default']: true }} className="min_max">
                         <thead>
                           <tr>
@@ -461,11 +474,16 @@ this.setState({simular:true})
                             <td className="menos-espacio">250 lts</td>
                           </tr>
                           <tr>
-                            <th scope="row">Margen</th>
+                            <th scope="row">Margen Teoríco</th>
                             <td className="menos-espacio">10%</td>
                             <td className="menos-espacio">50%</td>
                             <td className="menos-espacio">65%</td>
-
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Real</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -474,42 +492,128 @@ this.setState({simular:true})
               </CardBody>
             </Card>
           </Col>
-
           <Col lg="4" md="12" sm="12" xs="12">
             <Card>
-              <CardHeader>
-                RESUMEN
-              </CardHeader>
-              <CardBody className="bg-gradient-primary">
-                <MapWithBubbles />
+              <CardBody>
+              {maxTypes.map((tableType, index) => (
+                <row>
+                    <p className="titles-m">{tableType }</p>
+                      <Table {...{ [tableType || 'default']: true }} className="min_max">
+                        <thead>
+                          <tr>
+                          <th className="header-table"></th>
+                            <th className="header-table text-left">magna</th>
+                            <th className="header-table text-left">diesel</th>
+                            <th className="header-table text-left">premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Ingreso</th>
+                            <td className="menos-espacio">$12,023</td>
+                            <td className="menos-espacio">$23,932</td>
+                            <td className="menos-espacio">$22,333</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Precio</th>
+                            <td className="menos-espacio">$23.3</td>
+                            <td className="menos-espacio">$13.3</td>
+                            <td className="menos-espacio">$12.3</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Utilidad</th>
+                            <td className="menos-espacio">$10,000</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Volumen</th>
+                            <td className="menos-espacio">290 lts</td>
+                            <td className="menos-espacio">320 lts</td>
+                            <td className="menos-espacio">250 lts</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Teoríco</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Real</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                      </row>
+                        ))}
               </CardBody>
-              <ListGroup flush>
-                <ListGroupItem>
-                  <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones{' '}
-                  <h4 className="text-center"><Badge color="">5</Badge></h4>
-                </ListGroupItem>
-                <ListGroupItem>
-                <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones por Producto{' '}
-                </ListGroupItem>
-                <ListGroupItem>
-                {'regular'}
-                  <Badge color="">2</Badge>
-                </ListGroupItem>
-                <ListGroupItem>
-                {'diesel'}{' '}
-                  <Badge color="">2</Badge>
-                </ListGroupItem>
-                <ListGroupItem>
-                  {'premium'}{' '}
-                  <Badge color="">1</Badge>
-                </ListGroupItem>
-              </ListGroup>
+            </Card>
+          </Col>
+          <Col lg="4" md="12" sm="12" xs="12">
+            <Card>
+              <CardBody>
+              {minTypes.map((tableType, index) => (
+                <row>
+                    <p className="titles-m">{tableType }</p>
+                      <Table {...{ [tableType || 'default']: true }} className="min_max">
+                        <thead>
+                          <tr>
+                          <th className="header-table"></th>
+                            <th className="header-table text-left">magna</th>
+                            <th className="header-table text-left">diesel</th>
+                            <th className="header-table text-left">premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Ingreso</th>
+                            <td className="menos-espacio">$12,023</td>
+                            <td className="menos-espacio">$23,932</td>
+                            <td className="menos-espacio">$22,333</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Precio</th>
+                            <td className="menos-espacio">$23.3</td>
+                            <td className="menos-espacio">$13.3</td>
+                            <td className="menos-espacio">$12.3</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Utilidad</th>
+                            <td className="menos-espacio">$10,000</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Volumen</th>
+                            <td className="menos-espacio">290 lts</td>
+                            <td className="menos-espacio">320 lts</td>
+                            <td className="menos-espacio">250 lts</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Teoríco</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Real</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                      </row>
+                        ))}
+              </CardBody>
             </Card>
           </Col>
         </Row>
         
         <Row>
-            <Col xl={6} lg={12} md={12}>
+            <Col xl={4} lg={12} md={12}>
             <Card>
               <CardHeader>UTILIDAD</CardHeader>
               <CardBody>
@@ -517,17 +621,17 @@ this.setState({simular:true})
               </CardBody>
             </Card>
           </Col>
-          <Col xl={6} lg={12} md={12}>
+          <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>MARGEN</CardHeader>
+              <CardHeader>VOLUMEN</CardHeader>
               <CardBody>
                 <Doughnut data={genPieData()} />
               </CardBody>
             </Card>
           </Col>
-          <Col xl={6} lg={12} md={12}>
+          <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>VOLUMEN</CardHeader>
+              <CardHeader>INCREMENTAR SUS VENTAS</CardHeader>
               <CardBody>
                 <Doughnut data={genPieData()} />
               </CardBody>
