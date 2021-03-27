@@ -57,6 +57,9 @@ class Masivo extends React.Component {
       preciotoplay1:null,
       preciotoplay2:null,
       preciotoplay3:null,
+      diferencia1:null,
+      diferencia2:null,
+      diferencia3:null,
       diferencia:'',
       dataReal:[],
       productos:[],
@@ -166,7 +169,6 @@ class Masivo extends React.Component {
     let simular3 = this.state.preciotoplay3;
 
     this.state.dataReal[0].map((prop, key) => {
-      console.log("prod",prop.productos[key].preciotoplay1)
       prop.productos[key].preciotoplay = simular1;
         /*prop.productos((prod) => {
           prop.productos = simular1
@@ -202,27 +204,55 @@ this.setState({simular:true})
                 SIMULACIÓN MASIVA
               </ModalHeader>
                   <ModalBody>
-                    <FormGroup>
-                      <Label for="precio"> PRECIO FRANJA 1:</Label>
-                      <Input
-                        id="preciotoplay1"
-                        value={this.state.preciotoplay1}
-                        onChange={(e) => this.setState({preciotoplay1:e.target.value })}  />
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="precio"> PRECIO FRANJA 2:</Label>
-                      <Input
-                        id="preciotoplay2"
-                        value={this.state.preciotoplay2}
-                        onChange={(e) => this.setState({preciotoplay2:e.target.value })}  />
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="precio"> PRECIO FRANJA 3:</Label>
-                      <Input
-                        id="preciotoplay3"
-                        value={this.state.preciotoplay3}
-                        onChange={(e) => this.setState({preciotoplay3:e.target.value })}  />
-                    </FormGroup>
+                    <Row>
+                      <Col>
+                      <FormGroup>
+                        <Label for="precio"> PRECIO FRANJA 1:</Label>
+                        <Input
+                          id="preciotoplay1"
+                          value={this.state.preciotoplay1}
+                          onChange={(e) => this.setState({preciotoplay1:e.target.value })}  />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="precio"> PRECIO FRANJA 2:</Label>
+                        <Input
+                          id="preciotoplay2"
+                          value={this.state.preciotoplay2}
+                          onChange={(e) => this.setState({preciotoplay2:e.target.value })}  />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="precio"> PRECIO FRANJA 3:</Label>
+                        <Input
+                          id="preciotoplay3"
+                          value={this.state.preciotoplay3}
+                          onChange={(e) => this.setState({preciotoplay3:e.target.value })}  />
+                      </FormGroup>
+                      </Col>
+                      <Col>
+                      <FormGroup>
+                        <Label for="precio"> DIFERENCIA FRANJA 1:</Label>
+                        <Input
+                          id="diferencia1"
+                          value={this.state.diferencia1}
+                          onChange={(e) => this.setState({diferencia1:e.target.value })}  />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="precio"> DIFERENCIA FRANJA 2:</Label>
+                        <Input
+                          id="preciotoplay2"
+                          value={this.state.diferencia2}
+                          onChange={(e) => this.setState({diferencia2:e.target.value })}  />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="precio"> DIFERENCIA FRANJA 3:</Label>
+                        <Input
+                          id="preciotoplay3"
+                          value={this.state.diferencia3}
+                          onChange={(e) => this.setState({diferencia3:e.target.value })}  />
+                      </FormGroup>
+                      </Col>
+                    </Row>
+
                     {/*<FormGroup>
                       <Label for="diferencia">DIFERENCIA:</Label>
                       <Input
@@ -250,7 +280,7 @@ this.setState({simular:true})
           {/* Numero de estaciones */}
 
           <div class="card-body">
-            <h6 className="line_sib">Número de estaciones</h6>
+            <h6 className="line_sib"><b>Número de estaciones</b></h6>
             <button class="mr-1 btn btn-outline-third bold">Total:<span class="color_price">  5</span></button>
             <button class="mr-1 btn btn-outline-third bold">Regular:<span class="color_price">5</span></button>
             <button class="mr-1 btn btn-outline-third bold">Premium:<span class="color_price">3</span></button>
@@ -376,6 +406,9 @@ this.setState({simular:true})
                           let max = Math.max.apply(Math, arrayToDefine);
                           let estacionroute = '/#' + prop.PRE_EST_PERMISO_CRE;
                           let diferenciaVolumen = producto[0].volumenobjetivo - producto[0].volumenreal; 
+                          let diferencia1 = producto[0].pvprecomendadofranja1 - this.state.diferencia1;
+                          let diferencia2 = producto[0].pvprecomendadofranja2 - this.state.diferencia2;
+                          let diferencia3 = producto[0].pvprecomendadofranja3 - this.state.diferencia3;
                           return (
                           <tr>
                             <td className="text-center color-blue"> <input type="radio" id={ i } name={ i } value={ i } checked={this.state.selectAll ? true : false}/></td>
@@ -387,11 +420,11 @@ this.setState({simular:true})
                             <td className="text-center">$ {max.toFixed(2)}</td>
                             <td className="text-center">$ {min.toFixed(2)}</td>
                             <td className="text-center">$ {producto[0].competenciaestrategica}</td>
-                          { this.state.simular ? this.state.simularid === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja1}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.preciotoplay1 }</td> : '' }
+                          { this.state.simular ? this.state.simularid === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja1}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.diferencia1 ? diferencia1.toFixed(2) : this.state.preciotoplay1 }</td> : '' }
                           <td className="text-center text-shadow text-shadow">{ this.state.simularid === i  ? <input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1}  /> :''} $ { producto[0].pvprecomendadofranja1} </td>
-                          { this.state.simular ? this.state.simularid === i  ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja2}/> </p></td> :  <td className="text-center bg-gray-light">{ this.state.preciotoplay2 }</td> : '' }
+                          { this.state.simular ? this.state.simularid === i  ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja2}/> </p></td> :  <td className="text-center bg-gray-light">{ this.state.diferencia2 ? diferencia2.toFixed(2)  : this.state.preciotoplay2 }</td> : '' }
                             <td className="text-center text-shadow text-shadowb">{ this.state.simularid === i  ? <input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2}  /> : ''  } $ { producto[0].pvprecomendadofranja2} </td>
-                          { this.state.simular ? this.state.simularid  === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja3}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.preciotoplay3  }</td> : '' }
+                          { this.state.simular ? this.state.simularid  === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja3}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.diferencia3 ? diferencia3.toFixed(2) : this.state.preciotoplay3  }</td> : '' }
                             <td className="text-center text-shadow text-shadowc">{ this.state.simularid === i   ? <input type="radio" name="radio1" value=""  /> : '' } $ { producto[0].pvprecomendadofranja3} </td>
                             <td className={ producto[0].margenteorico < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenteorico > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > $ { producto[0].margenteorico }</td>
                             <td className={ producto[0].margenreal < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenreal > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > ${ producto[0].margenreal} </td>
@@ -617,7 +650,15 @@ this.setState({simular:true})
         <Row>
             <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>UTILIDAD</CardHeader>
+              <CardHeader>MARGENN TEORÍCO</CardHeader>
+              <CardBody>
+                <Doughnut data={genPieData()} />
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xl={4} lg={12} md={12}>
+            <Card>
+              <CardHeader>MARGEN REAL</CardHeader>
               <CardBody>
                 <Doughnut data={genPieData()} />
               </CardBody>
@@ -626,14 +667,6 @@ this.setState({simular:true})
           <Col xl={4} lg={12} md={12}>
             <Card>
               <CardHeader>VOLUMEN</CardHeader>
-              <CardBody>
-                <Doughnut data={genPieData()} />
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xl={4} lg={12} md={12}>
-            <Card>
-              <CardHeader>INCREMENTAR SUS VENTAS</CardHeader>
               <CardBody>
                 <Doughnut data={genPieData()} />
               </CardBody>

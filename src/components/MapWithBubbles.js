@@ -80,7 +80,7 @@ class BubbleMap extends Component {
                   r={cityScale(city.population)}
                   fill={secondaryColor}
                   stroke={secondaryColor}
-                  strokeWidth="2"
+                  strokeWidth="1"
                 />
               </Marker>
             ))}
