@@ -14,9 +14,20 @@ import {
 } from 'reactstrap';
 
 
-const AvatarWithBadge = withBadge({
+
+const AvatarWithBadge1 = withBadge({
   position: 'bottom-right',
   color: 'success',
+})(Avatar);
+
+const AvatarWithBadge2 = withBadge({
+  position: 'bottom-right',
+  color: 'danger',
+})(Avatar);
+
+const AvatarWithBadge3 = withBadge({
+  position: 'bottom-right',
+  color: 'primary',
 })(Avatar);
 
 const UserProgressTable = ({ headers, usersData, simular, viewprice, ...restProps }) => {
@@ -35,10 +46,12 @@ const UserProgressTable = ({ headers, usersData, simular, viewprice, ...restProp
           let diferenciaVolumen = volumenobjetivo - volumenreal;
           //Diferencia Volumen volumenreal - volumenobjetivo
         return (
-          <tr key={index}>
-            <td className="align-middle text-center">
-              <AvatarWithBadge src={productimg} />
-            </td>
+            <tr key={index}>
+            {nombre==='magna' ? <td className="align-middle text-center">
+            <AvatarWithBadge1 src={productimg} /></td> 
+            : nombre==='premium' ? <td className="align-middle text-center">
+            <AvatarWithBadge2 src={productimg} /></td> : <td className="align-middle text-center">
+            <AvatarWithBadge3 src={productimg} /></td> } 
             <td className="align-middle text-left ">{nombre}</td>
             <td className={"align-middle text-center"}>$ {precioultimacompra.toFixed(2)} <Badge color="primary" className="mr-1"><span className="update-date">{ fechadeultimacompra }</span></Badge></td>
             <td className={"align-middle text-center"}>$ {preciodecomprahoy.toFixed(2)}</td>
