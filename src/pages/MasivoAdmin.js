@@ -19,7 +19,10 @@ import { sendDataDatabase } from '../Redux/sendToDb'
 import { Badge, Button, Card, CardBody, CardHeader, Col, Table, ListGroup, ListGroupItem, Row, Modal, ModalBody, ModalFooter, ModalHeader, Input, Label, FormGroup} from 'reactstrap';
 import { getColor } from 'utils/colors';
 
-const tableTypes = ['PROMEDIOS', 'MÁXIMOS', 'MÍNIMOS'];
+const tableTypes = ['PROMEDIOS'];
+const maxTypes = ['MÁXIMOS'];
+const minTypes = ['MINÍMOS'];
+
 
 const genPieData = () => {
   return {
@@ -54,6 +57,9 @@ class MasivoAdmin extends React.Component {
       preciotoplay1:null,
       preciotoplay2:null,
       preciotoplay3:null,
+      diferencia1:null,
+      diferencia2:null,
+      diferencia3:null,
       diferencia:'',
       dataReal:[],
       productos:[],
@@ -163,7 +169,6 @@ class MasivoAdmin extends React.Component {
     let simular3 = this.state.preciotoplay3;
 
     this.state.dataReal[0].map((prop, key) => {
-      console.log("prod",prop.productos[key].preciotoplay1)
       prop.productos[key].preciotoplay = simular1;
         /*prop.productos((prod) => {
           prop.productos = simular1
@@ -187,8 +192,9 @@ this.setState({simular:true})
   }
 
   render() {
-    const primaryColor = getColor('primary');
     let { dataReal, empresa, negocio, precio, margen } = this.state;
+    const { viewprice, changePrice } = this.props;
+    console.log("changePrice",this.props.changePrice)
     return (
       <Page>
         <Modal
@@ -199,27 +205,55 @@ this.setState({simular:true})
                 SIMULACIÓN MASIVA
               </ModalHeader>
                   <ModalBody>
-                    <FormGroup>
-                      <Label for="precio"> PRECIO FRANJA 1:</Label>
-                      <Input
-                        id="preciotoplay1"
-                        value={this.state.preciotoplay1}
-                        onChange={(e) => this.setState({preciotoplay1:e.target.value })}  />
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="precio"> PRECIO FRANJA 2:</Label>
-                      <Input
-                        id="preciotoplay2"
-                        value={this.state.preciotoplay2}
-                        onChange={(e) => this.setState({preciotoplay2:e.target.value })}  />
-                    </FormGroup>
-                    <FormGroup>
-                      <Label for="precio"> PRECIO FRANJA 3:</Label>
-                      <Input
-                        id="preciotoplay3"
-                        value={this.state.preciotoplay3}
-                        onChange={(e) => this.setState({preciotoplay3:e.target.value })}  />
-                    </FormGroup>
+                    <Row>
+                      <Col>
+                      <FormGroup>
+                        <Label for="precio"> PRECIO FRANJA 1:</Label>
+                        <Input
+                          id="preciotoplay1"
+                          value={this.state.preciotoplay1}
+                          onChange={(e) => this.setState({preciotoplay1:e.target.value })}  />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="precio"> PRECIO FRANJA 2:</Label>
+                        <Input
+                          id="preciotoplay2"
+                          value={this.state.preciotoplay2}
+                          onChange={(e) => this.setState({preciotoplay2:e.target.value })}  />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="precio"> PRECIO FRANJA 3:</Label>
+                        <Input
+                          id="preciotoplay3"
+                          value={this.state.preciotoplay3}
+                          onChange={(e) => this.setState({preciotoplay3:e.target.value })}  />
+                      </FormGroup>
+                      </Col>
+                      <Col>
+                      <FormGroup>
+                        <Label for="precio"> DIFERENCIA FRANJA 1:</Label>
+                        <Input
+                          id="diferencia1"
+                          value={this.state.diferencia1}
+                          onChange={(e) => this.setState({diferencia1:e.target.value })}  />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="precio"> DIFERENCIA FRANJA 2:</Label>
+                        <Input
+                          id="preciotoplay2"
+                          value={this.state.diferencia2}
+                          onChange={(e) => this.setState({diferencia2:e.target.value })}  />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="precio"> DIFERENCIA FRANJA 3:</Label>
+                        <Input
+                          id="preciotoplay3"
+                          value={this.state.diferencia3}
+                          onChange={(e) => this.setState({diferencia3:e.target.value })}  />
+                      </FormGroup>
+                      </Col>
+                    </Row>
+
                     {/*<FormGroup>
                       <Label for="diferencia">DIFERENCIA:</Label>
                       <Input
@@ -242,8 +276,88 @@ this.setState({simular:true})
                     </Button>
                   </ModalFooter>
                 </Modal>
+                {/*APLICAR PRECIOS*/}
+                <Modal
+                  isOpen={this.state.modal_nested_parent_b}
+                  toggle={this.toggle('nested_parent_b')}
+                  className={this.props.className}>
+                  <ModalHeader toggle={this.toggle('nested_parent_b')}>
+                    APLICAR PRECIOS
+                  </ModalHeader>
+                  <ModalBody>
+                    <p className="header-txt-v2">Estas seguro de Aplicar los siguientes cambios:</p>
+                      <br />
+                      <Table responsive>
+                        <thead>
+                          <tr>
+                            <th className="header-table">PRODUCTO</th>
+                            { viewprice ? <th className="header-table">PVP RECOMENDADO </th> :  <th className="header-table">PVP FRANJA 1</th> }
+                            { viewprice ? '' : <th className="header-table">PVP FRANJA 2</th> }
+                            { viewprice ? '' : <th className="header-table">PVP FRANJA 3</th> }
+                            <th className="header-table">MARGEN REAL</th>
+                            <th className="header-table">MARGEN TEÓRICO</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {   
+                          dataReal.map((prop, key) => {
+                            return (
+                              <tr>
+                                <td key={key} className="text-center text-mini">{ prop.nombre }</td>
+                                { viewprice ? <td key={key} className="text-center text-mini text-shadow">${ prop.preciomodificadofranja1 >  0 ? prop.preciomodificadofranja1  : prop.pvprecomendado }</td> : <td key={key} className="text-center text-mini text-shadow">${ prop.preciomodificadofranja1 >  0 ? prop.preciomodificadofranja1  : prop.pvprecomendadofranja1 }</td> }
+                                { viewprice ? '' : <td key={key} className="text-center text-mini text-shadowb">${ prop.preciomodificadofranja2 >  0 ? prop.preciomodificadofranja2  : prop.pvprecomendadofranja2 }</td> }
+                                { viewprice ?  '' : <td key={key} className="text-center text-mini text-shadowc">${ prop.preciomodificadofranja3 >  0 ? prop.preciomodificadofranja3  : prop.pvprecomendadofranja3 }</td> }
+                                <td key={key} className="text-center text-mini">${ prop.margenreal }</td>
+                                <td key={key} className="text-center text-mini">${ prop.margenteorico }</td>
+                            </tr>
+                            )
+                          })}
+                        </tbody>
+                      </Table>
+                      <br></br>
+                      <Table>
+                        <tr>
+                          <td className="id_negocio_class">Id Negocio: <span className="id_negocio">129AB</span></td>
+                        </tr>
+                        <tr>
+                          <td className="id_negocio_class">{ viewprice ? 'Hora de Aplicación' :'Hora de Aplicación Franja 1' }: <input type="time" id="appt" name="appt" min="09:00" max="18:00" placeholder="8:00" required/></td>
+                        </tr>
+                      { viewprice ? '' :
+                        <tr>
+                          <td className="id_negocio_class">Hora de Aplicación Franja 2: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
+                        </tr> }
+                      { viewprice ? '' :
+                        <tr>
+                          <td className="id_negocio_class">Hora de Aplicación Franja 3: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
+                        </tr>
+                      }
+                      </Table>
+                    <br />
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color="primary"
+                      onClick={this.toggle('nested_parent_b')}>
+                        ACEPTAR
+                    </Button>{' '}
+                    <Button
+                      color="danger"
+                      onClick={this.toggle('nested_parent_b')}>
+                        CANCELAR
+                    </Button>
+                  </ModalFooter>
+                </Modal>
         <Row>
         <Col>
+          {/* Numero de estaciones */}
+
+          <div class="card-body">
+            <h6 className="line_sib"><b>Número de estaciones</b></h6>
+            <button class="mr-1 btn btn-outline-third bold">Total:<span class="color_price">  5</span></button>
+            <button class="mr-1 btn btn-outline-third bold">Regular:<span class="color_price">5</span></button>
+            <button class="mr-1 btn btn-outline-third bold">Premium:<span class="color_price">3</span></button>
+            <button class="mr-1 btn btn-outline-third bold">Diesel: <span class="color_price">1</span></button>
+          </div>
   
         {/* FILTRO */}
         <Row>
@@ -318,14 +432,7 @@ this.setState({simular:true})
             <CardBody>
             <Col md={3} className="container-btn-masiva">
               <Button color="primary btn-barra-simular" onClick={this.toggle('nested_parent')}>SIMULACIÓN MASIVA</Button>
-              <Button color="primary btn-barra-simular">
-                  APROBAR &nbsp;
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
-                  <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-                  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-                  </svg>
-              </Button>
+              <Button color="primary btn-barra-simular" onClick={this.toggle('nested_parent_b')}> ACEPTAR &nbsp; </Button>
             </Col>
 
             <Tabs headerStyle={{fontWeight: 'bold'}} activeHeaderStyle={{color:'black'}} >
@@ -336,24 +443,25 @@ this.setState({simular:true})
                             <th className="text-center header-table min-font">All <input type="radio" onChange={this.selectChooseAll}></input></th>
                             <th className="text-center header-table min-font">EMPRESA</th>
                             <th className="text-center header-table min-font">NEGOCIO</th>
-                            <th className="text-center header-table min-font"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de venta TAR de Suministro</span></th>
-                            <th className="text-center header-table min-font"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia Hoy y Mañana</span></th>
-                            <th className="text-center header-table min-font"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio de venta promedio de la competencia</span></th>
-                            <th className="text-center header-table min-font"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta máximo de la competencia</span></th>
-                            <th className="text-center header-table min-font"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio de venta mínimo de la competencia</span></th>
-                            <th className="text-center header-table" min-font><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">*</span></th>
-                            { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 1</th> : '' }
-                            <th className="text-center header-table min-font">PRECIO RECOMENDADO FRANJA 1</th>
-                            { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 2</th> : '' }
-                            <th className="text-center header-table min-font">PRECIO RECOMENDADO FRANJA 2</th>
-                            { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 3</th> : '' }
-                            <th className="text-center header-table min-font">PRECIO RECOMENDADO FRANJA 3</th>
+                            <th className="text-center header-table min-font"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de compra publicado por la CRE para el día de hoy.</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">DIFERENCIA HOY Y MAÑANA</span><span className="detail">Diferencia entre precio de compra de hoy y de mañana.</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">PVP PROMEDIO DE LA COMPETENCIA</span><span className="detail">Precio promedio ponderado de la competencia.</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio promedio de venta máximo de la competencia</span></th>
+                            <th className="text-center header-table min-font"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio promedio de venta mínimo de la competencia</span></th>
+                            <th className="text-center header-table min-font" min-font><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">Precio promedio de la competencia estratégica</span></th>
+                            { this.state.simular ? <th className="header-table min-font">{!this.props.changePrice  ? 'SIMULACIÓN FRANJA 1' : 'SIMULACIÓN'}</th> : '' }
+                            { !this.props.changePrice ? <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO FRANJA 1 </span><span className="detail">Precio recomendado desde la hora { "00:01" } hasta la hora { "11:00" }</span> </th> : <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO </span> </th>}
+                            { this.state.simular && !this.props.changePrice ? <th className="header-table min-font">SIMULACIÓN FRANJA 2</th> : '' }
+                            { !this.props.changePrice ? <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO FRANJA 2 </span><span className="detail">Precio recomendado desde la hora { "11:01" } hasta la hora { "18:00" }</span> </th> : '' }
+                            { this.state.simular && !this.props.changePrice ? <th className="header-table min-font">SIMULACIÓN FRANJA 3</th> : '' }
+                            { !this.props.changePrice ? <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO FRANJA 3 </span><span className="detail">Precio recomendado desde la hora { "18:01" } hasta la hora { "24:00" }</span> </th> : '' }
                             <th className="text-center header-table min-font"><span className="meaning">MARGEN TEÓRICO PROMEDIO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
                             <th className="text-center header-table min-font"><span className="meaning">MARGEN REAL PROMEDIO</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                             <th className="text-center header-table min-font"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                     
                             <th className="text-center header-table"></th>
                             <th className="text-center header-table"></th>
-                            <th className="text-center header-table"></th>
+                            
+                            
                           </tr>
                       </thead>
                     <tbody>
@@ -368,6 +476,9 @@ this.setState({simular:true})
                           let max = Math.max.apply(Math, arrayToDefine);
                           let estacionroute = '/#' + prop.PRE_EST_PERMISO_CRE;
                           let diferenciaVolumen = producto[0].volumenobjetivo - producto[0].volumenreal; 
+                          let diferencia1 = producto[0].pvprecomendadofranja1 - this.state.diferencia1;
+                          let diferencia2 = producto[0].pvprecomendadofranja2 - this.state.diferencia2;
+                          let diferencia3 = producto[0].pvprecomendadofranja3 - this.state.diferencia3;
                           return (
                           <tr>
                             <td className="text-center color-blue"> <input type="radio" id={ i } name={ i } value={ i } checked={this.state.selectAll ? true : false}/></td>
@@ -379,12 +490,12 @@ this.setState({simular:true})
                             <td className="text-center">$ {max.toFixed(2)}</td>
                             <td className="text-center">$ {min.toFixed(2)}</td>
                             <td className="text-center">$ {producto[0].competenciaestrategica}</td>
-                          { this.state.simular ? this.state.simularid === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja1}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.preciotoplay1 }</td> : '' }
-                          <td className="text-center text-shadow text-shadow">{ this.state.simularid === i  ? <input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1}  /> :''} $ { producto[0].pvprecomendadofranja1} </td>
-                          { this.state.simular ? this.state.simularid === i  ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja2}/> </p></td> :  <td className="text-center bg-gray-light">{ this.state.preciotoplay2 }</td> : '' }
-                            <td className="text-center text-shadow text-shadowb">{ this.state.simularid === i  ? <input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2}  /> : ''  } $ { producto[0].pvprecomendadofranja2} </td>
-                          { this.state.simular ? this.state.simularid  === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja3}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.preciotoplay3  }</td> : '' }
-                            <td className="text-center text-shadow text-shadowc">{ this.state.simularid === i   ? <input type="radio" name="radio1" value=""  /> : '' } $ { producto[0].pvprecomendadofranja3} </td>
+                          { this.state.simular ? this.state.simularid === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja1}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.diferencia1 ? diferencia1.toFixed(2) : this.state.preciotoplay1 }</td> : '' }
+                            <td className="text-center text-shadow text-shadow">{ this.state.simularid === i  ? <input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1}  /> :''} $ { producto[0].pvprecomendadofranja1} </td>
+                          { !this.props.changePrice ?  this.state.simular ? this.state.simularid === i  ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja2}/> </p></td> :  <td className="text-center bg-gray-light">{ this.state.diferencia2 ? diferencia2.toFixed(2)  : this.state.preciotoplay2 }</td> : '' : ''}
+                          { !this.props.changePrice ? <td className="text-center text-shadow text-shadowb">{ this.state.simularid === i  ? <input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2}  /> : ''  } $ { producto[0].pvprecomendadofranja2} </td> : '' }
+                          { !this.props.changePrice ? this.state.simular ? this.state.simularid  === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja3}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.diferencia3 ? diferencia3.toFixed(2) : this.state.preciotoplay3  }</td> : '' : '' }
+                          { !this.props.changePrice ? <td className="text-center text-shadow text-shadowc">{ this.state.simularid === i  ?  <input type="radio" name="radio1" value=""  /> : '' } $ { producto[0].pvprecomendadofranja3} </td> : ''  }
                             <td className={ producto[0].margenteorico < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenteorico > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > $ { producto[0].margenteorico }</td>
                             <td className={ producto[0].margenreal < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenreal > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > ${ producto[0].margenreal} </td>
                             <td className="text-center bg-gray-light"> { producto[0].volumenobjetivomensual }%</td>
@@ -399,11 +510,7 @@ this.setState({simular:true})
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                               </svg>
                             </td>
-        
                             }
-                            <td className="text-center">
-                            <i class="bi bi-check-circle"></i>
-                          </td>
                           </tr>
                           )
                       })
@@ -419,16 +526,25 @@ this.setState({simular:true})
 
 {/* RESUMEN*/}
 <Row>
-          <Col lg="8" md="12" sm="12" xs="12">
+    <Col lg="12" md="12" sm="12" xs="12">
+        <Card>
+          <CardHeader>
+            RESUMEN
+          </CardHeader>
+          <CardBody className="bg-gradient-primary">
+            <MapWithBubbles />
+                {/*<mapGoogle></mapGoogle>*/}
+          </CardBody>
+        </Card>
+      </Col>
+</Row>
+<Row>
+          <Col lg="4" md="12" sm="12" xs="12">
             <Card>
-              <CardHeader>
-                RESUMEN{' '}
-                <small className="text-muted text-capitalize">Por día</small>
-              </CardHeader>
-
               <CardBody>
               {tableTypes.map((tableType, index) => (
-                <row><p className="titles-m">{tableType }</p>
+                <row>
+                    <p className="titles-m">{tableType }</p>
                       <Table {...{ [tableType || 'default']: true }} className="min_max">
                         <thead>
                           <tr>
@@ -464,11 +580,16 @@ this.setState({simular:true})
                             <td className="menos-espacio">250 lts</td>
                           </tr>
                           <tr>
-                            <th scope="row">Margen</th>
+                            <th scope="row">Margen Teoríco</th>
                             <td className="menos-espacio">10%</td>
                             <td className="menos-espacio">50%</td>
                             <td className="menos-espacio">65%</td>
-
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Real</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -477,58 +598,144 @@ this.setState({simular:true})
               </CardBody>
             </Card>
           </Col>
-
           <Col lg="4" md="12" sm="12" xs="12">
             <Card>
-              <CardHeader>
-                RESUMEN
-              </CardHeader>
-              <CardBody className="bg-gradient-primary">
-                <MapWithBubbles />
+              <CardBody>
+              {maxTypes.map((tableType, index) => (
+                <row>
+                    <p className="titles-m">{tableType }</p>
+                      <Table {...{ [tableType || 'default']: true }} className="min_max">
+                        <thead>
+                          <tr>
+                          <th className="header-table"></th>
+                            <th className="header-table text-left">magna</th>
+                            <th className="header-table text-left">diesel</th>
+                            <th className="header-table text-left">premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Ingreso</th>
+                            <td className="menos-espacio">$12,023</td>
+                            <td className="menos-espacio">$23,932</td>
+                            <td className="menos-espacio">$22,333</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Precio</th>
+                            <td className="menos-espacio">$23.3</td>
+                            <td className="menos-espacio">$13.3</td>
+                            <td className="menos-espacio">$12.3</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Utilidad</th>
+                            <td className="menos-espacio">$10,000</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Volumen</th>
+                            <td className="menos-espacio">290 lts</td>
+                            <td className="menos-espacio">320 lts</td>
+                            <td className="menos-espacio">250 lts</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Teoríco</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Real</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                      </row>
+                        ))}
               </CardBody>
-              <ListGroup flush>
-                <ListGroupItem>
-                  <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones{' '}
-                  <h4 className="text-center"><Badge color="">5</Badge></h4>
-                </ListGroupItem>
-                <ListGroupItem>
-                <MdInsertChart size={25} color={primaryColor} /> Número de Estaciones por Producto{' '}
-                </ListGroupItem>
-                <ListGroupItem>
-                {'regular'}
-                  <Badge color="">2</Badge>
-                </ListGroupItem>
-                <ListGroupItem>
-                {'diesel'}{' '}
-                  <Badge color="">2</Badge>
-                </ListGroupItem>
-                <ListGroupItem>
-                  {'premium'}{' '}
-                  <Badge color="">1</Badge>
-                </ListGroupItem>
-              </ListGroup>
+            </Card>
+          </Col>
+          <Col lg="4" md="12" sm="12" xs="12">
+            <Card>
+              <CardBody>
+              {minTypes.map((tableType, index) => (
+                <row>
+                    <p className="titles-m">{tableType }</p>
+                      <Table {...{ [tableType || 'default']: true }} className="min_max">
+                        <thead>
+                          <tr>
+                          <th className="header-table"></th>
+                            <th className="header-table text-left">magna</th>
+                            <th className="header-table text-left">diesel</th>
+                            <th className="header-table text-left">premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Ingreso</th>
+                            <td className="menos-espacio">$12,023</td>
+                            <td className="menos-espacio">$23,932</td>
+                            <td className="menos-espacio">$22,333</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Precio</th>
+                            <td className="menos-espacio">$23.3</td>
+                            <td className="menos-espacio">$13.3</td>
+                            <td className="menos-espacio">$12.3</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Utilidad</th>
+                            <td className="menos-espacio">$10,000</td>
+                            <td className="menos-espacio">$20,000</td>
+                            <td className="menos-espacio">$22,500</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Volumen</th>
+                            <td className="menos-espacio">290 lts</td>
+                            <td className="menos-espacio">320 lts</td>
+                            <td className="menos-espacio">250 lts</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Teoríco</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Margen Real</th>
+                            <td className="menos-espacio">10%</td>
+                            <td className="menos-espacio">50%</td>
+                            <td className="menos-espacio">65%</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                      </row>
+                        ))}
+              </CardBody>
             </Card>
           </Col>
         </Row>
         
         <Row>
-            <Col xl={6} lg={12} md={12}>
+            <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>UTILIDAD</CardHeader>
+              <CardHeader>MARGENN TEORÍCO</CardHeader>
               <CardBody>
                 <Doughnut data={genPieData()} />
               </CardBody>
             </Card>
           </Col>
-          <Col xl={6} lg={12} md={12}>
+          <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>MARGEN</CardHeader>
+              <CardHeader>MARGEN REAL</CardHeader>
               <CardBody>
                 <Doughnut data={genPieData()} />
               </CardBody>
             </Card>
           </Col>
-          <Col xl={6} lg={12} md={12}>
+          <Col xl={4} lg={12} md={12}>
             <Card>
               <CardHeader>VOLUMEN</CardHeader>
               <CardBody>
@@ -548,7 +755,8 @@ function mapStateToProps(state){
   return {
       data: state,
       currentStation: state.station,
-      currentView:state.setView
+      currentView:state.setView,
+      changePrice:state.changePrice
   }
 }
 //Send Information REDUX

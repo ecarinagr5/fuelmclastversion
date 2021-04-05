@@ -36,7 +36,7 @@ class BubbleMap extends Component {
           height: 'auto',
         }}
       >
-        <ZoomableGroup center={[0, 20]} disablePanning>
+        <ZoomableGroup center={[10, 60]} disablePanning>
           <Geographies geography={world50m}>
             {(geographies, projection) =>
               geographies.map(

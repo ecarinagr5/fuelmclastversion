@@ -8,6 +8,7 @@ import Page from 'components/Page';
 import { Tabs, Tab } from 'react-bootstrap-tabs';
 import  Filter  from 'components/Filter';
 import { Multiselect } from 'multiselect-react-dropdown';
+import { mapGoogle } from 'components/mapGoogle';
 
 import ver from "assets/img/ver.png";
 
@@ -532,7 +533,8 @@ this.setState({simular:true})
             RESUMEN
           </CardHeader>
           <CardBody className="bg-gradient-primary">
-            <MapWithBubbles />
+            {/*<MapWithBubbles />*/}
+            <mapGoogle />
           </CardBody>
         </Card>
       </Col>
