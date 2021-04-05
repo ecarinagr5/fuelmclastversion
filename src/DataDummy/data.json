@@ -60,8 +60,8 @@
                 "direccion":"Av. Adolfo López Mateos 518-520",
                 "rankin":4,
                 "logo":"",
-                "latitud":"",
-                "longitud":"",
+                "latitud":19.4815215,
+                "longitud":-99.2535549,
                 "productos":[
                     {
                         "id":"12",
@@ -271,8 +271,8 @@
                 "direccion":"Blvd. Bernardo Quintana No. 980",
                 "rankin":4,
                 "logo":"",
-                "latitud":"",
-                "longitud":"",
+                "latitud":19.3695029,
+                "longitud":-99.2523056,
                 "productos":[
                     {
                         "id":"22",

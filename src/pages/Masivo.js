@@ -8,7 +8,7 @@ import Page from 'components/Page';
 import { Tabs, Tab } from 'react-bootstrap-tabs';
 import  Filter  from 'components/Filter';
 import { Multiselect } from 'multiselect-react-dropdown';
-import { mapGoogle } from 'components/mapGoogle';
+import GoogleMap from 'components/GoogleMap';
 
 import ver from "assets/img/ver.png";
 
@@ -71,6 +71,7 @@ class Masivo extends React.Component {
       margen:[],
       idtomodify:[],
       simularid:null,
+      coordenadas:[]
     }
 
     this.selectChooseAll = this.selectChooseAll.bind(this);
@@ -195,7 +196,8 @@ this.setState({simular:true})
   render() {
     let { dataReal, empresa, negocio, precio, margen } = this.state;
     const { viewprice, changePrice } = this.props;
-    console.log("changePrice",this.props.changePrice)
+    let { estaciones } = this.props.data.metrics.array;
+
     return (
       <Page>
         <Modal
@@ -534,7 +536,7 @@ this.setState({simular:true})
           </CardHeader>
           <CardBody className="bg-gradient-primary">
             {/*<MapWithBubbles />*/}
-            <mapGoogle />
+            <GoogleMap estaciones={ estaciones } />
           </CardBody>
         </Card>
       </Col>
