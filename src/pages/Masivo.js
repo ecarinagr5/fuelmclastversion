@@ -192,8 +192,9 @@ this.setState({simular:true})
   }
 
   render() {
-    const primaryColor = getColor('primary');
     let { dataReal, empresa, negocio, precio, margen } = this.state;
+    const { viewprice, changePrice } = this.props;
+    console.log("changePrice",this.props.changePrice)
     return (
       <Page>
         <Modal
@@ -271,6 +272,77 @@ this.setState({simular:true})
                     <Button
                       color="danger"
                       onClick={this.toggle('nested_parent')}>
+                        CANCELAR
+                    </Button>
+                  </ModalFooter>
+                </Modal>
+                {/*APLICAR PRECIOS*/}
+                <Modal
+                  isOpen={this.state.modal_nested_parent_b}
+                  toggle={this.toggle('nested_parent_b')}
+                  className={this.props.className}>
+                  <ModalHeader toggle={this.toggle('nested_parent_b')}>
+                    APLICAR PRECIOS
+                  </ModalHeader>
+                  <ModalBody>
+                    <p className="header-txt-v2">Estas seguro de Aplicar los siguientes cambios:</p>
+                      <br />
+                      <Table responsive>
+                        <thead>
+                          <tr>
+                            <th className="header-table">PRODUCTO</th>
+                            { viewprice ? <th className="header-table">PVP RECOMENDADO </th> :  <th className="header-table">PVP FRANJA 1</th> }
+                            { viewprice ? '' : <th className="header-table">PVP FRANJA 2</th> }
+                            { viewprice ? '' : <th className="header-table">PVP FRANJA 3</th> }
+                            <th className="header-table">MARGEN REAL</th>
+                            <th className="header-table">MARGEN TEÓRICO</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {   
+                          dataReal.map((prop, key) => {
+                            return (
+                              <tr>
+                                <td key={key} className="text-center text-mini">{ prop.nombre }</td>
+                                { viewprice ? <td key={key} className="text-center text-mini text-shadow">${ prop.preciomodificadofranja1 >  0 ? prop.preciomodificadofranja1  : prop.pvprecomendado }</td> : <td key={key} className="text-center text-mini text-shadow">${ prop.preciomodificadofranja1 >  0 ? prop.preciomodificadofranja1  : prop.pvprecomendadofranja1 }</td> }
+                                { viewprice ? '' : <td key={key} className="text-center text-mini text-shadowb">${ prop.preciomodificadofranja2 >  0 ? prop.preciomodificadofranja2  : prop.pvprecomendadofranja2 }</td> }
+                                { viewprice ?  '' : <td key={key} className="text-center text-mini text-shadowc">${ prop.preciomodificadofranja3 >  0 ? prop.preciomodificadofranja3  : prop.pvprecomendadofranja3 }</td> }
+                                <td key={key} className="text-center text-mini">${ prop.margenreal }</td>
+                                <td key={key} className="text-center text-mini">${ prop.margenteorico }</td>
+                            </tr>
+                            )
+                          })}
+                        </tbody>
+                      </Table>
+                      <br></br>
+                      <Table>
+                        <tr>
+                          <td className="id_negocio_class">Id Negocio: <span className="id_negocio">129AB</span></td>
+                        </tr>
+                        <tr>
+                          <td className="id_negocio_class">{ viewprice ? 'Hora de Aplicación' :'Hora de Aplicación Franja 1' }: <input type="time" id="appt" name="appt" min="09:00" max="18:00" placeholder="8:00" required/></td>
+                        </tr>
+                      { viewprice ? '' :
+                        <tr>
+                          <td className="id_negocio_class">Hora de Aplicación Franja 2: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
+                        </tr> }
+                      { viewprice ? '' :
+                        <tr>
+                          <td className="id_negocio_class">Hora de Aplicación Franja 3: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
+                        </tr>
+                      }
+                      </Table>
+                    <br />
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      color="primary"
+                      onClick={this.toggle('nested_parent_b')}>
+                        ACEPTAR
+                    </Button>{' '}
+                    <Button
+                      color="danger"
+                      onClick={this.toggle('nested_parent_b')}>
                         CANCELAR
                     </Button>
                   </ModalFooter>
@@ -360,9 +432,7 @@ this.setState({simular:true})
             <CardBody>
             <Col md={3} className="container-btn-masiva">
               <Button color="primary btn-barra-simular" onClick={this.toggle('nested_parent')}>SIMULACIÓN MASIVA</Button>
-              <Button color="primary btn-barra-simular">
-                  ACEPTAR &nbsp;
-              </Button>
+              <Button color="primary btn-barra-simular" onClick={this.toggle('nested_parent_b')}> ACEPTAR &nbsp; </Button>
             </Col>
 
             <Tabs headerStyle={{fontWeight: 'bold'}} activeHeaderStyle={{color:'black'}} >
@@ -379,12 +449,12 @@ this.setState({simular:true})
                             <th className="text-center header-table min-font"><span className="meaning">PVP MÁXIMO DE LA COMPETENCIA</span><span className="detail">Precio promedio de venta máximo de la competencia</span></th>
                             <th className="text-center header-table min-font"><span className="meaning">PVP MÍNIMO DE LA COMPETENCIA</span><span className="detail">Precio promedio de venta mínimo de la competencia</span></th>
                             <th className="text-center header-table min-font" min-font><span className="meaning">PVP COMPETENCIA ESTRATÉGICA</span><span className="detail">Precio promedio de la competencia estratégica</span></th>
-                            { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 1</th> : '' }
-                            <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO FRANJA 1 </span><span className="detail">Precio recomendado desde la hora { "00:01" } hasta la hora { "11:00" }</span> </th>
-                            { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 2</th> : '' }
-                            <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO FRANJA 2 </span><span className="detail">Precio recomendado desde la hora { "11:01" } hasta la hora { "18:00" }</span> </th>
-                            { this.state.simular ? <th className="header-table min-font">SIMULACIÓN FRANJA 3</th> : '' }
-                            <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO FRANJA 3 </span><span className="detail">Precio recomendado desde la hora { "18:01" } hasta la hora { "24:00" }</span> </th>
+                            { this.state.simular ? <th className="header-table min-font">{!this.props.changePrice  ? 'SIMULACIÓN FRANJA 1' : 'SIMULACIÓN'}</th> : '' }
+                            { !this.props.changePrice ? <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO FRANJA 1 </span><span className="detail">Precio recomendado desde la hora { "00:01" } hasta la hora { "11:00" }</span> </th> : <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO </span> </th>}
+                            { this.state.simular && !this.props.changePrice ? <th className="header-table min-font">SIMULACIÓN FRANJA 2</th> : '' }
+                            { !this.props.changePrice ? <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO FRANJA 2 </span><span className="detail">Precio recomendado desde la hora { "11:01" } hasta la hora { "18:00" }</span> </th> : '' }
+                            { this.state.simular && !this.props.changePrice ? <th className="header-table min-font">SIMULACIÓN FRANJA 3</th> : '' }
+                            { !this.props.changePrice ? <th className="header-table min-font"><span className="meaning">PRECIO RECOMENDADO FRANJA 3 </span><span className="detail">Precio recomendado desde la hora { "18:01" } hasta la hora { "24:00" }</span> </th> : '' }
                             <th className="text-center header-table min-font"><span className="meaning">MARGEN TEÓRICO PROMEDIO</span><span className="detail">Dif. Precio de compra de hoy/ mañana y precio seleccionado</span></th>
                             <th className="text-center header-table min-font"><span className="meaning">MARGEN REAL PROMEDIO</span><span className="detail">Dif. Última compra y precio seleccionado</span></th>
                             <th className="text-center header-table min-font"><span className="meaning">DIFERENCIA VOLUMEN</span><span className="detail">Diferencia de volumen promedio del mes, con volumen objetivo</span></th>                     
@@ -421,11 +491,11 @@ this.setState({simular:true})
                             <td className="text-center">$ {min.toFixed(2)}</td>
                             <td className="text-center">$ {producto[0].competenciaestrategica}</td>
                           { this.state.simular ? this.state.simularid === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja1}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.diferencia1 ? diferencia1.toFixed(2) : this.state.preciotoplay1 }</td> : '' }
-                          <td className="text-center text-shadow text-shadow">{ this.state.simularid === i  ? <input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1}  /> :''} $ { producto[0].pvprecomendadofranja1} </td>
-                          { this.state.simular ? this.state.simularid === i  ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja2}/> </p></td> :  <td className="text-center bg-gray-light">{ this.state.diferencia2 ? diferencia2.toFixed(2)  : this.state.preciotoplay2 }</td> : '' }
-                            <td className="text-center text-shadow text-shadowb">{ this.state.simularid === i  ? <input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2}  /> : ''  } $ { producto[0].pvprecomendadofranja2} </td>
-                          { this.state.simular ? this.state.simularid  === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja3}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.diferencia3 ? diferencia3.toFixed(2) : this.state.preciotoplay3  }</td> : '' }
-                            <td className="text-center text-shadow text-shadowc">{ this.state.simularid === i   ? <input type="radio" name="radio1" value=""  /> : '' } $ { producto[0].pvprecomendadofranja3} </td>
+                            <td className="text-center text-shadow text-shadow">{ this.state.simularid === i  ? <input type="radio" name={ 'franja1' + producto[0].nombre + i } value={producto[0].simularfranja1}  /> :''} $ { producto[0].pvprecomendadofranja1} </td>
+                          { !this.props.changePrice ?  this.state.simular ? this.state.simularid === i  ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja2}/> </p></td> :  <td className="text-center bg-gray-light">{ this.state.diferencia2 ? diferencia2.toFixed(2)  : this.state.preciotoplay2 }</td> : '' : ''}
+                          { !this.props.changePrice ? <td className="text-center text-shadow text-shadowb">{ this.state.simularid === i  ? <input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2}  /> : ''  } $ { producto[0].pvprecomendadofranja2} </td> : '' }
+                          { !this.props.changePrice ? this.state.simular ? this.state.simularid  === i ? <td className="text-center bg-gray-light"><p><input type="radio" name={ 'franja2' + producto[0].nombre + i } value={producto[0].simularfranja2} className="dato_ms" /> <input type="number" className="input-simulacion-dos" placeholder="" value={producto[0].simularfranja3}/> </p></td> : <td className="text-center bg-gray-light">{ this.state.diferencia3 ? diferencia3.toFixed(2) : this.state.preciotoplay3  }</td> : '' : '' }
+                          { !this.props.changePrice ? <td className="text-center text-shadow text-shadowc">{ this.state.simularid === i  ?  <input type="radio" name="radio1" value=""  /> : '' } $ { producto[0].pvprecomendadofranja3} </td> : ''  }
                             <td className={ producto[0].margenteorico < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenteorico > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > $ { producto[0].margenteorico }</td>
                             <td className={ producto[0].margenreal < producto[0].margenobjetivo ? "text-center bg-gray-light txt-ok" :  producto[0].margenreal > producto[0].margenobjetivo ? "text-center bg-gray-light txt-high" : "text-center bg-gray-light"} > ${ producto[0].margenreal} </td>
                             <td className="text-center bg-gray-light"> { producto[0].volumenobjetivomensual }%</td>
@@ -684,7 +754,8 @@ function mapStateToProps(state){
   return {
       data: state,
       currentStation: state.station,
-      currentView:state.setView
+      currentView:state.setView,
+      changePrice:state.changePrice
   }
 }
 //Send Information REDUX
