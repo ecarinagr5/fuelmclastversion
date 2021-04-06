@@ -101,7 +101,7 @@ class Masivo extends React.Component {
 
     data[0].map((prod, i) => {
       this.state.empresa.push({name: prod.empresa, id: i})
-      negocio.push ({name:prod.negocio, id: i})
+      this.state.negocio.push ({name:prod.negocio, id: i})
       prod.productos.map((s, i) => {
         if (s.preciodecomprahoy === s.preciodecomprahoy) {
         }
@@ -135,14 +135,14 @@ class Masivo extends React.Component {
     })    
  }
 
- onSelect(event) {
+ onSelect(event, val) {
   let json = []
   let data = event;
   let filtrarpor = event.map(( filtro )=>{
         return filtro.name
   })
   let marvelHeroes =  this.state.dataReal[0].filter(function(hero) {
-    return hero.empresa == filtrarpor[0];
+    return val === 'empresa' ? hero.empresa==filtrarpor[0] :  hero.negocio==filtrarpor[0];
   });
   json.push(marvelHeroes )
   this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
@@ -302,7 +302,7 @@ this.setState({simular:true})
                       <Multiselect
                         options={empresa} // Options to display in the dropdown
                         selectedValues={this.state.selectedValue3} // Preselected value to persist in dropdown
-                        onSelect={this.onSelect} // Function will trigger on select event
+                        onSelect={(e) => this.onSelect(e,'empresa')} // Function will trigger on select event
                         onRemove={this.onRemove} // Function will trigger on remove event
                         displayValue="name" // Property name to display in the dropdown options
                         />
@@ -317,7 +317,7 @@ this.setState({simular:true})
                       <Multiselect
                         options={negocio} // Options to display in the dropdown
                         selectedValues={this.state.selectedValue3} // Preselected value to persist in dropdown
-                        onSelect={this.onSelect} // Function will trigger on select event
+                        onSelect={(e) => this.onSelect(e,'negocio')} // Function will trigger on select event
                         onRemove={this.onRemove} // Function will trigger on remove event
                         displayValue="name" // Property name to display in the dropdown options
                         />
