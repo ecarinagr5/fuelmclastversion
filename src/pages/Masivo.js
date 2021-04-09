@@ -137,18 +137,32 @@ class Masivo extends React.Component {
     })    
  }
 
- onSelect(event) {
+ onSelect(event, val ) {
+   console.log("xd", event, val)
   let json = []
   let data = event;
   let filtrarpor = event.map(( filtro )=>{
         return filtro.name
   })
-  let marvelHeroes =  this.state.dataReal[0].filter(function(hero) {
-    return hero.empresa == filtrarpor[0];
-  });
-  json.push(marvelHeroes )
-  this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
-  this.fillFilter(this.state.dataReal)
+
+  if ( val === 'empresa') {
+      let empresa =  this.state.dataReal[0].filter(function(hero) {
+        return hero.empresa == filtrarpor[0];
+      });
+
+      json.push(empresa)
+      this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
+      this.fillFilter(this.state.dataReal)
+  }
+  else if ( val === 'negocio' ) {
+    let negocio =  this.state.dataReal[0].filter(function(hero) {
+      return hero.negocio == filtrarpor[0];
+    });
+
+    json.push(negocio)
+    this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
+    this.fillFilter(this.state.dataReal)
+  }
  }
 
   toggle = modalType => (event, val) => {
@@ -177,7 +191,6 @@ class Masivo extends React.Component {
           console.log("prod",prod)
         })*/
     })
-    console.log("siam",simular1,simular2, simular3)
 
 this.setState({simular:true})
   }
@@ -362,7 +375,7 @@ this.setState({simular:true})
             <button class="mr-1 btn btn-outline-third bold">Diesel: <span class="color_price">1</span></button>
           </div>
   
-        {/* FILTRO */}
+      {/* FILTRO */}
         <Row>
               <hr></hr>
             <Col md={12} >
@@ -377,7 +390,7 @@ this.setState({simular:true})
                       <Multiselect
                         options={empresa} // Options to display in the dropdown
                         selectedValues={this.state.selectedValue3} // Preselected value to persist in dropdown
-                        onSelect={this.onSelect} // Function will trigger on select event
+                        onSelect={(e) => this.onSelect(e,'empresa')} // Function will trigger on select event
                         onRemove={this.onRemove} // Function will trigger on remove event
                         displayValue="name" // Property name to display in the dropdown options
                         />
@@ -392,7 +405,7 @@ this.setState({simular:true})
                       <Multiselect
                         options={negocio} // Options to display in the dropdown
                         selectedValues={this.state.selectedValue3} // Preselected value to persist in dropdown
-                        onSelect={this.onSelect} // Function will trigger on select event
+                        onSelect={(e) => this.onSelect(e,'negocio'} // Function will trigger on select event
                         onRemove={this.onRemove} // Function will trigger on remove event
                         displayValue="name" // Property name to display in the dropdown options
                         />
