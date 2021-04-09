@@ -103,7 +103,7 @@ class Masivo extends React.Component {
 
     data[0].map((prod, i) => {
       this.state.empresa.push({name: prod.empresa, id: i})
-      negocio.push ({name:prod.negocio, id: i})
+      this.state.negocio.push ({name:prod.negocio, id: i})
       prod.productos.map((s, i) => {
         if (s.preciodecomprahoy === s.preciodecomprahoy) {
         }
@@ -137,13 +137,18 @@ class Masivo extends React.Component {
     })    
  }
 
+<<<<<<< HEAD
  onSelect(event, val ) {
    console.log("xd", event, val)
+=======
+ onSelect(event, val) {
+>>>>>>> 750468711114a754cf88097d8a7404a0d820cb35
   let json = []
   let data = event;
   let filtrarpor = event.map(( filtro )=>{
         return filtro.name
   })
+<<<<<<< HEAD
 
   if ( val === 'empresa') {
       let empresa =  this.state.dataReal[0].filter(function(hero) {
@@ -163,6 +168,14 @@ class Masivo extends React.Component {
     this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
     this.fillFilter(this.state.dataReal)
   }
+=======
+  let marvelHeroes =  this.state.dataReal[0].filter(function(hero) {
+    return val === 'empresa' ? hero.empresa==filtrarpor[0] :  hero.negocio==filtrarpor[0];
+  });
+  json.push(marvelHeroes )
+  this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
+  this.fillFilter(this.state.dataReal)
+>>>>>>> 750468711114a754cf88097d8a7404a0d820cb35
  }
 
   toggle = modalType => (event, val) => {
@@ -405,7 +418,7 @@ this.setState({simular:true})
                       <Multiselect
                         options={negocio} // Options to display in the dropdown
                         selectedValues={this.state.selectedValue3} // Preselected value to persist in dropdown
-                        onSelect={(e) => this.onSelect(e,'negocio'} // Function will trigger on select event
+                        onSelect={(e) => this.onSelect(e,'negocio')} // Function will trigger on select event
                         onRemove={this.onRemove} // Function will trigger on remove event
                         displayValue="name" // Property name to display in the dropdown options
                         />
