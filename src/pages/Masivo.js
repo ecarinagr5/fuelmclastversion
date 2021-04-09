@@ -405,7 +405,7 @@ this.setState({simular:true})
                       <Multiselect
                         options={negocio} // Options to display in the dropdown
                         selectedValues={this.state.selectedValue3} // Preselected value to persist in dropdown
-                        onSelect={(e) => this.onSelect(e,'negocio'} // Function will trigger on select event
+                        onSelect={(e) => this.onSelect(e,'negocio')} // Function will trigger on select event
                         onRemove={this.onRemove} // Function will trigger on remove event
                         displayValue="name" // Property name to display in the dropdown options
                         />
