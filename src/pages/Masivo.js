@@ -137,45 +137,18 @@ class Masivo extends React.Component {
     })    
  }
 
-<<<<<<< HEAD
- onSelect(event, val ) {
-   console.log("xd", event, val)
-=======
  onSelect(event, val) {
->>>>>>> 750468711114a754cf88097d8a7404a0d820cb35
   let json = []
   let data = event;
   let filtrarpor = event.map(( filtro )=>{
         return filtro.name
   })
-<<<<<<< HEAD
-
-  if ( val === 'empresa') {
-      let empresa =  this.state.dataReal[0].filter(function(hero) {
-        return hero.empresa == filtrarpor[0];
-      });
-
-      json.push(empresa)
-      this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
-      this.fillFilter(this.state.dataReal)
-  }
-  else if ( val === 'negocio' ) {
-    let negocio =  this.state.dataReal[0].filter(function(hero) {
-      return hero.negocio == filtrarpor[0];
-    });
-
-    json.push(negocio)
-    this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
-    this.fillFilter(this.state.dataReal)
-  }
-=======
   let marvelHeroes =  this.state.dataReal[0].filter(function(hero) {
     return val === 'empresa' ? hero.empresa==filtrarpor[0] :  hero.negocio==filtrarpor[0];
   });
   json.push(marvelHeroes )
   this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
   this.fillFilter(this.state.dataReal)
->>>>>>> 750468711114a754cf88097d8a7404a0d820cb35
  }
 
   toggle = modalType => (event, val) => {
