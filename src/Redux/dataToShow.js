@@ -40,7 +40,6 @@ export const getDataAction = () => async (dispatch) => {
     try {
         /*const res = await axios.get('https://firebasestorage.googleapis.com/v0/b/fuelmc-590d7.appspot.com/o/dataFuel.json?alt=media&token=6d2ee0dd-693c-478b-9708-3ee17d7246de')*/
         const res = dataMerge;
-        console.log('API Storage')
         dispatch({
                 type: GET_DATA_SUCCESSFULL,
                 /*payload: res.data*/

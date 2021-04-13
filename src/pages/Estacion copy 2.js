@@ -499,7 +499,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                   <CardBody>
                     {/*<Line data={chartjs.line.data} options={chartjs.line.options} />*/}
                     {/*<Bar data={ genLineData() } height={80} />*/}
-            <Bar data={this.genLineDataMONTHS({ type: 'line', fill: false })} height={80} />
+                    <Bar data={this.genLineDataMONTHS()} height={100} />
                   </CardBody>
                   <p className="update-text">Last Update { date }</p>
               </Card>

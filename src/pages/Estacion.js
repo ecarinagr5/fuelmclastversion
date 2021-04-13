@@ -22,7 +22,7 @@ import { getColor } from 'utils/colors';
 //Views
 import Welcome from './Welcome';
 
-const MONTHS = ['10/02/2021'];
+const MONTHS = ['10/04/2021'];
 
 
 const settings = {
@@ -188,6 +188,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
     });
     let promedioactual =  this.state.view === 'manana' ? ( product[idproduct].pvprecomendadomananafranja1 + product[idproduct].pvprecomendadomananafranja2 + product[idproduct].pvprecomendadomananafranja3 ) / 3 : ( product[idproduct].pvprecomendadofranja1 + product[idproduct].pvprecomendadofranja2 + product[idproduct].pvprecomendadofranja3 ) / 3;
     let promedio = product[idproduct].preciopromediofranjas > 0 ? product[idproduct].preciopromediofranjas : promedioactual;
+
     return {
       labels: MONTHS,
       datasets: [
@@ -202,6 +203,16 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
           ...moreData2,
         },
         {
+          label: 'PVP Compentencia Estrategica',
+          backgroundColor: getColor('teal'),
+          borderColor: getColor('teal'),
+          borderWidth: 2,
+          data: [
+            product[idproduct].pvppromediodelacompentencia,
+          ],
+          ...moreData,
+        },
+        {
           label: 'Precio de Compra',
           backgroundColor: getColor('yellow'),
           borderColor: getColor('yellow'),
@@ -210,16 +221,6 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
             product[idproduct].preciodecomprahoy,
           ],
           ...moreData,
-        },
-        {
-          label: 'Precio Promedio de venta de la competencia',
-          backgroundColor: getColor('teal'),
-          borderColor: getColor('teal'),
-          borderWidth: 2,
-          data: [
-            product[idproduct].pvppromediodelacompentencia,
-          ],
-          ...moreData2,
         },
         {
           label: competencias[0].nombre,
