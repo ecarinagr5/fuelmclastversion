@@ -737,7 +737,7 @@ this.setState({simular:true})
         <Row>
             <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>MARGENN TEORÍCO</CardHeader>
+              <CardHeader>MARGEN TEORÍCO</CardHeader>
               <CardBody>
                 <Doughnut data={genPieData()} />
               </CardBody>
