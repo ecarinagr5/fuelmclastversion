@@ -192,7 +192,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
       labels: MONTHS,
       datasets: [
         {
-          label: 'Mi precio promedio de venta diario',
+          label: 'Mi precio promedio de venta',
           backgroundColor: getColor('success'),
           borderColor: getColor('success'),
           borderWidth: 1,
@@ -403,7 +403,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                     {  
                     competencias.map((prop, key) => { 
                       if( prop.estrategica ) {
-                          return(<th className="header-table color-estrategia">{prop.nombre} Competencia Estratégica</th>)
+                          return(<th className="header-table">{prop.nombre}</th>)
                       }
                       else {
                           return( <th className="header-table">{prop.nombre}</th> )
@@ -435,7 +435,7 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
                       <tr>
                           <td key={key} className="text-left"><span className="meaningprod">{ prop.nombre }</span><span className="detailprod">{ prop.tipologia }</span></td>
                           <td className="text-center">${ precioponderado.toFixed(1) / 2}</td>
-                          <td className={ prop.competenciaestrategica === min ? "text-center txt-ok" : prop.competenciaestrategica === max ? "text-center txt-high" : 'text-center'}>${ prop.competenciaestrategica }</td>
+                          <td className="text-center txt-b" ><span className="meaning">${ prop.competenciaestrategica}</span><span className="detail">precio de la competencia estratégica</span></td>
                           <td className={ prop.competencia1 === min ? "text-center txt-ok" : prop.competencia1 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia1 }</td>
                           <td className={ prop.competencia2 === min ? "text-center txt-ok" : prop.competencia2 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia2 }</td>
                           <td className={ prop.competencia3 === min ? "text-center txt-ok" : prop.competencia3 === max ? "text-center txt-high" : 'text-center'}>${ prop.competencia3 }</td>
