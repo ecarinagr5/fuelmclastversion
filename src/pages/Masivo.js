@@ -103,7 +103,7 @@ class Masivo extends React.Component {
 
     data[0].map((prod, i) => {
       this.state.empresa.push({name: prod.empresa, id: i})
-      negocio.push ({name:prod.negocio, id: i})
+      this.state.negocio.push ({name:prod.negocio, id: i})
       prod.productos.map((s, i) => {
         if (s.preciodecomprahoy === s.preciodecomprahoy) {
         }
@@ -737,7 +737,7 @@ this.setState({simular:true})
         <Row>
             <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>MARGENN TEORÍCO</CardHeader>
+              <CardHeader>MARGEN TEORÍCO</CardHeader>
               <CardBody>
                 <Doughnut data={genPieData()} />
               </CardBody>
