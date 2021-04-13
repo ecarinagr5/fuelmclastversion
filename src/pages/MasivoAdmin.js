@@ -1,5 +1,5 @@
 import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar,Doughnut } from 'react-chartjs-2';
 import {MdInsertChart} from 'react-icons/md';
 
 
@@ -24,12 +24,13 @@ const tableTypes = ['PROMEDIOS'];
 const maxTypes = ['MÁXIMOS'];
 const minTypes = ['MINÍMOS'];
 
+const MONTHS = ['13/04/2021'];
 
 const genPieData = () => {
   return {
     datasets: [
       {
-        data: [30,30,40],
+        data: [14.96,12.3,14.2],
         backgroundColor: [
           getColor('primary'),
           getColor('secondary'),
@@ -64,6 +65,7 @@ class MasivoAdmin extends React.Component {
       diferencia:'',
       dataReal:[],
       productos:[],
+      productoData:[],
       prod:[],
       empresa:[],
       negocio:[],
@@ -71,7 +73,8 @@ class MasivoAdmin extends React.Component {
       margen:[],
       idtomodify:[],
       simularid:null,
-      coordenadas:[]
+      coordenadas:[],
+      selectStation:[]
     }
 
     this.selectChooseAll = this.selectChooseAll.bind(this);
@@ -80,12 +83,18 @@ class MasivoAdmin extends React.Component {
     this.fillFilter = this.fillFilter.bind(this);
     this.onRemove = this.onRemove.bind(this);
     this.close = this.close.bind(this);
+    this.genLineDataMONTHS = this.genLineDataMONTHS.bind(this);
+    this.genLineDataBMONTHS = this.genLineDataBMONTHS.bind(this);
   }
 
   componentWillMount(){
     const allEstaciones = this.props.data.metrics.array.estaciones;
     this.state.dataReal.push(allEstaciones)
     this.fillFilter(this.state.dataReal)
+ }
+
+ addStation(e){
+  this.state.selectStation.push(e);
  }
 
  onRemove(){
@@ -137,6 +146,91 @@ class MasivoAdmin extends React.Component {
     })    
  }
 
+    //Function to return lines
+genLineDataBMONTHS = (moreData = {}, moreData2 = {}) => {
+  let product = this.state.dataReal[0];
+  product.map((x, index) => {
+    if (x.productos) {
+      x.productos.map(pr =>{this.state.productoData.push(pr)});
+    }
+  })
+        return {
+          labels: MONTHS,
+          datasets: [
+            {
+              label: 'Magna',
+              backgroundColor: getColor('teal'),
+              borderColor: getColor('teal'),
+              data: [
+                1.12
+              ],
+              ...moreData,
+            },
+            {
+              label: 'Diesel',
+              backgroundColor: getColor('yellow'),
+              borderColor: getColor('yellow'),
+              data: [
+                1.25
+              ],
+              ...moreData,
+            },
+            {
+              label: 'Premium',
+              backgroundColor: getColor('info'),
+              borderColor: getColor('info'),
+              data: [
+                1.6
+              ],
+              ...moreData,
+            },
+          ],
+        };
+  };
+
+   //Function to return lines
+genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
+  let product = this.state.dataReal[0];
+  product.map((x, index) => {
+    if (x.productos) {
+      x.productos.map(pr =>{this.state.productoData.push(pr)});
+    }
+  })
+        return {
+          labels: MONTHS,
+          datasets: [
+            {
+              label: 'Magna',
+              backgroundColor: getColor('teal'),
+              borderColor: getColor('teal'),
+              data: [
+                1.3
+              ],
+              ...moreData,
+            },
+            {
+              label: 'Diesel',
+              backgroundColor: getColor('blue'),
+              borderColor: getColor('blue'),
+              data: [
+                1.9
+              ],
+              ...moreData,
+            },
+            {
+              label: 'Premium',
+              backgroundColor: getColor('info'),
+              borderColor: getColor('info'),
+              data: [
+                1.5
+              ],
+              ...moreData,
+            },
+          ],
+        };
+  };
+
+
  onSelect(event, val) {
   let json = []
   let data = event;
@@ -144,7 +238,7 @@ class MasivoAdmin extends React.Component {
         return filtro.name
   })
   let marvelHeroes =  this.state.dataReal[0].filter(function(hero) {
-    return val === 'empresa' ? hero.empresa==filtrarpor[0] :  hero.negocio==filtrarpor[0] 
+    return val === 'empresa' ? hero.empresa==filtrarpor[0] :  hero.negocio==filtrarpor[0];
   });
   json.push(marvelHeroes )
   this.setState({ dataReal:json, empresa:[], precio:[], margen:[]})
@@ -177,16 +271,11 @@ class MasivoAdmin extends React.Component {
           console.log("prod",prod)
         })*/
     })
-    console.log("siam",simular1,simular2, simular3)
-
 this.setState({simular:true})
   }
+
   selectChooseAll(){
-    if(this.state.selectAll) {
-      this.setState({selectAll: false})
-    } else {
-      this.setState({selectAll: true}) 
-    }
+      this.setState(state =>({ selectAll: !this.state.selectAll}));
   }
 
   handleClick(event, val){
@@ -256,14 +345,6 @@ this.setState({simular:true})
                       </FormGroup>
                       </Col>
                     </Row>
-
-                    {/*<FormGroup>
-                      <Label for="diferencia">DIFERENCIA:</Label>
-                      <Input
-                        id="diferencia"
-                        value={this.state.diferencia}
-                        onChange={(e) => this.setState({diferencia:e.target.value })}  />
-                    </FormGroup>*/}
                   </ModalBody>
                   <ModalFooter>
                     <Button
@@ -294,27 +375,44 @@ this.setState({simular:true})
                         <thead>
                           <tr>
                             <th className="header-table">PRODUCTO</th>
-                            { viewprice ? <th className="header-table">PVP RECOMENDADO </th> :  <th className="header-table">PVP FRANJA 1</th> }
-                            { viewprice ? '' : <th className="header-table">PVP FRANJA 2</th> }
-                            { viewprice ? '' : <th className="header-table">PVP FRANJA 3</th> }
+                            { changePrice  ? <th className="header-table">PVP RECOMENDADO </th> :  <th className="header-table">PVP FRANJA 1</th> }
+                            { changePrice ? '' : <th className="header-table">PVP FRANJA 2</th> }
+                            { changePrice  ? '' : <th className="header-table">PVP FRANJA 3</th> }
                             <th className="header-table">MARGEN REAL</th>
                             <th className="header-table">MARGEN TEÓRICO</th>
                           </tr>
                         </thead>
                         <tbody>
                         {   
-                          dataReal.map((prop, key) => {
-                            return (
-                              <tr>
-                                <td key={key} className="text-center text-mini">{ prop.nombre }</td>
-                                { viewprice ? <td key={key} className="text-center text-mini text-shadow">${ prop.preciomodificadofranja1 >  0 ? prop.preciomodificadofranja1  : prop.pvprecomendado }</td> : <td key={key} className="text-center text-mini text-shadow">${ prop.preciomodificadofranja1 >  0 ? prop.preciomodificadofranja1  : prop.pvprecomendadofranja1 }</td> }
-                                { viewprice ? '' : <td key={key} className="text-center text-mini text-shadowb">${ prop.preciomodificadofranja2 >  0 ? prop.preciomodificadofranja2  : prop.pvprecomendadofranja2 }</td> }
-                                { viewprice ?  '' : <td key={key} className="text-center text-mini text-shadowc">${ prop.preciomodificadofranja3 >  0 ? prop.preciomodificadofranja3  : prop.pvprecomendadofranja3 }</td> }
-                                <td key={key} className="text-center text-mini">${ prop.margenreal }</td>
-                                <td key={key} className="text-center text-mini">${ prop.margenteorico }</td>
-                            </tr>
-                            )
-                          })}
+                          dataReal[0].map((prop, key) => {
+                            console.log("prop", prop)
+                              if(prop) { 
+                                return (
+                                  <tr>
+                                    <td key={key} className="text-left text-mini">{ prop.empresa }</td>
+                                      { 
+                                        prop.productos.map((m, i) => {
+                                          if(m.nombre === "diesel") {
+                                            return (
+                                              <>
+                                                { changePrice  ? <td key={key} className="text-center text-mini text-shadow">${ m.preciomodificadofranja1 >  0 ? m.preciomodificadofranja1  : m.pvprecomendadofranja1 }</td> : <td key={key} className="text-center text-mini text-shadow">${ m.preciomodificadofranja1 >  0 ? m.preciomodificadofranja1  : m.pvprecomendadofranja1 }</td> }
+                                                { changePrice  ? '' : <td key={key} className="text-center text-mini text-shadowb">${ m.preciomodificadofranja2 >  0 ? m.preciomodificadofranja2  : m.pvprecomendadofranja2 }</td> }
+                                                { changePrice  ?  '' : <td key={key} className="text-center text-mini text-shadowc">${ m.preciomodificadofranja3 >  0 ? m.preciomodificadofranja3  : m.pvprecomendadofranja3 }</td> }
+                                                <td key={key} className="text-center text-mini">${ m.margenreal }</td>
+                                                <td key={key} className="text-center text-mini">${ m.margenteorico }</td>
+                                              </>
+                                            ) 
+                                          }
+                                        })
+                                      }
+                                  </tr>
+                                )
+                                /*prop.productos.map((m, key) => {
+                
+                                }) */
+                              }
+                            })
+                        }
                         </tbody>
                       </Table>
                       <br></br>
@@ -325,11 +423,11 @@ this.setState({simular:true})
                         <tr>
                           <td className="id_negocio_class">{ viewprice ? 'Hora de Aplicación' :'Hora de Aplicación Franja 1' }: <input type="time" id="appt" name="appt" min="09:00" max="18:00" placeholder="8:00" required/></td>
                         </tr>
-                      { viewprice ? '' :
+                      {  changePrice ? '' :
                         <tr>
                           <td className="id_negocio_class">Hora de Aplicación Franja 2: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
                         </tr> }
-                      { viewprice ? '' :
+                      { changePrice ? '' :
                         <tr>
                           <td className="id_negocio_class">Hora de Aplicación Franja 3: <input type="time" id="appt" name="appt" min="09:00" max="18:00" required/></td>
                         </tr>
@@ -362,7 +460,7 @@ this.setState({simular:true})
             <button class="mr-1 btn btn-outline-third bold">Diesel: <span class="color_price">1</span></button>
           </div>
   
-        {/* FILTRO */}
+      {/* FILTRO */}
         <Row>
               <hr></hr>
             <Col md={12} >
@@ -443,7 +541,7 @@ this.setState({simular:true})
                     <Table responsive>
                       <thead>
                           <tr>
-                            <th className="text-center header-table min-font">All <input type="radio" onChange={this.selectChooseAll}></input></th>
+                            <th className="text-center header-table min-font">All <input type="radio" onClick={this.selectChooseAll}></input></th>
                             <th className="text-center header-table min-font">EMPRESA</th>
                             <th className="text-center header-table min-font">NEGOCIO</th>
                             <th className="text-center header-table min-font"><span className="meaning">PRECIO DE COMPRA HOY</span><span className="detail">Precio de compra publicado por la CRE para el día de hoy.</span></th>
@@ -484,7 +582,7 @@ this.setState({simular:true})
                           let diferencia3 = producto[0].pvprecomendadofranja3 - this.state.diferencia3;
                           return (
                           <tr>
-                            <td className="text-center color-blue"> <input type="radio" id={ i } name={ i } value={ i } checked={this.state.selectAll ? true : false}/></td>
+                            <td className="text-center color-blue"> <input type="radio" id={ i } name={ i } value={ i } checked={ this.state.selectAll ? true : false }   onChange={(e) => this.addStation(e.target.value)}/></td>
                             <td className="text-left nombre-empresa">{ prop.empresa }</td>
                             <td className="text-center"> { prop.negocio } </td>
                             <td className="text-center">$ { producto[0].preciodecomprahoy }</td>
@@ -541,7 +639,7 @@ this.setState({simular:true})
         </Card>
       </Col>
 </Row>
-<Row>
+  <Row>
           <Col lg="4" md="12" sm="12" xs="12">
             <Card>
               <CardBody>
@@ -571,28 +669,16 @@ this.setState({simular:true})
                             <td className="menos-espacio">$12.3</td>
                           </tr>
                           <tr>
-                            <th scope="row">Utilidad</th>
-                            <td className="menos-espacio">$10,000</td>
-                            <td className="menos-espacio">$20,000</td>
-                            <td className="menos-espacio">$22,500</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Volumen</th>
-                            <td className="menos-espacio">290 lts</td>
-                            <td className="menos-espacio">320 lts</td>
-                            <td className="menos-espacio">250 lts</td>
-                          </tr>
-                          <tr>
                             <th scope="row">Margen Teoríco</th>
-                            <td className="menos-espacio">10%</td>
-                            <td className="menos-espacio">50%</td>
-                            <td className="menos-espacio">65%</td>
+                            <td className="menos-espacio">$1.9</td>
+                            <td className="menos-espacio">$1.4</td>
+                            <td className="menos-espacio">$1.3</td>
                           </tr>
                           <tr>
                             <th scope="row">Margen Real</th>
-                            <td className="menos-espacio">10%</td>
-                            <td className="menos-espacio">50%</td>
-                            <td className="menos-espacio">65%</td>
+                            <td className="menos-espacio">$1.2</td>
+                            <td className="menos-espacio">$1.25</td>
+                            <td className="menos-espacio">$1.4</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -630,28 +716,16 @@ this.setState({simular:true})
                             <td className="menos-espacio">$12.3</td>
                           </tr>
                           <tr>
-                            <th scope="row">Utilidad</th>
-                            <td className="menos-espacio">$10,000</td>
-                            <td className="menos-espacio">$20,000</td>
-                            <td className="menos-espacio">$22,500</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Volumen</th>
-                            <td className="menos-espacio">290 lts</td>
-                            <td className="menos-espacio">320 lts</td>
-                            <td className="menos-espacio">250 lts</td>
-                          </tr>
-                          <tr>
                             <th scope="row">Margen Teoríco</th>
-                            <td className="menos-espacio">10%</td>
-                            <td className="menos-espacio">50%</td>
-                            <td className="menos-espacio">65%</td>
+                            <td className="menos-espacio">$1.2</td>
+                            <td className="menos-espacio">$1.9</td>
+                            <td className="menos-espacio">$1.5</td>
                           </tr>
                           <tr>
                             <th scope="row">Margen Real</th>
-                            <td className="menos-espacio">10%</td>
-                            <td className="menos-espacio">50%</td>
-                            <td className="menos-espacio">65%</td>
+                            <td className="menos-espacio">$1.1</td>
+                            <td className="menos-espacio">$1.1</td>
+                            <td className="menos-espacio">$1.2</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -689,28 +763,16 @@ this.setState({simular:true})
                             <td className="menos-espacio">$12.3</td>
                           </tr>
                           <tr>
-                            <th scope="row">Utilidad</th>
-                            <td className="menos-espacio">$10,000</td>
-                            <td className="menos-espacio">$20,000</td>
-                            <td className="menos-espacio">$22,500</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Volumen</th>
-                            <td className="menos-espacio">290 lts</td>
-                            <td className="menos-espacio">320 lts</td>
-                            <td className="menos-espacio">250 lts</td>
-                          </tr>
-                          <tr>
                             <th scope="row">Margen Teoríco</th>
-                            <td className="menos-espacio">10%</td>
-                            <td className="menos-espacio">50%</td>
-                            <td className="menos-espacio">65%</td>
+                            <td className="menos-espacio">$1.1</td>
+                            <td className="menos-espacio">$1.3</td>
+                            <td className="menos-espacio">$1.5</td>
                           </tr>
                           <tr>
                             <th scope="row">Margen Real</th>
-                            <td className="menos-espacio">10%</td>
-                            <td className="menos-espacio">50%</td>
-                            <td className="menos-espacio">65%</td>
+                            <td className="menos-espacio">$1.1</td>
+                            <td className="menos-espacio">$1.3</td>
+                            <td className="menos-espacio">$1.5</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -724,23 +786,24 @@ this.setState({simular:true})
         <Row>
             <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>MARGENN TEORÍCO</CardHeader>
+              <CardHeader>MARGEN TEORÍCO PROMEDIO</CardHeader>
               <CardBody>
-                <Doughnut data={genPieData()} />
+                <Bar data={this.genLineDataMONTHS()} height={150} />
               </CardBody>
             </Card>
           </Col>
           <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>MARGEN REAL</CardHeader>
+              <CardHeader>MARGEN REAL PROMEDIO</CardHeader>
               <CardBody>
-                <Doughnut data={genPieData()} />
+                {/*<Doughnut data={genPieData()} />*/}
+                <Bar data={this.genLineDataBMONTHS()} height={150} />
               </CardBody>
             </Card>
           </Col>
           <Col xl={4} lg={12} md={12}>
             <Card>
-              <CardHeader>VOLUMEN</CardHeader>
+              <CardHeader>PRECIO PROMEDIO</CardHeader>
               <CardBody>
                 <Doughnut data={genPieData()} />
               </CardBody>
