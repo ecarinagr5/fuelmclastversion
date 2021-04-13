@@ -64,27 +64,12 @@ import { getColor } from 'utils/colors';
 
 class Welcome extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = { 
-      selectAll:false, 
-      simular:false,
-      simular1:false,
-      simular2:false,
-      simular3:false
-    }
-  }
-
 
 
   render() {
     return (
       <Page>
         <div className="bienvenida-class">
-          {/*<div>
-            SIMULACIÓN
-          </div>*/}
           <div id="splash">
             <div class="anim">
               <div id="loader">
@@ -101,6 +86,7 @@ class Welcome extends React.Component {
               </div>
             </div>
           </div>
+          <p className="textF">FUEL M</p>
         </div>
       </Page>
     );

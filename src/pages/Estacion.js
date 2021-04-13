@@ -49,7 +49,8 @@ class Estacion extends React.Component {
       productgraph:'',
       idproduct:0,
       update:0,
-      view:''
+      view:'',
+      viewss:0
     }
     this.handleClick = this.handleClick.bind(this);
     this.handSimulate = this.handSimulate.bind(this);
@@ -295,7 +296,15 @@ genLineDataMONTHS = (moreData = {}, moreData2 = {}) => {
     return (
       <Page>
             {/* Welcome View */}
-            {/*<Welcome />*/}
+
+            { this.state.viewss === 1 ? <Welcome /> : ''}
+
+
+            { /*setTimeout(
+                () => this.setState({ viewss: 0 }), 
+                4000
+              )*/
+            }
               {/* Modal View */}
               <Modal
                   isOpen={this.state.modal_nested_parent}
